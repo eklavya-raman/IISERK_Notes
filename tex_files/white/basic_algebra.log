@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.12)  28 JAN 2026 21:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.12)  10 MAR 2026 01:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1144,9 +1144,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 335--339
 
 
 [10]
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 404--409
+
+ []
+
+
 
 [11]
-runsystem(latexminted cleantemp  --timestamp 20260128214547 1954F320F29CF2FC3F0D2B0AE1A57833)...disabled (restricted).
+Package hyperref Info: bookmark level for unknown mytheorem defaults to 0 on input line 413.
+
+
+[12]
+pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.453 \begin{mydefinition}{Subgroup}
+                                    
+pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.487 \begin{mydefinition}{Cyclic Group}
+                                        
+
+[13]
+pdfTeX warning (ext4): destination with the same identifier (name{mynote.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.497     W
+           e denote a cyclic group of order \( n \) by \( C_n \) and a cycli...
+pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.505 \begin{mydefinition}{Order of an Element}
+                                               
+pdfTeX warning (ext4): destination with the same identifier (name{example.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.509     C
+           onsider the group \( (\mathbb{Z}/6\mathbb{Z}, +) \), which is a c...
+pdfTeX warning (ext4): destination with the same identifier (name{example.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.512     C
+           onsider the group \( (\mathbb{Z}, +) \), which is an infinite cyc...
+
+[14]
+
+[15]
+runsystem(latexminted cleantemp  --timestamp 20260310010148 1954F320F29CF2FC3F0D2B0AE1A57833)...disabled (restricted).
 
  (basic_algebra.aux)
  ***********
@@ -1154,20 +1204,20 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-08-13>
  ***********
 Package rerunfilecheck Info: File `basic_algebra.out' has not changed.
-(rerunfilecheck)             Checksum: CCD2CE46DCBC3D42DF989CD2D09F3E38;633.
+(rerunfilecheck)             Checksum: AEE0A29F92FAF90DAAC1F05CAF44F227;993.
  ) 
 Here is how much of TeX's memory you used:
- 67284 strings out of 468133
- 1742903 string characters out of 5427324
- 2683247 words of memory out of 5000000
- 95065 multiletter control sequences out of 15000+600000
- 638200 words of font info for 83 fonts, out of 8000000 for 9000
+ 67343 strings out of 468133
+ 1744037 string characters out of 5427324
+ 2683246 words of memory out of 5000000
+ 95100 multiletter control sequences out of 15000+600000
+ 638546 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 121i,12n,124p,817b,1287s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Eklavya_7354\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on basic_algebra.pdf (11 pages, 226848 bytes).
+ 121i,12n,124p,1088b,1481s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\Eklavya_7354\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on basic_algebra.pdf (15 pages, 271690 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 64 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 280 PDF objects out of 1000 (max. 8388607)
+ 87 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 

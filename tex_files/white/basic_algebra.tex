@@ -375,6 +375,162 @@ These are the two distinct groups of order 4. The other two possible tables are 
     \[(a^m)^{k+1} = (a^m)^k * a^m = a^{m \cdot k} * a^m = a^{m \cdot k + m} = a^{m \cdot (k + 1)}\]
     Thus, by the principle of mathematical induction, the properties hold for all \( n \in \mathbb{Z} \).
     
-
 \end{enumerate}
+We now give some examples of infinite non-abelian groups. \\
+\begin{example}
+    $GL_n(\R)$, the group of all invertible $n \times n$ matrices with real entries under the operation of matrix multiplication, is an infinite non-abelian group for \( n \geq 2 \). The identity element in this group is the identity matrix, and the inverse of a matrix is its inverse matrix. The operation of matrix multiplication is associative but not commutative, which makes \( GL_n(\R) \) a non-abelian group. \\
+    Similarly $SL_n(\R)$, the group of all $n \times n$ matrices with real entries and determinant equal to 1 under the operation of matrix multiplication, is also an infinite non-abelian group for \( n \geq 2 \). The identity element in this group is also the identity matrix, and the inverse of a matrix is its inverse matrix. The operation of matrix multiplication is associative but not commutative, which makes \( SL_n(\R) \) a non-abelian group. \\
+    In general, for any infinite field \( F \) and any \( n \geq 2 \), the groups \( GL_n(F) \) and \( SL_n(F) \) are infinite non-abelian groups under the operation of matrix multiplication.
+\end{example} 
+\begin{example}
+    $(\mathbb{Z}/n\mathbb{Z}, +)$, the group of integers modulo \( n \) under the operation of addition, is a finite abelian group. The elements of this group are the equivalence classes of integers modulo \( n \), denoted by \( [0], [1], [2], \ldots, [n-1] \). The identity element in this group is \( [0] \), and the inverse of an element \( [a] \) is \( [-a] \). The operation of addition is associative and commutative, which makes \( \mathbb{Z}/n\mathbb{Z} \) an abelian group. \\
+\end{example}
+\begin{mynote}
+    Each element of $\Z/n\Z$ is an equivalence class of integers. For example, in $\Z/5\Z$, we have the following equivalence classes -
+\begin{center}
+\begin{align}
+    [0] &= \{\ldots -10, -5, 0, 5, 10, \ldots\} \\
+    [1] &= \{\ldots -9, -4, 1, 6, 11, \ldots\} \\
+    [2] &= \{\ldots -8, -3, 2, 7, 12, \ldots\} \\
+    [3] &= \{\ldots -7, -2, 3, 8, 13, \ldots\} \\
+    [4] &= \{\ldots -6, -1, 4, 9, 14, \ldots\}
+\end{align}
+\end{center}
+Therefore, each element of $\Z/n\Z$ is itself a countably infinite subset of integers. To make sense of the operation of addition on $\Z/n\Z$, we define the addition of two equivalence classes as follows -
+\[[a] + [b] = [a + b]\]
+\end{mynote}
+
+
+Now, another interesting fact is that $\{\Z/n\Z\} \backslash {[0]} = \{[1], [2], \ldots, [n-1]\}$ forms a group under the operation of multiplication for the case of $n=5$. The identity element in this group is $[1]$, and the inverse of an element $[a]$ is $[a^{-1}]$, where $a^{-1}$ is the multiplicative inverse of $a$ modulo $n$. The operation of multiplication is associative and commutative, which makes $\{\Z/n\Z\} \backslash {[0]}$ an abelian group. \\
+\begin{mynote}
+    Here, we define multiplication as follows - 
+    \[[a] \cdot [b] = [a \cdot b]\]
+    where $a \cdot b$ is the product of $a$ and $b$ modulo $n$. Note that the operation of multiplication is only defined for the non-zero elements of $\Z/n\Z$, since $[0]$ does not have a multiplicative inverse. Therefore, we consider the set $\{\Z/n\Z\} \backslash {[0]}$ when defining the group under multiplication.
+\end{mynote}
+We also note, that the same is not a group if $n$ is not prime. 
+We state the following result and prove it - 
+\begin{mytheorem}
+    The group $\{\Z/n\Z\} \backslash {[0]}$ under multiplication is a group if and only if $n$ is prime.
+\end{mytheorem}
+\begin{proof}
+    $(\rightarrow)$Suppose $n$ is not prime and that $\{\Z/n\Z\} \backslash {[0]}$ under multiplication is a group. Since $n$ is not prime, there exist integers $a$ and $b$ such that $1 < a < n$, $1 < b < n$ (as every non prime posseses a unique prime factorization.), and $n = a \cdot b$. Consider the elements $[a]$ and $[b]$ in $\{\Z/n\Z\} \backslash {[0]}$. We have:
+    \[[a] \cdot [b] = [a \cdot b] = [n] = [0]\]
+    This contradicts the fact that $\{\Z/n\Z\} \backslash {[0]}$ is a group under multiplication, since the product of two non-zero elements cannot be zero in a group. Therefore, if $\{\Z/n\Z\} \backslash {[0]}$ is a group under multiplication, then $n$ must be prime. \\
+    $(\leftarrow)$ Suppose $n$ is prime. We need to show that $\{\Z/n\Z\} \backslash {[0]}$ under multiplication is a group. The identity element in this group is $[1]$, since $[1] \cdot [a] = [a] \cdot [1] = [a]$ for all $[a] \in \{\Z/n\Z\} \backslash {[0]}$. Now, let $[a] \in \{\Z/n\Z\} \backslash {[0]}$. Since $n$ is prime, there exists an integer $a^{-1}$ such that $a \cdot a^{-1} \equiv 1 \mod n$ (we prove this seperately). Therefore, we have:
+\[[a] \cdot [a^{-1}] = [a \cdot a^{-1}] = [1]\]
+Thus, every element in $\{\Z/n\Z\} \backslash {[0]}$ has a multiplicative inverse. The operation of multiplication is associative and commutative, which makes $\{\Z/n\Z\} \backslash {[0]}$ an abelian group under multiplication. Therefore, if $n$ is prime, then $\{\Z/n\Z\} \backslash {[0]}$ under multiplication is a group.
+\end{proof}
+\begin{mynote}
+    To show that if $n$ is prime, there exists an integer $a^{-1}$ such that $a \cdot a^{-1} \equiv 1 \mod n$, consider $a \in \Z, 1 < a < n$. Since $n$ is prime, the greatest common divisor of $a$ and $n$ is 1. We claim there exists integers $x$ and $y$ such that $ax + ny = 1$. This can be shown using the Euclidean algorithm as follows -
+\begin{center}
+\begin{align*}
+    n &= q_1 a + r_1 \\
+    a &= q_2 r_1 + r_2 \\
+    r_1 &= q_3 r_2 + r_3 \\
+    &\vdots \\
+    r_{k-2} &= q_k r_{k-1} + r_k \\
+    r_{k-1} &= q_{k+1} r_k + 0
+\end{align*}
+\end{center}
+where $q_i$ are the quotients and $r_i$ are the remainders. Since the greatest common divisor of $a$ and $n$ is 1, we have $r_k = 1$. Now, we can express 1 as a linear combination of $a$ and $n$ by back-substituting the equations above:
+\begin{center}
+\begin{align*}
+    1 &= r_k \\
+    &= r_{k-2} - q_k r_{k-1} \\
+    &= r_{k-2} - q_k (r_{k-3} - q_{k-1} r_{k-2}) \\
+    &= (1 + q_k q_{k-1}) r_{k-2} - q_k r_{k-3} \\
+    &\vdots \\
+    &= x a + y n
+\end{align*}
+\end{center}
+Thus, we have shown that there exist integers $x$ and $y$ such that $ax + ny = 1$. Taking this equation modulo $n$, we get $ax \equiv 1 \mod n$. Therefore, we can take $a^{-1} = x$, which shows that there exists an integer $a^{-1}$ such that $a \cdot a^{-1} \equiv 1 \mod n$.
+\end{mynote}
+\begin{example}
+    Let $A \subseteq \R$ be a non-empty set. The set $C(A)$ of all continous functions from $A$ to $\R$ forms a group under the operation of function addition, defined by $(f + g)(x) = f(x) + g(x)$ for all $f, g \in C(A)$ and $x \in A$. The identity element in this group is the zero function, defined by $0(x) = 0$ for all $x \in A$. The inverse of a function $f \in C(A)$ is the function $-f$, defined by $(-f)(x) = -f(x)$ for all $x \in A$. The operation of function addition is associative and commutative, which makes $C(A)$ an abelian group under function addition.
+\end{example}
+
+\subsection{Subgroups}
+\begin{mydefinition}{Subgroup}
+    Let $(G, *)$ be a group. A subset $H$ of $G$ is called a subgroup of $G$ if $H$ itself forms a group under the operation $*$ inherited from $G$. In other words, $(H, *)$ is a subgroup of $(G, *)$ if the following conditions hold:
+    \begin{itemize}
+        \item \textbf{Closure:} For all $a, b \in H$, the result of the operation $a * b$ is also in $H$.
+        \item \textbf{Identity Element:} The identity element of $G$ is also in $H$.
+        \item \textbf{Inverse Element:} For each element $a \in H$, its inverse with respect to the operation $*$ in $G$ is also in $H$.
+    \end{itemize}
+\end{mydefinition}
+We now discuss finite subgroups of $(C^x, \cdot)$, the group of non-zero complex numbers under multiplication. Let $n$ be a positive integer. Consider the set $H_n = \{ e^{2\pi i k/n} : k = 0, 1, 2, \ldots, n-1 \}$. We can verify that $H_n$ is a subgroup of $(C^x, \cdot)$ as follows:
+\begin{itemize}
+    \item \textbf{Closure:} For any two elements $e^{2\pi i k/n}$ and $e^{2\pi i m/n}$ in $H_n$, their product is given by:
+    \[
+    e^{2\pi i k/n} \cdot e^{2\pi i m/n} = e^{2\pi i (k+m)/n}
+    \]
+    Since $k+m$ is an integer, we can write it as $k+m = qn + r$ for some integer $q$ and $0 \leq r < n$. Thus, we have:
+    \[
+    e^{2\pi i (k+m)/n} = e^{2\pi i (qn + r)/n} = e^{2\pi i q} \cdot e^{2\pi i r/n} = e^{2\pi i r/n}
+    \]
+    Since $0 \leq r < n$, we have $e^{2\pi i r/n} \in H_n$. Therefore, the product of any two elements in $H_n$ is also in $H_n$, which shows that $H_n$ is closed under multiplication.
+    \item \textbf{Identity Element:} The identity element in $(C^x, \cdot)$ is the complex number 1, which can be expressed as $e^{2\pi i \cdot 0/n}$. Since $0$ is an integer, we have $e^{2\pi i \cdot 0/n} = 1 \in H_n$. Thus, the identity element of $(C^x, \cdot)$ is also in $H_n$.
+    \item \textbf{Inverse Element:} For each element $e^{2\pi i k/n}$ in $H_n$, its inverse with respect to multiplication is given by:
+    \[
+    (e^{2\pi i k/n})^{-1} = e^{-2\pi i k/n}
+    \]
+    We can express this as:
+    \[
+    e^{-2\pi i k/n} = e^{2\pi i (n-k)/n}
+    \]
+    Since $n-k$ is an integer and $0 < n-k < n$, we have $e^{2\pi i (n-k)/n} \in H_n$. Therefore, the inverse of each element in $H_n$ is also in $H_n$. Thus, $H_n$ satisfies the conditions for being a subgroup of $(C^x, \cdot)$.
+\end{itemize}
+
+
+
+\section{Cyclic Groups}
+\begin{mydefinition}{Cyclic Group}
+    A group \( (G, *) \) is called a cyclic group if there exists an element \( g \in G \) such that every element of \( G \) can be expressed as a power of \( g \) (with respect to the operation \( * \)). In other words, \( G = \{ g^n : n \in \mathbb{Z} \} \), where \( g^n \) denotes the \( n \)-th power of \( g \) with respect to the operation \( * \). The element \( g \) is called a generator of the cyclic group \( G \). 
+\end{mydefinition}
+We can have both finite and infinite cyclic groups under certain conditions. Consider the following cases - 
+\begin{enumerate}
+    \item \emphasise{Powers of g are distinct:} If the powers of \( g \) are distinct, i.e., \( g^m \neq g^n \) for all \( m, n \in \mathbb{Z} \) with \( m \neq n \), then the cyclic group \( G = \{ g^n : n \in \mathbb{Z} \} \) is infinite. In this case, the elements of \( G \) are all distinct and there are countably infinite elements in \( G \) (since there is a bijection between \( G \) and \( \mathbb{Z} \) given by \( g^n \leftrightarrow n \)).
+    \item \emphasise{Powers of g are not distinct:} If there exist integers \( m, n \in \mathbb{Z} \) with \( m \neq n \) such that \( g^m = g^n \), then the cyclic group \( G = \{ g^n : n \in \mathbb{Z} \} \) is finite. In this case, there exists a positive integer \( k \) such that \( g^k = e \), where \( e \) is the identity element of the group. The order of the cyclic group \( G \) is equal to the smallest positive integer \( k \) such that \( g^k = e \). Note that this set has a bijection with the set of integers modulo \( k \), denoted by \( \mathbb{Z}/k\mathbb{Z} \), which is a finite cyclic group of order \( k \).
+    \item \emphasise{Trivial Case:} If \( g = e \), where \( e \) is the identity element of the group, then the cyclic group \( G = \{ g^n : n \in \mathbb{Z} \} \) is trivial and contains only the identity element. In this case, \( G = \{ e \} \) and it is a finite cyclic group of order 1.
+\end{enumerate}
+\begin{mynote}
+    We denote a cyclic group of order \( n \) by \( C_n \) and a cyclic group of infinite order by \( C_\infty \). Thus, we have the following classifications of cyclic groups:
+\begin{itemize}
+    \item If \( G \) is a cyclic group of order \( n \), then \( G \cong C_n \cong \mathbb{Z}/n\mathbb{Z} \).
+    \item If \( G \) is a cyclic group of infinite order, then \( G \cong C_\infty \cong \mathbb{Z} \). 
+    \item If \( G \) is a trivial cyclic group, then \( G \cong C_1 \cong \{ e \} \).
+\end{itemize}
+\end{mynote}
+We now define the order of an element in a group.
+\begin{mydefinition}{Order of an Element}
+    Let \( (G, *) \) be a group and let \( g \in G \) be an element of the group. The order of the element \( g \), denoted by \( \text{ord}(g) \), is defined as the smallest positive integer \( k \) such that \( g^k = e \), where \( e \) is the identity element of the group. If no such positive integer exists, we say that \( g \) has infinite order.
+\end{mydefinition}
+\begin{example}
+    Consider the group \( (\mathbb{Z}/6\mathbb{Z}, +) \), which is a cyclic group of order 6. The elements of this group are \( [0], [1], [2], [3], [4], [5] \). The identity element is \( [0] \). The order of the element \( [1] \) is 6, since \( [1]^6 = [6] = [0] \) and there is no smaller positive integer \( k \) such that \( [1]^k = [0] \). Similarly, the order of the element \( [2] \) is 3, since \( [2]^3 = [6] = [0] \) and there is no smaller positive integer \( k \) such that \( [2]^k = [0] \). The order of the element \( [3] \) is 2, since \( [3]^2 = [6] = [0] \) and there is no smaller positive integer \( k \) such that \( [3]^k = [0] \). The order of the element \( [4] \) is 3, since \( [4]^3 = [12] = [0] \) and there is no smaller positive integer \( k \) such that \( [4]^k = [0] \). The order of the element \( [5] \) is 6, since \( [5]^6 = [30] = [0] \) and there is no smaller positive integer \( k \) such that \( [5]^k = [0] \).
+\end{example}
+\begin{example}
+    Consider the group \( (\mathbb{Z}, +) \), which is an infinite cyclic group. The elements of this group are all integers. The identity element is \( 0 \). The order of any non-zero element \( n \in \mathbb{Z} \) is infinite, since there is no positive integer \( k \) such that \( n^k = 0 \). The order of the element \( 0 \) is 1, since \( 0^1 = 0 \) and there is no smaller positive integer \( k \) such that \( 0^k = 0 \).
+\end{example}
+
+
+\section{Dihedral Groups}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
+
+
+

@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1769616946.98559 "c:/Users/Eklavya_7354/Documents/Latex/Computability/tex_files/white/basic_algebra.tex" "basic_algebra.pdf" "basic_algebra" 1769616948.76049 0
+["pdflatex"] 1773084708.09077 "c:/Users/Eklavya_7354/Documents/Latex/Computability/tex_files/white/basic_algebra.tex" "basic_algebra.pdf" "basic_algebra" 1773084709.93614 0
   "C:/Users/Eklavya_7354/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1768559632 136751 b3dad1e3c880a093ccd6ea60c2fa1e7c ""
   "C:/Users/Eklavya_7354/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1749676795 11548 de5c810ecf2acbf3cf0baa28cde2fe50 ""
   "C:/Users/Eklavya_7354/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1757688695 13260731 24711de661709a8afb4e270dcc85bb70 ""
@@ -26,6 +26,7 @@
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
+  "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti10.tfm" 1136765053 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1247596667 36554 b67dc2cfa451409e100b3fcf5f506509 ""
@@ -40,6 +41,7 @@
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1247596666 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
+  "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1247596673 34694 870c211f62cb72718a00e353f14f254d ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/tex/generic/bigintcalc/bigintcalc.sty" 1576433602 40635 c40361e206be584d448876bba8a64a3b ""
@@ -289,11 +291,11 @@
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/tex/latex/upquote/upquote.sty" 1335534756 1088 517e01cde97c1c0baf72e69d43aa5a2e ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Eklavya_7354/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "basic_algebra.aux" 1769616948 896 3f02068781d82eef837979890493d913 "pdflatex"
-  "basic_algebra.out" 1769616948 633 ccd2ce46dcbc3d42df989cd2d09f3e38 "pdflatex"
-  "basic_algebra.tex" 1769616944 28362 81e6471bb6434e450a8b86a17d226800 ""
-  "basic_algebra.toc" 1769616948 385 cf12e37787309f6a0bd45235a7a0d110 "pdflatex"
-  "c:/Users/Eklavya_7354/Documents/Latex/Computability/tex_files/white/basic_algebra.tex" 1769616944 28362 81e6471bb6434e450a8b86a17d226800 ""
+  "basic_algebra.aux" 1773084709 1436 89cefd9b4f86f37b6623ec962126af16 "pdflatex"
+  "basic_algebra.out" 1773084709 993 aee0a29f92faf90daac1f05caf44f227 "pdflatex"
+  "basic_algebra.tex" 1773084705 42432 f5bc5647cd380f85bf4cb65537c8b872 ""
+  "basic_algebra.toc" 1773084709 615 2c48c27fa18a4afdf9b625272ef5d242 "pdflatex"
+  "c:/Users/Eklavya_7354/Documents/Latex/Computability/tex_files/white/basic_algebra.tex" 1773084705 42432 f5bc5647cd380f85bf4cb65537c8b872 ""
   "notes_white.tex" 1763294516 12708 310ed90b89053dbfcdc2bbf11b57d2af ""
   (generated)
   "basic_algebra.aux"
