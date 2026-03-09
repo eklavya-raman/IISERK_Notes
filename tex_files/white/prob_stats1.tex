@@ -1,0 +1,2194 @@
+\documentclass[openany]{book}
+\input{notes_white}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\begin{filecontents*}{temp.dat}
+1 1 1
+1 2 0.8
+1 3 0.5
+1 4 0.3
+1 5 0.1
+2 1 0.8
+2 2 1
+2 3 0.6
+2 4 0.4
+2 5 0.2
+3 1 0.5
+3 2 0.6
+3 3 1
+3 4 0.7
+3 5 0.3
+4 1 0.3
+4 2 0.4
+4 3 0.7
+4 4 1
+4 5 0.5
+5 1 0.1
+5 2 0.2
+5 3 0.3
+5 4 0.5
+5 5 1
+\end{filecontents*} 
+\settitle{Probability and Stats 1  Notes and Solutions}
+\begin{document}
+\title{\Large{\underemphasise{Probability and Statistics Notes}} \\ \vspace{5pt}
+\large{Prob Stats 1: Notes, Exercises and PYQs}}
+\author{Eklavya Raman \\ \vspace{5pt} er24ms024@iiserkol.ac.in \\ \vspace{5pt}}
+\date{\today}
+\maketitle
+\tableofcontents
+\listoftheorems[
+    show=mytheorem,
+    title={List of Theorems}]
+\part{Probability}
+\chapter{Basic Definitions and Concepts}
+\section{Sample Spaces and Random Experiments}
+\subsection{Definitions}
+\begin{mydefinition}{Random Experiment}
+A random experiment is a process or action that leads to one or more outcomes that cannot be predicted with certainty. The conditions for a experiment to be classified as a random experiment are: 
+
+\begin{enumerate}
+    \item All possible outcomes of the experiment must be known in advance.
+    \item The experiment must be repeatable under the same conditions.
+    \item The outcome of the experiment must be uncertain, that is we cannot predict its outcome with certainty.
+\end{enumerate}
+\end{mydefinition}
+\begin{example}
+    The classic example of a random experiment is the tossing of a fair coin. The possible outcomes are heads or tails, and we cannot predict with certainty which outcome will occur on any given toss. The experiment can be repeated multiple times under the same conditions. 
+\end{example}
+
+\begin{example}
+    Another example of a random experiment is rolling a fair six-sided die. The possible outcomes are the numbers 1 through 6, and we cannot predict with certainty which number will appear on any given roll. The experiment can be repeated multiple times under the same conditions.
+\end{example}
+
+\begin{example}
+    A third example of a random experiment is drawing a card from a standard deck of 52 playing cards. The possible outcomes are the 52 individual cards, and we cannot predict with certainty which card will be drawn. The experiment can be repeated multiple times under the same conditions.
+\end{example}
+
+
+\begin{mydefinition}{Sample Space}
+The sample space is the set of all possible outcomes of a random experiment. We denote the sample space by the symbol $S$ or $\Omega$.
+\end{mydefinition}
+
+\begin{example}
+    Consider the random experiment of tossing a fair coin. The sample space for this experiment is $S = \{H, T\}$, where $H$ represents heads and $T$ represents tails.
+\end{example}
+
+\begin{example}
+    Consider the random experiment of rolling a fair six-sided die. The sample space for this experiment is $S = \{1, 2, 3, 4, 5, 6\}$.
+\end{example}
+
+\begin{example}
+    Consider the random experiment of drawing a card from a standard deck of 52 playing cards. The sample space for this experiment is $S = \{A\heartsuit, 2\heartsuit, \ldots, K\spadesuit\}$.
+\end{example}
+
+
+\begin{mydefinition}{Event}
+    An event is a subset of the sample space. It can consist of one or more outcomes. We denote an event by a capital letter, such as $A$, $B$, or $C$.
+\end{mydefinition}
+
+\begin{example}
+    Consider the random experiment of rolling a fair six-sided die. The sample space for this experiment is $S = \{1, 2, 3, 4, 5, 6\}$. An example of an event could be $A = \{2, 4, 6\}$, which represents the event of rolling an even number.
+\end{example}
+\begin{example}
+    Consider the random experiment of drawing a card from a standard deck of 52 playing cards. The sample space for this experiment is $S = \{A\heartsuit, 2\heartsuit, \ldots, K\spadesuit\}$. An example of an event could be $B = \{A\heartsuit, 2\heartsuit, 3\heartsuit\}$, which represents the event of drawing a heart with a value of 1, 2, or 3.
+\end{example}
+
+\begin{mydefinition}{Exhaustive Sample Space}
+A sample space is said to be exhaustive if it includes all possible outcomes of a random experiment.
+\end{mydefinition}
+\begin{example}
+    Consider the random experiment of rolling a fair six-sided die. The sample space for this experiment is $S = \{1, 2, 3, 4, 5, 6\}$. This sample space is exhaustive because it includes all possible outcomes of the experiment.
+\end{example}
+
+\begin{mydefinition}{Equilikely Events and Mutually Exclusive Events}
+\underemphasise{Equilikely Events:} Two or more events are said to be equilikely if they have the same probability of occurring. For example, when rolling a fair six-sided die, the events of rolling a 1, 2, 3, 4, 5, or 6 are all equilikely because each event has a probability of $\frac{1}{6}$. \\
+\underemphasise{Mutually Exclusive Events:} Two or more events are said to be mutually exclusive if they cannot occur at the same time. For example, when rolling a fair six-sided die, the events of rolling a 1 and rolling a 2 are mutually exclusive because both outcomes cannot happen simultaneously. In set theoretic notation, we can define mutually exclusive events as follows: \\
+$$A \cap B = \emptyset$$
+\end{mydefinition}
+We give a few examples of mutually exclusive events and events which are not below: \\
+\begin{example}
+    Consider the random experiment of rolling a fair six-sided die. The events of rolling a 1 and rolling a 2 are mutually exclusive because both outcomes cannot happen simultaneously.
+\end{example}
+
+\begin{example}
+Consider the example of events which are not mutually exclusive. Consider the random experiment of drawing a card from a standard deck of 52 playing cards. The events of drawing a heart and drawing a face card are not mutually exclusive because it is possible to draw a card that is both a heart and a face card, such as the King of Hearts.
+\end{example}
+
+\section{Probability}
+\subsection{Classical Definition of Probability}
+\begin{mydefinition}{Classical Probability}
+The classical definition of probability states that the probability of an event is the ratio of the number of favorable outcomes to the total number of possible outcomes, provided that all outcomes are equally likely. \\
+Let $A$ be an event in the sample space $\Omega$. Let $N$ be the total number of exhaustive, mutually exclusive and equilikely outcomes in $\Omega$. Let $N_A$ be the number of favorable outcomes for the event $A$. Then, the probability of the event $A$, denoted by $P(A)$, is given by:
+$$P(A) = \frac{N_A}{N}$$
+\end{mydefinition}
+\begin{mynote}
+The classical definition of probability is applicable in situations where all outcomes are equally likely, such as rolling a fair die or drawing a card from a well-shuffled deck. Furthermore, the classical definition of probability is not applicable in situations where the outcomes are not equally likely, such as in real-world scenarios where certain outcomes may be more probable than others. \\
+The classical definition of probability also does not consider infinite sample spaces, where the number of possible outcomes is infinite. In such cases, other definitions of probability, such as the frequentist or Bayesian definitions, may be more appropriate.
+\end{mynote}
+\begin{example}
+    Let us consider the experiment of drawing a card from a standard deck of 52 playing cards. We want to find the probability of drawing an Ace. \\
+    By the classical definition, say we repeat the experiment of drawing a card from the deck a large number of times. Let $N$ be the total number of times we draw a card, and let $N_A$ be the number of times we draw an Ace. Then, the probability of drawing an Ace is given by:
+    $$P(Ace) = \frac{N_A}{N}$$
+    However, we might get different results every time we repeat the experiment if we only follow the classical definition. \\ 
+    For example, consider that we first do the experiment and draw cards repeatedly 50 times, out of which we get 5 Aces. Then, the probability of drawing an Ace is given by:
+    $$P(Ace) = \frac{5}{50} = \frac{1}{10}$$
+    Let's say we repeat the experiment again and this time we draw cards repeatedly 100 times, out of which we get 20 Aces. Then, the probability of drawing an Ace is given by:
+    $$P(Ace) = \frac{20}{100} = \frac{1}{5}$$
+    This tells us that the classical definition of probability is not very reliable, especially if the number of trials is small.
+\end{example}
+
+\subsubsection{Conditions for Classical Definition of Probability}
+The classical definition of probability is based on the following conditions:
+\begin{itemize}
+    \item The sample space must be finite or at most countably infinite.
+    \item All outcomes in the sample space must be equally likely.
+    \item All events must be exhaustive that is must be subsets of $\Omega$.
+\end{itemize}
+\begin{mydefinition}{Complement of an Event}
+The complement of an event $A$, denoted by $A^C$ or $\overline{A}$, is the event that includes all outcomes in the sample space $\Omega$ that are not in $A$. Formally, it can be defined as:
+$$A^C = \Omega \setminus A$$
+\end{mydefinition}
+\begin{example}
+    Consider the random experiment of rolling a fair six-sided die. The sample space for this experiment is $S = \{1, 2, 3, 4, 5, 6\}$. Let $A$ be the event of rolling an even number, that is $A = \{2, 4, 6\}$. The complement of the event $A$, denoted by $A^C$, is the event of rolling an odd number, that is $A^C = \{1, 3, 5\}$.
+\end{example}
+\subsubsection{Properties of Classical Probability}
+We can define the probability function as follows: 
+\begin{align*}
+P: \Omega \to [0, 1] \\ \sum_{i=1}^{n} P(A_i) = 1
+\end{align*}
+Therefore, we can write the properties of the probability set function as follows:
+\begin{itemize}
+\item $0 \leq P(A) \leq 1$ for any event $A$.
+\item $\sum_{i=1}^{n} P(A_i) = P(\Omega) =1$ for a exhaustive set of mutually exclusive events.
+\item $P(\emptyset) = 0$
+\item Impossible event has probability 0, since it has no favorable outcomes.
+\end{itemize}
+\subsection{Properties of Events and their probabilities}
+\begin{mytheorem}[Probability of union - Inclusion Exclusion Formula]
+    Let $A$ and $B$ be two events. Then, the probability of the union of $A$ and $B$ is given by:
+    $$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+    For two mutually exclusive events, we have:
+    $$P(A \cup B) = P(A) + P(B)$$ since $P(A \cap B) = 0$.
+\end{mytheorem}
+\begin{proof}
+    We give a proof using Venn diagrams. \\
+    \begin{figure}[H]
+        \centering
+    \begin{tikzpicture}
+	\begin{scope} [fill opacity = .4]
+    \draw (-5,5) rectangle (5,-4);
+    \draw[fill=green, draw = black] (-1.5,1) circle (3);
+    \draw[fill=blue, draw = black] (1.5,1) circle (3);
+    \node at (0,-3) {\LARGE\textbf{$\Omega$}};
+    \node at (-3,4) {\LARGE\textbf{A}};
+    \node at (3,4) {\LARGE\textbf{B}};
+    \node at (0, 1) {\LARGE\textbf{A $\intersect$ B}};
+    \end{scope}
+\end{tikzpicture}
+\end{figure}
+We can see from the Venn diagram that the union of two events $A$ and $B$ can be expressed as:
+$$A \cup B = A + B - A \cap B$$
+Therefore, the probability of the union of two events can be expressed as:
+$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+Hence proved. For mutually exclusive events, we have $P(A \cap B) = 0$. Therefore, the result follows.
+\end{proof}
+\begin{corollary}
+    In general for events $A_1, A_2, \ldots, A_n$, we have:
+    $$P\left( \megaunion{i=1}{n}A_i \right) = \sum_{i=1}^{n} P(A_i) - \sum_{1\leq i < j\leq n} P(A_i \cap A_j) + \sum_{1\leq i < j < k \leq n} P(A_i \cap A_j \cap A_k) - \ldots + (-1)^{n+1}P \left( \megaintersect{i=1}{n}A_i \right)$$
+\end{corollary}
+\begin{mytheorem}[Probability of the complement of an event]
+    Let $A$ be an event. Then, the probability of the complement of $A$, denoted by $A^C$, is given by:
+    $$P(A^C) = 1 - P(A)$$
+\end{mytheorem}
+\begin{proof}
+    We have $A \cup A^C = \Omega$ and $A \cap A^C = \emptyset$. Therefore, by the previous theorem, we have:
+    $$P(A \cup A^C) = P(A) + P(A^C) - P(A \cap A^C)$$
+    $$\implies 1 = P(A) + P(A^C) - 0$$
+    $$\implies P(A^C) = 1 - P(A)$$
+    Hence proved.
+\end{proof}
+\begin{mytheorem}[Probability of a subset of an event]
+Let $A$ be an event and $B$ be a subset of $A$. Then, the probability of $B$ is given by:
+$$P(B) \leq P(A)$$
+\end{mytheorem}
+\begin{proof}
+    We have $B \subseteq A$. Then - \\
+    $$A = B \union (A \intersect B^C)$$
+    $$\implies P(A) = P(B) + P(A \intersect B^C) \geq P(B)$$
+    Hence proved.  
+\end{proof}
+
+\begin{mytheorem}[Boole's Inequality]
+    Let $A_1, A_2, \ldots, A_n$ be a finite collection of events. Then, the probability of the union of these events is bounded by:
+    $$P\left( \megaunion{i=1}{n}A_i \right) \leq \sum_{i=1}^{n} P(A_i)$$
+\end{mytheorem}
+\begin{proof}
+    We prove the above through induction. 
+    \textbf{Base Case:} For $n=1$, we have:
+    $$P(A_1) \leq P(A_1)$$
+    \textbf{Induction Hypothesis:} Assume that the result holds for $n=k$, that is:
+    $$P\left( \megaunion{i=1}{k}A_i \right) \leq \sum_{i=1}^{k} P(A_i)$$
+    \textbf{Induction Step:} For $n=k+1$, we have:
+    \begin{align*}
+    P\left( \megaunion{i=1}{k+1}A_i \right) &= P\left( \megaunion{i=1}{k}A_i \cup A_{k+1} \right) \\
+    &\leq P\left( \megaunion{i=1}{k}A_i \right) + P(A_{k+1}) \\
+    &\leq \sum_{i=1}^{k} P(A_i) + P(A_{k+1}) \\
+    &= \sum_{i=1}^{k+1} P(A_i)
+    \end{align*}
+    Hence proved. 
+\end{proof}
+\subsection{Conditional Probability}
+\begin{mydefinition}{Conditional Probability}
+    The conditional probability of an event $A$ given an event $B$ is defined as:
+    $$P(A|B) = \frac{P(A \cap B)}{P(B)}$$
+    for $P(B) > 0$.
+\end{mydefinition}
+\begin{example}
+    Let $A$ be the event that it rains today, and let $B$ be the event that I carry an umbrella. Then, the conditional probability $P(A|B)$ is the probability that it rains today given that I carry an umbrella.
+\end{example}
+\begin{example}
+    Let $A$ be the event that I study for the exam, and let $B$ be the event that I pass the exam. Then, the conditional probability $P(A|B)$ is the probability that I study for the exam given that I pass the exam.
+\end{example}
+\begin{mytheorem}[Generalized Bayes' Theorem]
+    Let $A_1, A_2, \ldots, A_n$ be a partition of the sample space $\Omega$, and let $B$ be any event such that $P(B) > 0$. Then, the conditional probability of an event $A_i$ given $B$ is given by:
+    $$P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^{n} P(B|A_j)P(A_j)}$$
+\end{mytheorem}
+\begin{proof}
+    We have:
+    $$P(A_i|B) = \frac{P(B|A_i)P(A_i)}{P(B)}$$
+    By the law of total probability, we can express $P(B)$ as:
+    $$P(B) = \sum_{j=1}^{n} P(B|A_j)P(A_j)$$
+    Therefore, we can rewrite the conditional probability as:
+    $$P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^{n} P(B|A_j)P(A_j)}$$
+\end{proof}
+\begin{mynote}
+This proof is not a part of the syllabus, but is included for completeness.
+\end{mynote}
+\subsection{Independence of Events}
+\begin{mydefinition}{Independent Events}
+    Two events $A$ and $B$ are said to be independent if the occurrence of one event does not affect the occurrence of the other event. Formally, two events $A$ and $B$ are independent if:
+    $$P(A \cap B) = P(A)P(B)$$
+    Equivalently, we can say that two events $A$ and $B$ are independent if:
+    $$P(A|B) = P(A) \quad \text{and} \quad P(B|A) = P(B)$$
+    provided that $P(B) > 0$ and $P(A) > 0$.
+\end{mydefinition}
+\begin{example}
+    Consider the random experiment of rolling a fair six-sided die twice. Let $A$ be the event that the first roll is even, and let $B$ be the event that the second roll is odd. Then, $A$ and $B$ are independent events, since the outcome of the first roll does not affect the outcome of the second roll.
+\end{example}
+\begin{example}
+    Consider the random experiment of drawing 4 subsequent cards from a standard deck of 52 cards without replacement. Let $A$ be the event that the first card is a heart, and let $B$ be the event that the second card is a heart. Then, $A$ and $B$ are \underemphasise{not independent} events, since the outcome of the first draw affects the outcome of the second draw.
+\end{example}
+\begin{mydefinition}{Pairwise and Mutual Independence}
+    \textbf{Pairwise Independence: } A collection of events $\{A_1, A_2, \ldots, A_n\}$ is said to be pairwise independent if every pair of events is independent. That is, for all $i \neq j$:
+    $$P(A_i \cap A_j) = P(A_i)P(A_j)$$
+    \textbf{Mutual Independence: } A collection of events is said to be mutually independent if every event is independent of the intersection of all the others. That is, for all $k \leq n$:
+    $$P(A_1 \cap A_2 \cap \ldots \cap A_k) = P(A_1)P(A_2) \ldots P(A_k)$$
+\end{mydefinition}
+\begin{example}
+    Let $A = \{1, 2 , 3, 4\}$, $B = \{3, 4, 5, 6\}$, $C = \{4, 5, 6, 7\}$ be three events in the sample space $\Omega = \{1, 2, 3, 4, 5, 6, 7, 8\}$. Then, we can see that $A$, $B$ and $C$ are independent when considered together, but not pairwise independent. Let us verify this - \\
+    $P(A) = P(B) = P(C) = \frac{4}{8} = \frac{1}{2}$ \\
+    $P(A\intersect B) = P(\{3, 4\}) = \frac{2}{8} = \frac{1}{4} = P(A)P(B)$ \\
+    $P(A\intersect C) = P(\{4\}) = \frac{1}{8} \neq P(A)P(C)$ \\
+    $P(B\intersect C) = P(\{4, 5, 6\}) = \frac{3}{8} \neq P(B)P(C)$ \\
+    However, \\
+    $P(A\intersect B \intersect C) = P(\{4\}) = \frac{1}{8} = P(A)P(B)P(C)$ \\
+    Therefore, the triple product holds while pairwise independence fails. 
+\end{example}
+\begin{mynote}
+    It is important to note that pairwise independence does not imply mutual independence. That is, even if every pair of events in a collection is independent, it does not necessarily mean that the entire collection is mutually independent. Mutual independence is a stronger condition than pairwise independence, and it requires that every event in the collection be independent of the intersection of all the others.
+\end{mynote}
+\begin{mydefinition}{Conditional Independence}
+    Two events $A$ and $B$ are said to be conditionally independent given a third event $C$ if the occurrence of $A$ does not affect the occurrence of $B$ when $C$ has occurred. Formally, $A$ and $B$ are conditionally independent given $C$ if:
+    $$P(A \cap B | C) = P(A|C)P(B|C)$$
+    provided that $P(C) > 0$.
+\end{mydefinition}
+\begin{mynote}
+    Note that two events being conditionally independent given a third event does not imply that they are independent in general. Conditional independence is a weaker condition than unconditional independence.
+\end{mynote}
+\section{Different Approaches and Definitions of Probability}
+\subsection{Statistical Definition of Probability}
+\begin{mydefinition}{Statistical definition of Probability}
+    The statistical definition of probability states that the probability of an event is the limit of its relative frequency in a large number of trials. \\
+    Let $A$ be an event in the sample space $\Omega$. Let $N$ be the total number of trials of the random experiment, and let $N_A$ be the number of times the event $A$ occurs in these trials. Then, the probability of the event $A$, denoted by $P(A)$, is given by:
+    $$P(A) = \lim_{N \to \infty} \frac{N_A}{N}$$
+    provided that the limit exists.
+\end{mydefinition}
+\begin{mynote}
+    This definition provides a more reliable foundation for the concept of probability, since with this definition, we will always get the same probability for any event in a sample space. Moreover, it emphasizes the importance of conducting a large number of trials to obtain a stable estimate of probability. We shall prove under the central limit theorem that the distribution of the sample mean approaches a normal distribution as the sample size increases, regardless of the original distribution of the data.
+\end{mynote}
+\begin{example}
+    Consider the random experiment of flipping a fair coin multiple times. Let $A$ be the event that we get heads on the first flip, and let $B$ be the event that we get heads on the second flip. According to the statistical definition of probability, we can estimate $P(A)$ and $P(B)$ by conducting a large number of trials and observing the relative frequencies of heads. It can be empirically verified that the events $A$ and $B$ are independent, since the outcome of the first flip does not affect the outcome of the second flip.
+\end{example}
+
+
+\subsection{Axiomatic Definition of Probability}
+\begin{mydefinition}{$\sigma$-field or $\sigma$-algebra}
+    A $\sigma$-field (or $\sigma$-algebra) on a set $\Omega$ is a collection $\mathcal{F}$ of subsets of $\Omega$ such that:
+    \begin{enumerate}
+        \item The empty set is in $\mathcal{F}$: $\emptyset \in \mathcal{F}$.
+        \item If $A \in \mathcal{F}$, then its complement is also in $\mathcal{F}$: $A^c \in \mathcal{F}$.
+        \item If $A_1, A_2, \ldots \in \mathcal{F}$ are countably many sets, then their union is also in $\mathcal{F}$: $\bigcup_{i=1}^{\infty} A_i \in \mathcal{F}$.
+    \end{enumerate}
+    In essence, a $\sigma$-field is closed under complementation and countable unions.
+\end{mydefinition}
+\begin{example}
+    Consider the sample space $\Omega$ of all possible outcomes when rolling a fair six-sided die. The $\sigma$-algebra $\mathcal{F}$ generated by this sample space includes all possible subsets of $\Omega$, including the empty set, singletons (e.g., $\{1\}$, $\{2\}$), and the entire sample space itself. This $\sigma$-algebra is closed under complementation and countable unions.
+\end{example}
+In general, we note that the concept of a $\sigma$-field is fundamental to the axiomatic approach to probability. Every power set of a sample space forms a $\sigma$-field. 
+We define here the smallest and largest $\sigma$-field on a sample space $\Omega$:
+\begin{itemize}
+    \item The smallest $\sigma$-field is the trivial $\sigma$-field, which contains only the empty set and the entire sample space: $\mathcal{F}_{\text{min}} = \{\emptyset, \Omega\}$.
+    \item The largest $\sigma$-field is the power set of $\Omega$, which contains all possible subsets of $\Omega$: $\mathcal{F}_{\text{max}} = 2^{\Omega}$.
+\end{itemize}
+\begin{mydefinition}{Kalmagarov's Definition}
+    Let $\Omega$ be a sample space, and let $\mathcal{F}$ be a $\sigma$-algebra of subsets of $\Omega$. A probability measure $P$ is a function that assigns a probability to each event in $\mathcal{F}$ such that the following axioms hold:
+    \begin{enumerate}
+        \item Non-negativity: For any event $A \in \mathcal{F}$, $P(A) \geq 0$.
+        \item Normalization: $P(\Omega) = 1$.
+        \item Countable additivity: For any countable collection of disjoint events $A_1, A_2, \ldots \in \mathcal{F}$, we have:
+        $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
+    \end{enumerate}
+    This probability function on $\mathcal{F}$ satisfies the axioms of probability and provides a rigorous foundation for the concept of probability in the context of measure theory. Further, this function is unique. 
+\end{mydefinition}
+\begin{example}
+    Let $\Omega$ be the sample space of rolling a fair six-sided die. The $\sigma$-algebra $\mathcal{F}$ generated by this sample space includes all possible subsets of $\Omega$. A probability measure $P$ can be defined on $\mathcal{F}$ by assigning a probability of $\frac{1}{6}$ to each individual outcome (e.g., $P(\{1\}) = \frac{1}{6}$, $P(\{2\}) = \frac{1}{6}$, etc.) and ensuring that the total probability sums to 1. Note that this construction satisfies all the axioms of a probability measure.
+\end{example}
+
+\section{Random Variables and Probability Distributions}
+\subsection{Random Variables}
+\begin{mydefinition}{Random Variable}
+    A random variable is a function that assigns a real number to each outcome in a sample space of a random experiment. Formally, a random variable $X$ is a function from the sample space $\Omega$ to the real numbers $\mathbb{R}$:
+    $$X: \Omega \to \mathbb{R}$$
+    Random variables can be classified into two main types:
+    \begin{itemize}
+        \item \textbf{Discrete Random Variables:} These take on a countable number of distinct values. Examples include the outcome of rolling a die or the number of heads in a series of coin flips.
+        \item \textbf{Continuous Random Variables:} These can take on any value within a given range or interval. Examples include the height of individuals in a population or the time it takes to complete a task.
+    \end{itemize}
+\end{mydefinition}
+\begin{example}
+    Let $X$ be a discrete random variable representing the outcome of rolling a fair six-sided die. The possible values of $X$ are $\{1, 2, 3, 4, 5, 6\}$, each with a probability of $\frac{1}{6}$. The probability mass function (PMF) of $X$ is given by:
+    $$P(X = k) = \frac{1}{6}, \quad k \in \{1, 2, 3, 4, 5, 6\}$$
+\end{example}
+\begin{mydefinition}{Probability Density Function (pdf)}
+    A probability density function (pdf) is a function that describes the likelihood of a continuous random variable taking on a particular value. The pdf must satisfy the following properties:
+    \begin{itemize}
+        \item Non-negativity: $f(x) \geq 0$ for all $x \in \mathbb{R}$.
+        \item Normalization: The total area under the curve of the pdf must equal 1:
+        $$\int_{-\infty}^{\infty} f(x) \, dx = 1$$
+        Alternatively, we can denote the area under the curve by defining the integral to cover the entire sample space - in this case, the range of the continuous random variable.
+        $$\int_{\Omega} f(x) \, dx = 1$$
+    \end{itemize}
+\end{mydefinition}
+\begin{mydefinition}{Independence of Random Variables}
+    Two random variables $X, Y$ are said to be independent if - 
+    $$P(X=i, Y=j) = P(X=i)P(Y=j) \forall i, j$$
+\end{mydefinition}
+\begin{example}
+    Let $X$ be a continuous random variable representing the height of individuals in a population. The probability density function (pdf) of $X$ might be modeled using a normal distribution with a mean $\mu$ and standard deviation $\sigma$. The pdf is given by:
+    $$f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}$$
+    The area under the curve of this pdf over the entire real line is equal to 1, satisfying the normalization condition.
+\end{example}
+\begin{example}
+    Let $X$ be a continuous random variable representing the time it takes for a computer to complete a task. The probability density function (pdf) of $X$ might be modeled using an exponential distribution with a rate parameter $\lambda$. The pdf is given by:
+    $$f(x) = \lambda e^{-\lambda x}, \quad x \geq 0$$
+    The area under the curve of this pdf over the entire real line is equal to 1, satisfying the normalization condition.
+\end{example}
+\begin{mydefinition}{Cumulative Distribution Function (cdf)}
+    The cumulative distribution function (cdf) of a random variable $X$ is a function that gives the probability that $X$ takes on a value less than or equal to a given value $x$. The cdf is defined as:
+    $$F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) \, dt$$
+    The cdf has the following properties:
+    \begin{itemize}
+        \item Non-decreasing: $F(x)$ is a non-decreasing function of $x$.
+        \item Limits: $\lim_{x \to -\infty} F(x) = 0$ and $\lim_{x \to \infty} F(x) = 1$.
+        \item Right-continuous: $F(x)$ is right-continuous, meaning that for any $x_0$, $\lim_{x \to x_0^+} F(x) = F(x_0)$.
+    \end{itemize}
+    For a discrete random variable, we may define the cdf as follows:
+    $$F(x) = \sum_{k \leq x} P(X = k)$$
+\end{mydefinition}
+\begin{example}
+    Let $X$ be a discrete random variable representing the outcome of rolling a fair six-sided die. The cumulative distribution function (cdf) of $X$ is given by:
+    \[
+    F(x) = 
+    \begin{cases} 
+    0 & x < 1 \\
+    \frac{1}{6} & 1 \leq x < 2 \\
+    \frac{2}{6} & 2 \leq x < 3 \\
+    \frac{3}{6} & 3 \leq x < 4 \\
+    \frac{4}{6} & 4 \leq x < 5 \\
+    \frac{5}{6} & 5 \leq x < 6 \\
+    1 & x \geq 6 
+    \end{cases}
+    \]
+    This cdf gives the probability that the outcome of rolling the die is less than or equal to a given value $x$.
+\end{example}
+\begin{example}
+    Let $X$ be a continuous random variable representing the time it takes for a computer to complete a task. The cumulative distribution function (cdf) of $X$ is given by:
+    $$F(x) = P(X \leq x) = \int_{0}^{x} f(t) \, dt$$
+    where $f(t) = e^{-\lambda t}$ is the probability density function (pdf) of $X$. The cdf gives the probability that the time taken to complete the task is less than or equal to a given value $x$.
+    $$F(x) = 1 - e^{-\lambda x}$$ 
+\end{example}
+
+\subsection{Expectation and Variance of a Random Variable}
+\begin{mydefinition}{Expectation or Expected Value}
+    The expectation (or expected value) of a random variable $X$, denoted by $E(X)$ or $\mu_X$, is a measure of the central tendency of the random variable. It is defined as follows:
+    \begin{itemize}
+        \item For a discrete random variable:
+        $$E(X) = \sum_{x} x P(X = x)$$
+        where the sum is taken over all possible values of $X$.
+        \item For a continuous random variable:
+        $$E(X) = \int_{-\infty}^{\infty} x f(x) \, dx$$
+        where $f(x)$ is the probability density function (pdf) of $X$.
+    \end{itemize}
+    $E(X)$ has the following properties:
+    \begin{itemize}
+        \item Linearity: For any constants $a$ and $b$, $E(aX + b) = aE(X) + b$.
+        \item Non-negativity: If $X \geq 0$, then $E(X) \geq 0$.
+        \item Additivity: For any two random variables $X$ and $Y$, $E(X + Y) = E(X) + E(Y)$.
+    \end{itemize}
+\end{mydefinition}
+\textbf{Physical Interpretation of Expectation} - The expectation of a random variable can be thought of as the long-term average value of the random variable over many trials of the random experiment. It provides a measure of the "center" or "typical" value of the random variable. It is known as the mean of the distribution.
+\begin{figure}[H]
+    \centering
+\begin{tikzpicture}
+    \begin{axis}[
+        title={Expectation of a Random Variable},
+        xlabel={Value},
+        ylabel={Probability},
+        xmin=-5, xmax=5,
+        ymin=0, ymax=0.5,
+        xtick={-5,-4,...,5},
+        ytick={0,0.1,...,0.5},
+        grid=major
+    ]
+    \addplot[
+        domain=-5:5, 
+        samples=100, 
+        color=blue,
+    ]
+    {0.4*exp(-0.5*(x-1)^2)};
+    %the mean is - 1
+    \addplot[color=red] coordinates {(1, 0) (1, 0.4)};
+    \end{axis}
+\end{tikzpicture}
+\label{fig:expectation}
+\caption{Expectation of a Random Variable}
+\end{figure}
+In the given figure, the expectation tells us whether the random variable is more likely to take on values greater than or less than 1 (the peak). If the expectation is greater than 1, it indicates that the random variable is more likely to take on values greater than 1, and vice versa. 
+
+\begin{mydefinition}{Riemann-Steltjes Integral}
+    If $f$ is a pdf of a random variable $X$ and $g$ is a well behaved function (i.e. it does not have discontinuities or singularities in the range of $X$), then the expectation of $g(X)$ is given by:
+    \begin{itemize}
+        \item For a discrete random variable:
+        $$E(g(X)) = \sum_{x} g(x) P(X = x)$$
+        where the sum is taken over all possible values of $X$.
+        \item For a continuous random variable:
+        $$E(g(X)) = \int_{-\infty}^{\infty} g(x) f(x) \, dx$$
+        where $f(x)$ is the probability density function (pdf) of $X$.
+    \end{itemize}
+    Provided that $E(|g(X)|) < \infty$, i.e., $$\int_{-\infty}^{\infty} |g(x)| f(x) \, dx < \infty$$
+\end{mydefinition}
+\begin{mydefinition}{Variance}
+    The variance of a random variable $X$, denoted by $\text{Var}(X)$, is a measure of the dispersion or spread of the random variable's possible values. It is defined as follows:
+    \begin{itemize}
+        \item For a discrete random variable:
+        $$\text{Var}(X) = E(X^2) - (E(X))^2$$
+        where $E(X^2)$ is the expected value of the square of $X$.
+        \item For a continuous random variable:
+        $$\text{Var}(X) = \int_{-\infty}^{\infty} x^2 f(x) \, dx - (E(X))^2$$
+        where $f(x)$ is the probability density function (pdf) of $X$.
+    \end{itemize}
+\end{mydefinition}
+
+\textbf{Physical Interpretation of Variance} - The variance provides a measure of how much the values of a random variable differ from the expected value. A low variance indicates that the values tend to be close to the mean, while a high variance indicates that the values are spread out over a wider range. Variation is \underemphasise{Measure of Dispersion}.
+\begin{mydefinition}{Moments}
+    \begin{enumerate}
+    \item The $n$-th order raw moment of a random variable $X$ is defined as:
+    \begin{itemize}
+        \item For a discrete random variable:
+        $$E(X^n) = \sum_{x} x^n P(X = x)$$
+        \item For a continuous random variable:
+        $$E(X^n) = \int_{-\infty}^{\infty} x^n f(x) \, dx$$
+    \end{itemize}
+    \item The $n$-th order central moment of a random variable $X$ is defined as:
+    \begin{itemize}
+    \item For discrete random variables: 
+    $$E((X - E(X))^n) = \sum_{x} (x - E(X))^n P(X = x)$$
+    \item For continuous random variables:
+    $$E((X - E(X))^n) = \int_{-\infty}^{\infty} (x - E(X))^n f(x) \, dx$$
+    \end{itemize}
+    
+    \item The $n^th$ order raw moment about a point $c$ is defined as:
+    \begin{itemize}
+        \item For discrete random variables:
+        $$E((X - c)^n) = \sum_{x} (x - c)^n P(X = x)$$
+        \item For continuous random variables:
+        $$E((X - c)^n) = \int_{-\infty}^{\infty} (x - c)^n f(x) \, dx$$
+    \end{itemize}
+    \end{enumerate}
+\end{mydefinition}
+\textbf{Physical Interpretation of Moments} - The moments of a random variable provide important information about its distribution. The raw moments give a sense of the "size" of the values, while the central moments (like variance) provide insight into the "spread" or "variability" of the distribution.
+The moments about a point provide information about the shape of the distribution relative to that point. 
+
+
+\begin{mytheorem}[Cauchy-Schwarz Inequality]
+For any random variables $X$ and $Y$ with finite expectations, the following inequality holds:
+$$E(XY) \leq E(X^2)^{1/2} E(Y^2)^{1/2}$$
+\end{mytheorem}
+\begin{proof}
+    Let $\lambda \in \R$ be a constant. Let the pdf of $X$ be $f(x)$ and $Y$ be $g(x)$. We have: 
+    $$E(f(x) + \lambda(g(x)))^2 \geq 0$$
+    \begin{align*}
+        &\implies E(f(x)^2 + 2\lambda f(x)g(x) + \lambda^2 g(x)^2) \geq 0 \\
+        &\implies E(f(x)^2) + 2\lambda E(f(x)g(x)) + \lambda^2 E(g(x)^2) \geq 0 \\
+    \end{align*}
+    This is a quadratic inequality in $\lambda$, and it must hold for all $\lambda \in \R$. Therefore, the discriminant of this quadratic must be non-positive:
+    $$D = (2E(f(x)g(x)))^2 - 4E(f(x)^2)E(g(x)^2) \leq 0$$
+    which implies the Cauchy-Schwarz inequality.
+\end{proof}
+\subsection{Special Moments}
+\begin{mydefinition}{Skewness}
+    Skewness is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean. It is defined as the third standardized moment:
+    $$\mu_3(X) = E((X - E(X))^3)$$
+    We cannot standardize its units like we do for variance, because the cube root of variance does not have a meaningful interpretation.
+    The skewness is then given by:
+    $$\text{Skewness}(X) = \frac{E((X - E(X))^3)}{(E((X - E(X))^2))^{3/2}}$$
+    or alternatively, we write - 
+    $$\gamma_1 = \frac{\mu_3(X)}{(\mu_2(X))^{3/2}}$$
+    where $E(X)$ is the expectation of $X$ and $E((X - E(X))^2)$ is the variance of $X$.
+    We also define - 
+    $$\beta_1 = \gamma_1^2 = \frac{(\mu_3(X))^2}{(\mu_2(X))^3}$$
+\end{mydefinition}
+\textbf{Physical Interpretation of Skewness} - Skewness provides insight into the shape of the distribution. A positive skew indicates that the right tail is longer or fatter than the left tail, while a negative skew indicates that the left tail is longer or fatter than the right tail. A skewness of zero indicates a symmetric distribution.
+\begin{mydefinition}{Kurtosis}
+    Kurtosis is a measure of the "tailedness" of the probability distribution of a real-valued random variable. It is defined as the fourth standardized moment:
+    $$\text{Kurtosis}(X) = \frac{E((X - E(X))^4)}{(E((X - E(X))^2))^2}$$
+    where $E(X)$ is the expectation of $X$ and $E((X - E(X))^2)$ is the variance of $X$.
+    We denote kurtosis by $\beta_2$:
+    $$\beta_2 = \frac{\mu_4(X)}{(\mu_2(X))^2}$$
+    where $\mu_4(X) = E((X - E(X))^4)$ is the fourth central moment of $X$.
+\end{mydefinition}
+\textbf{Physical Interpretation of Kurtosis} - Kurtosis provides insight into the shape of the distribution, particularly in terms of the presence of outliers.
+A higher kurtosis indicates that the distribution has heavier tails and a sharper peak compared to a normal distribution, while a lower kurtosis indicates lighter tails and a flatter peak.
+\begin{mynote}
+    The kurtosis of a normal distribution is 3. To compare the kurtosis of a distribution to that of a normal distribution, we often use the excess kurtosis, which is defined as:
+    $$\text{Excess Kurtosis} = \beta_2 - 3$$
+    A positive excess kurtosis indicates a distribution with heavier tails than a normal distribution, while a negative excess kurtosis indicates lighter tails.
+    We also divide distributions into three categories based on their kurtosis:
+    \begin{itemize}
+        \item \textbf{Leptokurtic:} Distributions with positive excess kurtosis (i.e., $\beta_2 > 3$). These distributions have heavier tails and a sharper peak compared to a normal distribution.
+        \item \textbf{Platykurtic:} Distributions with negative excess kurtosis (i.e., $\beta_2 < 3$). These distributions have lighter tails and a flatter peak compared to a normal distribution.
+        \item \textbf{Mesokurtic:} Distributions with zero excess kurtosis (i.e., $\beta_2 = 3$). The normal distribution is an example of a mesokurtic distribution.
+    \end{itemize}
+\end{mynote}
+\begin{mytheorem}[$\beta_2 \geq 1$]
+    For any random variable $X$, the kurtosis $\beta_2$ satisfies the inequality:
+    $$\beta_2 \geq 1$$
+\end{mytheorem}
+\begin{proof}
+    Let $g(x) = (x - E(X))^2$ and $h(x) = 1$. Applying the Cauchy-Schwarz inequality, we have:
+    $$E(g(x)h(x))^2 \leq E(g(x)^2)E(h(x)^2)$$
+    This simplifies to:
+    $$E((X - E(X))^2)^2 \leq E((X - E(X))^4)$$
+    Dividing both sides by $E((X - E(X))^2)^2$, we get:
+    $$1 \leq \frac{E((X - E(X))^4)}{(E((X - E(X))^2))^2} = \beta_2$$
+    Hence proved.
+\end{proof}
+\begin{mynote}
+    This theorem implies that the kurtosis of any distribution is always greater than or equal to 1. A kurtosis of 1 corresponds to a distribution with no variability (i.e., all values are the same), while higher kurtosis values indicate increasing levels of variability and the presence of outliers. \\
+    A distribution with $\beta_2 = 1$ is a degenerate distribution, where all the probability mass is concentrated at a single point. This means that there is no variability in the data, and every observation is identical. An example of such a distribution is a random variable that always takes the same value, say $c$. In this case, the pdf can be represented as a Dirac delta function centered at $c$, and the variance (and hence kurtosis) is zero.
+\end{mynote}
+\begin{mytheorem}[$\beta_1 \leq \beta_2$]
+    For any random variable $X$, the skewness $\beta_1$ is less than or equal to the kurtosis $\beta_2$:
+    $$\beta_1 \leq \beta_2$$
+\end{mytheorem}
+\begin{proof}
+    Let $g(x) = (x - E(x))^2$ and $h(x) = (x - E(x))$. Applying the Cauchy-Schwarz inequality, we have:
+    $$E(g(x)h(x))^2 \leq E(g(x)^2)E(h(x)^2)$$
+    $$\implies E((X - E(X))^3)^2 \leq E((X - E(X))^4)E((X - E(X))^2)$$
+    Dividing both sides by $E((X - E(X))^2)^3$, we get:
+    $$\frac{E((X - E(X))^3)^2}{(E((X - E(X))^2))^3} \leq \frac{E((X - E(X))^4)}{(E((X - E(X))^2))^2}$$
+    $$\implies \beta_1 \leq \beta_2$$
+\end{proof}
+\begin{mynote}
+    This theorem implies that the skewness of any distribution is always less than or equal to its kurtosis. This relationship provides insight into the shape of the distribution, as skewness measures asymmetry while kurtosis measures the "tailedness" or presence of outliers. A distribution with high skewness is likely to have high kurtosis, but a distribution with low skewness can still have high kurtosis if it has heavy tails.
+\end{mynote} 
+
+%\begin{mytheorem}[$\beta_2 \geq \beta_1 + 1$]
+    %For any random variable $X$, the kurtosis $\beta_2$ is greater than or equal to the skewness $\beta_1$ plus 1:
+    %$$\beta_2 \geq \beta_1 + 1$$
+%\end{mytheorem}
+%\begin{proof}
+ %   Let $g(X) = \frac{(X - E(X))^2 - \mu_2}{\sqrt{E((X^2 - \mu_2)^2)}}$ and $h(X) = \frac{(X - E(X))}{\sqrt{\mu_2}}$. Applying the Cauchy-Schwarz inequality, we have:
+  %  $$E(g(X)h(X))^2 \leq E(g(X)^2)E(h(X)^2)$$
+   % This simplifies to:
+    %$$E\left(\frac{(X - E(X))^3 - \mu_2(X - E(X))}{\sqrt{E((X^2 - \mu_2)^2)\mu_2}}\right)^2 \leq 1$$
+    %Expanding the left-hand side, we get:
+    %$$E\left((X - E(X))^3 - \mu_2(X - E(X))\right)^2 \leq E((X - E(X))^4)\mu_2$$
+%    Expanding the left-hand side further, we have:
+ %   $$E((X - E(X))^6) - 2\mu_2 E((X - E(X))^4) + \mu_2^2 E((X - E(X))^2) \leq E((X -% E(X))^4)\mu_2$$
+   % Rearranging the terms, we get:
+    %$$E((X - E(X))^6) + \mu_2^2 E((X - E(X))^2) \leq 3\mu_2 E((X - E(X))^4)$$
+%    Dividing both sides by $\mu_2^3$, we obtain:
+ %   $$\frac{E((X - E(X))^6)}{\mu_2^3} + 1 \leq 3\frac{E((X - E(X))^4)}{\mu_2^2}$$
+  %  $$\implies \beta_2 \geq \beta_1 + 1$$ 
+%\end{proof}
+
+\subsection{Moment Generating Function}
+\begin{mydefinition}{Moment Generating Function (MGF)}
+    The moment generating function (MGF) of a random variable $X$ is a function that encodes the moments of the random variable. It is defined as:
+    $$M_X(t) = E(e^{tX})$$
+    where $t$ is a real number. The MGF has the following properties:
+    \begin{itemize}
+        \item The MGF exists for all $t$ in an open interval containing 0.
+        \item The $n$-th moment of $X$ can be obtained by taking the $n$-th derivative of the MGF and evaluating it at $t = 0$:
+        $$E(X^n) = M_X^{(n)}(0)$$
+        where $M_X^{(n)}(t)$ denotes the $n$-th derivative of $M_X(t)$ with respect to $t$.
+        \item If two random variables have the same MGF, they have the same distribution.
+    \end{itemize}
+\end{mydefinition}
+\begin{mytheorem}[$n^{th}$ Derivative of MGF gives $n^{th}$ Moment]
+    The $n$-th moment of a random variable $X$ can be obtained by taking the $n$-th derivative of the moment generating function (MGF) and evaluating it at $t = 0$:
+    $$E(X^n) = M_X^{(n)}(0)$$
+    where $M_X^{(n)}(t)$ denotes the $n$-th derivative of $M_X(t)$ with respect to $t$.
+\end{mytheorem}
+\begin{proof}
+    Let $\mu_x = \int_{\-\infty}^{\infty}e^{tx}f(x) \, dx$ be the MGF of $X$. We have:
+    \begin{align*}
+        \frac{d^n \mu_x}{dt^n} &= \frac{d^n}{dt^n} \int_{-\infty}^{\infty} e^{tx} f(x) \, dx \\
+        &= \int_{-\infty}^{\infty} \frac{d^n}{dt^n} e^{tx} f(x) \, dx \quad \text{(by Leibniz's rule)} \\
+        &= \int_{-\infty}^{\infty} x^n e^{tx} f(x) \, dx
+    \end{align*}
+    Evaluating this at $t = 0$, we get:
+    $$\frac{d^n \mu_x}{dt^n} \bigg|_{t=0} = \int_{-\infty}^{\infty} x^n f(x) \, dx = E(X^n)$$
+    Hence proved.
+\end{proof}
+\begin{mynote}
+There are some distributions for which the MGF does not exist for all values of $t$. It is important to check the existence of the MGF before using it to derive moments or other properties of the distribution. Therefore, there are some distributions for which some moments may not exist even if the MGF exists. For example, the Cauchy distribution has an MGF that exists for all $t$, but it does not have a defined mean or variance.
+\end{mynote}
+\begin{example}{Cauchy Distribution}
+    The Cauchy distribution is a continuous probability distribution that is often used in statistics and physics. It is characterized by its location parameter $x_0$ and scale parameter $\gamma$. The probability density function (pdf) of the Cauchy distribution is given by:
+    $$f(x; x_0, \gamma) = \frac{1}{\pi \gamma \left[1 + \left(\frac{x - x_0}{\gamma}\right)^2\right]}$$
+    for $-\infty < x < \infty$, where $x_0$ is the location parameter (the peak of the distribution) and $\gamma$ is the scale parameter (which determines the width of the distribution). The Cauchy distribution has heavy tails, meaning that it has a higher probability of extreme values compared to other distributions like the normal distribution. This makes it useful for modeling phenomena with outliers or extreme events.
+    The MGF of the Cauchy distribution does not exist for any value of $t$, which means that we cannot use the MGF to derive moments or other properties of the distribution. In fact, the Cauchy distribution does not have a defined mean or variance, as these moments do not converge.
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Cauchy Distribution},
+        xlabel={$x$},
+        ylabel={$f(x)$},
+        xmin=-5, xmax=5,
+        ymin=0, ymax=0.5,
+        xtick={-5,-4,...,5},
+        ytick={0,0.1,...,0.5},
+        grid=major
+    ]
+    \addplot[domain=-5:5, samples=100, thick]{1/(pi*(1+x^2))};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Cauchy Distribution with $x_0 = 0$ and $\gamma = 1$}
+    \end{figure}
+\end{example}
+\chapter{Probability Distributions}
+\section{Discrete Probability Distributions}
+\subsection{Bernoulli Distribution}
+\begin{mydefinition}{Bernoulli Trials}
+    A Bernoulli trial is a random experiment that has exactly two possible outcomes, typically referred to as "success" and "failure". The probability of success is denoted by $p$, while the probability of failure is denoted by $q = 1 - p$. Each trial is independent of the others, meaning that the outcome of one trial does not affect the outcome of any other trial. Therefore a Bernoulli trial has the following properties: 
+    \begin{itemize}
+        \item There are only two possible outcomes: success (with probability $p$) and failure (with probability $q = 1 - p$).
+        \item The trials are independent, meaning that the outcome of one trial does not affect the outcome of any other trial.
+        \item The probability of success $p$ remains constant for each trial.
+    \end{itemize}
+\end{mydefinition}
+\begin{example}
+    Consider a random experiment of flipping a fair coin. Let $X$ be a Bernoulli random variable that represents the outcome of the coin flip, where $X = 1$ if the result is heads (success) and $X = 0$ if the result is tails (failure). The probability of success (getting heads) is $p = 0.5$, and the probability of failure (getting tails) is $q = 0.5$. The PMF of $X$ is given by:
+    $$P(X = x) = 
+    \begin{cases} 
+    0.5 & \text{if } x = 1 \\
+    0.5 & \text{if } x = 0 
+    \end{cases}$$
+\end{example}
+\begin{mydefinition}{Binomial Distribution}
+    A Binomial distribution is a discrete probability distribution that describes the number of successes in a fixed number of independent Bernoulli trials. It is characterized by two parameters: $n$, the number of trials, and $p$, the probability of success in each trial. The probability mass function (PMF) of a Binomial random variable $X$ is given by:
+    $$P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}$$
+    for $k = 0, 1, 2, \ldots, n$, where $\binom{n}{k}$ is the binomial coefficient representing the number of ways to choose $k$ successes in $n$ trials.
+\end{mydefinition}
+\begin{example}
+    Let us consider a random experiment of rolling a fair six-sided die $n = 10$ times. Let $X$ be a Binomial random variable that represents the number of times we get a 6 (success) in these 10 rolls. The probability of success (getting a 6) is $p = \frac{1}{6}$, and the probability of failure (not getting a 6) is $q = 1 - p = \frac{5}{6}$. The PMF of $X$ is given by:
+    $$P(X = k) = \binom{10}{k} \left(\frac{1}{6}\right)^k \left(\frac{5}{6}\right)^{10 - k}$$
+    for $k = 0, 1, 2, \ldots, 10$. For example, the probability of getting exactly 3 sixes in 10 rolls is:
+    \begin{align*}
+        P(X = 3) &= \binom{10}{3} \left(\frac{1}{6}\right)^3 \left(\frac{5}{6}\right)^{7} \\
+        &= 120 \cdot \frac{1}{216} \cdot \frac{78125}{279936} \\
+        &\approx 0.155
+    \end{align*}
+    Let us plot the PMF of $X$ for $k = 0, 1, 2, \ldots, 10$.
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        title={PMF of Binomial Distribution (n=10, p=1/6)},
+        xlabel={Number of Successes (k)},
+        ylabel={Probability P(X=k)},
+        xmin=0, xmax=11,
+        ymin=0, ymax=0.5,
+        xtick={0,1,...,10},
+        ytick={0,0.1,...,0.5},
+        grid=major
+    ]
+    \addplot[
+        domain=0:10,
+        samples=11, 
+        thick
+    ]
+    {factorial(10)/(factorial(x)*factorial(10-x))*(1/6)^x*(5/6)^(10-x)};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{PMF of Binomial Distribution with $n=10$ and $p=\frac{1}{6}$}
+    \end{figure}
+\end{example}
+
+\begin{mytheorem}[Sum of PMF of Binomial Distribution is 1]
+    The sum of the probabilities in the probability mass function (PMF) of a Binomial distribution is equal to 1. That is, for a Binomial random variable $X$ with parameters $n$ and $p$, we have:
+    $$\sum_{k=0}^{n} P(X = k) = 1$$
+    We define $P(X = k)$ as:
+    $$P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}$$
+\end{mytheorem}
+\begin{proof}
+    Suppose we have $n$ independent Bernoulli trials, each with a probability of success $p$ and a probability of failure $1 - p$. The random variable $X$ represents the number of successes in these $n$ trials. We consider the probability of getting exactly $k$ successes in $n$ trials. Let the outcomes be represented by a sequence of $n$ trials, where each trial can result in either a success (S) or a failure (F). The number of ways to arrange $k$ successes and $n - k$ failures in $n$ trials is given by the binomial coefficient $\binom{n}{k}$. The probability of getting exactly $k$ successes and $n - k$ failures in a specific arrangement is given by $p^k (1 - p)^{n - k}$. Therefore, the probability of getting exactly $k$ successes in $n$ trials is given by:
+    $$P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}$$
+    To show that the sum of the probabilities in the PMF is equal to 1, we sum $P(X = k)$ over all possible values of $k$ from 0 to $n$:
+    \begin{align*}
+        \sum_{k=0}^{n} P(X = k) &= \sum_{k=0}^{n} \binom{n}{k} p^k (1 - p)^{n - k} \\
+        &= (p + (1 - p))^n \quad \text{(by the Binomial Theorem)} \\
+        &= 1^n \\
+        &= 1
+    \end{align*}
+    Hence proved.
+\end{proof}
+
+\subsubsection{Expectation of a Random Variable following Bernoulli Distribution}
+Let $X$ be a random variable following a Bernoulli distribution with probability of success $p$. Let $N$ denote the number of independent trials. Let $k$ denote the number of successes in these $N$ trials. Then, the expectation of $X$ is given by:
+\begin{align*}
+    E(X) &= \sum_{k=1}^{N} k P(X = k) \\
+    &= \sum_{k=1}^{N} k \binom{N}{k} p^k (1 - p)^{N - k} \\
+    &= \sum_{k=1}^{N} k\cdot \frac{N!}{k!(N-k)!} p^k (1 - p)^{N - k} \\
+    &= \sum_{k=1}^{N} \frac{N!}{(k-1)!(N-k)!} p^k (1 - p)^{N - k} \\
+    &= \sum_{k=1}^{N} N \cdot \frac{(N-1)!}{(k-1)!((N-1)-(k-1))!} p^k (1 - p)^{N - k} \\
+    &= Np \sum_{k=1}^{N} \binom{N-1}{k-1} p^{k-1} (1 - p)^{(N-1) - (k-1)} \\
+    &= Np
+\end{align*}
+\subsubsection{Variance of a Random Variable following Bernoulli Distribution}
+We can calculate the variance and other moments of any distribution by differentiating the moment generating function (MGF). We can define the MGF of a Bernoulli distribution as follows:
+\begin{align*}
+    M_X(t) &= E(e^{tX}) \\
+    &= \sum_{k=0}^{N} e^{tk} P(X = k) \\
+    &= \sum_{k=0}^{N} e^{tk} \binom{N}{k} p^k (1 - p)^{N - k} \\
+    &= \sum_{k=0}^{N} \binom{N}{k} (pe^t)^k (1 - p)^{N - k} \\
+    &\boxed{=(pe^t + (1 - p))^N}
+\end{align*}
+The variance of a random variable $X$ following a Bernoulli distribution with probability of success $p$ is given by:
+\begin{figure}[H]
+\begin{align*}
+    \mu_2(X) &= E((X - np)^2) \\
+    &= \sum_{k=0}^{N} (k - np)^2 P(X = k) \\
+    &= \sum_{k=0}^{N} (k - np)^2 \binom{N}{k} p^k (1 - p)^{N - k} \\
+    &= \sum_{k=0}^{N} (k^2 - 2knp + n^2p^2) \binom{N}{k} p^k (1 - p)^{N - k} \\
+    &= \left(\sum_{k=0}^{N} k^2 \binom{N}{k} p^k (1 - p)^{N - k}\right) - \left(2np \sum_{k=0}^{N} k \binom{N}{k} p^k (1 - p)^{N - k}\right) + \left(n^2p^2 \sum_{k=0}^{N} \binom{N}{k} p^k (1 - p)^{N - k}\right) \\
+    &= \left(\sum_{k=0}^{N} k^2 \binom{N}{k} p^k (1 - p)^{N - k}\right) - 2np(np) + n^2p^2 \cdot 1 \\
+    &= \left(\sum_{k=0}^{N} k^2 \binom{N}{k} p^k (1 - p)^{N - k}\right) - n^2p^2 \\
+    &= \left(\sum_{k=0}^{N} k(k-1) \binom{N}{k} p^k (1 - p)^{N - k}\right) + \left(\sum_{k=0}^{N} k \binom{N}{k} p^k (1 - p)^{N - k}\right) - n^2p^2 \\
+    &= \left(\sum_{k=0}^{N} k(k-1) \binom{N}{k} p^k (1 - p)^{N - k}\right) + np - n^2p^2 \\
+    &= \left(\sum_{k=0}^{N} \frac{N!}{(k-2)!(N-k)!} p^k (1 - p)^{N - k}\right) + np - n^2p^2 \\
+    &= \left(\sum_{k=0}^{N} N(N-1) \cdot \frac{(N-2)!}{(k-2)!((N-2)-(k-2))!} p^k (1 - p)^{N - k}\right) + np - n^2p^2 \\
+    &= \left(N(N-1)p^2 \sum_{k=0}^{N} \binom{N-2}{k-2} p^{k-2} (1 - p)^{(N-2) - (k-2)}\right) + np - n^2p^2 \\
+    &= N(N-1)p^2 + np - n^2p^2 \\
+    &= Np(1-p)
+\end{align*}
+\end{figure}
+\begin{mynote}
+    There are multiple ways to derive the variance of a Bernoulli distribution. One common method is to use the formula for variance in terms of expectation:
+    $$\text{Var}(X) = E(X^2) - (E(X))^2$$
+    We already know that $E(X) = Np$. To find $E(X^2)$, we can use the fact that for a Bernoulli random variable, $X^2 = X$ (since $X$ can only take values 0 or 1). Therefore, $E(X^2) = E(X) = Np$. Substituting these values into the variance formula, we get:
+    \begin{align*}
+        \text{Var}(X) &= E(X^2) - (E(X))^2 \\
+        &= Np - (Np)^2 \\
+        &= Np(1 - p)
+    \end{align*}
+    Hence, we arrive at the same result for the variance of a Bernoulli distribution.
+\end{mynote}
+\subsubsection{The $r^{th}$ Moment of a Random Variable following Bernoulli Distribution}
+The $r^{th}$ moment of a random variable $X$ following a Bernoulli distribution with probability of success $p$ is given by:
+\begin{figure}[H]
+\begin{align*}
+    \mu_r(X) &= E((X - np)^r) \\
+    &= \sum_{k=0}^{N} (k - np)^r P(X = k) \\
+    \implies \frac{d\mu_r(X)}{dp} &= \sum_{k=0}^{N} \frac{d}{dp} \left((k - np)^r P(X = k)\right) \\
+    &= \sum_{k=0}^{N} \left(r(k - np)^{r-1}(-n) P(X = k) + (k - np)^r \frac{dP(X = k)}{dp}\right) \\
+    &= -nr \sum_{k=0}^{N} (k - np)^{r-1} P(X = k) + \sum_{k=0}^{N} (k - np)^r \frac{dP(X = k)}{dp} \\
+    &= -nr \mu_{r-1}(X) + \frac{1}{p(1-p)}(\mu_{r+1}(X) + 1) \\
+    \implies \mu_{r+1}(X) &= p(1-p)\frac{d\mu_r(X)}{dp} + nrp(1-p)\mu_{r-1}(X)
+\end{align*}
+\end{figure}
+Therefore, we have - 
+\begin{figure}[H]
+\begin{align*}
+    \mu_3 &= np(1-p)(p-(1-p)) \\
+    \mu_4 &= 3n^2P^2(1-p)^2 + np(1-p)(1-6p(1-p)) \\
+    \implies \gamma_1 &= \frac{1-2p}{\sqrt{np(1-p)}} \\
+    \implies \gamma_2 &= \frac{1-6p(1-p)}{np(1-p)} \\
+    \implies \beta_1 &= \frac{(1-2p)^2}{np(1-p)} \\
+    \implies \beta_2 &= 3 + \frac{1-6p(1-p)}{np(1-p)} \\ 
+\end{align*}
+\end{figure}
+\subsubsection{Conditions for kurtosis of a Bernoulli Distribution to be less than, equal to or greater than 3}
+The kurtosis $\beta_2$ of a Bernoulli distribution is given by:
+$$\beta_2 = 3 + \frac{1 - 6p(1-p)}{np(1-p)}$$
+To determine the conditions under which the kurtosis is less than, equal to, or greater than 3, we analyze the term $\frac{1 - 6p(1-p)}{np(1-p)}$:
+\begin{itemize}
+    \item \textbf{Kurtosis less than 3:} 
+    $$\beta_2 < 3 \implies \frac{1 - 6p(1-p)}{np(1-p)} < 0 \implies 1 - 6p(1-p) < 0 \implies p(1-p) > \frac{1}{6}$$
+    The maximum value of $p(1-p)$ is $\frac{1}{4}$, which occurs at $p = \frac{1}{2}$. Therefore, there are no values of $p$ in the interval $[0, 1]$ such that $p(1-p) > \frac{1}{6}$. Hence, the kurtosis of a Bernoulli distribution cannot be less than 3.
+    
+    \item \textbf{Kurtosis equal to 3:} 
+    $$\beta_2 = 3 \implies \frac{1 - 6p(1-p)}{np(1-p)} = 0 \implies 1 - 6p(1-p) = 0 \implies p(1-p) = \frac{1}{6}$$
+    Solving the quadratic equation $p^2 - p + \frac{1}{6} = 0$, we find:
+    $$p = \frac{3 \pm \sqrt{3}}{6}$$
+    Therefore, the kurtosis of a Bernoulli distribution is equal to 3 when $p = \frac{3 + \sqrt{3}}{6}$ or $p = \frac{3 - \sqrt{3}}{6}$.
+    
+    \item \textbf{Kurtosis greater than 3:} 
+    $$\beta_2 > 3 \implies \frac{1 - 6p(1-p)}{np(1-p)} > 0 \implies 1 - 6p(1-p) > 0 \implies p(1-p) < \frac{1}{6}$$
+    This inequality holds for all values of $p$ in the interval $[0, 1]$ except for the two points where $p(1-p) = \frac{1}{6}$ (i.e., $p = \frac{3 + \sqrt{3}}{6}$ or $p = \frac{3 - \sqrt{3}}{6}$). Therefore, the kurtosis of a Bernoulli distribution is greater than 3 for all other values of $p$ in the interval $[0, 1]$.
+\end{itemize}
+\subsection{Poisson Distribution}
+\begin{mydefinition}{Poisson Distribution}
+    A Poisson distribution is a discrete probability distribution that describes the number of events occurring within a fixed interval of time or space, given that these events occur with a known constant mean rate and independently of the time since the last event. The Poisson distribution is characterized by a single parameter $\lambda$, which represents the average number of events in the given interval. The probability mass function (PMF) of a Poisson random variable $X$ is given by:
+    $$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$$
+    for $k = 0, 1, 2, \ldots$, where $e$ is the base of the natural logarithm (approximately equal to 2.71828).
+\end{mydefinition}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Poisson Distribution with $\lambda = 3$},
+        xlabel={$k$},
+        ylabel={$P(X = k)$},
+        xmin=-3, xmax=10,
+        ymin=0, ymax=1,
+        xtick={-3, -2,...,10},
+        ytick={0,0.1,...,1},
+        grid=major
+    ]
+    \addplot[domain=-3:10, samples=13, thick]{(3^x * exp(-3)) / (factorial(x))};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Poisson Distribution with $\lambda = 3$}
+\end{figure}
+We show that the Poisson distribution is a special case of the Binomial distribution. Consider a Binomial distribution with parameters $n$ (number of trials) and $p$ (probability of success in each trial). The PMF of a Binomial random variable $X$ is given by:
+$$P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}$$
+As $n\to \infty, p \to 0, np = \lambda$, we have - 
+$$P(X=k) = \frac{(n)(n-1)(n-2)\cdots(n-k+1)}{k!} p^k \frac{(1 - \frac{np}{n})^{n}}{(1-p)^k}$$
+$$\implies P(X=k) = \frac{1(1-\frac{1}{n})(1-\frac{2}{n})...(1-\frac{k+1}{n})}{k!}(np)^k\frac{(1 - \frac{np}{n})^n}{(1-p)^k}$$
+Since $n\to \infty$, we have $1(1-\frac{1}{n})...(1 - \frac{k+1}{n}) = 1(1)...(1) = 1$. Since $p\to 0$, we have $(1-p)^k = 1$. We further have $np = \lambda$. Then, we have -  
+$$P(X=k) = \frac{\lambda^k}{k!}(1-\frac{\lambda}{n})^k = \frac{\lambda^k}{k!}e^{-\lambda}$$
+\subsubsection{Moments of the Poisson Distribution}
+We can easily obtain the moments of the Poisson Distribution by setting the same limits as we did above. 
+Therefore, we have - 
+\begin{align*}
+    \mu &= np = \lambda \\
+    \mu_2 &= np(1-p) = \lambda \\
+    \mu_3 &= np(1-p)(1-2p) = \lambda \\
+    \mu_4 &= 3n^2p^2(1-p)^2 + np(1-p)(1-6p(1-p)) = 3\lambda^2 + \lambda
+\end{align*}
+\begin{mytheorem}[Sum of PMF of Poisson Distribution is 1]
+    The sum of the probabilities in the probability mass function (PMF) of a Poisson distribution is equal to 1. That is, for a Poisson random variable $X$ with parameter $\lambda$, we have:
+    $$\sum_{k=0}^{\infty} P(X = k) = 1$$
+    We define $P(X = k)$ as:
+    $$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$$
+\end{mytheorem}
+\begin{proof}
+    To show that the sum of the probabilities in the PMF is equal to 1, we sum $P(X = k)$ over all possible values of $k$ from 0 to $\infty$:
+    \begin{align*}
+        \sum_{k=0}^{\infty} P(X = k) &= \sum_{k=0}^{\infty} \frac{\lambda^k e^{-\lambda}}{k!} \\
+        &= e^{-\lambda} \sum_{k=0}^{\infty} \frac{\lambda^k}{k!} \\
+        &= e^{-\lambda} e^{\lambda} \quad \text{(by the Taylor series expansion of } e^{\lambda}) \\
+        &= 1
+    \end{align*}
+    Hence proved.
+\end{proof}
+\section{Joint Distributions}
+Here we consider two discrete random variables $X$ and $Y$, and we define their joint distribution. Joint distributions can be used to model the relationship between two random variables, and they are often used in statistical analysis and machine learning. \\
+We can define the joint distribution of $X$ and $Y$ using a joint probability mass function (PMF) or a joint probability density function (PDF), depending on whether the random variables are discrete or continuous. The joint PMF or PDF gives the probability or density of each possible combination of values for $X$ and $Y$.
+\subsection{Joint PMF and Distributions}
+\begin{mydefinition}{Joint Probability Mass Function (PMF)}
+    The joint probability mass function (PMF) of two discrete random variables $X$ and $Y$ is a function that gives the probability that $X$ takes on a specific value $x$ and $Y$ takes on a specific value $y$. It is denoted as $P(X = x, Y = y)$ or simply $P(x, y)$. The joint PMF must satisfy the following properties:
+    \begin{itemize}
+        \item Non-negativity: $P(x, y) \geq 0$ for all possible values of $x$ and $y$.
+        \item Normalization: The sum of the joint probabilities over all possible values of $x$ and $y$ must equal 1. That is, $\sum_{x} \sum_{y} P(x, y) = 1$.
+        \item Marginalization: The marginal PMFs of $X$ and $Y$ can be obtained by summing the joint PMF over the other variable. That is, $P(X = x) = \sum_{y} P(x, y)$ and $P(Y = y) = \sum_{x} P(x, y)$.
+    \end{itemize}
+\end{mydefinition}
+\begin{example}
+    Consider two discrete random variables $X$ and $Y$ that represent the outcome of rolling two fair six-sided dice. The possible values for both $X$ and $Y$ are $\{1, 2, 3, 4, 5, 6\}$. The joint PMF of $X$ and $Y$ can be represented in a table as follows:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cccccc}
+            $P(X = x, Y = y)$ & $Y=1$ & $Y=2$ & $Y=3$ & $Y=4$ & $Y=5$ & $Y=6$ \\
+            \hline
+            $X=1$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ \\
+            $X=2$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ \\
+            $X=3$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ \\
+            $X=4$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ \\
+            $X=5$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ \\
+            $X=6$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ & $\frac{1}{36}$ \\
+        \end{tabular}
+    \end{table}
+    Each entry in the table represents the probability of a specific combination of outcomes for $X$ and $Y$. For example, the probability of rolling a 1 on the first die and a 2 on the second die is $\frac{1}{36}$. The sum of all probabilities in the table is equal to 1, satisfying the normalization property of the joint PMF. The marginal PMFs can be obtained by summing the joint PMF over the other variable. For example, the marginal PMF of $X$ is given by:
+    $$P(X = x) = \sum_{y=1}^{6} P(X = x, Y = y) = \sum_{y=1}^{6} \frac{1}{36} = \frac{6}{36} = \frac{1}{6}$$
+    for $x = 1, 2, 3, 4, 5, 6$. Similarly, the marginal PMF of $Y$ is also $\frac{1}{6}$ for $y = 1, 2, 3, 4, 5, 6$.
+\end{example} \\
+\begin{example}
+    Consider the same example of tossing 2 fair coins. Let $X$ be the random variable representing the number of heads obtained in the first coin toss, and let $Y$ be the random variable representing the number of heads obtained in the second coin toss. The possible values for both $X$ and $Y$ are $\{0, 1\}$. The joint PMF of $X$ and $Y$ can be represented in a table as follows:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cc}
+            $P(X = x, Y = y)$ & $Y=0$ & $Y=1$ \\
+            \hline
+            $X=0$ & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+            $X=1$ & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+        \end{tabular}
+    \end{table}
+    Each entry in the table represents the probability of a specific combination of outcomes for $X$ and $Y$. For example, the probability of getting 0 heads in the first toss and 1 head in the second toss is $\frac{1}{4}$. The sum of all probabilities in the table is equal to 1, satisfying the normalization property of the joint PMF. The marginal PMFs can be obtained by summing the joint PMF over the other variable. For example, the marginal PMF of $X$ is given by:
+    $$P(X = x) = \sum_{y=0}^{1} P(X = x, Y = y) = \sum_{y=0}^{1} \frac{1}{4} = \frac{2}{4} = \frac{1}{2}$$
+    for $x = 0, 1$. Similarly, the marginal PMF of $Y$ is also $\frac{1}{2}$ for $y = 0, 1$.
+\end{example}
+\subsection{Covariance and Correlation}
+\begin{mydefinition}{Covariance}
+    The covariance between two random variables $X$ and $Y$ is a measure of how much the two variables change together. It is defined as:
+    $$Cov(X, Y) = E[(X - E[X])(Y - E[Y])]$$
+    where $E[X]$ and $E[Y]$ are the expected values (means) of $X$ and $Y$, respectively. The covariance can also be expressed in terms of the joint expectation:
+    $$Cov(X, Y) = E[XY] - E[X]E[Y]$$
+    The covariance can take on any value, positive or negative. A positive covariance indicates that when one variable increases, the other variable tends to increase as well. A negative covariance indicates that when one variable increases, the other variable tends to decrease. A covariance of zero indicates that there is no linear relationship between the two variables.
+\end{mydefinition}
+\begin{example}
+    Consider the example given above, where $X$ and $Y$ represent the outcomes of rolling two fair six-sided dice. The expected values of $X$ and $Y$ are both 3.5. We can calculate the covariance between $X$ and $Y$ as follows:
+    \begin{align*}
+        E[XY] &= \sum_{x=1}^{6} \sum_{y=1}^{6} xy P(X = x, Y = y) \\
+        &= \sum_{x=1}^{6} \sum_{y=1}^{6} xy \cdot \frac{1}{36} \\
+        &= \frac{1}{36} \sum_{x=1}^{6} x \sum_{y=1}^{6} y \\
+        &= \frac{1}{36} (1 + 2 + 3 + 4 + 5 + 6)(1 + 2 + 3 + 4 + 5 + 6) \\
+        &= \frac{1}{36} (21)(21) = \frac{441}{36} = 12.25
+    \end{align*}
+    Therefore, the covariance between $X$ and $Y$ is:
+    $$Cov(X, Y) = E[XY] - E[X]E[Y] = 12.25 - (3.5)(3.5) = 12.25 - 12.25 = 0$$
+    This indicates that there is no linear relationship between the outcomes of the two dice rolls.
+\end{example}
+\begin{mydefinition}{Correlation}
+    The correlation between two random variables $X$ and $Y$ is a measure of the strength and direction of the linear relationship between the two variables. It is defined as:
+    $$\rho_{X,Y} = \frac{Cov(X, Y)}{\sigma_X \sigma_Y}$$
+    where $Cov(X, Y)$ is the covariance between $X$ and $Y$, and $\sigma_X$ and $\sigma_Y$ are the standard deviations of $X$ and $Y$, respectively. 
+\end{mydefinition}
+\begin{mytheorem}[Range of Correlation Coefficient]
+    The correlation coefficient $\rho_{X,Y}$ between two random variables $X$ and $Y$ always lies in the range of -1 to 1. That is, 
+    $$-1 \leq \rho_{X,Y} \leq 1$$
+\end{mytheorem}
+\begin{proof}
+By using the Cauchy-Schwarz inequality, we have:
+\begin{align*}
+    |E[(X - E[X])(Y - E[Y])]|^2 &\leq E[(X - E[X])^2] E[(Y - E[Y])^2] \\
+    \implies Cov(X, Y)^2 &\leq Var(X) Var(Y) \\
+    \implies \frac{Cov(X, Y)^2}{Var(X) Var(Y)} &\leq 1 \\
+    \implies -1 \leq \frac{Cov(X, Y)}{\sqrt{Var(X)} \sqrt{Var(Y)}} &\leq 1 \\
+    \implies -1 \leq \rho_{X,Y} &\leq 1
+\end{align*}
+\end{proof}
+\begin{mynote}
+    A correlation coefficient of 1 indicates a perfect positive linear relationship between the two variables, meaning that as one variable increases, the other variable also increases in a perfectly linear manner. A correlation coefficient of -1 indicates a perfect negative linear relationship, meaning that as one variable increases, the other variable decreases in a perfectly linear manner. A correlation coefficient of 0 indicates no linear relationship between the two variables. However, it is important to note that a correlation coefficient of 0 does not necessarily imply that there is no relationship between the variables; there may still be a non-linear relationship present.
+\end{mynote}
+\begin{example}
+    Suppose a box has $N$ balls and $A$ of them are white. Let $x$ be the number of draws required to get $r$ white balls without replacement. \\ 
+    Let $x_i$ be the number of draws required to get the $i^{th}$ white ball after getting the $(i-1)^{th}$ white ball. Then, the joint distribution of $x_1, x_2, \ldots, x_r$ is given by:
+    $$P(x_1 = k_1, x_2 = k_2, \ldots, x_r = k_r) = \frac{\binom{N - A}{k_1 - 1} \binom{N - A - (k_1 - 1)}{k_2 - 1} \cdots \binom{N - A - \sum_{i=1}^{r-1} (k_i - 1)}{k_r - 1}}{\binom{N}{\sum_{i=1}^{r} k_i}}$$
+    where $k_i$ is the number of draws required to get the $i^{th}$ white ball after getting the $(i-1)^{th}$ white ball. \\
+    The covariance between $x_i$ and $x_j$ for $i \neq j$ can be calculated as:
+    $$Cov(x_i, x_j) = \frac{(N - A)(N - A - 1)}{(A + 1)^2 (A + 2)}$$
+    The variance of $x_i$ can be calculated as:
+    $$Var(x_i) = \frac{(N - A)(N + 1)}{(A + 1)^2 (A + 2)}$$
+    Therefore, the correlation coefficient between $x_i$ and $x_j$ for $i\neq j$ is given by:
+    $$\rho_{x_i, x_j} = \frac{Cov(x_i, x_j)}{\sqrt{Var(x_i)} \sqrt{Var(x_j)}} = \sqrt{\frac{N - A}{N + 1}}$$
+\end{example}
+\subsection{Multinomial Distribution}
+\begin{mydefinition}{Multinomial Distribution}
+    The multinomial distribution is a generalization of the binomial distribution to more than two categories. It describes the probabilities of obtaining a specific combination of counts for each category in a fixed number of independent trials, where each trial can result in one of $k$ possible outcomes. The multinomial distribution is characterized by the following parameters:
+    \begin{itemize}
+        \item $n$: The total number of independent trials.
+        \item $p_1, p_2, \ldots, p_k$: The probabilities of each of the $k$ possible outcomes, where $\sum_{i=1}^{k} p_i = 1$.
+    \end{itemize}
+    The probability mass function (PMF) of the multinomial distribution is given by:
+    $$P(X_1 = x_1, X_2 = x_2, \ldots, X_k = x_k) = \frac{n!}{x_1! x_2! \cdots x_k!} p_1^{x_1} p_2^{x_2} \cdots p_k^{x_k}$$
+    where $X_i$ is the random variable representing the count of outcome $i$, and $x_i$ is the observed count for outcome $i$, with the constraint that $\sum_{i=1}^{k} x_i = n$.
+\end{mydefinition}
+\begin{figure}[H]
+\begin{tabular}{c|c}
+    \hline
+    Parameter & Description \\
+    \hline
+    $n$ & Total number of independent trials \\
+    $k$ & Number of possible outcomes in each trial \\
+    $p_i$ & Probability of outcome $i$ occurring in a single trial, where $i = 1, 2, \ldots, k$ and $\sum_{i=1}^{k} p_i = 1$ \\
+    $X_i$ & Random variable representing the count of outcome $i$ in $n$ trials \\
+    $x_i$ & Observed count for outcome $i$, with the constraint that $\sum_{i=1}^{k} x_i = n$ \\
+    \hline
+\end{tabular} 
+\caption{Parameters of the Multinomial Distribution}
+\end{figure}
+\begin{mynote}
+We can visualize the PMF of the multinomial distribution using a 3D plot, where the x-axis represents the number of trials, the y-axis represents the probability, and the z-axis represents the outcome combinations. Each point in the 3D space corresponds to a specific combination of counts for the $k$ outcomes, and the height of the point represents the probability of that combination occurring. \\
+To create such a plot, we can use software tools like Python with libraries such as Matplotlib or Plotly, or mathematical software like MATLAB. The plot will help us understand how the probabilities of different outcome combinations change as we vary the number of trials and the probabilities of each outcome. The resulting 3D surface will provide insights into the behavior of the multinomial distribution and its dependence on the parameters $n$ and $p_i$.
+\end{mynote}
+\begin{example}
+    Consider a scenario where we want to know the probability of 3 distinct outcomes occurring 1 time, 4 times and 5 times respectively in 10 independent trials. Let the probabilities of the three outcomes be $p_1 = 0.2$, $p_2 = 0.5$ and $p_3 = 0.3$. \\
+    Here, we have $n = 10$, $k = 3$, $p_1 = 0.2$, $p_2 = 0.5$, $p_3 = 0.3$. The pmf of the multinomial distribution is given by:
+    $$P(X_1 = x_1, X_2 = x_2, X_3 = x_3) = \frac{10!}{x_1! x_2! x_3!} (0.2)^{x_1} (0.5)^{x_2} (0.3)^{x_3}$$
+    where $x_1 + x_2 + x_3 = 10$. \\
+    Using the multinomial distribution, we can calculate the probability as follows:
+    \begin{align*}
+        P(X_1 = 1, X_2 = 4, X_3 = 5) &= \frac{10!}{1! 4! 5!} (0.2)^1 (0.5)^4 (0.3)^5 \\
+        &= \frac{3628800}{1 \cdot 24 \cdot 120} (0.2) (0.0625) (0.00243) \\
+        &= 1260 \cdot 0.2 \cdot 0.0625 \cdot 0.00243 \\
+        &\approx 0.038
+    \end{align*}
+    Therefore, the probability of the three outcomes occurring 1 time, 4 times and 5 times respectively in 10 independent trials is approximately 0.038.
+    Suppose we want to visualize the PMF of the multinomial distribution for this example. We can create a 3D plot where the x-axis represents the number of trials, the y-axis represents the probability, and the z-axis represents the outcome combinations. Each point in the 3D space corresponds to a specific combination of counts for the three outcomes, and the height of the point represents the probability of that combination occurring.
+    \begin{figure}[H]
+        \centering 
+        \begin{tikzpicture}
+            \begin{axis}[
+                xlabel={$x_1$},
+                ylabel={$x_2$},
+                zlabel={P($x_1$, $x_2$, $x_3$)},
+                title={Multinomial Distribution Example},
+                grid=major,
+                colormap/cool,
+                view={60}{30}
+            ]
+            \addplot3[
+                surf,
+                domain=1:10,
+                y domain=1:10,
+                samples=10,
+                samples y=10
+            ]
+            { (10!/(x! * y! * (10 - x - y)!)) * (0.2)^x * (0.5)^y * (0.3)^(10 - x - y) };
+            \end{axis}
+        \end{tikzpicture}
+        \caption{3D Plot of Multinomial Distribution PMF}
+    \end{figure}
+\end{example}
+\subsection{Extraction of Probabilities of Individual Random Variables from Multinomial Distribution}
+\begin{mytheorem}[Marginal Distribution of Multinomial Distribution]
+    Summing over the other variables in a multinomial distribution gives a Binomial distribution for the variable of interest. Specifically, if $(X_1, X_2, \ldots, X_k)$ follows a multinomial distribution with parameters $n$ and probabilities $p_1, p_2, \ldots, p_k$, then the marginal distribution of $X_1$ is a Binomial distribution with parameters $n$ and $p_1$. That is,
+    $$P(X_1 = x_1) = \binom{n}{x_1} p_1^{x_1} (1 - p_1)^{n - x_1}$$
+\end{mytheorem}
+\begin{proof}
+Suppose we want $P(X_1 = x_1)$, but are given a multinomial distribution with parameters $n, p_1, p_2, \ldots, p_k$. We can extract the required probability as follows:
+\begin{align*}
+    P(X_1 = x_1) &= \sum_{x_2=0}^{n-x_1} \sum_{x_3=0}^{n-x_1-x_2} \ldots \sum_{x_k=0}^{n - x_1 - x_2 - \ldots - x_{k-1}} P(X_1 = x_1, X_2 = x_2, \ldots, X_k = x_k) \\
+    &= \sum_{x_2=0}^{n-x_1} \sum_{x_3=0}^{n-x_1-x_2} \ldots \sum_{x_k=0}^{n - x_1 - x_2 - \ldots - x_{k-1}} \frac{n!}{x_1! x_2! \ldots x_k!} p_1^{x_1} p_2^{x_2} \ldots p_k^{x_k} \\
+    &= \frac{n!}{x_1! (n - x_1)!} p_1^{x_1} \sum_{x_2=0}^{n-x_1} \sum_{x_3=0}^{n-x_1-x_2} \ldots \sum_{x_k=0}^{n - x_1 - x_2 - \ldots - x_{k-1}} \frac{(n - x_1)!}{x_2! \ldots x_k!} p_2^{x_2} \ldots p_k^{x_k} \\
+    &= \frac{n!}{x_1! (n - x_1)!} p_1^{x_1} (p_2 + p_3 + \ldots + p_k)^{n - x_1} \\
+    &= \frac{n!}{x_1! (n - x_1)!} p_1^{x_1} (1 - p_1)^{n - x_1}
+\end{align*}
+This is the PMF of a Binomial distribution with parameters $n$ and $p_1$. Therefore, we have shown that the marginal distribution of $X_1$ in a multinomial distribution is a Binomial distribution with parameters $n$ and $p_1$.
+\end{proof}
+\begin{mytheorem}[Correlation between Random Variables in Multinomial Distribution]
+    In a multinomial distribution with parameters $n$ and probabilities $p_1, p_2, \ldots, p_k$, the correlation coefficient between any two random variables $X_i$ and $X_j$ (for $i \neq j$) is given by:
+    $$\rho_{X_i, X_j} = -\sqrt{\frac{p_i p_j}{(1 - p_i)(1 - p_j)}}$$
+\end{mytheorem}
+\begin{proof}
+To find the correlation coefficient between $X_i$ and $X_j$, we first need to calculate the covariance $Cov(X_i, X_j)$ and the variances $Var(X_i)$ and $Var(X_j)$.
+\begin{align*}
+    E[X_i] &= np_i \\
+    E[X_j] &= np_j \\
+    Var(X_i) &= np_i(1 - p_i) \\
+    Var(X_j) &= np_j(1 - p_j) \\
+    E[X_i X_j] &= n(n - 1)p_i p_j \\
+    Cov(X_i, X_j) &= E[X_i X_j] - E[X_i]E[X_j] \\
+    &= n(n - 1)p_i p_j - (np_i)(np_j) \\
+    &= -np_i p_j
+\end{align*}
+Now, we can calculate the correlation coefficient:
+\begin{align*}
+    \rho_{X_i, X_j} &= \frac{Cov(X_i, X_j)}{\sqrt{Var(X_i)} \sqrt{Var(X_j)}} \\
+    &= \frac{-np_i p_j}{\sqrt{np_i(1 - p_i)} \sqrt{np_j(1 - p_j)}} \\
+    &= -\sqrt{\frac{p_i p_j}{(1 - p_i)(1 - p_j)}}
+\end{align*}
+Hence proved.
+\end{proof}
+\subsection{Moment Generating Function of Multinomial Distribution}
+The moment generating function (MGF) of a multinomial distribution with parameters $n$ and probabilities $p_1, p_2, \ldots, p_k$ is given by:
+$$M(t_1, t_2, \ldots, t_k) = \left( p_1 e^{t_1} + p_2 e^{t_2} + \ldots + p_k e^{t_k} \right)^n$$
+where $t_1, t_2, \ldots, t_k$ are the variables corresponding to the random variables $X_1, X_2, \ldots, X_k$. The MGF can be used to derive the moments of the distribution by taking partial derivatives with respect to the variables $t_i$ and evaluating them at $t_i = 0$ for all $i$. \\
+Let us derive the first moment (mean) of the random variable $X_i$ using the MGF:
+\begin{align*}
+    E[X_i] &= \frac{\partial M(t_1, t_2, \ldots, t_k)}{\partial t_i} \bigg|_{t_1=0, t_2=0, \ldots, t_k=0} \\
+    &= n p_i \left( p_1 + p_2 + \ldots + p_k \right)^{n-1} \\
+    &= n p_i
+\end{align*}
+Similarly, we can derive the second moment (variance) of the random variable $X_i$:
+\begin{align*}
+    E[X_i^2] &= \frac{\partial^2 M(t_1, t_2, \ldots, t_k)}{\partial t_i^2} \bigg|_{t_1=0, t_2=0, \ldots, t_k=0} \\
+    &= n p_i (1 - p_i) + (n p_i)^2 \\
+    Var(X_i) &= E[X_i^2] - (E[X_i])^2 \\
+    &= n p_i (1 - p_i)
+\end{align*}
+\begin{exercise}
+    Let $X_1, X_2, \ldots, X_k$ be k independent poisson random variables with parameters $\lambda_1, \lambda_2, \ldots, \lambda_k$ respectively. Show that the joint distribution of $X_1, X_2, \ldots, X_k$ is a multinomial distribution with parameters $n = \sum_{i=1}^{k} X_i$ and probabilities $p_i = \frac{\lambda_i}{\sum_{j=1}^{k} \lambda_j}$ for $i = 1, 2, \ldots, k$.
+\end{exercise}
+\begin{proof}
+    We want to show that the joint distribution of $X_1, X_2, \ldots, X_k$ is a multinomial distribution with parameters $n = \sum_{i=1}^{k} X_i$ and probabilities $p_i = \frac{\lambda_i}{\sum_{j=1}^{k} \lambda_j}$ for $i = 1, 2, \ldots, k$. \\
+    The joint PMF of $X_1, X_2, \ldots, X_k$ is given by:
+    \begin{align*}
+        P(X_1 = x_1, X_2 = x_2, \ldots, X_k = x_k) &= \prod_{i=1}^{k} P(X_i = x_i) \\
+        &= \prod_{i=1}^{k} \frac{e^{-\lambda_i} \lambda_i^{x_i}}{x_i!} \\
+        &= e^{-\sum_{i=1}^{k} \lambda_i} \prod_{i=1}^{k} \frac{\lambda_i^{x_i}}{x_i!}
+    \end{align*}
+    Now, we can rewrite the above expression as:
+    \begin{align*}
+        P(X_1 = x_1, X_2 = x_2, \ldots, X_k = x_k) &= e^{-\sum_{i=1}^{k} \lambda_i} \frac{(\sum_{i=1}^{k} \lambda_i)^{\sum_{i=1}^{k} x_i}}{\prod_{i=1}^{k} x_i!} \prod_{i=1}^{k} \left( \frac{\lambda_i}{\sum_{j=1}^{k} \lambda_j} \right)^{x_i} \\
+        &= e^{-\sum_{i=1}^{k} \lambda_i} \frac{(\sum_{i=1}^{k} \lambda_i)^{n}}{\prod_{i=1}^{k} x_i!} p_1^{x_1} p_2^{x_2} \ldots p_k^{x_k}
+    \end{align*}
+    where $n = \sum_{i=1}^{k} x_i$ and $p_i = \frac{\lambda_i}{\sum_{j=1}^{k} \lambda_j}$ for $i = 1, 2, \ldots, k$. \\
+    This is the PMF of a multinomial distribution with parameters $n$ and probabilities $p_1, p_2, \ldots, p_k$. Therefore, we have shown that the joint distribution of $X_1, X_2, \ldots, X_k$ is a multinomial distribution with the specified parameters.
+\end{proof}
+\subsection{Expectation and Variance}
+\begin{mytheorem}[Algebra of Expectation and Variance]
+    Let $X$ and $Y$ be two discrete random variables. Then - 
+    \begin{itemize}
+        \item $E(aX + bY) = aE(X) + bE(Y)$ if $E(X), E(Y) < \infty$.
+        \item $Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X, Y)$ if $Var(X), Var(Y) < \infty$.
+    \end{itemize}
+\end{mytheorem}
+\begin{proof}
+    We prove the two parts of the theorem separately. \\ 
+        \textbf{Part 1:} We want to show that $E(aX + bY) = aE(X) + bE(Y)$ if $E(X), E(Y) < \infty$. 
+        \begin{align*}
+            E(aX + bY) &= \sum_i \sum_j (ai + bj) P(X=i, Y=j) \\
+            &= a \sum_i \sum_j i P(X=i, Y=j) + b \sum_i \sum_j j P(X=i, Y=j) \\
+            &= aE(X) + bE(Y)
+        \end{align*}
+        \textbf{Part 2:} We want to show that $Var(aX + bY) = a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X, Y)$ if $Var(X), Var(Y) < \infty$. 
+        \begin{align*}
+            Var(aX + bY) &= E((aX + bY)^2) - (E(aX + bY))^2 \\
+            &= E(a^2X^2 + 2abXY + b^2Y^2) - (aE(X) + bE(Y))^2 \\
+            &= a^2E(X^2) + 2abE(XY) + b^2E(Y^2) - (a^2(E(X))^2 + 2abE(X)E(Y) + b^2(E(Y))^2) \\
+            &= a^2(E(X^2) - (E(X))^2) + b^2(E(Y^2) - (E(Y))^2) + 2ab(E(XY) - E(X)E(Y)) \\
+            &= a^2 Var(X) + b^2 Var(Y) + 2ab Cov(X, Y)
+        \end{align*}
+\end{proof}
+\begin{mydefinition}{Conditional Expectation and Variance}
+    The conditional expectation of a random variable $X$ given another random variable $Y$ is defined as:
+    $$E(X|Y=y) = \sum_i i P(X=i|Y=y)$$
+    where $P(X=i|Y=y)$ is the conditional probability of $X$ given $Y$. The conditional variance of $X$ given $Y$ is defined as:
+    $$Var(X|Y=y) = E((X - E(X|Y=y))^2|Y=y) = E(X^2|Y=y) - (E(X|Y=y))^2$$
+\end{mydefinition}
+\begin{mytheorem}[Conditional Expectation and Variance]
+    Let $X$ and $Y$ be two discrete random variables. Then - 
+    \begin{itemize}
+        \item $E(X) - E(E(X|Y))$ if $E(X) < \infty$.
+        \item $Var(X) = E(Var(X|Y)) + Var(E(X|Y))$ if $Var(E(X|Y)) < \infty$.    
+    \end{itemize}
+\end{mytheorem}
+\begin{proof}
+    We prove the two parts of the theorem separately. \\ 
+        \textbf{Part 1:} We want to show that $E(X) = E(E(X|Y))$ if $E(X) < \infty$. 
+        \begin{align*}
+            E(X) &= \sum_i \sum_j iP(X=i, Y=j) \\
+            &= \sum_i \sum_j iP(X=i|Y=j)P(Y=j) \\
+            &= \sum_j P(Y=j) \sum_i iP(X=i|Y=j) \\
+            &= \sum_j P(Y=j) E(X|Y=j) \\
+            &= E_Y(E_X(X|Y)) \\
+        \end{align*}
+        \textbf{Part 2:} We want to show that $Var(X) = E(Var(X|Y)) + Var(E(X|Y))$ if $Var(E(X|Y)) < \infty$. 
+        \begin{align*}
+            E(Var(X|Y)) + Var(E(X|Y)) &= E(E(X^2|Y) - (E(X|Y))^2) + E((E(X|Y))^2) - (E(E(X|Y)))^2 \\
+            &= E(E(X^2|Y)) - (E(E(X|Y)))^2 \\
+            &= E(X^2) - (E(X))^2 \\
+            &= Var(X)
+        \end{align*}
+\end{proof}
+\subsection{Mode and Median of Binomial Distribution}
+We define the mode and median of a Binomial distribution.
+\begin{mydefinition}{Mode and Median of Binomial Distribution}
+    The mode of a Binomial distribution with parameters $n$ and $p$ is the value of $k$ that maximizes the probability mass function (PMF) of the distribution. The PMF of a Binomial random variable $X$ is given by:
+    $$P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}$$
+    for $k = 0, 1, 2, \ldots, n$. The mode can be found by taking the derivative of the PMF with respect to $k$, setting it to zero, and solving for $k$. The mode is given by:
+    $$\text{Mode} = \lfloor (n + 1)p \rfloor$$
+    if $(n + 1)p$ is not an integer, and both $\lfloor (n + 1)p \rfloor$ and $\lfloor (n + 1)p \rfloor - 1$ are modes if $(n + 1)p$ is an integer. \\
+    The median of a Binomial distribution is the value of $m$ such that:
+    $$P(X \leq m) \geq 0.5 \quad \text{and} \quad P(X \geq m) \geq 0.5$$
+\end{mydefinition}
+Let $X$ be a random variable following a Binomial distribution with parameters $n$ and $p$. The mean of $X$ is given by:
+$$\mu = E(X) = np$$
+To find the mode of $X$, we need to find the value $m$ such that $P(X = m)$ is maximized.
+Let $f(k) = P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}$ be the PMF of $X$. Let us consider - 
+\begin{align*}
+    \frac{f(k+1)}{f(k)} &= \frac{\binom{n}{k+1} p^{k+1} (1 - p)^{n - (k + 1)}}{\binom{n}{k} p^k (1 - p)^{n - k}} \\
+    &= \frac{(n-k)p}{(k+1)(1-p)} = m \\
+    \implies f(k+1) &= \frac{(n-k)p}{(k+1)(1-p)}f(k) = mf(k) \\ 
+\end{align*}
+Finally let us consider - 
+\begin{align*}
+    \frac{f(k)}{f(k-1)} &= \frac{\binom{n}{k} p^k (1 - p)^{n - k}}{\binom{n}{k-1} p^{k-1} (1 - p)^{n - (k - 1)}} \\
+    &= \frac{(n-k+1)p}{k(1-p)} = m
+\end{align*}
+Then we have - 
+\begin{align*}
+    \frac{(n-k)p}{(k+1)(1-p)} \lesseqgtr 1 &\iff (n-k)p \lesseqgtr (k+1)(1-p) \\
+    &\iff np - kp \lesseqgtr k + 1 - kp - p \\
+    &\iff np - 1 + p \lesseqgtr k \\
+    &\iff (n+1)p - 1 \lesseqgtr k \\
+    \frac{(n-k+1)p}{k(1-p)} \lesseqgtr 1 &\iff (n-k+1)p \lesseqgtr k(1-p) \\
+\end{align*}
+We have two cases - 
+\begin{enumerate}
+    \item If $(n+1)p - 1$ is a fraction, then for $k > (n+1)p - 1$, we have $f(k) < f(k-1)$ and for $k < (n+1)p - 1$, we have $f(k) > f(k-1)$. Therefore we have - 
+    $$f(0) < f(1) < ... < f(m) > f(m+1) > ... > f(n)$$
+    Therefore, the mode is $m = \lfloor (n+1)p - 1 \rfloor + 1 = \lfloor (n+1)p \rfloor$.
+    \item If $(n+1)p - 1$ is an integer, then for $k \geq (n+1)p - 1$, we have $$k \lesseqgtr (n+1)p - 1 \implies f(k+1) \gtreqless f(k)$$. Then, we have - 
+    $$f(0) < f(1) < ... < f(m) = f(m) > f((n+1)p + 1) > ... > f(n)$$
+    Therefore, the modes are $m$ and $m+1$. 
+\end{enumerate}
+\begin{example}
+    Consider a Binomial distribution with parameters $n = 10$ and $p = 0.3$. The mean of the distribution is given by:
+    $$\mu = E(X) = np = 10 \cdot 0.3 = 3$$
+    To find the mode of the distribution, we calculate $(n + 1)p$:
+    $$(n + 1)p = (10 + 1) \cdot 0.3 = 11 \cdot 0.3 = 3.3$$
+    Since $(n + 1)p$ is not an integer, we take the floor of this value to find the mode:
+    $$\text{Mode} = \lfloor (n + 1)p \rfloor = \lfloor 3.3 \rfloor = 3$$
+    Therefore, the mode of the Binomial distribution with parameters $n = 10$ and $p = 0.3$ is 3.
+    We have the pmf of the distribution as follows -
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccccccccccc}
+            $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+            \hline
+            $P(X = k)$ & $0.0282$ & $0.1211$ & $0.2335$ & $0.2668$ & $0.2001$ & $0.1029$ & $0.0368$ & $0.0090$ & $0.0014$ & $0.0001$ & $0.0000$ \\
+        \end{tabular}
+    \end{table}
+    The PMF has a distinct peak at $k = 3$, which is the mode of the distribution.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Binomial Distribution with $n = 10$ and $p = 0.3$},
+            xlabel={$k$},
+            ylabel={$P(X = k)$},
+            xmin=-1, xmax=11,
+            ymin=0, ymax=0.3,
+            xtick={0,...,11},
+            ytick={0,0.05,...,0.3},
+            grid=major
+        ]
+        \addplot[domain=0:10, samples=11, thick]{((10!)/(x! * (10-x)!)) * (0.3)^x * (0.7)^(10-x)};
+        \addplot[only marks, mark=*, mark size=1.5pt] coordinates {(3, 0.2668)};
+        \addplot[line width=1pt, color=red, dashed] coordinates {(3,0) (3,0.2668)};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Binomial Distribution with $n = 10$ and $p = 0.3$, mode at $k = 3$}
+    \end{figure}
+\end{example}
+\subsection{Bimodal Distribution}
+We define a bimodal distribution. Bimodal distributions can arise in various contexts, such as in the analysis of data with two distinct groups or populations, or in the study of physical phenomena with two dominant modes of behavior.
+\begin{mydefinition}{Bimodal Distribution}
+    A bimodal distribution is a probability distribution that has two distinct modes, or peaks, in its probability density function (PDF) or probability mass function (PMF). This means that there are two values of the random variable that occur with higher frequency than other values. Bimodal distributions can be either continuous or discrete, and they can arise in various contexts, such as in the analysis of data with two distinct groups or populations, or in the study of physical phenomena with two dominant modes of behavior. \\
+    We denote the modes of a bimodal distribution as $m_1$ and $m_2$, where $m_1 + 1 = m_2$.
+\end{mydefinition}
+\begin{example}
+    Consider a random variable $X$ that follows a Binomial distribution with parameters $n = 9$ and $p = 0.5$. The PMF of $X$ is given by:
+    $$P(X = k) = \binom{9}{k} (0.5)^k (0.5)^{9 - k}$$
+    for $k = 0, 1, 2, \ldots, 9$. The PMF of $X$ can be calculated as follows:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cccccccccc}
+            $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+            \hline
+            $P(X = k)$ & $\frac{1}{512}$ & $\frac{9}{512}$ & $\frac{36}{512}$ & $\frac{84}{512}$ & $\frac{126}{512}$ & $\frac{126}{512}$ & $\frac{84}{512}$ & $\frac{36}{512}$ & $\frac{9}{512}$ & $\frac{1}{512}$ \\
+        \end{tabular}
+    \end{table}
+    The PMF has two distinct peaks at $k = 4$ and $k = 5$, which are the modes of the distribution. Therefore, the Binomial distribution with parameters $n = 9$ and $p = 0.5$ is a bimodal distribution with modes at $m_1 = 4$ and $m_2 = 5$.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Bimodal Distribution with $n = 9$ and $p = 0.5$},
+            xlabel={$k$},
+            ylabel={$P(X = k)$},
+            xmin=-1, xmax=11,
+            ymin=0, ymax=0.3,
+            xtick={0,...,11},
+            ytick={0,0.05,...,0.3},
+            grid=major
+        ]
+        \addplot[domain=0:9, samples=10, thick]{((9!)/(x! * (9-x)!)) * (0.5)^x * (0.5)^(9-x)};
+        \addplot[only marks, mark=*, mark size=1.5pt] coordinates {(4, 0.2461) (5, 0.2461)};
+        \addplot[line width=1pt, color=red, dashed] coordinates {(4,0) (4,0.2461)};
+        \addplot[line width=1pt, color=red, dashed] coordinates {(5,0) (5,0.2461)};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Bimodal Distribution with $n = 10$ and $p = 0.5$}
+    \end{figure}
+\end{example}
+\subsection{Mode of Poisson Distribution}
+Let $X$ be a random variable following a Poisson distribution with parameter $\lambda$. Let us denote the pmf of $X$ as $f(k) = P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}$ for $k = 0, 1, 2, \ldots$. We want to find the mode of the distribution. \\
+Let us consider -
+\begin{align*}
+    \frac{f(k+1)}{f(k)} &= \frac{\frac{\lambda^{k+1} e^{-\lambda}}{(k+1)!}}{\frac{\lambda^k e^{-\lambda}}{k!}} \\
+    &= \frac{\lambda}{k+1} = m \\
+    \implies f(k+1) &= \frac{\lambda}{k+1} f(k) = mf(k) \\
+\end{align*}
+Then, we have - 
+\begin{align*}
+    \frac{f(k+1)}{f(k)} \lesseqgtr 1 &\iff \frac{\lambda}{k+1} \lesseqgtr 1 \\
+    &\iff \lambda \lesseqgtr k + 1 \\
+    &\iff \lambda - 1 \lesseqgtr k \\
+\end{align*}
+We have two cases -
+\begin{enumerate}
+    \item If $\lambda - 1$ is a fraction, then for $k > \lambda - 1$, we have $f(k) < f(k-1)$ and for $k < \lambda - 1$, we have $f(k) > f(k-1)$. Therefore we have - 
+    $$f(0) < f(1) < ... < f(m) > f(m+1) > ...$$
+    Therefore, the mode is $m = \lfloor \lambda - 1 \rfloor + 1 = \lfloor \lambda \rfloor$.
+    \item If $\lambda - 1$ is an integer, then for $k \geq \lambda - 1$, we have $$k \lesseqgtr \lambda - 1 \implies f(k+1) \gtreqless f(k)$$ 
+    Then, we have - 
+    $$f(0) < f(1) < ... < f(m) = f(m) > f((\lambda - 1) + 1) > ...$$
+    Therefore, the modes are $m$ and $m+1$.
+\end{enumerate}
+\begin{example}
+    Let us consider a Poisson distribution with parameter $\lambda = 4.5$. This is a unimodal distribution, since the value of $\lambda - 1$ is not an integer. Unimodal distributions have a single mode. The pmf of the distribution is given by:
+    $$P(X = k) = \frac{4.5^k e^{-4.5}}{k!}$$
+    for $k = 0, 1, 2, \ldots$. To find the mode of the distribution, we calculate $\lambda - 1$:
+    $$\lambda - 1 = 4.5 - 1 = 3.5$$
+    Since $\lambda - 1$ is not an integer, we take the floor of this value to find the mode:
+    $$\text{Mode} = \lfloor \lambda - 1 \rfloor + 1 = \lfloor 3.5 \rfloor + 1 = 3 + 1 = 4$$
+    Therefore, the mode of the Poisson distribution with parameter $\lambda = 4.5$ is 4.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccccccccccc}
+            $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+            \hline
+            $P(X = k)$ & $0.0111$ & $0.0499$ & $0.1123$ & $0.1685$ & $0.1896$ & $0.1706$ & $0.1279$ & $0.0824$ & $0.0464$ & $0.0232$ & $0.0104$ \\
+        \end{tabular}
+        \caption{PMF of Poisson Distribution with $\lambda = 4.5$, mode at $k = 4$}
+    \end{table}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Poisson Distribution with $\lambda = 4.5$},
+            xlabel={$k$},
+            ylabel={$P(X = k)$},
+            xmin=-1, xmax=11,
+            ymin=0, ymax=0.25,
+            xtick={0,...,11},
+            ytick={0,0.05,...,0.25},
+            grid=major
+        ]
+        \addplot[domain=0:10, samples=11, thick]{(4.5^x * exp(-4.5)) / (factorial(x))};
+        \addplot[only marks, mark=*, mark size=1.5pt] coordinates {(4, 0.1896)};
+        \addplot[line width=1pt, color=red, dashed] coordinates {(4,0) (4,0.1896)};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Poisson Distribution with $\lambda = 4.5$, mode at $k = 4$}
+    \end{figure}
+The figure above shows the PMF of the Poisson distribution with parameter $\lambda = 4.5$. The PMF has a distinct peak at $k = 4$, which is the mode of the distribution. Such a distribution is called a unimodal distribution, and these arise when the parameter $\lambda$ is not an integer.
+\end{example}
+\begin{mynote}
+    We can similarly derive the mode of any discrete distribution by considering the ratio of the pmf at consecutive points and analyzing its behavior. The mode can be found by identifying the point where the pmf transitions from increasing to decreasing, which corresponds to the maximum value of the pmf. \\ An example of a bimodal distribution is the Poisson distribution when the parameter $\lambda$ is an integer. In this case, the modes of the distribution are given by $m$ and $m+1$, where $m = \lambda - 1$.
+\end{mynote}
+\begin{example}
+    Here we consider an example of a bimodal Poisson distribution. We know that a bimodal Poisson distribution occurs when the parameter $\lambda$ is an integer. In this case, the modes of the distribution are given by $m$ and $m+1$, where $m = \lambda - 1$. \\
+    Let us consider a Poisson distribution with parameter $\lambda = 5$. The pmf of the distribution is given by:
+    $$P(X = k) = \frac{5^k e^{-5}}{k!}$$
+    for $k = 0, 1, 2, \ldots$. To find the mode of the distribution, we calculate $\lambda - 1$:
+    $$\lambda - 1 = 5 - 1 = 4$$
+    Since $\lambda - 1$ is an integer, we have two modes:
+    $$\text{Modes} = \{m, m+1\} = \{4, 5\}$$
+    Therefore, the modes of the Poisson distribution with parameter $\lambda = 5$ are 4 and 5.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|ccccccccccc}
+            $k$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+            \hline
+            $P(X = k)$ & $0.0067$ & $0.0337$ & $0.0842$ & $0.1404$ & $0.1755$ & $0.1755$ & $0.1463$ & $0.1045$ & $0.0653$ & $0.0363$ & $0.0182$ \\
+        \end{tabular}
+        \caption{PMF of Poisson Distribution with $\lambda = 5$, modes at $k = 4$ and $k = 5$}
+    \end{table}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Poisson Distribution with $\lambda = 5$},
+            xlabel={$k$},
+            ylabel={$P(X = k)$},
+            xmin=-1, xmax=11,
+            ymin=0, ymax=0.2,
+            xtick={0,...,11},
+            ytick={0,0.05,...,0.2},
+            grid=major
+        ]
+        \addplot[domain=0:10, samples=11, thick]{(5^x * exp(-5)) / (factorial(x))};
+        \addplot[only marks, mark=*, mark size=1.5pt] coordinates {(4, 0.1755) (5, 0.1755)};
+        \addplot[line width=1pt, color=red, dashed] coordinates {(4,0) (4,0.1755)};
+        \addplot[line width=1pt, color=red, dashed] coordinates {(5,0) (5,0.1755)};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Poisson Distribution with $\lambda = 5$, modes at $k = 4$ and $k = 5$}
+    \end{figure}
+\end{example}
+\begin{mynote}
+    Properties of the Mode:
+    \begin{itemize}
+        \item The mode is the value that appears most frequently in a data set or distribution.
+        \item A distribution can have one mode (unimodal), two modes (bimodal), or more (multimodal).
+        \item The mode is not affected by extreme values (outliers) in the data set.
+        \item In a symmetric distribution, the mode, mean, and median are all equal.
+        \item In a skewed distribution, the mode is typically less than the mean and median in a right-skewed distribution, and greater than the mean and median in a left-skewed distribution.
+        \item The mode can be used to identify the most common category or value in categorical data.
+        \item The mode is particularly useful for nominal data, where the mean and median cannot be defined.
+    \end{itemize}
+\end{mynote}
+\section{Geometric Distribution}
+\subsection{Definition and Properties}
+A geometric distribution is a discrete probability distribution that models the number of trials needed to achieve the first success in a sequence of independent Bernoulli trials, where each trial has the same probability of success. We encounter geometric distributions in various real-world scenarios, such as quality control, reliability testing, and customer service.
+\begin{mydefinition}{Geometric Distribution}
+    A random variable $X$ is said to follow a geometric distribution with parameter $p$ if its probability mass function (PMF) is given by:
+    $$P(X = k) = (1 - p)^{k} p$$
+    for $k = 1, 2, 3, \ldots$, where $0 < p < 1$ is the probability of success on each trial. \\ 
+    This is called a geometric distributions since this generates a geometric series when we sum over all possible values of $k$.
+\end{mydefinition}
+\begin{example}
+    Consider a scenario where we are rolling a fair six-sided die and we want to find the probability of rolling a 3 for the first time on the 4th roll. Here, rolling a 3 is considered a success, and rolling any other number is considered a failure. The probability of success on each roll is $p = \frac{1}{6}$, and the probability of failure is $1 - p = \frac{5}{6}$. \\
+    Let $X$ be the random variable representing the number of rolls needed to get the first 3. Then, $X$ follows a geometric distribution with parameter $p = \frac{1}{6}$. We want to find $P(X = 4)$, which is the probability of getting the first 3 on the 4th roll. Using the PMF of the geometric distribution, we have:
+    \begin{align*}
+        P(X = 4) &= (1 - p)^{4 - 1} p \\
+        &= \left(\frac{5}{6}\right)^{3} \cdot \frac{1}{6} \\
+        &= \frac{125}{1296} \approx 0.09645
+    \end{align*}
+    Therefore, the probability of rolling a 3 for the first time on the 4th roll is approximately $0.09645$ or $9.645\%$.
+    We have the pmf of the distribution as follows -
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cccccccccc}
+            $k$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+            \hline
+            $P(X = k)$ & $0.1667$ & $0.1389$ & $0.1157$ & $0.0965$ & $0.0804$ & $0.0670$ & $0.0558$ & $0.0465$ & $0.0388$ & $0.0323$ \\
+        \end{tabular}
+        \caption{PMF of Geometric Distribution with $p = \frac{1}{6}$}
+    \end{table}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Geometric Distribution with $p = \frac{1}{6}$},
+            xlabel={$k$},
+            ylabel={$P(X = k)$},
+            xmin=0, xmax=11,
+            ymin=0, ymax=0.2,
+            xtick={0,...,11},
+            ytick={0,0.02,...,0.2},
+            grid=major
+        ]
+        \addplot[domain=1:10, samples=10, thick]{(5/6)^(x-1) * (1/6)};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Geometric Distribution with $p = \frac{1}{6}$}
+    \end{figure}
+\end{example}
+\begin{mynote}
+    The geometric distribution is the only discrete distribution that has the memoryless property. This means that the probability of success on the next trial is independent of the number of previous failures. In other words, the probability of success on the next trial is always $p$, regardless of how many trials have been conducted so far without success. \\\\
+    Mathematically, the memoryless property can be expressed as:
+    $$P(X > m + n | X > m) = P(X > n)$$
+    for all non-negative integers $m$ and $n$. This property is unique to the geometric distribution among discrete distributions. \\ 
+    The memoryless property has important implications in various applications, such as in queuing theory, reliability engineering, and survival analysis. It allows us to simplify calculations and make predictions about future events based on past observations.
+\end{mynote}
+\begin{mytheorem}{Mean of Geometric Distribution}
+    Let $X$ be a random variable following a geometric distribution with parameter $p$. Then, the mean of $X$ is given by:
+    $$E(X) = \frac{1-p}{p}$$
+\end{mytheorem}
+\begin{proof}
+    We want to show that $E(X) = \frac{1}{p}$.
+    \begin{align*}
+        E(X) &= \sum_{k=1}^{\infty} k P(X = k) \\
+        &= \sum_{k=1}^{\infty} k (1 - p)^{k} p \\
+        &= p \sum_{k=1}^{\infty} k (1 - p)^{k} \\
+        &= p \cdot \frac{1 - p}{(1 - (1 - p))^2} \quad \text{(using the formula for the sum of a geometric series)} \\
+        &= p \cdot \frac{1 - p}{p^2} = \frac{1 - p}{p}
+    \end{align*}
+\end{proof}
+\begin{mytheorem}[Sum of PMF of Geometric Distribution]
+    Let $X$ be a random variable following a geometric distribution with parameter $p$. Then, the sum of the pmf of $X$ over all possible values of $k$ is equal to 1, i.e.,
+    $$\sum_{k=1}^{\infty} P(X = k) = 1$$
+\end{mytheorem}
+\begin{proof}
+    We want to show that $\sum_{k=1}^{\infty} P(X = k) = 1$.
+    \begin{align*}
+        \sum_{k=1}^{\infty} P(X = k) &= \sum_{k=1}^{\infty} (1 - p)^{k} p \\
+        &= p \sum_{k=1}^{\infty} (1 - p)^{k} \\
+        &= p \cdot \frac{1}{1 - (1 - p)} \quad \text{(using the formula for the sum of a geometric series)} \\
+        &= p \cdot \frac{1}{p} = 1
+    \end{align*}
+\end{proof}
+\section{Negative Binomial Distribution}
+\subsection{Definition and Properties}
+Let $X =$ Number of failures before the $k^th$ success. Then, we have the following pmf -
+$$P(X = x) = \binom{x+k-1}{k-1} p^k (1-p)^x \quad x = 0, 1, 2, \ldots$$
+This is called the Negative Binomial Distribution.
+\begin{mydefinition}{Negative Binomial Distribution}
+    A random variable $X$ is said to follow a Negative Binomial distribution with parameters $k$ and $p$ if its probability mass function (PMF) is given by:
+    $$P(X = x) = \binom{x+k-1}{k-1} p^k (1-p)^x$$
+    for $x = 0, 1, 2, \ldots$, where $0 < p < 1$ is the probability of success on each trial and $k$ is the number of successes. \\
+    The Negative Binomial distribution models the number of failures before the $k^{th}$ success in a sequence of independent Bernoulli trials.
+\end{mydefinition}
+Let us simplify the pmf of the Negative Binomial distribution. We have -
+\begin{align*}
+    P(X = x) &= \binom{x+k-1}{k-1} p^k (1-p)^x \\
+    &= \frac{(x+k-1)!}{(k-1)! x!} p^k (1-p)^x \\
+    &= \frac{(x+k-1)(x+k-2) \ldots k}{x!} p^k (1-p)^x \\
+    &= \frac{k(k+1)(k+2) \ldots (x+k-1)}{x!} p^k (1-p)^x \\
+    &= \frac{-k(-k-1)(-k-2) \ldots (-k-(x-1))}{x!} p^k (1-p)^x \\
+    &= \binom{-k}{x} (-1)^x p^k (1-p)^x \\
+\end{align*}
+Now let $p = \frac{1}{Q}$, then we have $1 - p = q = \frac{P}{Q}$. We have: \\
+$1 + P = 1 + qQ = 1 + (1 - p) \cdot \frac{1}{p} = \frac{1}{p} = Q$. \\
+Therefore, we have -
+\begin{align*}
+    P(X = x) &= \binom{-k}{x} (-1)^x p^k (1-p)^x \\
+    &= \binom{-k}{x} (-1)^x \left(\frac{1}{Q}\right)^k \left(\frac{P}{Q}\right)^x \\
+    &= \binom{-k}{x} (-1)^x \frac{P^x}{Q^{k+x}} \\
+\end{align*}
+This is the pmf of the Negative Binomial distribution in terms of $P$ and $Q$. \\
+\begin{example}
+    Let us consider a scenario where we are conducting a series of independent Bernoulli trials with a success probability of $p = 0.4$. We want to find the probability of having exactly 3 failures before achieving the 2nd success. Here, the number of successes $k = 2$ and the number of failures $x = 3$. \\
+    Let $X$ be the random variable representing the number of failures before the 2nd success. Then, $X$ follows a Negative Binomial distribution with parameters $k = 2$ and $p = 0.4$. We want to find $P(X = 3)$, which is the probability of having exactly 3 failures before achieving the 2nd success. Using the PMF of the Negative Binomial distribution, we have:
+    \begin{align*}
+        P(X = 3) &= \binom{3+2-1}{2-1} (0.4)^2 (1-0.4)^3 \\
+        &= \binom{4}{1} (0.4)^2 (0.6)^3 \\
+        &= 4 \cdot 0.16 \cdot 0.216 = 0.13824
+    \end{align*}
+    Therefore, the probability of having exactly 3 failures before achieving the 2nd success is approximately $0.13824$ or $13.824\%$.
+    We have the pmf of the distribution as follows -
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cccccccccc}
+            $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+            \hline
+            $P(X = x)$ & $0.16$ & $0.192$ & $0.2304$ & $0.13824$ & $0.10368$ & $0.07776$ & $0.05832$ & $0.04374$ & $0.03281$ & $0.02458$ \\
+        \end{tabular}
+        \caption{PMF of Negative Binomial Distribution with $k = 2$ and $p = 0.4$}
+    \end{table}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Negative Binomial Distribution with $k = 2$ and $p = 0.4$},
+            xlabel={$x$},
+            ylabel={$P(X = x)$},
+            xmin=-1, xmax=10,
+            ymin=0, ymax=0.25,
+            xtick={0,...,10},
+            ytick={0,0.05,...,0.25},
+            grid=major
+        ]
+        \addplot[domain=0:9, samples=10, thick]{(factorial(x+2-1)/(factorial(2-1)*factorial(x))) * (0.4)^2 * (0.6)^x};
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Negative Binomial Distribution with $k = 2$ and $p = 0.4$}
+    \end{figure}
+\end{example}
+\section{Hypergeometric Distribution}
+\subsection{Definition and Properties}
+A hypergeometric distribution is a discrete probability distribution that describes the probability of drawing a specific number of successes in a sample drawn without replacement from a finite population containing a fixed number of successes and failures. It is commonly used in scenarios where the population size is small, and the sampling is done without replacement, such as quality control, card games, and lottery draws.
+\begin{mydefinition}{Hypergeometric Distribution}
+    A random variable $X$ is said to follow a hypergeometric distribution with parameters $N$, $K$, and $n$ if its probability mass function (PMF) is given by:
+    $$P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}$$
+    for $k = 0, 1, 2, \ldots, \min(K, n)$, where:
+    \begin{itemize}
+        \item $N$ is the total number of items in the population,
+        \item $K$ is the total number of successes in the population,
+        \item $n$ is the number of items drawn from the population,
+        \item $k$ is the number of observed successes in the drawn sample.
+    \end{itemize}
+\end{mydefinition}
+\begin{example}
+    Consider a scenario where we have a deck of 52 playing cards, which contains 4 aces (successes) and 48 non-aces (failures). We want to find the probability of drawing exactly 2 aces when we randomly select 5 cards from the deck without replacement. \\
+    Let $X$ be the random variable representing the number of aces drawn. Then, $X$ follows a hypergeometric distribution with parameters $N = 52$, $K = 4$, and $n = 5$. We want to find $P(X = 2)$, which is the probability of drawing exactly 2 aces. Using the PMF of the hypergeometric distribution, we have:
+    \begin{align*}
+        P(X = 2) &= \frac{\binom{4}{2} \binom{48}{3}}{\binom{52}{5}} \\
+        &= \frac{6 \cdot 17296}{2598960} \\
+        &= \frac{103776}{2598960} \approx 0.0399
+    \end{align*}
+    Therefore, the probability of drawing exactly 2 aces when selecting 5 cards from a standard deck is approximately $0.0399$ or $3.99\%$.
+    We have the pmf of the distribution as follows -
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cccccc}
+            $k$ & 0 & 1 & 2 & 3 & 4 \\
+            \hline
+            $P(X = k)$ & $0.6588$ & $0.2995$ & $0.0399$ & $0.0017$ & $0.0001$ \\
+        \end{tabular}
+        \caption{PMF of Hypergeometric Distribution with $N = 52$, $K = 4$, and $n = 5$}
+    \end{table}
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+        \begin{axis}
+            [title={Hypergeometric Distribution with $N = 52$, $K = 4$, and $n = 5$},
+            xlabel={$k$},
+            ylabel={$P(X = k)$},
+            xmin=-1, xmax=5,
+            ymin=0, ymax=0.7,
+            xtick={0,...,4},
+            ytick={0,0.1,...,0.7},
+            grid=major
+        ]
+        \addplot[domain=0:4, samples=5, thick]{( (factorial(4)/(factorial(x)*factorial(4-x))) * (factorial(48)/(factorial(5-x)*factorial(48-(5-x)))) ) / (factorial(52)/(factorial(5)*factorial(52-5))) };
+        \end{axis}
+        \end{tikzpicture}
+        \caption{Hypergeometric Distribution with $N = 52$, $K = 4$, and $n = 5$}
+    \end{figure}
+\end{example}
+
+
+
+
+
+
+\part{Statsistics}
+\chapter{Basic Concepts}
+\section{Introduction}
+\begin{mydefinition}{Data and Dataset}
+    \underemphasise{Data} refers to a collection of facts, figures, or observations that are gathered for analysis, interpretation, or reference. Data can be quantitative (numerical) or qualitative (categorical) in nature and can be collected through various methods such as surveys, experiments, observations, or measurements. In statistics, data is often organized into datasets or databases for further analysis to extract meaningful insights and make informed decisions. \\
+    We can represent data numerically by coding qualitative data into numerical values, such as assigning numbers to categories or using binary coding (0 and 1) to represent the presence or absence of a characteristic. \\
+    A \underemphasise{dataset} is a structured collection of data that is organized in a specific format, typically in rows and columns. Each row represents an individual observation or record, while each column represents a specific variable or attribute of the data. Datasets can be small or large, depending on the amount of data collected, and can be stored in various formats such as spreadsheets, databases, or text files. Datasets are commonly used in statistical analysis to explore relationships between variables, identify patterns, and make predictions based on the data.
+\end{mydefinition}
+\begin{example}
+    Consider a dataset representing the ages of a group of individuals: [25, 30, 35, 40, 45, 50, 55, 60]. This dataset contains quantitative data, as the ages are numerical values. Each age represents an individual observation in the dataset. \\
+    We can organize this data into a structured format as follows:
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Individual} & \textbf{Age} \\
+            \hline
+            1 & 25 \\
+            2 & 30 \\
+            3 & 35 \\
+            4 & 40 \\
+            5 & 45 \\
+            6 & 50 \\
+            7 & 55 \\
+            8 & 60 \\
+            \hline
+        \end{tabular}
+        \caption{Dataset of Ages}
+    \end{table}
+    In this table, each row represents an individual observation (the age of each person), and the column represents the variable (age). This structured dataset can be used for further statistical analysis to explore patterns and relationships within the data.
+\end{example}
+We have two types of data - 
+\begin{enumerate}
+    \item \underemphasise{Primary Data}
+    \begin{itemize}
+        \item Data collected for a specificied purpose from the field of inquiry.
+        \item It is original data collected directly by the researcher or organization conducting the study.
+        \item You need time, effort and resources to collect primary data.
+        \item The accuracy and reliability of primary data can be ensured since the researcher has control over the data collection process.
+    \end{itemize}
+    \item \underemphasise{Secondary Data}
+    \begin{itemize}
+        \item Data collected for some other purpose but used for a different purpose. Someone else collected the data for their own specified purpose (their primary data), but you are using it for your own purpose (your secondary data).
+        \item It is not original data, but rather data that has been previously collected and made available for use by others.
+        \item It is generally easier and less expensive to obtain secondary data compared to primary data, as it has already been collected and is readily available for analysis. 
+        \item The accuracy and reliability of secondary data may vary depending on the source and quality of the data, as the researcher has no control over the data collection process.
+    \end{itemize}
+\end{enumerate}
+
+\begin{mydefinition}{Measure}
+    A measure is a quantitative value or statistic that is used to describe or summarize a particular aspect of a dataset or population. Measures can be used to analyze various characteristics of data, such as central tendency, dispersion, shape, and relationships between variables. Common measures in statistics include mean, median, mode, variance, standard deviation, range, and percentiles. Measures are essential tools for understanding and interpreting data, as they provide insights into the underlying patterns and trends within the dataset. \\
+    Measure theoretically, a measure is a function that assigns a non-negative real number to subsets of a given set, satisfying certain properties such as countable additivity and non-negativity. In statistics, measures are often used to quantify various aspects of data distributions and to make comparisons between different datasets or populations. A measure is defined on a sigma-algebra of subsets of a given set, which allows for the measurement of complex sets and events.
+    \begin{mydefinition}{$\sigma$-algebra}
+        A $\sigma$-algebra is a collection of subsets of a given set that satisfies certain properties, allowing for the measurement of complex sets and events. Specifically, a $\sigma$-algebra must satisfy the following properties:
+        \begin{itemize}
+            \item It contains the empty set.
+            \item It is closed under complementation, meaning that if a set is in the $\sigma$-algebra, its complement is also in the $\sigma$-algebra.
+            \item It is closed under countable unions, meaning that if a countable collection of sets is in the $\sigma$-algebra, their union is also in the $\sigma$-algebra.
+        \end{itemize}
+        The concept of a $\sigma$-algebra is fundamental in measure theory and probability theory, as it provides a framework for defining measures and probabilities on complex sets and events.
+    \end{mydefinition}
+\end{mydefinition}
+\begin{example}
+    Consider a dataset representing the ages of a group of individuals: [25, 30, 35, 40, 45, 50, 55, 60]. We can analyze this dataset using various measures to understand its characteristics. \\
+    For example, we can calculate the mean (average) age of the group:
+    $$\text{Mean} = \frac{25 + 30 + 35 + 40 + 45 + 50 + 55 + 60}{8} = \frac{340}{8} = 42.5$$
+    We can also determine the median (middle value) of the dataset:
+    Since there are 8 values, the median is the average of the 4th and 5th values:
+    $$\text{Median} = \frac{40 + 45}{2} = \frac{85}{2} = 42.5$$
+    Additionally, we can find the mode (most frequently occurring value) of the dataset. In this case, there is no mode since all ages occur only once. \\
+    These measures provide insights into the central tendency of the dataset, helping us understand the typical age of individuals in the group.
+\end{example}
+\section{Data Visualization}
+\begin{mydefinition}
+{Data Visualization}
+    Data visualization is the graphical representation of data and information using visual elements such as charts, graphs, maps, and diagrams. It is a powerful tool for communicating complex data in a clear and concise manner, allowing for easier interpretation and analysis. Data visualization helps to identify patterns, trends, and outliers in the data, making it easier to draw insights and make informed decisions. Common types of data visualizations include bar charts, line graphs, pie charts, scatter plots, histograms, and heatmaps. Effective data visualization requires careful consideration of design principles, such as choosing appropriate chart types, using color effectively, and ensuring clarity and simplicity in the presentation of information.
+\end{mydefinition}
+Various diagrams and graphs are used in statistics to visually represent data and facilitate understanding of its characteristics. Some common types of diagrams and graphs include:
+\begin{itemize}
+    \item \underemphasise{Bar Chart}: A bar chart is a graphical representation of categorical data using rectangular bars, where the length of each bar is proportional to the frequency or count of the category it represents. Bar charts are useful for comparing the frequencies of different categories and identifying patterns in the data.
+    \item \underemphasise{Histogram}: A histogram is a graphical representation of continuous data that displays the distribution of a dataset by dividing it into intervals (bins) and plotting the frequency or count of data points within each interval. Histograms are useful for visualizing the shape, spread, and central tendency of a dataset.
+    \item \underemphasise{Pie Chart}: A pie chart is a circular graph that represents categorical data as slices of a pie, where each slice corresponds to a category and its size is proportional to the frequency or percentage of that category. Pie charts are useful for showing the relative proportions of different categories within a whole.
+    \item \underemphasise{Line Graph}: A line graph is a graphical representation of data points connected by straight lines, typically used to show trends or changes over time. Line graphs are useful for visualizing relationships between variables and identifying patterns in time series data.
+    \item \underemphasise{Scatter Plot}: A scatter plot is a graphical representation of two continuous variables, where each point represents an observation in the dataset. Scatter plots are useful for visualizing relationships between variables, identifying correlations, and detecting outliers.
+\end{itemize}
+\subsection{Line Diagrams}
+Line diagrams, also known as line graphs, are a type of data visualization that uses lines to connect data points on a graph. They are commonly used to represent trends or changes over time, making them particularly useful for time series data. Line diagrams can help identify patterns, fluctuations, and relationships between variables. \\
+\begin{example}
+\underemphasise{Modelling Population Growth} - Suppose we have the following data representing the population of a city over a period of years:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Year} & \textbf{Population} \\
+        \hline
+        2000 & 500,000 \\
+        2005 & 550,000 \\
+        2010 & 600,000 \\
+        2015 & 650,000 \\
+        2020 & 700,000 \\
+        \hline
+    \end{tabular}
+    \caption{Population Data Over Years}
+\end{table}
+We can create a line diagram to visualize the population growth over the years. \\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Population Growth Over Years},
+        xlabel={Year},
+        ylabel={Population},
+        xmin=1995, xmax=2025,
+        ymin=400000, ymax=800000,
+        xtick={2000, 2005, 2010, 2015, 2020},
+        ytick={400000, 500000, 600000, 700000, 800000},
+        grid=major
+    ]
+    \addplot[color=blue, mark=square*, thick] coordinates {
+        (2000, 500000)
+        (2005, 550000)
+        (2010, 600000)
+        (2015, 650000)
+        (2020, 700000)
+    };
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Line Diagram of Population Growth}
+\end{figure}
+\end{example}
+\begin{example}
+\underemphasise{Tracking Sales Over Time} - Consider a dataset representing the monthly sales of a company over a year:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Month} & \textbf{Sales (in \$)} \\
+        \hline
+        January & 10,000 \\
+        February & 12,000 \\
+        March & 15,000 \\
+        April & 14,000 \\
+        May & 18,000 \\
+        June & 20,000 \\
+        July & 22,000 \\
+        August & 21,000 \\
+        September & 19,000 \\
+        October & 23,000 \\
+        November & 25,000 \\
+        December & 30,000 \\
+        \hline
+    \end{tabular}
+    \caption{Monthly Sales Data}
+\end{table}
+We can create a line diagram to visualize the sales trend over the months. \\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Monthly Sales Trend},
+        xlabel={Month},
+        ylabel={Sales (in \$)},
+        xmin=0, xmax=13,
+        ymin=0, ymax=35000,
+        xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        xticklabels={Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec},
+        ytick={0,5000,...,35000},
+        grid=major,
+        width = 0.7\textwidth
+    ]
+    \addplot[mark = *, color=red, thick] coordinates {
+        (1, 10000)
+        (2, 12000)
+        (3, 15000)
+        (4, 14000)
+        (5, 18000)
+        (6, 20000)
+        (7, 22000)
+        (8, 21000)
+        (9, 19000)
+        (10, 23000)
+        (11, 25000)
+        (12, 30000)
+    };
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Line Diagram of Monthly Sales Trend}
+\end{figure}
+\end{example}
+We can see from the above examples that line diagrams are effective in visualizing trends and changes over time, making them a valuable tool for data analysis and interpretation. \\ 
+We often encounter multiple line diagrams in a single graph to compare different datasets or variables over the same time period. This allows us to analyze relationships and patterns between the variables more effectively. A specific use case of multiple line diagrams is when we want to compare the sales trends of different products over the same time period, or how stocks of different companies perform over time.
+\subsection{Bar Diagrams}
+Bar diagrams, also known as bar charts, are a type of data visualization that uses rectangular bars to represent categorical data. The length or height of each bar is proportional to the frequency or count of the category it represents. Bar diagrams are useful for comparing the frequencies of different categories and identifying patterns in the data. \\
+\begin{example}
+\underemphasise{Comparing Sales of Different Products} - Suppose we have the following data representing the sales of different products in a store:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Product} & \textbf{Sales (in units)} \\
+        \hline
+        Product A & 150 \\
+        Product B & 200 \\
+        Product C & 100 \\
+        Product D & 250 \\
+        Product E & 300 \\
+        \hline
+    \end{tabular}
+    \caption{Sales Data of Different Products}
+\end{table}
+We can create a bar diagram to visualize the sales of different products. \\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Sales of Different Products},
+        xlabel={Product},
+        ylabel={Sales (in units)},
+        ymin=0, ymax=350,
+        xtick={1,2,3,4,5},
+        xticklabels={A, B, C, D, E},
+        ytick={0,50,...,350},
+        grid=major,
+        width = 0.7\textwidth
+    ]
+    \addplot[ybar, fill=blue] coordinates {
+        (1, 150)
+        (2, 200)
+        (3, 100)
+        (4, 250)
+        (5, 300)
+    };
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Bar Diagram of Sales of Different Products}
+\end{figure}
+\end{example}
+We can see from the above example that bar diagrams are effective in visualizing categorical data and comparing the frequencies of different categories. \\
+We often encounter grouped bar diagrams in a single graph to compare multiple datasets or variables across the same categories. This allows us to analyze relationships and patterns between the variables more effectively. A specific use case of grouped bar diagrams is when we want to compare the sales of different products across different regions or time periods.
+\subsection{Multiple Bar Diagrams}
+Multiple bar diagrams, also known as grouped bar charts, are a type of data visualization that uses multiple rectangular bars to represent different datasets or variables across the same categories. Each group of bars corresponds to a specific category, and each bar within the group represents a different dataset or variable. Multiple bar diagrams are useful for comparing the frequencies of different datasets across the same categories and identifying patterns in the data. \\
+\begin{example}
+\underemphasise{Comparing Sales of Different Products Across Regions} - Suppose we have the following data representing the sales of different products in two regions:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Product} & \textbf{Region 1 Sales (in units)} & \textbf{Region 2 Sales (in units)} \\
+        \hline
+        Product A & 150 & 180 \\
+        Product B & 200 & 220 \\
+        Product C & 100 & 130 \\
+        Product D & 250 & 270 \\
+        Product E & 300 & 320 \\
+        \hline
+    \end{tabular}
+    \caption{Sales Data of Different Products Across Regions}
+\end{table}
+We can create a multiple bar diagram to visualize the sales of different products across the two regions. \\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Sales of Different Products Across Regions},
+        ybar,
+        xlabel={Product},
+        ylabel={Sales (in units)},
+        ymin=0, ymax=350,
+        xtick={1,2,3,4,5},
+        xticklabels={A, B, C, D, E},
+        ytick={0,50,...,350},
+        grid=major,
+        width = 0.7\textwidth,
+        bar width=12pt,
+        legend style={at={(0.5,-0.15)}, anchor=north, legend columns=-1},
+    ]
+    \addplot[ybar, fill=blue] coordinates {
+        (1, 150)
+        (2, 200)
+        (3, 100)
+        (4, 250)
+        (5, 300)
+    };
+    \addplot[ybar, fill=red] coordinates {
+        (1, 180)
+        (2, 220)  
+        (3, 130)
+        (4, 270)
+        (5, 320)
+    };
+    \legend{Region 1, Region 2}
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Multiple Bar Diagram of Sales of Different Products Across Regions}
+\end{figure}
+\end{example}
+We can see from the above example that multiple bar diagrams are effective in visualizing and comparing multiple datasets across the same categories. \\
+They allow us to analyze relationships and patterns between the variables more effectively, making them a valuable tool for data analysis and interpretation. We encounter multiple bar diagrams in various fields, such as business, marketing, and social sciences, to compare different datasets and make informed decisions based on the data.
+\begin{mynote}
+    When creating multiple bar diagrams, it is important to consider the following design principles to ensure clarity and effectiveness:
+    \begin{itemize}
+        \item Use distinct colors or patterns for each dataset to differentiate between them easily.
+        \item Ensure that the bars within each group are spaced appropriately to avoid clutter and improve readability.
+        \item Label the axes clearly, including units of measurement, to provide context for the data being presented.
+        \item Include a legend to identify each dataset represented in the diagram.
+        \item Avoid using too many datasets in a single diagram, as this can lead to confusion and make it difficult to interpret the data.
+    \end{itemize}
+\end{mynote}
+\subsection{Pie Charts}
+Pie charts are a type of data visualization that represents categorical data as slices of a pie, where each slice corresponds to a category and its size is proportional to the frequency or percentage of that category. Pie charts are useful for showing the relative proportions of different categories within a whole. \\
+\begin{example}
+\underemphasise{Visualizing Market Share of Different Companies} - Suppose we have the following data representing the market share of different companies in a specific industry:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Company} & \textbf{Market Share (in \%)} \\
+        \hline
+        Company A & 30 \\
+        Company B & 25 \\
+        Company C & 20 \\
+        Company D & 15 \\
+        Company E & 10 \\
+        \hline
+    \end{tabular}
+    \caption{Market Share Data of Different Companies}
+\end{table}
+We can create a pie chart to visualize the market share of different companies. \\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \pie[radius=3, text=legend, explode=0.1]{
+        30/Company A,
+        25/Company B,
+        20/Company C,
+        15/Company D,
+        10/Company E
+    }
+    \end{tikzpicture}
+    \caption{Pie Chart of Market Share of Different Companies}
+\end{figure}
+\end{example}
+We can see from the above example that pie charts are effective in visualizing the relative proportions of different categories within a whole. We encounter pie charts in various fields, such as business, marketing, and social sciences, to represent categorical data and make informed decisions based on the data. 
+\subsection{Scatter Plots and Heat Maps}
+Scatter plots and heat maps are two types of data visualization techniques used to represent relationships between variables and patterns in data. \\
+A scatter plot is a graphical representation of two continuous variables, where each point represents an observation in the dataset. Scatter plots are useful for visualizing relationships between variables, identifying correlations, and detecting outliers. \\
+A heat map is a graphical representation of data where individual values are represented as colors in a matrix. Heat maps are useful for visualizing patterns and trends in large datasets, as well as identifying areas of high or low intensity. \\
+\begin{example}
+We use scatter plots to visualize the relationship between two variables. It is especially useful for a large dataset with many data points. It also helps to identify correlations and outliers in the data. \\
+Lets consider a dataset representing the relationship between hours studied and exam scores of each student in a class of 40 students. We will not put the actual data here, but we can create a scatter plot to visualize the relationship between the two variables. \\
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Scatter Plot of Hours Studied vs Exam Scores},
+        xlabel={Hours Studied},
+        ylabel={Exam Scores},
+        xmin=0, xmax=11,
+        ymin=30, ymax=105,
+        grid=major,
+        width = 0.7\textwidth
+    ]
+    \addplot[only marks, mark=*, color=blue] coordinates {
+        (1, 50)
+        (2, 55)
+        (3, 60)
+        (6, 75)
+        (7, 80)
+        (8, 85)
+        (9, 90)
+        (10, 95)
+        (1, 93)
+        (2, 67)
+        (3, 78)
+        (4, 88)
+        (5, 45)
+        (6, 72)
+        (7, 81)
+        (8, 79)
+        (9, 91)
+        (1, 60)
+        (3, 64)
+        (4, 66)
+        (5, 68)
+        (6, 70)
+        (7, 72)
+        (8, 74)
+        (9, 76)
+        (10, 78)
+        (2, 85)
+        (3, 87)
+        (4, 89)
+        (5, 91)
+        (7, 95)
+        (8, 97)
+        (9, 99)
+        (10, 100)
+        (3, 40)
+        (4, 42)
+        (6, 46)
+        (7, 48)
+        (8, 50)
+        (9, 52)
+        (10, 54)
+    };
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Scatter Plot of Hours Studied vs Exam Scores}
+\end{figure}
+\end{example}
+We can see from the above example that scatter plots are effective in visualizing relationships between two continuous variables and identifying correlations and outliers in the data. We often encounter scatter plots in various fields, such as education, healthcare, and social sciences, to analyze relationships between variables and make informed decisions based on the data. \\
+Heat maps are effective in visualizing patterns and trends in large datasets, as well as identifying areas of high or low intensity. We often encounter heat maps in various fields, such as biology, finance, and social sciences, to represent complex data and make informed decisions based on the data.
+\begin{example}
+We use heat maps to visualize the correlation matrix of a dataset. A correlation matrix shows the pairwise correlations between multiple variables in a dataset. Heat maps are useful for identifying patterns and relationships between variables in a large dataset. \\
+Consider a dataset with five variables: A, B, C, D, and E. We can create a heat map to visualize the correlation matrix of these variables. \\
+   
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}
+        [title={Heat Map of Correlation Matrix},
+        xlabel={Variables},
+        ylabel={Variables},
+        xtick={1,2,3,4,5},
+        xticklabels={A, B, C, D, E},
+        ytick={1,2,3,4,5},
+        yticklabels={A, B, C, D, E},
+        colorbar,
+        colormap/viridis,
+        width = 0.7\textwidth,
+        point meta min=-1,
+        point meta max=1, 
+        view = {0}{90}
+    ]
+    \addplot3[surf] file {temp.dat};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{Heat Map of Correlation Matrix}
+\end{figure}
+\end{example}
+\chapter{Measures of Central Tendency}
+\chapter{Measures of Dispersion}
+\section{Fundamental Concepts}
+
+\begin{mydefinition}{Dispersion}
+    Dispersion refers to the extent to which data points in a dataset are spread out or scattered around a central value, such as the mean or median. It provides insights into the variability or diversity of the data, indicating how much individual data points differ from each other and from the central value. Common measures of dispersion include range, variance, standard deviation, interquartile range, and mean absolute deviation. Understanding dispersion is crucial for interpreting the reliability and consistency of data, as well as for making informed decisions based on statistical analysis.
+\end{mydefinition}
+\begin{mydefinition}{Measures of Dispersion}
+    Measures of dispersion are statistical metrics that quantify the spread or variability of a dataset. They provide insights into how much the data points differ from each other and from a central value, such as the mean or median. Common measures of dispersion include range, variance, standard deviation, interquartile range, and mean absolute deviation. These measures help to understand the distribution of data, identify outliers, and assess the reliability and consistency of the dataset. By analyzing measures of dispersion, statisticians can make informed decisions and draw meaningful conclusions from the data.
+\end{mydefinition}
+\begin{example}
+    Consider the dataset of ages: [25, 30, 35, 40, 45, 50, 55, 60]. We can analyze the dispersion of this dataset using various measures, which we shall illustrate later in this chapter. \\
+    For instance, we can calculate the range of the dataset:
+    $$\text{Range} = \text{Maximum Value} - \text{Minimum Value} = 60 - 25 = 35$$
+    We can also compute the variance and standard deviation to quantify the spread of ages around the mean. \\
+    These measures of dispersion help us understand how much the ages of individuals in the group vary from the average age, providing insights into the diversity of ages within the dataset.
+\end{example}
+
+\section{Basic Measures of Dispersion}
+\subsection{Range}
+\begin{mydefinition}{Range}
+    The range of a data set is the difference between the maximum and minimum values in the data set. It is a measure of dispersion that indicates how spread out the values are. The range is calculated as:
+    $$\text{Range} = \text{Maximum Value} - \text{Minimum Value}$$
+\end{mydefinition}
+\begin{mynote}
+    The range is a simple and easy-to-calculate measure of dispersion, but it has some limitations. It is sensitive to extreme values (outliers) in the data set, which can significantly affect the range. Additionally, the range does not provide information about the distribution of values within the data set, as it only considers the two extreme values. Therefore, while the range can be useful for a quick assessment of dispersion, it is often supplemented with other measures of dispersion, such as variance and standard deviation, for a more comprehensive understanding of the data set.
+\end{mynote}
+\begin{mytheorem}[Range of Combined Data Sets]
+    Let $D_1$ and $D_2$ be two data sets with ranges $R_1$ and $R_2$, respectively. If we combine the two data sets to form a new data set $D = D_1 \cup D_2$, then the range of the combined data set $R$ is given by:
+    $$R = \max(\text{Max}(D_1), \text{Max}(D_2)) - \min(\text{Min}(D_1), \text{Min}(D_2))$$
+    where $\text{Max}(D_i)$ and $\text{Min}(D_i)$ are the maximum and minimum values of data set $D_i$, respectively.
+    Further, if the maximum value of one data set is greater than the maximum value of the other, and the minimum value of one data set is less than the minimum value of the other, then the range of the combined data set is equal to the sum of the ranges of the individual data sets:
+    $$R = R_1 + R_2$$
+\end{mytheorem}
+\begin{proof}
+    Let $D_1$ and $D_2$ be two data sets with ranges $R_1$ and $R_2$, respectively. We denote the maximum and minimum values of $D_1$ as $\text{Max}(D_1)$ and $\text{Min}(D_1)$, and those of $D_2$ as $\text{Max}(D_2)$ and $\text{Min}(D_2)$. \\
+    The range of the combined data set $D = D_1 \cup D_2$ is given by:
+    \begin{align*}
+        R &= \max(\text{Max}(D_1), \text{Max}(D_2)) - \min(\text{Min}(D_1), \text{Min}(D_2)) \\
+    \end{align*}
+    Now, we consider two cases:
+    \begin{enumerate}
+        \item If $\text{Max}(D_1) > \text{Max}(D_2)$ and $\text{Min}(D_1) < \text{Min}(D_2)$, then:
+        \begin{align*}
+            R &= \text{Max}(D_1) - \text{Min}(D_1) + (\text{Max}(D_2) - \text{Min}(D_2)) \\
+            &= R_1 + R_2
+        \end{align*}
+        \item If $\text{Max}(D_2) > \text{Max}(D_1)$ and $\text{Min}(D_2) < \text{Min}(D_1)$, then:
+        \begin{align*}
+            R &= \text{Max}(D_2) - \text{Min}(D_2) + (\text{Max}(D_1) - \text{Min}(D_1)) \\
+            &= R_2 + R_1
+        \end{align*}
+    \end{enumerate}
+    In both cases, we find that the range of the combined data set is equal to the sum of the ranges of the individual data sets:
+    $$R = R_1 + R_2$$
+\end{proof}
+\subsection{Mean Deviation}
+\begin{mydefinition}{Mean Deviation}
+    The mean deviation (also known as the average absolute deviation) of a data set is a measure of dispersion that quantifies the average distance of each data point from the mean of the data set. It is calculated as the average of the absolute differences between each data point and the mean. The formula for mean deviation is given by:
+    $$\text{Mean Deviation} = \frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}|$$
+    where $n$ is the number of data points, $x_i$ represents each individual data point, and $\bar{x}$ is the mean of the data set.
+\end{mydefinition}
+\begin{mynote}
+    The mean deviation provides a measure of how much the data points deviate from the mean on average. It is a useful measure of dispersion, especially when the data set contains outliers, as it is less sensitive to extreme values compared to other measures like variance and standard deviation. However, mean deviation does not have some of the mathematical properties that make variance and standard deviation more widely used in statistical analysis, such as being based on squared deviations.
+\end{mynote}
+\begin{mytheorem}[Zero Mean Deviation]
+    If the mean deviation of data set is zero, then the following relation is satisfied -
+    $$\sum_{i=1}^{n} |x_i - \bar{x}| = 0 \implies \sum_{i \to x_i < \bar{x}} (\bar{x} - x_i) = \sum_{i \to x_i > \bar{x}} (x_i - \bar{x})$$
+\end{mytheorem}
+\begin{proof}
+    Let the mean deviation of the data set be zero. Then, by definition of mean deviation, we have:
+    \begin{align*}
+        \text{Mean Deviation} &= \frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}| = 0 \\
+        \implies \sum_{i=1}^{n} |x_i - \bar{x}| &= 0
+    \end{align*}
+    Now, we can split the sum into two parts: one for data points less than the mean and another for data points greater than the mean:
+    \begin{align*}
+        \sum_{i=1}^{n} |x_i - \bar{x}| &= \sum_{i \to x_i < \bar{x}} (\bar{x} - x_i) + \sum_{i \to x_i > \bar{x}} (x_i - \bar{x}) = 0
+    \end{align*}
+    Since both terms in the sum are non-negative (as they are absolute values), the only way for their sum to be zero is if both terms are equal:
+    $$\sum_{i \to x_i < \bar{x}} (\bar{x} - x_i) = \sum_{i \to x_i > \bar{x}} (x_i - \bar{x})$$
+\end{proof}
+
+\section{Relative Measures of Dispersion}
+\chapter{Samples, Populations and Estimators}
+\part{Assignments}
+\input{prob_stats1_asgn}
+\end{document}

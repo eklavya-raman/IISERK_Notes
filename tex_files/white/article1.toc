@@ -1,0 +1,9 @@
+\contentsline {chapter}{\numberline {1}Article 1: The Mysteries of Recursion}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Every Algorithm is Recursive}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}The Fibonacci Sequence, a Classic Example}{3}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}What is an Algorithm and how is it related to Recursion?}{4}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}The Power of Recursion}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}The Sorting Problem}{5}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Other Examples of Algorithms that use Recursion}{7}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Conclusion and further reading}{7}{section.1.4}%

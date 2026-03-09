@@ -1,0 +1,57 @@
+% Assignments White style: builds on notes_white with nicer title and list styling
+\input{notes_white}
+
+% Micro-typography for nicer spacing
+\usepackage[protrusion=true,expansion=true]{microtype}
+
+% Enumerate/list styling for assignments
+\setlist[enumerate,1]{leftmargin=*,label=\textbf{(\arabic*)},itemsep=0.4em,topsep=0.4em}
+\setlist[enumerate,2]{leftmargin=1.5em,label=\textbf{(\alph*)},itemsep=0.3em,topsep=0.3em}
+\setlist[itemize]{leftmargin=*,itemsep=0.3em,topsep=0.3em}
+
+% Nicer chapter/section spacing
+\titlespacing*{\chapter}{0pt}{-0.5em}{1em}
+\titlespacing*{\section}{0pt}{1.0em}{0.5em}
+\titlespacing*{\subsection}{0pt}{0.8em}{0.4em}
+
+% A simple, elegant assignment title page using tcolorbox
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{titlepage}
+    \centering
+    \vspace*{0.5cm}
+    % Top banner
+    \begin{tcolorbox}[colback=accent3!10,colframe=accent3,boxrule=0.8pt,enhanced,sharp corners, width=0.95\textwidth]
+      {\Huge\bfseries\itshape \@title}\par
+    \end{tcolorbox}
+    \vspace{0.6cm}
+    % Subtitle if user places it inside \title with a linebreak, it will still render nicely
+    \ifx\@subtitle\@empty\else
+      {\large\itshape \@subtitle}\par\vspace{0.4cm}
+    \fi
+    \vspace{0.6cm}
+    \begin{tcolorbox}[colback=accent1!8,colframe=accent1,boxrule=0.6pt,enhanced,sharp corners,width=0.6\textwidth]
+      {\large \@author}\par
+      \vspace{0.3cm}
+      {\normalsize \@date}
+    \end{tcolorbox}
+    \vfill
+  \end{titlepage}%
+}
+\makeatother
+
+% Optional: helper to set a subtitle if desired
+\newcommand{\subtitle}[1]{\gdef\@subtitle{#1}}
+\providecommand{\@subtitle}{}
+
+% A highlighted box for key results (optional for use in the document)
+\newtcolorbox{keyresult}{colback=mygreen!8,colframe=mygreen,boxrule=0.6pt,breakable,sharp corners,title=Key Result}
+
+% A subtle box for examples/notes (optional)
+\newtcolorbox{highlight}{colback=accent3!6,colframe=accent3,boxrule=0.6pt,breakable,sharp corners}
+
+% Inline math tweaks
+\everydisplay{\addtolength{\abovedisplayskip}{-2pt}\addtolength{\belowdisplayskip}{-2pt}}
+
+% Hyperref already configured in notes_white; ensure link colors remain consistent
+\hypersetup{linkcolor=accent1,urlcolor=accent1,citecolor=accent1}

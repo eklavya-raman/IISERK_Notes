@@ -1,0 +1,4 @@
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.1\else \numberline {1.1}Theorem\fi \thmtformatoptarg {Roots of Characteristic Polynomial}}{4}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.2\else \numberline {1.2}Theorem\fi \thmtformatoptarg {Some properties of linear recurrence sequences}}{5}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.3\else \numberline {1.3}Theorem\fi \thmtformatoptarg {Hilbert's Tenth Problem}}{6}{mytheorem.3}%

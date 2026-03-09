@@ -1,0 +1,19 @@
+\begin{thebibliography}{Sim63}
+
+\bibitem[Art11]{Artin}
+Michael Artin.
+\newblock {\em Algebra}.
+\newblock Pearson, Boston, MA, 2nd edition, 2011.
+
+\bibitem[Don]{2Poly}
+N~Donalds.
+\newblock Rings of polynomials notes.
+\newblock \url{https://www.math.uci.edu/~ndonalds/math120b/2poly.pdf}
+  [Accessed: 2025-11-24].
+
+\bibitem[Sim63]{Simmons}
+G.F. Simmons.
+\newblock {\em Introduction to Topology and Modern Analysis}.
+\newblock McGraw-Hill, New York, NY, 1963.
+
+\end{thebibliography}

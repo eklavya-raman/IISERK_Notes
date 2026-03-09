@@ -1,0 +1,23 @@
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.1\else \numberline {1.1}Theorem\fi \thmtformatoptarg {Probability of union - Inclusion Exclusion Formula}}{9}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.2\else \numberline {1.2}Theorem\fi \thmtformatoptarg {Probability of the complement of an event}}{10}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.3\else \numberline {1.3}Theorem\fi \thmtformatoptarg {Probability of a subset of an event}}{10}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.4\else \numberline {1.4}Theorem\fi \thmtformatoptarg {Boole's Inequality}}{11}{mytheorem.4}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.5\else \numberline {1.5}Theorem\fi \thmtformatoptarg {Generalized Bayes' Theorem}}{11}{mytheorem.5}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.6\else \numberline {1.6}Theorem\fi \thmtformatoptarg {Cauchy-Schwarz Inequality}}{19}{mytheorem.6}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.7\else \numberline {1.7}Theorem\fi \thmtformatoptarg {$\beta _2 \geq 1$}}{20}{mytheorem.7}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.8\else \numberline {1.8}Theorem\fi \thmtformatoptarg {$\beta _1 \leq \beta _2$}}{21}{mytheorem.8}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.9\else \numberline {1.9}Theorem\fi \thmtformatoptarg {$n^{th}$ Derivative of MGF gives $n^{th}$ Moment}}{22}{mytheorem.9}%
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.1\else \numberline {2.1}Theorem\fi \thmtformatoptarg {Sum of PMF of Binomial Distribution is 1}}{25}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.2\else \numberline {2.2}Theorem\fi \thmtformatoptarg {Sum of PMF of Poisson Distribution is 1}}{30}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.3\else \numberline {2.3}Theorem\fi \thmtformatoptarg {Range of Correlation Coefficient}}{32}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.4\else \numberline {2.4}Theorem\fi \thmtformatoptarg {Marginal Distribution of Multinomial Distribution}}{35}{mytheorem.4}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.5\else \numberline {2.5}Theorem\fi \thmtformatoptarg {Correlation between Random Variables in Multinomial Distribution}}{35}{mytheorem.5}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.6\else \numberline {2.6}Theorem\fi \thmtformatoptarg {Algebra of Expectation and Variance}}{37}{mytheorem.6}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.7\else \numberline {2.7}Theorem\fi \thmtformatoptarg {Conditional Expectation and Variance}}{38}{mytheorem.7}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.8\else \numberline {2.8}Theorem\fi }{45}{mytheorem.8}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.9\else \numberline {2.9}Theorem\fi \thmtformatoptarg {Sum of PMF of Geometric Distribution}}{46}{mytheorem.9}%
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~5.1\else \numberline {5.1}Theorem\fi \thmtformatoptarg {Range of Combined Data Sets}}{63}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~5.2\else \numberline {5.2}Theorem\fi \thmtformatoptarg {Zero Mean Deviation}}{64}{mytheorem.2}%

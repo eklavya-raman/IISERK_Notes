@@ -1,0 +1,187 @@
+\documentclass[openany]{book}
+\input{notes_white}
+\usepackage{mathtools}
+\settitle{Analysis Pre-class Notes}
+\renewcommand{\theexercise}{\arabic{exercise}}
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\themytheorem}{\Roman{mytheorem}}
+\begin{document}
+\begin{center}
+\LARGE{\underemphasise{Analysis I - Problem Set 1}} \\ \vspace{5pt}
+\large{Eklavya Raman 24MS024 \\ \vspace{5pt}}
+\today \\ \vspace{5pt}
+\end{center}
+\begin{exercise}
+Let $s$ be an upper bound of a non-empty subset $E \subset \R$. Then show that $s$ is
+the least upper bound of $E$ if and only if for every $\epsilon > 0$, there is $u_\epsilon \in E$ such that $s - \epsilon < u_\epsilon$.
+\end{exercise}
+\begin{proof} We show both directions seperately. \\ 
+    ($\rightarrow$) Suppose $s = \sup E$ and $\epsilon > 0$ be given. Since $s - \epsilon < s$ and $s$ is the least upper bound, $s - \epsilon$ cannot be an upper bound of $E$. Therefore, there exists some $u_\epsilon \in E$ such that $u_\epsilon > s - \epsilon$. \\
+    ($\leftarrow$) Suppose for every $\epsilon > 0$, there exists $u_\epsilon \in E$ such that $s - \epsilon < u_\epsilon$. We need to show that $s$ is the least upper bound of $E$. Let $v$ be an upper bound of $E$. Then for every $\epsilon > 0$, we have $u_\epsilon \leq v$. This implies that $s - \epsilon < v$ for every $\epsilon > 0$, thus we get $s \leq v$ [see proof for this after the proof of this exercise is completed]. Since $s$ is an upper bound of $E$ and $s \leq v$ for any upper bound $v$, it follows that $s$ is the least upper bound of $E$.
+\end{proof}
+\begin{mytheorem}
+    If for every $\epsilon > 0$, we have $x - \epsilon < y$ for some $x, y \in \R$, then $x \leq y$.
+\end{mytheorem}
+\begin{proof}
+    Assume the contrary that $x > y$. Then, we have:
+    $$x - y > 0$$
+    Let $\epsilon = \frac{x - y}{2}$. Note that $\epsilon > 0$. Then, we have:
+    $$x - \epsilon = x - \frac{x - y}{2} = \frac{x + y}{2} > y$$
+    This is a contradiction since we assumed that for every $\epsilon > 0$, we have $x - \epsilon < y$. Hence, we conclude that our assumption is false. Therefore, we have $x \leq y$.
+\end{proof}
+\begin{corollary}
+    If for every $\epsilon > 0$, we have $x < \epsilon$ for some $x \geq 0$, then $x = 0$.
+\end{corollary}
+\begin{proof}
+    From the above theorem, we have $x \leq 0$ since $x < \epsilon \implies x - \epsilon < 0$. Since $x \geq 0$, it follows that $x = 0$.
+\end{proof}
+\begin{exercise}
+Formulate -
+\begin{enumerate}
+    \item A definition of a lower bound of a non-empty set $E \subset \R$
+    \item A definition for the greatest lower bound of a non-empty bounded below subset $E$ of $\R$.
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+    \begin{enumerate}
+        \item A number $m \in \R$ is called a lower bound of a non-empty set $E \subset \R$ if for every $x \in E$, we have $m \leq x$.
+        \item A number $g \in \R$ is called the greatest lower bound (or infimum) of a non-empty bounded below subset $E$ of $\R$ if:
+        \begin{itemize}
+            \item $g$ is a lower bound of $E$, i.e., for every $x \in E$, we have $g \leq x$.
+            \item For any other lower bound $m$ of $E$, we have $m \leq g$. In other words, $g$ is the largest among all lower bounds of $E$.
+        \end{itemize}
+    \end{enumerate}
+We can alternatively define the greatest lower bound using the following property: A number $g \in \R$ is the greatest lower bound of $E$ if for every $\epsilon > 0$, there exists an element $x_\epsilon \in E$ such that $g \leq x_\epsilon < g + \epsilon$.
+\end{proof}
+\begin{exercise}
+Show that every non-empty bounded below subset of the real numbers admit
+a greatest lower bound. The greatest lower bound of a non-empty bounded below set $E$ is denoted by $\inf E$.
+\end{exercise}
+\begin{proof}
+    Let $A \subset \R$ be a non-empty bounded below subset. Then it follows that - 
+    $$\exists m \in \R: m \leq x, \forall x \in A$$
+    Define the set $B = \{-x : x \in A\}$. Since $A$ is bounded below, it follows that $B$ is bounded above by $-m$ - 
+    $$m \leq x \implies -x \leq -m \implies -m \text{ is an upper bound of } B$$
+    Since $A$ is non-empty, $B$ is also non-empty. By the completeness property of real numbers, every non-empty bounded above subset of $\R$ has a least upper bound. Therefore, $B$ has a least upper bound, say $s = \sup B$. We claim that $-s$ is the greatest lower bound of $A$. To see this, we need to show two things:
+    \begin{itemize}
+        \item $-s$ is a lower bound of $A$.
+        \item For any other lower bound $m$ of $A$, we have $m \leq -s$.
+    \end{itemize}
+    \textbf{Proof that $-s$ is a lower bound of $A$:} Let $x \in A$. Then $-x \in B$. Since $s$ is an upper bound of $B$, we have $-x \leq s$. This implies that $x \geq -s$. Since this holds for all $x \in A$, it follows that $-s$ is a lower bound of $A$. \\
+    \textbf{Proof that $-s$ is the greatest lower bound of $A$:} Let $m$ be any lower bound of $A$. Then for every $x \in A$, we have $m \leq x$. This implies that for every $y \in B$ (where $y = -x$ for some $x \in A$), we have $-y \leq -m$, or equivalently, $y \geq -m$. Therefore, $-m$ is an upper bound of $B$. Since $s$ is the least upper bound of $B$, we have $s \leq -m$. This implies that $-s \geq m$. Since this holds for any lower bound $m$ of $A$, it follows that $-s$ is the greatest lower bound of $A$. Thus, we conclude that every non-empty bounded below subset of the real numbers admits a greatest lower bound.
+\end{proof}
+\begin{exercise}
+    Formulate a definition for the greatest lower bound of a set in the context of exercise 1. 
+\end{exercise}
+\begin{proof}
+    A number $g \in \R$ is the greatest lower bound of $E$ if for every $\epsilon > 0$, there exists an element $x_\epsilon \in E$ such that $g \leq x_\epsilon < g + \epsilon$.
+\end{proof}
+\begin{exercise}
+    Let $A = \{\frac{1}{n} : n \in \N\}$. Find $\sup A$.
+\end{exercise}
+\begin{proof}
+    We claim that $\sup A = 1$. To see this, first note that $1$ is an upper bound of $A$ since for every $n \in \N$, we have $\frac{1}{n} \leq 1$. Now, let $\epsilon > 0$ be given. We need to show that there exists an element $u_\epsilon \in A$ such that $1 - \epsilon < u_\epsilon$. Since 1 is a upper bound, $\sup A > 1$ is not possible. We show now that $\sup A < 1$ is also not possible. Note that for $n = 1$ (which is in $\N$), and hence $1 \in A$. Therefore $\sup A < 1$ is a contradiction by the definition of the supremum. Hence, we conclude that $\sup A = 1$.
+\end{proof}
+\begin{exercise}
+Let $A, B$ be non-empty subsets of $\R$ such that $a \leq b$ for all $a \in A$ and $b \in B$. Let A be bounded above and B be bounded below. Show that $\sup A \leq \inf B$.
+\end{exercise}
+\begin{proof}
+    Let $s = \sup A$ and $i = \inf B$. We need to show that $s \leq i$. Since $s$ is an upper bound of $A$, we have $a \leq s$ for all $a \in A$. Since $i$ is a lower bound of $B$, we have $i \leq b$ for all $b \in B$. Suppose for the sake of contradiction that $s > i$. Then, by the definition of infimum, we have - 
+    $$\forall \epsilon > 0, \exists b_\epsilon \in B: i \leq b_\epsilon < i + \epsilon$$
+    Let us take $\epsilon = s - i$. Then, we have:
+    $$\exists b_\epsilon \in B: i \leq b_\epsilon < i + (s - i) \implies i \leq b_\epsilon < s$$
+    Since $a \leq b$ for all $a \in A$ and $b \in B$, we have $a \leq b_\epsilon$ for all $a \in A$. This implies that $b_\epsilon$ is an upper bound of $A$. Since $s$ is the least upper bound of $A$, we have $s \leq b_\epsilon$. This is a contradiction since we have $b_\epsilon < s$. Hence, we conclude that our assumption that $s > i$ is false. Therefore, we have $s \leq i$, or equivalently, $\sup A \leq \inf B$.
+\end{proof}
+\begin{exercise}
+    Let $A, B$ be non-empty bounded subsets of $\R$. Let $A + B = \{a + b : a \in A, b \in B\}$. Show that $\sup (A + B) = \sup A + \sup B$.
+\end{exercise}
+\begin{proof}
+Let $s_A = \sup A$ and $s_B = \sup B$. We need to show that $\sup (A + B) = s_A + s_B$. First, we show that $s_A + s_B$ is an upper bound of $A + B$. Let $x \in A + B$. Then, by definition, there exist $a \in A$ and $b \in B$ such that $x = a + b$. Since $s_A$ is an upper bound of $A$, we have $a \leq s_A$. Similarly, since $s_B$ is an upper bound of $B$, we have $b \leq s_B$. Adding these two inequalities, we get:
+$$x = a + b \leq s_A + s_B$$
+This shows that $s_A + s_B$ is an upper bound of $A + B$. \\
+Now, we need to show that $s_A + s_B$ is the least upper bound of $A + B$. We write the definition of supremums for $A$ and $B$:
+\begin{enumerate}
+    \item For every $\epsilon > 0$, there exists $a_\epsilon \in A$ such that 
+    \begin{equation}
+    s_A - \frac{\epsilon}{2} < a_\epsilon \leq s_A
+    \end{equation}
+    \item For every $\epsilon > 0$, there exists $b_\epsilon \in B$ such that 
+    \begin{equation}
+    s_B - \frac{\epsilon}{2} < b_\epsilon \leq s_B
+    \end{equation}
+\end{enumerate}
+Adding (1) and (2), we get:
+$$s_A + s_B - \epsilon < a_\epsilon + b_\epsilon \leq s_A + s_B$$
+Note that $a_\epsilon + b_\epsilon \in A + B$. Therefore, for every $\epsilon > 0$, there exists an element $x_\epsilon = a_\epsilon + b_\epsilon \in A + B$ such that:
+$$s_A + s_B - \epsilon < x_\epsilon \leq s_A + s_B$$
+Hence, $s_A + s_B = \sup(A + B) = \sup A + \sup B$
+\end{proof}
+\begin{exercise}
+    Prove that - 
+    \begin{enumerate}
+        \item $\sup \{1 - \frac{1}{n} : n \in \N\} = 1$
+        \item $\inf \{\frac{1}{n^2} : n \in \N\} = 0$
+    \end{enumerate}
+\end{exercise}
+\begin{proof}
+    We prove both parts seperately, 
+    \begin{enumerate}
+        \item Let $A = \{1 - \frac{1}{n} : n \in \N\}$. We claim that $\sup A = 1$. To see this, first note that $1$ is an upper bound of $A$ since for every $n \in \N$, we have $1 - \frac{1}{n} < 1$. Now, let $\epsilon > 0$ be given. We need to show that there exists an element $u_\epsilon \in A$ such that $1 - \epsilon < u_\epsilon$. Since $1$ is an upper bound, $\sup A > 1$ is not possible. We show now that $\sup A < 1$ is also not possible. Suppose for the sake of contradiction that $\sup A = u < 1$. Then $\forall n \in \N$, we have $1 - \frac{1}{n} \leq u < 1$. This implies that $\frac{1}{n} \geq 1 - u > 0$ for all $n \in \N$. This implies that $1 \geq n(1 - u)$ for all $n \in \N$. Since $1 - u > 0$, this is a contradiction since we can always choose $n$ large enough such that $n(1 - u) > 1$ by the archimedean property of real numbers. Hence, we conclude that our assumption that $\sup A < 1$ is false. Therefore, we have $\sup A = 1$.
+        \item Let $B = \{\frac{1}{n^2} : n \in \N\}$. We claim that $\inf B = 0$. To see this, first note that $0$ is a lower bound of $B$ since for every $n \in \N$, we have $\frac{1}{n^2} > 0$. Now, let $\epsilon > 0$ be given. We need to show that there exists an element $v_\epsilon \in B$ such that $v_\epsilon < \epsilon$. Since $0$ is a lower bound, $\inf B < 0$ is not possible. We show now that $\inf B > 0$ is also not possible. Suppose for the sake of contradiction that $\inf B = l > 0$. Then $\forall n \in \N$, we have $\frac{1}{n^2} \geq l > 0$. This implies that $n^2 \leq \frac{1}{l}$ for all $n \in \N$. Since $l > 0$, this is a contradiction since we can always choose $n$ large enough such that $n^2 > \frac{1}{l}$ by the archimedean property of real numbers. Hence, we conclude that our assumption that $\inf B > 0$ is false. Therefore, we have $\inf B = 0$.
+    \end{enumerate}
+\end{proof}
+\begin{exercise}
+    Show that $\inf \{n + \frac{1}{m} : n, m \in \N\} = 1$.
+\end{exercise}
+\begin{proof}
+    Let $A = \{n : n \in \N\}$ and $B = \{\frac{1}{m} : m \in \N\}$. Then, we can write the given set as $A + B = \{n + \frac{1}{m} : n, m \in \N\}$. We know that $\inf A = 1$ and $\inf B = 0$ from previous exercises. From a previous result, we have $\inf (A + B) = \inf A + \inf B = 1 + 0 = 1$. Hence, we conclude that $\inf \{n + \frac{1}{m} : n, m \in \N\} = 1$.
+\end{proof}
+\begin{exercise}
+Find the infinimum of the set $\{n + \frac{1}{n} : n \in \N\}$
+\end{exercise}
+\begin{proof}
+We claim that the infimum is 2. To see this, first note that for every $n \in \N$, we have:
+$$n + \frac{1}{n} \geq 2$$
+This shows that 2 is a lower bound of the set. Now, let $\epsilon > 0$ be given. We need to show that there exists an element $x_\epsilon$ in the set such that:
+$$2 \leq x_\epsilon < 2 + \epsilon$$
+Suppose there exists no such element. Then, we have:
+$$n + \frac{1}{n} \geq 2 + \epsilon, \forall n \in \N$$
+This implies that:
+$$n^2 - (2 + \epsilon)n + 1 \geq 0, \forall n \in \N$$
+The roots of the quadratic equation $n^2 - (2 + \epsilon)n + 1 = 0$ are given by:
+$$n = \frac{(2 + \epsilon) \pm \sqrt{(2 + \epsilon)^2 - 4}}{2}$$
+For the quadratic to be non-negative for all $n \in \N$, the discriminant must be less than or equal to zero:
+$$(2 + \epsilon)^2 - 4 \leq 0$$
+$$\epsilon^2 + 4\epsilon \leq 0$$
+This is a contradiction since $\epsilon > 0$. Hence, we conclude that our assumption is false. Therefore, we have shown that for every $\epsilon > 0$, there exists an element $x_\epsilon$ in the set such that:
+$$2 \leq x_\epsilon < 2 + \epsilon$$
+
+Here we assume the existence of the square root function. We prove that such a function exists in the next exercise. Hence, we conclude that the infimum of the set $\{n + \frac{1}{n} : n \in \N\}$ is 2.
+\end{proof}
+\begin{exercise}
+    Let $a >0$ be a given real number. Then show that there exists a unique positive number $x \in \R$ such that $x^2 = a$.
+\end{exercise}
+\begin{proof}
+    We prove first that such a number exists. Let $S = \{x \in \R : x^2 < a\}$. Note that $0 \in S$ since $0^2 = 0 < a$. Hence, $S$ is non-empty. We now show that $S$ is bounded above. Note that for any $x > a + 1$, we have:
+    $$x^2 > (a + 1)^2 > a$$
+    Hence, $a + 1$ is an upper bound of $S$. By the completeness property of real numbers, every non-empty bounded above subset of $\R$ has a least upper bound. Therefore, $S$ has a least upper bound, say $x = \sup S$. We claim that $x^2 = a$. To see this, we consider the following cases:
+    \begin{enumerate}
+        \item If $x^2 < a$, then we have:
+        $$a - x^2 > 0$$
+        Let $\epsilon = \min\{1, \frac{a - x^2}{2x + 1}\}$. Note that $\epsilon > 0$ since $x \geq 0$. Then, we have:
+        $$(x + \epsilon)^2 = x^2 + 2x\epsilon + \epsilon^2 < x^2 + (2x + 1)\epsilon = x^2 + (a - x^2) = a \quad \quad [\epsilon^2 < \epsilon \text{ as } \epsilon < 1]$$
+        This implies that $x + \epsilon \in S$. But this contradicts the fact that $x$ is an upper bound of $S$. Hence, this case is not possible.
+        \item If $x^2 > a$, then we have:
+        $$x^2 - a > 0$$
+        Let $\epsilon = \min\{1, \frac{x^2 - a}{2x}\}$. Note that $\epsilon > 0$ since $x > 0$. Then, we have:
+        $$(x - \epsilon)^2 = x^2 - 2x\epsilon + \epsilon^2 > x^2 - 2x\epsilon = x^2 - (x^2 - a) = a$$
+        This implies that $x - \epsilon$ is an upper bound of $S$ which is less than $x$. But this contradicts the fact that $x$ is the least upper bound of $S$. Hence, this case is not possible.
+    \end{enumerate}
+        Therefore, the only possibility left is that $x^2 = a$. Hence, we have shown that there exists a positive number $x \in \R$ such that $x^2 = a$. \\
+        We now show that such a number is unique. Suppose there exist two positive numbers $x_1, x_2 \in \R$ such that $x_1^2 = a$ and $x_2^2 = a$. Then, we have:
+        $$x_1^2 = x_2^2 \implies (x_1 - x_2)(x_1 + x_2) = 0$$
+        Since $x_1, x_2 > 0$, we have $x_1 + x_2 > 0$. Hence, we must have $x_1 - x_2 = 0$. This implies that $x_1 = x_2$. Thus, we have shown that the positive number $x \in \R$ such that $x^2 = a$ is unique.
+\end{proof}
+
+
+\end{document}

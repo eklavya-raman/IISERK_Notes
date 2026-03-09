@@ -1,0 +1,440 @@
+\documentclass[openany]{book}
+\input{notes_white}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\settitle{Cyclic Vectors and Minimal Polynomials}
+\begin{document}
+\title{\Large{\underemphasise{Cyclic Vectors and Minimal Polynomials}} \\ \vspace{5pt}}
+\author{Eklavya Raman \\ \vspace{5pt} er24ms024@iiserkol.ac.in \\ \vspace{5pt}}
+\date{\today}
+\maketitle
+\tableofcontents
+\listoftheorems[
+    show=mytheorem,
+    title={List of Theorems}]
+
+\chapter*{Introduction}
+Cyclic vectors and minimal polynomials are fundamental concepts in linear algebra and representation theory. A cyclic vector is a vector that generates a cyclic subspace under the action of a linear operator, while the minimal polynomial of a linear operator is the monic polynomial of least degree that annihilates the operator. These concepts are crucial for understanding the structure of linear transformations and their representations. \\
+I stumbled upon these concepts while studying linear algebra and trying to find a method to extend a single vector to form a basis for the entire space. Although I have now learnt that it is not possible to generate a basis from a single vector without any additional information, I found the study of cyclic vectors and minimal polynomials to be quite fascinating. \\
+In this document, I explore the properties of cyclic vectors and minimal polynomials and the connections between them. The discussion includes examples, theorems, and proofs that illustrate the exact same. \\
+I prepared this document for fun, as a way to document stuff I learnt while going down this rabbit hole. I hope you find it interesting too!
+\chapter{Rings and Homomorphisms}
+\section{Rings}
+A ring is a mathematical structure consisting of a set equipped with two binary operations: addition and multiplication. These operations must satisfy certain properties to qualify as a ring. Formally, a ring $(R, +, \cdot)$ is defined as follows:
+\begin{mydefinition}{Ring}
+A ring is a set $R$ equipped with two binary operations, addition ($+$) and multiplication ($\cdot$), satisfying the following properties:
+\begin{itemize}
+    \item \underemphasise{Additive Closure}: For all $a, b \in R$, the sum $a + b$ is also in $R$.
+    \item \underemphasise{Additive Associativity}: For all $a, b, c \in R$, $(a + b) + c = a + (b + c)$.
+    \item \underemphasise{Additive Identity}: There exists an element $0 \in R$ such that for all $a \in R$, $a + 0 = a$.
+    \item \underemphasise{Additive Inverses}: For every $a \in R$, there exists an element $-a \in R$ such that $a + (-a) = 0$.
+    \item \underemphasise{Multiplicative Closure}: For all $a, b \in R$, the product $a \cdot b$ is also in $R$.
+    \item \underemphasise{Multiplicative Associativity}: For all $a, b, c \in R$, $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+    \item \underemphasise{Distributive Laws}: For all $a, b, c \in R$, $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$ and $(a + b) \cdot c = (a \cdot c) + (b \cdot c)$.
+\end{itemize}
+\end{mydefinition}
+Rings can be classified into various types based on additional properties they may possess. For example, a ring is called a \underemphasise{commutative ring} if the multiplication operation is commutative, meaning that for all $a, b \in R$, $a \cdot b = b \cdot a$. A ring is called a \underemphasise{ring with unity} if there exists a multiplicative identity element $1 \in R$ such that for all $a \in R$, $a \cdot 1 = a$. \\
+Rings are fundamental structures in algebra and have applications in various areas of mathematics, including number theory, algebraic geometry, and functional analysis. They provide a framework for studying algebraic operations and their properties in a systematic way. \cite{Artin}
+\section{Ring Homomorphisms}
+A ring homomorphism is a function between two rings that preserves the ring operations of addition and multiplication. Formally, a ring homomorphism is defined as follows:
+\begin{mydefinition}{Ring Homomorphism}
+A ring homomorphism is a function $\varphi: R \to S$ between two rings $(R, +_R, \cdot_R)$ and $(S, +_S, \cdot_S)$ such that for all $a, b \in R$, the following properties hold:
+\begin{itemize}
+    \item \underemphasise{Additive Preservation}: $\varphi(a +_R b) = \varphi(a) +_S \varphi(b)$.
+    \item \underemphasise{Multiplicative Preservation}: $\varphi(a \cdot_R b) = \varphi(a) \cdot_S \varphi(b)$.
+    \item \underemphasise{Identity Preservation}: If $R$ and $S$ have multiplicative identities $1_R$ and $1_S$, respectively, then $\varphi(1_R) = 1_S$.
+\end{itemize}
+\end{mydefinition}
+Ring homomorphisms are important in algebra because they allow us to study the relationships between different rings and their structures. They can be used to define isomorphisms, which are bijective ring homomorphisms that establish an equivalence between two rings. Additionally, ring homomorphisms play a crucial role in the study of ideals, quotient rings, and module theory. \cite{Artin} \\
+In this document, we will explore the relation of polynomials and linear operators by considering a homomorphism from a polynomial ring to a ring of linear operators on an arbitrary vector space $V$. 
+We define some other important concepts related to ring homomorphisms that will be useful later.
+\begin{mydefinition}{Kernel of a Ring Homomorphism}
+The kernel of a ring homomorphism $\varphi: R \to S$ is the set of elements in $R$ that map to the zero element in $S$. Formally, the kernel is defined as:
+\[\ker(\varphi) = \{ a \in R \mid \varphi(a) = 0_S \}\]
+where $0_S$ is the additive identity in the ring $S$.
+\end{mydefinition}
+\begin{mydefinition}{Ideal of a Ring}
+An ideal $I$ of a ring $R$ is a subset of $R$ that satisfies the following properties:
+\begin{itemize}
+    \item \underemphasise{Additive Closure}: For all $a, b \in I$, the sum $a + b$ is also in $I$.
+    \item \underemphasise{Additive Inverses}: For every $a \in I$, the element $-a$ is also in $I$.
+    \item \underemphasise{Absorption Property}: For all $r \in R$ and $a \in I$, both $r \cdot a$ and $a \cdot r$ are in $I$, where $\cdot$ denotes the multiplication operation in the ring $R$.
+\end{itemize}
+\end{mydefinition}
+
+\begin{mytheorem}
+The kernel of a ring homomorphism $\varphi: R \to S$ is an ideal of the ring $R$.
+\end{mytheorem}
+\begin{proof}
+Let $a, b \in \ker(\varphi)$. Then, by definition of the kernel, we have $\varphi(a) = 0_S$ and $\varphi(b) = 0_S$. We need to show that $\ker(\varphi)$ satisfies the properties of an ideal:
+\begin{itemize}
+    \item \underemphasise{Additive Closure}: We need to show that $a + b \in \ker(\varphi)$. We have:
+    \[\varphi(a + b) = \varphi(a) +_S \varphi(b) = 0_S +_S 0_S = 0_S\]
+    Thus, $a + b \in \ker(\varphi)$.
+    \item \underemphasise{Additive Inverses}: We need to show that $-a \in \ker(\varphi)$. We have:
+    \[\varphi(-a) = -\varphi(a) = -0_S = 0_S\]
+    Thus, $-a \in \ker(\varphi)$.
+    \item \underemphasise{Absorption Property}: We need to show that for any $r \in R$ and $a \in \ker(\varphi)$, both $r \cdot a$ and $a \cdot r$ are in $\ker(\varphi)$. We have:
+    \[\varphi(r \cdot a) = \varphi(r) \cdot_S \varphi(a) = \varphi(r) \cdot_S 0_S = 0_S\]
+    and
+    \[\varphi(a \cdot r) = \varphi(a) \cdot_S \varphi(r) = 0_S \cdot_S \varphi(r) = 0_S\]
+    Thus, both $r \cdot a$ and $a \cdot r$ are in $\ker(\varphi)$.
+\end{itemize}
+\end{proof}
+
+
+
+\chapter{Polynomials and Polynomial over Rings}
+\section{Polynomials}
+A polynomial is a mathematical expression consisting of variables (also called indeterminates) and coefficients, combined using addition, subtraction, multiplication, and non-negative integer exponents. Polynomials can be classified based on the number of variables they contain:
+\begin{itemize}
+    \item Univariate Polynomials: These polynomials contain only one variable. For example, $f(x) = 2x^3 + 3x^2 - 5x + 7$ is a univariate polynomial in the variable $x$.
+    \item Multivariate Polynomials: These polynomials contain two or more variables. For example, $g(x, y) = x^2y + 3xy^2 - 4$ is a multivariate polynomial in the variables $x$ and $y$.
+\end{itemize}
+Let us focus on univariate polynomials for the rest of this section. A univariate polynomial can be expressed in terms of a an infinite series as follows:
+\[f(x) = \sum_{i=0}^\infty a_i x^i\]
+where $a_i$ are the coefficients of the polynomial, and $x$ is the variable. Let us consider $f(x)$ such that only a finite number of coefficients $a_i$ are non-zero. In this case, we can define the degree of the polynomial as the highest power of $x$ with a non-zero coefficient. For example, in the polynomial $f(x) = 2x^3 + 3x^2 - 5x + 7$, the degree is 3, since the highest power of $x$ with a non-zero coefficient is $x^3$. \\
+Polynomials can be added, subtracted, and multiplied using standard algebraic rules. \cite{Artin} We define the addition and multiplication of two polynomials $f(x)$ and $g(x)$ as follows:
+\begin{itemize}
+    \item \underemphasise{Addition} - $$f(x) + g(x) = \sum_{k=0}^\infty (a_k + b_k) x^k$$ where $f(x) = \sum_{i=0}^\infty a_i x^i$ and $g(x) = \sum_{j=0}^\infty b_j x^j$.
+    \item \underemphasise{Multiplication} - $$f(x) \cdot g(x) = \sum_{i, j=0}^\infty a_i b_j x^{i+j}$$ where $f(x) = \sum_{i=0}^\infty a_i x^i$ and $g(x) = \sum_{j=0}^\infty b_j x^j$. \\
+    Then, we have $$f(x) \cdot g(x) = \sum_{k=0}^\infty p_k x^k$$ where $p_k = \sum_{i+j=k} a_i b_j$.
+\end{itemize}
+Now we classify the polynomials as - 
+\begin{itemize}
+    \item \underemphasise{Monic Polynomial} - A polynomial is called monic if the coefficient of the highest degree term is 1. For example, $f(x) = x^3 + 2x^2 - 5x + 7$ is a monic polynomial.
+    \item \underemphasise{Constant Polynomial} - A polynomial is called constant if it has degree 0, meaning it does not contain any variable terms. For example, $f(x) = 5$ is a constant polynomial.
+\end{itemize}
+Lastly, we define the division of polynomials. Given two polynomials $f(x)$ and $g(x)$, where $g(x)$ is not the zero polynomial, we can perform polynomial long division to express $f(x)$ as:
+\[f(x) = q(x) \cdot g(x) + r(x)\]
+where $q(x)$ is the quotient polynomial, and $r(x)$ is the remainder polynomial. The degree of the remainder polynomial $r(x)$ is less than the degree of the divisor polynomial $g(x)$. If the remainder polynomial $r(x)$ is the zero polynomial, then we say that $g(x)$ divides $f(x)$.
+The algorithm for polynomial long division is similar to the long division algorithm for integers, where we repeatedly subtract multiples of the divisor polynomial from the dividend polynomial until the degree of the remainder polynomial is less than the degree of the divisor polynomial. \\
+The pseudo code for polynomial long division is as follows:
+\begin{verbatim}
+function polynomial_long_division(f(x), g(x)):
+    if g(x) is the zero polynomial:
+        raise Error("Division by zero polynomial is not allowed.")
+    
+    q(x) = 0  // Initialize quotient polynomial
+    r(x) = f(x)  // Initialize remainder polynomial
+    
+    while degree(r(x)) >= degree(g(x)):
+        // Calculate the leading term of the quotient
+        coeff = leading_coefficient(r(x)) / leading_coefficient(g(x))
+        
+        leading_term = coeff * x^(degree(r(x)) - degree(g(x)))
+        
+        // Update the quotient polynomial
+        q(x) = q(x) + leading_term
+        
+        // Update the remainder polynomial
+        r(x) = r(x) - leading_term * g(x)
+    
+    return (q(x), r(x))
+\end{verbatim}
+Now we can move on to defining polynomial rings.
+\section{Polynomial Rings}
+\begin{mydefinition}{Polynomial Ring}
+A polynomial ring $R[x]$ is a set of polynomials with coefficients in a ring $R$. It is defined as:
+\[R[x] = \{ a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0 \mid a_i \in R, n \geq 0 \}.\]
+The operations of addition and multiplication are defined as usual for polynomials.
+\end{mydefinition}
+The variable $x$ is an indeterminate, and the coefficients $a_i$ belong to the ring $R$. The degree of a polynomial is the highest power of $x$ with a non-zero coefficient. The indeterminate $x$ can take any value in the ring $R$, and the polynomial ring $R[x]$ forms a commutative ring with unity if and only if the ring $R$ is commutative and has a unity element.
+\begin{mydefinition}{Commutative Ring}
+A commutative ring is a set $R$ equipped with two binary operations, addition and multiplication, satisfying the following properties:
+\begin{itemize}
+    \item Associativity: For all $a, b, c \in R$, $(a + b) + c = a + (b + c)$ and $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+    \item Commutativity: For all $a, b \in R$, $a + b = b + a$ and $a \cdot b = b \cdot a$.
+    \item Distributivity: For all $a, b, c \in R$, $a \cdot (b + c) = a \cdot b + a \cdot c$.
+    \item Identity elements: There exist elements $0$ and $1$ in $R$ such that for all $a \in R$, $a + 0 = a$ and $a \cdot 1 = a$.
+\end{itemize}
+\end{mydefinition}
+The commutative property is extremely important in polynomial rings, as it allows for the rearrangement of terms and simplifies many algebraic manipulations. The unity element $1$ is particularly significant as it serves as the multiplicative identity in the ring. 
+\begin{mydefinition}{Degree of a Polynomial}
+    We define a function $$\deg: R[x] \to \mathbb{N} \cup \{-\infty\}$$ such that for a polynomial $f(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ with $a_n \neq 0$, we have $\deg(f) = n$. If $f(x) = 0$, we define $\deg(0) = -\infty$. \\
+    The degree function assigns to each polynomial its highest degree term, providing a measure of the polynomial's "size" in terms of its variable's exponent.
+\end{mydefinition}
+Why do we define the degree of the zero polynomial as $-\infty$? It will be clear after we define some useful properties of the degree function.
+\begin{mytheorem}[Properties of Degree Function]
+\cite{2Poly}
+Let $f(x), g(x) \in R[x]$. Then the degree function satisfies the following properties:
+\begin{itemize}
+    \item $\deg(f + g) \leq \max(\deg(f), \deg(g))$.
+    \item $\deg(f \cdot g) \leq \deg(f) + \deg(g)$.
+    \item $\deg(f) = \deg(g) \implies \deg(f \pm g) \leq \deg(f)$.
+\end{itemize}
+\end{mytheorem}
+\begin{proof}
+Let $f(x) = a_n x^n + \ldots + a_0$ and $g(x) = b_m x^m + \ldots + b_0$ with $a_n \neq 0$ and $b_m \neq 0$.
+\begin{itemize}
+    \item For addition, if $n \neq m$, then the degree of $f + g$ is the maximum of $n$ and $m$. If $n = m$, then the leading coefficients may cancel out, resulting in a degree less than or equal to $n$.
+    \item For multiplication, the leading term of $f \cdot g$ is $a_n b_m x^{n+m}$, so the degree is at most $n + m$.
+    \item If $\deg(f) = \deg(g)$, then the leading terms may cancel out in $f \pm g$, resulting in a degree less than or equal to $\deg(f)$.
+\end{itemize}
+Hence the properties hold.
+\end{proof}
+Now, we can see why we defined the degree of the zero polynomial as $-\infty$. This definition ensures that the properties of the degree function hold true even when one of the polynomials is zero. For example, when adding a non-zero polynomial to the zero polynomial, the degree of the sum is simply the degree of the non-zero polynomial, which is consistent with our definition, and when multiplying any polynomial by the zero polynomial, the result is the zero polynomial with degree $-\infty$, which also aligns with our properties. \\
+\begin{example}
+Let $R = \mathbb{Z}$, the ring of integers. The polynomial ring $\mathbb{Z}[x]$ consists of all polynomials with integer coefficients, such as $2x^3 + 3x^2 - 5x + 7$. The addition and multiplication of these polynomials follow the usual rules of polynomial arithmetic. The polynomial $2x^3 + 3x^2 - 5x + 7$ has degree 3, and its coefficients are $2, 3, -5, 7$. The commutative property allows us to rearrange the terms, such as writing $3x^2 + 2x^3 - 5x + 7$ without changing the polynomial's value.
+\end{example}
+\chapter{Relation to Linear Algebra}
+\section{The Ring of Linear Operators}
+Polynomials are an important structure since the invariant can be used to study different sorts of mathematical objects. For example, we can define the polynomial ring over a ring of matrices and use it to study linear transformations. \\
+Let $V$ be a vector space over a field $F$. Let us consider the set of all linear operators, that is linear transformations from $V$ to itself. We denote this set by $\mathcal{L}(V)$. We can define addition and multiplication of linear operators as follows:
+\begin{itemize}
+    \item \underemphasise{Addition} - For $T_1, T_2 \in \mathcal{L}(V)$, we define $(T_1 + T_2)(v) = T_1(v) + T_2(v)$ for all $v \in V$.
+    \item \underemphasise{Multiplication} - For $T_1, T_2 \in \mathcal{L}(V)$, we define $(T_1 \circ T_2)(v) = T_1(T_2(v))$ for all $v \in V$.
+    \item \underemphasise{Scalar Multiplication} - For $c \in F$ and $T \in \mathcal{L}(V)$, we define $(cT)(v) = c(T(v))$ for all $v \in V$.
+\end{itemize}
+\begin{mytheorem}
+The set $\mathcal{L}(V)$, equipped with the operations of addition and multiplication defined above, forms a ring.
+\end{mytheorem}
+\begin{proof}
+We need to verify that $\mathcal{L}(V)$ satisfies the ring properties:
+\begin{itemize}
+    \item \underemphasise{Additive Closure}: For $T_1, T_2 \in \mathcal{L}(V)$, $(T_1 + T_2)(v) = T_1(v) + T_2(v)$ is also a linear operator.
+    \item \underemphasise{Additive Associativity}: For $T_1, T_2, T_3 \in \mathcal{L}(V)$, $(T_1 + (T_2 + T_3))(v) = ((T_1 + T_2) + T_3)(v)$.
+    \item \underemphasise{Additive Identity}: The zero operator $0$ defined by $0(v) = 0$ for all $v \in V$ serves as the additive identity.
+    \item \underemphasise{Additive Inverses}: For each $T \in \mathcal{L}(V)$, the operator $-T$ defined by $(-T)(v) = -T(v)$ serves as the additive inverse.
+    \item \underemphasise{Multiplicative Closure}: For $T_1, T_2 \in \mathcal{L}(V)$, $(T_1 \circ T_2)(v) = T_1(T_2(v))$ is also a linear operator.
+    \item \underemphasise{Multiplicative Associativity}: For $T_1, T_2, T_3 \in \mathcal{L}(V)$, $(T_1 \circ (T_2 \circ T_3))(v) = ((T_1 \circ T_2) \circ T_3)(v)$.
+    \item \underemphasise{Distributive Laws}: For $T_1, T_2, T_3 \in \mathcal{L}(V)$, $T_1 \circ (T_2 + T_3) = (T_1 \circ T_2) + (T_1 \circ T_3)$ and $(T_1 + T_2) \circ T_3 = (T_1 \circ T_3) + (T_2 \circ T_3)$.
+    \item \underemphasise{Identity Element}: The identity operator $I$ defined by $I(v) = v$ for all $v \in V$ serves as the multiplicative identity.
+\end{itemize}
+Thus, $\mathcal{L}(V)$ satisfies all the properties of a ring.
+\end{proof}
+
+\section{Homomorphism from Polynomial Ring to Ring of Linear Operators}
+Let $T \in \mathcal{L}(V)$. We can define a map $\varphi_T: F[x] \to \mathcal{L}(V)$ as follows:
+\[\varphi_T(f(x)) = f(T) = a_n T^n + a_{n-1} T^{n-1} + \ldots + a_1 T + a_0 I_V\]
+where $f(x) = a_n x^n + a_{n-1} x^{n-1} + \ldots + a_1 x + a_0$ and $I_V$ is the identity operator on $V$. \\
+\begin{mytheorem}
+The map $\varphi_T: F[x] \to \mathcal{L}(V)$ defined above is a ring homomorphism.
+\end{mytheorem}
+\begin{proof}
+We need to verify that $\varphi_T$ preserves addition and multiplication:
+\begin{itemize}
+    \item \underemphasise{Additive Preservation}: For $f(x), g(x) \in F[x]$, we have:
+    \[\varphi_T(f(x) + g(x)) = (f + g)(T) = f(T) + g(T) = \varphi_T(f(x)) + \varphi_T(g(x))\]
+    \item \underemphasise{Multiplicative Preservation}: For $f(x), g(x) \in F[x]$, we have:
+    \[\varphi_T(f(x) \cdot g(x)) = (f \cdot g)(T) = f(T) \circ g(T) = \varphi_T(f(x)) \circ \varphi_T(g(x))\]
+\end{itemize}
+Thus, $\varphi_T$ is a ring homomorphism.
+\end{proof}
+This map $\varphi_T$ is a ring homomorphism, meaning it preserves the addition and multiplication operations. The kernel of this homomorphism, denoted as $\ker(\varphi_T)$, is the set of all polynomials $f(x) \in F[x]$ such that $f(T) = 0$. This kernel is an ideal in the polynomial ring $F[x]$. \\
+The ideal $\ker(\varphi_T)$ is of particular interest because it contains information about the linear operator $T$. \\ 
+Now, we are in a position to define the characteristic polynomial and minimal polynomial of a linear operator.
+\section{Characteristic Polynomial and Minimal Polynomial}
+\begin{mydefinition}{Characteristic Polynomial}
+The characteristic polynomial of a linear operator $T \in \mathcal{L}(V)$ is defined as the polynomial $\chi_T(x) = \det(xI - T)$, where $I$ is the identity operator on $V$ and $\det$ denotes the determinant. The characteristic polynomial is a monic polynomial whose degree is equal to the dimension of the vector space $V$.
+\end{mydefinition}
+\begin{mytheorem}[Cayley-Hamilton Theorem]
+Every linear operator $T \in \mathcal{L}(V)$ satisfies its own characteristic polynomial. In other words, $\chi_T(T) = 0$.
+\end{mytheorem}
+We do not prove the Cayley-Hamilton theorem here, but it is a fundamental result in linear algebra that establishes a deep connection between linear operators and their characteristic polynomials. \cite{Artin} \\
+\begin{corollary}
+The characteristic polynomial $\chi_T(x)$ of a linear operator $T \in \mathcal{L}(V)$ belongs to the kernel of the homomorphism $\varphi_T: F[x] \to \mathcal{L}(V)$. That is, $\chi_T(T) = 0$.
+\end{corollary}
+\begin{proof}
+By the Cayley-Hamilton theorem, we have $\chi_T(T) = 0$. Since $\varphi_T(f(x)) = f(T)$ for any polynomial $f(x) \in F[x]$, it follows that $\varphi_T(\chi_T(x)) = \chi_T(T) = 0$. Therefore, $\chi_T(x) \in \ker(\varphi_T)$.
+\end{proof}
+\begin{mytheorem}[Degree of Characteristic Polynomial]
+Let $T \in \mathcal{L}(V)$ be a linear operator on a finite-dimensional vector space $V$ over a field $F$. Then the characteristic polynomial $\chi_T(x)$ of $T$ has degree equal to the dimension of $V$. That is, $\deg(\chi_T) = \dim(V)$.
+\end{mytheorem}
+\begin{proof}
+Let $\{v_1, v_2, \ldots, v_n\}$ be a basis for the vector space $V$, where $n = \dim(V)$. The linear operator $T$ can be represented by an $n \times n$ matrix $A$ with respect to this basis. The characteristic polynomial $\chi_T(x)$ is defined as $\chi_T(x) = \det(xI - A)$, where $I$ is the $n \times n$ identity matrix. \\
+The determinant of an $n \times n$ matrix is a polynomial of degree $n$ in the variable $x$. Therefore, the characteristic polynomial $\chi_T(x)$ has degree $n$, which is equal to the dimension of the vector space $V$. Thus, we have $\deg(\chi_T) = \dim(V)$.
+\end{proof}
+\begin{mydefinition}{Minimal Polynomial}
+The minimal polynomial of a linear operator $T \in \mathcal{L}(V)$ is the monic polynomial $m_T(x)$ of least degree such that $m_T(T) = 0$. 
+\end{mydefinition}
+\begin{mytheorem}{Properties of Minimal Polynomial}
+Let $T \in \mathcal{L}(V)$ be a linear operator on a finite-dimensional vector space $V$ over a field $F$. Then the minimal polynomial $m_T(x)$ of $T$ has the following properties:
+\begin{enumerate}
+    \item The roots of $m_T(x)$ are precisely the eigenvalues of $T$.
+    \item If $V$ is a finite-dimensional vector space, then $m_T(x)$ is unique and monic.
+    \item \item Any polynomial $f(x) \in F[x]$ such that $f(T) = 0$ must be a multiple of $m_T(x)$.
+    \item The degree of $m_T(x)$ is less than or equal to the dimension of $V$.
+    
+\end{enumerate}
+\end{mytheorem}
+\begin{proof}
+    We prove the properties one by one.
+    \begin{enumerate}
+        \item ($\Rightarrow$) Let $\lambda$ be an eigenvalue of $T$ with corresponding eigenvector $v \neq 0$. Then, by definition, we have $T(v) = \lambda v$. Since $m_T(T) = 0$, we have $m_T(T)(v) = 0$. Thus, $m_T(\lambda)v = 0$. Since $v \neq 0$, it follows that $m_T(\lambda) = 0$. \\
+        ($\Leftarrow$) Let $\lambda$ be a root of $m_T(x)$. Then, by definition, we have $m_T(\lambda) = 0$. Since $m_T(T) = 0$, we have $m_T(T)(v) = 0$ for all $v \in V$. Thus, $(T - \lambda I)^k(v) = 0$ for some positive integer $k$. This implies that $\lambda$ is an eigenvalue of $T$.
+        \item Suppose there are two monic polynomials $m_T(x)$ and $m'_T(x)$ of least degree such that $m_T(T) = 0$ and $m'_T(T) = 0$. We have $\deg(m_t) = \deg(m'_T)$. Then, we can write $m_T(x) = m'_T(x)q(x) + r(x)$, where $\deg(r) < \deg(m'_T)$. Evaluating at $T$, we have $m_T(T) = m'_T(T)q(T) + r(T) = 0 + r(T) = r(T)$. Since $m_T(T) = 0$, it follows that $r(T) = 0$. But $\deg(r) < \deg(m'_T)$, contradicting the minimality of $m'_T(x)$. Therefore, $m_T(x)$ is unique.
+        \item Let $f(x) \in F[x]$ be such that $f(T) = 0$. We can perform polynomial long division to write $f(x) = m_T(x)q(x) + r(x)$, where $\deg(r) < \deg(m_T)$. Evaluating at $T$, we have $f(T) = m_T(T)q(T) + r(T) = 0 + r(T) = r(T)$. Since $f(T) = 0$, it follows that $r(T) = 0$. By the minimality of $m_T(x)$, we must have $r(x) = 0$. Therefore, $f(x)$ is a multiple of $m_T(x)$.
+        \item We have $m_T(x) \in \ker(\varphi_T)$. From the previous theorem, we know that the characteristic polynomial $\chi_T(x)$ also belongs to $\ker(\varphi_T)$. Since $m_T(x)$ is the monic polynomial of least degree in $\ker(\varphi_T)$, it follows that $\deg(m_T) \leq \deg(\chi_T)$. From the earlier theorem, we know that $\deg(\chi_T) = \dim(V)$. Therefore, we have $\deg(m_T) \leq \dim(V)$.
+    \end{enumerate}
+    Hence proved. 
+\end{proof}
+\begin{corollary}
+The minimal polynomial $m_T(x)$ of a linear operator $T \in \mathcal{L}(V)$ divides the characteristic polynomial $\chi_T(x)$ of $T$. That is, there exists a polynomial $q(x) \in F[x]$ such that $\chi_T(x) = m_T(x)q(x)$.
+\end{corollary}
+\begin{proof}
+    By the Cayley-Hamilton theorem, we have $\chi_T(T) = 0$. By theorem 3.5.3, any polynomial $f(x) \in F[x]$ such that $f(T) = 0$ must be a multiple of $m_T(x)$. Since $\chi_T(T) = 0$, it follows that $\chi_T(x)$ is a multiple of $m_T(x)$.
+\end{proof}
+Now, we are in a position to study cyclic vectors and cyclic subspaces using the minimal polynomial.
+\chapter{Cyclic Vectors and Cyclic Subspaces}
+\section{Cyclic Vectors}
+\begin{mydefinition}{Cyclic Vector}
+Let $V$ be a vector space over a field $F$, and let $T \in \mathcal{L}(V)$ be a linear operator on $V$. Let $\dim V = n$.A vector $v \in V$ is called a cyclic vector for $T$ if the set $\{v, T(v), T^2(v), \ldots\, T^{n-1}(v)\}$ spans the entire vector space $V$ and is linearly independent.
+\end{mydefinition}
+\begin{example}
+Let $V = \mathbb{R}^2$ be the vector space of all 2-dimensional real vectors, and let $T: V \to V$ be the linear operator defined by $T(x, y) = (2x, 3y)$. Consider the vector $v = (1, 1) \in V$. We can compute the set $\{v, T(v), T^2(v)\}$ as follows:
+\begin{align*}
+v &= (1, 1) \\
+T(v) &= T(1, 1) = (2 \cdot 1, 3 \cdot 1) = (2, 3) \\
+T^2(v) &= T(T(v)) = T(2, 3) = (2 \cdot 2, 3 \cdot 3) = (4, 9)
+\end{align*}
+The set $\{(1, 1), (2, 3), (4, 9)\}$ spans the entire vector space $V = \mathbb{R}^2$ and is linearly independent. Therefore, the vector $v = (1, 1)$ is a cyclic vector for the linear operator $T$.
+\end{example}
+\begin{mytheorem}[The set generated by a Cyclic Vector is a Basis]
+Let $V$ be a vector space over a field $F$, and let $T \in \mathcal{L}(V)$ be a linear operator on $V$. If $v \in V$ is a cyclic vector for $T$, then the set $\{v, T(v), T^2(v), \ldots, T^{n-1}(v)\}$ forms a basis for the vector space $V$, where $n = \dim V$.
+\end{mytheorem}
+\begin{proof}
+Since the set $\{v, T(v), T^2(v), \ldots, T^{n-1}(v)\}$ spans the entire vector space $V$ and is linearly independent, it follows that this set forms a basis for $V$.
+\end{proof}
+Cyclic vectors are important in the study of linear operators because they provide a way to understand the structure of the operator and its action on the vector space. If a linear operator has a cyclic vector, it means that the entire vector space can be generated by repeatedly applying the operator to a single vector. This property can be used to analyze the operator's eigenvalues, eigenvectors, and invariant subspaces. 
+\begin{mydefinition}{Invariant Subspace}
+An invariant subspace of a vector space $V$ under a linear operator $T \in \mathcal{L}(V)$ is a subspace $W \subseteq V$ such that for every vector $w \in W$, the image of $w$ under $T$ is also in $W$. In other words, $T(W) \subseteq W$.
+\end{mydefinition}
+\begin{mytheorem}[A vector is cyclic for a transform if and only if its minimal polynomial has degree equal to the characteristic polynomial]
+Let $V$ be a vector space over a field $F$, and let $T \in \mathcal{L}(V)$ be a linear operator on $V$. A vector $v \in V$ is a cyclic vector for $T$ if and only if the minimal polynomial $m_{T,v}(x)$ of $T$ with respect to $v$ has degree equal to the dimension of the vector space $V$, i.e., $\deg(m_{T,v}) = \dim(V)$. Equivalently, $v$ is a cyclic vector for $T$ if and only if the minimal polynomial $m_{T,v}(x)$ is equal to the characteristic polynomial $\chi_T(x)$ of $T$.
+\end{mytheorem}
+\begin{proof}
+($\Rightarrow$) Suppose $v \in V$ is a cyclic vector for $T$. Then, the set $\{v, T(v), T^2(v), \ldots, T^{n-1}(v)\}$ forms a basis for $V$, where $n = \dim(V)$. Since this set is linearly independent, the minimal polynomial $m_{T,v}(x)$ must have degree at least $n$. However, since the minimal polynomial divides the characteristic polynomial $\chi_T(x)$, which has degree $n$, it follows that $\deg(m_{T,v}) = n$. Thus, $m_{T,v}(x) = \chi_T(x)$. \
+($\Leftarrow$) Conversely, suppose the minimal polynomial $m_{T,v}(x)$ has degree equal to $\dim(V)$. Then, the set $\{v, T(v), T^2(v), \ldots, T^{n-1}(v)\}$ must be linearly independent. Since the dimension of $V$ is $n$, this set spans $V$. Therefore, $v$ is a cyclic vector for $T$.
+\end{proof}
+\section{Cyclic Subspaces}
+\begin{mydefinition}{Cyclic Subspace}
+Let $V$ be a vector space over a field $F$, and let $T \in \mathcal{L}(V)$ be a linear operator on $V$. A subspace $W \subseteq V$ is called a cyclic subspace for $T$ if there exists a vector $v \in V$ such that $W$ is the smallest invariant subspace of $V$ under $T$ that contains $v$. In other words, $W$ is generated by the set $\{v, T(v), T^2(v), \ldots\}$.
+\end{mydefinition}
+\begin{example}
+Let $V = \mathbb{R}^3$ be the vector space of all 3-dimensional real vectors, and let $T: V \to V$ be the linear operator defined by $T(x, y, z) = (x + y, y + z, z)$. Consider the vector $v = (1, 0, 0) \in V$. We can compute the set $\{v, T(v), T^2(v), \ldots\}$ as follows:
+\begin{align*}
+v &= (1, 0, 0) \\
+T(v) &= T(1, 0, 0) = (1 + 0, 0 + 0, 0) = (1, 0, 0) \\
+T^2(v) &= T(T(v)) = T(1, 0, 0) = (1 + 0, 0 + 0, 0) = (1, 0, 0)
+\end{align*}
+The set $\{(1, 0, 0)\}$ generates the cyclic subspace $W = \text{span}\{(1, 0, 0)\}$. Therefore, the subspace $W$ is a cyclic subspace for the linear operator $T$.
+\end{example}
+\begin{mytheorem}[Beautiful Properties of Cyclic Subspaces]
+Let $V$ be a vector space over a field $F$, and let $T \in \mathcal{L}(V)$ be a linear operator on $V$. Let $W$ be a cyclic subspace of $V$ generated by a vector $v \in V$. Then, the following properties hold:
+\begin{enumerate}
+    \item The dimension of the cyclic subspace $W$ is equal to the degree of the minimal polynomial $m_{T,v}(x)$ of $T$ with respect to $v$. That is, $\dim(W) = \deg(m_{T,v})$.
+    \item The set $\{v, T(v), T^2(v), \ldots, T^{k-1}(v)\}$ forms a basis for the cyclic subspace $W$, where $k = \deg(m_{T,v})$.
+    \item The minimal polynomial $m_{T,v}(x)$ divides the characteristic polynomial $\chi_T(x)$ of $T$.
+    \item If $v$ is a cyclic vector for $T$, then the cyclic subspace $W$ generated by $v$ is equal to the entire vector space $V$.
+\end{enumerate}
+\end{mytheorem}
+\begin{proof}
+We prove the properties one by one.
+\begin{enumerate}
+    \item By definition, the cyclic subspace $W$ is generated by the set $\{v, T(v), T^2(v), \ldots\}$. The minimal polynomial $m_{T,v}(x)$ is the monic polynomial of least degree such that $m_{T,v}(T)(v) = 0$. The degree of $m_{T,v}(x)$ determines the number of linearly independent vectors in the set $\{v, T(v), T^2(v), \ldots, T^{k-1}(v)\}$, where $k = \deg(m_{T,v})$. Therefore, $\dim(W) = \deg(m_{T,v})$.
+    \item The set $\{v, T(v), T^2(v), \ldots, T^{k-1}(v)\}$ is linearly independent by the definition of the minimal polynomial. Since these vectors generate the cyclic subspace $W$, they form a basis for $W$.
+    \item Since $m_{T,v}(T)(v) = 0$, it follows that $m_{T,v}(x) \in \ker(\varphi_T)$. From the previous theorem, we know that the characteristic polynomial $\chi_T(x)$ also belongs to $\ker(\varphi_T)$. Since $m_{T,v}(x)$ is the monic polynomial of least degree in $\ker(\varphi_T)$, it follows that $m_{T,v}(x)$ divides $\chi_T(x)$.
+    \item If $v$ is a cyclic vector for $T$, then by definition, the set $\{v, T(v), T^2(v), \ldots, T^{n-1}(v)\}$ forms a basis for the entire vector space $V$, where $n = \dim(V)$. Therefore, the cyclic subspace $W$ generated by $v$ is equal to $V$.
+\end{enumerate}
+Hence proved.
+\end{proof}
+We can now tie everything together. Cyclic vectors and cyclic subspaces provide a powerful framework for understanding the structure of linear operators on vector spaces. By studying the minimal polynomial associated with a vector or subspace, we can gain insights into the operator's behavior, eigenvalues, and invariant subspaces. 
+\chapter{Relation To Topology}
+\section{Cyclic Vectors in Topological Vector Spaces}
+Lets us start this chapter by defining the notion of continuity and why it is important in topology. In topology, continuity is a fundamental concept that describes how functions behave with respect to the structure of the spaces they map between. A function is considered continuous if small changes in the input lead to small changes in the output (intuitively, there are no "jumps" or "breaks" in the function). \\
+Continuity is important in topology because it allows us to study the properties of spaces and functions in a way that is independent of specific metrics or distances. This is particularly useful when dealing with more abstract spaces where traditional notions of distance may not be applicable. \\
+We start by defining a topology. \cite{Simmons}
+\begin{mydefinition}{Topology}
+    If $X$ is a set, a topology on $X$ is a collection $\tau$ of subsets of $X$ such that:
+    \begin{itemize}
+        \item The union of any collection of sets in $\tau$ is also in $\tau$.
+        \item The intersection of any finite number of sets in $\tau$ is also in $\tau$.
+    \end{itemize}
+\end{mydefinition}
+The individual sets $\tau$ are called open sets. 
+\begin{mydefinition}{Open sets}
+    Let $(X, \tau)$ be a topological space. A subset $U \subseteq X$ is called an open set if $U \in \tau$. We have the following properties of open sets:
+    \begin{itemize}
+        \item The empty set $\emptyset$ and the entire set $X$ are open sets.
+        \item The union of any collection of open sets is an open set.
+        \item The intersection of any finite number of open sets is an open set.
+        \item A set $A \subseteq X$ is called closed if its complement $X \setminus A$ is an open set.
+    \end{itemize}
+\end{mydefinition}
+This definition of open sets is consistent with our earlier definition of topology. Instead of relying on metrics or distances, we can define open sets directly using the properties outlined above. This also allows us to work in more general spaces where a metric may not be available. \cite{Simmons} \\
+A topological space is a set equipped with a topology, which provides a framework for studying continuity, convergence, and other topological properties. \\
+\begin{mydefinition}{Continuity}
+Let $(X, \tau_X)$ and $(Y, \tau_Y)$ be topological spaces, and let $f: X \to Y$ be a function. The function $f$ is said to be continuous if for every open set $V \in \tau_Y$, the preimage $f^{-1}(V) = \{x \in X \mid f(x) \in V\}$ is an open set in $X$, i.e., $f^{-1}(V) \in \tau_X$.
+\end{mydefinition}
+Why does the above definition capture the idea of continuity? 
+\begin{mydefinition}{Product Topology}
+Let $(X, \tau_X)$ and $(Y, \tau_Y)$ be topological spaces. The product topology on the Cartesian product $X \times Y$ is defined as the topology generated by the basis consisting of all products of open sets from $X$ and $Y$. Specifically, a basis element for the product topology is of the form $U \times V$, where $U \in \tau_X$ and $V \in \tau_Y$. The product topology $\tau_{X \times Y}$ is the collection of all unions of such basis elements. \\
+Intuitively, the product topology captures the idea of "openness" in the combined space $X \times Y$ by considering open sets in each individual space and forming their Cartesian products.
+\end{mydefinition}
+Now, we define a topological vector space.
+\begin{mydefinition}{Topological Vector Space}
+A topological vector space is a vector space $V$ over a field $F$ equipped with a topology $\tau$ such that the vector addition and scalar multiplication operations are continuous with respect to the topology $\tau$. In other words, the maps
+\begin{itemize}
+    \item $+: V \times V \to V$, defined by $(u, v) \mapsto u + v$,
+    \item $\cdot: F \times V \to V$, defined by $(a, v) \mapsto a \cdot v$
+\end{itemize}
+are continuous when $V \times V$ and $F \times V$ are equipped with the product topology. 
+\end{mydefinition}
+\begin{example}
+Let $V = \mathbb{R}^n$ be the vector space of all n-dimensional real vectors, and let $\tau$ be the standard topology on $\mathbb{R}^n$ induced by the Euclidean metric. The vector addition and scalar multiplication operations in $\mathbb{R}^n$ are continuous with respect to this topology. Therefore, $(\mathbb{R}^n, \tau)$ is a topological vector space.
+\end{example}
+\begin{mydefinition}{Normed Vector Space}
+A normed vector space is a vector space $V$ over a field $F$ equipped with a norm $\|\cdot\|: V \to [0, \infty)$ that satisfies the following properties for all $u, v \in V$ and all scalars $a \in F$:
+\begin{itemize}
+    \item \underemphasise{Non-negativity}: $\|v\| \geq 0$, and $\|v\| = 0$ if and only if $v = 0$.
+    \item \underemphasise{Scalar Multiplication}: $\|a \cdot v\| = |a| \cdot \|v\|$.
+    \item \underemphasise{Triangle Inequality}: $\|u + v\| \leq \|u\| + \|v\|$.
+\end{itemize}
+\end{mydefinition}
+\section{Banach Spaces and Hardy Spaces}
+We define Banach spaces and Hardy spaces, which are important examples of topological vector spaces. To define a Banach Space, we first need to define cauchy sequences and completeness.
+\begin{mydefinition}{Cauchy Sequence}
+A sequence $\{v_n\}$ in a normed vector space $V$ is called a Cauchy sequence if for every $\epsilon > 0$, there exists a positive integer $N$ such that for all $m, n \geq N$, the distance between the terms of the sequence is less than $\epsilon$. In other words,
+\[\|v_n - v_m\| < \epsilon\]
+\end{mydefinition}
+\begin{mydefinition}{Completeness}
+A normed vector space $V$ is said to be complete if every Cauchy sequence in $V$ converges to a limit that is also in $V$. In other words, for every Cauchy sequence $\{v_n\}$ in $V$, there exists a vector $v \in V$ such that
+\[\lim_{n \to \infty} v_n = v\]
+\end{mydefinition}
+Now, we can define a Banach space.
+\begin{mydefinition}{Banach Space}
+A Banach space is a complete normed vector space. This means that it is a vector space $V$ over a field $F$ equipped with a norm $\|\cdot\|$ such that every Cauchy sequence in $V$ converges to a limit that is also in $V$.
+Intuitively, a Banach space is a space where we can perform vector operations and measure distances between vectors, and it is "complete" in the sense that there are no "holes" or "gaps" in the space.
+\end{mydefinition}
+Now, lets define cyclic vectors in the context of Banach Spaces. 
+\begin{mydefinition}{Cyclic Vector in Banach Space}
+Let $V$ be a Banach space over a field $F$, and let $T \in \mathcal{L}(V)$ be a continuous linear operator on $V$. A vector $v \in V$ is called a cyclic vector for $T$ if the closure of the set $\{v, T(v), T^2(v), \ldots\}$ spans the entire Banach space $V$. In other words, the smallest closed subspace of $V$ containing all iterates of $v$ under $T$ is equal to $V$ itself.
+\end{mydefinition}
+
+To further define Hardy spaces, we first need to define analytic functions, $p$-norms and unit disks in the complex plane.
+\begin{mydefinition}{Unit Disk}
+The unit disk in the complex plane, denoted by $\mathbb{D}$, is the set of all complex numbers $z$ such that the magnitude (or modulus) of $z$ is less than 1. Mathematically, it is defined as:
+\[\mathbb{D} = \{ z \in \mathbb{C} : |z| < 1 \}\]
+where $|z|$ represents the distance of the complex number $z$ from the origin in the complex plane.
+\end{mydefinition}
+\begin{mydefinition}{$p$-Norm}
+Let $V$ be a vector space over a field $F$. For a vector $v \in V$ and a real number $p \geq 1$, the $p$-norm of $v$, denoted by $\|v\|_p$, is defined as:
+\[\|v\|_p = \left( \sum_{i=1}^{n} |v_i|^p \right)^{1/p}\]
+where $v = (v_1, v_2, \ldots, v_n)$ is represented in terms of its components with respect to a chosen basis of $V$, and $|v_i|$ denotes the absolute value (or modulus) of the component $v_i$.
+\end{mydefinition}
+\begin{mydefinition}{Analytic Functions}
+An analytic function is a complex-valued function defined on an open subset of the complex plane that is locally given by a convergent power series. In other words, a function $f: U \to \mathbb{C}$, where $U$ is an open subset of $\mathbb{C}$, is analytic at a point $z_0 \in U$ if there exists a radius $r > 0$ such that for all $z$ in the disk $|z - z_0| < r$, the function can be expressed as:
+\[f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n\]
+where the coefficients $a_n$ are complex numbers and the series converges to $f(z)$ within the disk.
+\end{mydefinition}
+\begin{mydefinition}{Hardy Space}
+A Hardy space, denoted by $H^p$, is a class of functions that are analytic in the open unit disk and have bounded $p$-norms on the boundary of the disk. Specifically, for $1 \leq p < \infty$, a function $f$ belongs to the Hardy space $H^p$ if it is analytic in the unit disk and satisfies:
+\[\|f\|_{H^p} = \sup_{0 < r < 1} \left( \frac{1}{2\pi} \int_0^{2\pi} |f(re^{i\theta})|^p d\theta \right)^{1/p} < \infty.\]
+For $p = \infty$, a function $f$ belongs to the Hardy space $H^\infty$ if it is analytic in the unit disk and satisfies:
+\[\|f\|_{H^\infty} = \sup_{|z| < 1} |f(z)| < \infty\]
+\end{mydefinition}
+
+\bibliographystyle{alpha}
+\bibliography{cyclic_references}
+\end{document}

@@ -1,0 +1,642 @@
+\documentclass[openany]{book}
+\input{notes}
+\usepackage{mathtools}
+\settitle{Analysis Pre-class Notes}
+\begin{document}
+\title{\Large{\underemphasise{Analysis Notes}} \\ \vspace{5pt}
+\large{Analysis 1: Notes, Exercises and PYQs}}
+\author{Eklavya Raman \\ \vspace{5pt} er24ms024@iiserkol.ac.in \\ \vspace{5pt}}
+\date{\today}
+\maketitle
+\tableofcontents
+\listoftheorems[
+    show=mytheorem,
+    title={List of Theorems}]
+\chapter{The Real Field}
+\section{Ordered Sets and Fields}
+\subsection{Ordered Sets}
+We use basic set theoretic notation and definitions.
+\begin{mydefinition}{Order and Ordered Set}
+    We define and order and an ordered set as follows:
+    \begin{enumerate}
+    \item An \underemphasise{order} on a set $S$ is relation $<$ defined such that:
+    \begin{enumerate}
+        \item For all $x, y, z \in S$, either $x < y$, $y < x$ or $x = y$.
+        \item For all $x, y, z \in S$, if $x < y$ and $y < z$, then $x < z$. (Transitivity)
+    \end{enumerate}
+    \item An \underemphasise{ordered set} is a set $S$ with an order $\leq$ defined on it.
+    \end{enumerate}
+\end{mydefinition}
+\begin{mydefinition}{Upper and Lower Bounds}
+    Let $S$ be an ordered set and $A \subset S$.
+    \begin{enumerate}
+        \item An element $x \in S$ is an \underemphasise{upper bound} of $A$ if for all $a \in A$, $a \leq x$. Then $A$ is \underemphasise{bounded above} if there exists an upper bound of $A$.
+        \item An element $x \in S$ is a \underemphasise{lower bound} of $A$ if for all $a \in A$, $x \leq a$. Then $A$ is \underemphasise{bounded below} if there exists a lower bound of $A$.
+    \end{enumerate}
+\end{mydefinition}
+\begin{mytheorem}[Every finite non-empty set is bounded]
+    Every finite non-empty subset $A$ of an ordered set $S$ is bounded above and below. That is, there exists an upper bound and a lower bound of $A$ in $S$.
+\end{mytheorem}
+\begin{proof}
+We show this using induction. As a base case, let - 
+$$A_1 = \{x_1\}$$
+Then, we see that $x_1$ is an upper bound of $A_1$ and also a lower bound of $A_1$. Now, let us assume that for some $n \in \mathbb{N}$, the statement holds for all sets of size $n$. That is, for any set $A_n$ of size $n$, there exists an upper bound and a lower bound. Now, let us consider a set $A_{n+1}$ of size $n+1$. We can write -
+$$A_{n+1} = A_n \cup \{x_{n+1}\}$$
+where $A_n$ is a set of size $n$. By the inductive hypothesis, we know that $A_n$ has an upper bound $u$ and a lower bound $l$. Now, we consider the following cases: 
+\begin{enumerate}
+    \item If $x_{n+1} \leq u$, then $u$ is an upper bound of $A_{n+1}$.
+    \item If $x_{n+1} > u$, then $x_{n+1}$ is an upper bound of $A_{n+1}$.
+    \item If $x_{n+1} \geq l$, then $l$ is a lower bound of $A_{n+1}$.
+    \item If $x_{n+1} < l$, then $x_{n+1}$ is a lower bound of $A_{n+1}$.
+\end{enumerate}
+Thus, in all cases, we see that $A_{n+1}$ has an upper bound and a lower bound. Hence, by induction, we conclude that every finite set is bounded above and below. 
+\end{proof}
+\begin{mydefinition}{Supremum and Infimum}
+    Let $S$ be an ordered set and $A \subset S$.
+    \begin{enumerate}
+        \item The \underemphasise{supremum} of $A$, denoted $\sup A$, is the least upper bound of $A$ i.e. - 
+        $$\sup A = \min ( \{x \in S : x \text{ is an upper bound of } A \} )$$
+        The epsilon definition of supremum is:
+        $$\forall \epsilon > 0, \exists a \in A: \sup A - \epsilon < a \leq \sup A$$
+        \item The \underemphasise{infimum} of $A$, denoted $\inf A$, is the greatest lower bound of $A$.
+        The epsilon definition of infimum is:
+        $$\forall \epsilon > 0, \exists a \in A: \inf A \leq a < \inf A + \epsilon$$
+    \end{enumerate}
+\end{mydefinition}
+\begin{mynote}
+\underemphasise{Important Points}: 
+\begin{itemize}
+    \item The supremum and infimum of a set may not exist. 
+    \item Either of the supremum or infimum may not be an element of the set.
+    \item If the supremum or infimum exists, it is unique.
+\end{itemize}
+\end{mynote}
+\begin{mytheorem}[Supremum and Infimum are unique]
+    Let $S$ be an ordered set and $A \subset S$. If $\sup A$ exists, then it is unique. Similarly, if $\inf A$ exists, then it is unique.
+\end{mytheorem}
+\begin{proof}
+    Let $\alpha$ and $\beta$ be two supremums of $A$. Then, by definition, $\alpha$ is an upper bound of $A$ and $\beta$ is an upper bound of $A$. Since $\alpha$ is the least upper bound, we have $\alpha \leq \beta$. Similarly, since $\beta$ is the least upper bound, we have $\beta \leq \alpha$. Hence, we conclude that $\alpha = \beta$. Thus, the supremum is unique. The proof for the infimum is similar.
+\end{proof}
+\begin{mydefinition}{Least upper bound property}
+    An ordered set $S$ is said to have the \underemphasise{least upper bound property} if every non-empty subset of $S$ that is bounded above has a supremum in $S$. That is - 
+    $$\forall A \subset S: ((A \neq \phi) \nd (A \text{ is bounded above})) \implies \sup A \in S$$
+\end{mydefinition}
+\begin{mytheorem}[Existence of Infimum in $S$ with the least upper bound property]
+    Let $S$ be an ordered set with the least upper bound property. Then for any non empty subset $A$ of $S$ that is bounded below and $L$ be the set of all lower bounds of $A$, then the following hold: \\ 
+    $\alpha = \sup L$ exists in $S$ and is the infimum of $A$, i.e.: 
+    $$\exists \alpha \in S: \alpha = \sup L = \inf A \implies \inf A \in S$$
+\end{mytheorem}
+\begin{proof}
+    Since $A$ is bounded below, $L$ is non-empty (there exists at least one lower bound of $A$). Now: 
+    $$L = \{y\in S: \forall x \in A, y \leq x\}$$
+    Since $S$ has the least upper bound property, $L$ is bounded above (by any element of $A$) and hence by the property, $\sup L$ exists in $S$. Now, we need to show that $\sup L = \inf A$. \\ \\ 
+    Let $\alpha = \sup L$. Then: 
+    $$\gamma < \alpha \implies \gamma \text{ is not an upper bound of } L$$
+    Thus $\gamma \notin A$. Therefore, $\alpha \leq x$ for all $x \in A$. Hence, $\alpha$ is a lower bound of $A$. \\
+    $$\alpha < \beta \implies \beta \notin L$$ since $\alpha$ is an upper bound of $L$. \\
+    Therefore, $\alpha \in L$ but any number greater than $\alpha$ is not in $L$. Hence, $\alpha$ is the greatest lower bound of $A$. \\
+    Thus, $\alpha = \inf A$. Since $\alpha$ is in $S$, we have shown that $\inf A \in S$.
+\end{proof}
+\subsection{Fields}
+\begin{mydefinition}{Field}
+    A \underemphasise{field} is a set $F$ with two operations $+$ and $\cdot$ defined on it such that it satisfies the following axioms: 
+    \begin{itemize}
+    \item \textbf{Addition Axioms:}
+        \begin{enumerate}
+            \item $x \in F \nd y \in F \implies x + y \in F$ (Closure under addition)
+            \item $x \in F \nd y \in F \implies y + x = x + y$ (Commutativity of addition)
+            \item $x \in F \nd y \in F \nd z \in F \implies (x + y) + z = x + (y + z)$ (Associativity of addition)
+            \item There exists an element $0 \in F$ such that for all $x \in F$, $x + 0 = x$ (Existence of additive identity)
+            \item For every $x \in F$, there exists an element $-x \in F$ such that $x + (-x) = 0$ (Existence of additive inverse)
+        \end{enumerate}
+    \item \textbf{Multiplication Axioms:}
+        \begin{enumerate}
+            \item $x \in F \nd y \in F \implies x \cdot y \in F$ (Closure under multiplication)
+            \item $x \in F \nd y \in F \implies y \cdot x = x \cdot y$ (Commutativity of multiplication)
+            \item $x \in F \nd y \in F \nd z \in F \implies (x \cdot y) \cdot z = x \cdot (y \cdot z)$ (Associativity of multiplication)
+            \item There exists an element $1 \in F$ such that for all $x \in F$, $x \cdot 1 = x$ (Existence of multiplicative identity)
+            \item For every $x \in F$ such that $x \neq 0$, there exists an element $x^{-1} = 1/x$ such that $x \cdot x^{-1} = 1$ (Existence of multiplicative inverse)
+        \end{enumerate}
+    \item \textbf{Distributive Axiom:} $$\forall x, y, z \in F: x \cdot (y + z) = x \cdot y + x \cdot z$$   
+    \end{itemize}
+    \begin{example}
+        The set of rational numbers $\mathbb{Q}$ with the usual operations of addition and multiplication is a field.
+    \end{example}
+\end{mydefinition}
+\begin{mydefinition}{Ordered Field}
+    An \underemphasise{ordered field} is a field $F$ with an order $\leq$ defined on it such that:
+    \begin{enumerate}
+        \item For all $x, y, z \in F$, if $x < y$, then $x + z < y + z$ (Order is preserved under addition)
+        \item For all $x, y, z \in F$, if $0 < x$ and $0 < y$, then $0 < x \cdot y$ (Order is preserved under multiplication)
+    \end{enumerate}
+\end{mydefinition}
+\subsection{The Real Field and its properties}
+\begin{mytheorem}[Existence Theorem of the Real Field]
+    There exists a unique ordered field $\mathbb{R}$ such that:
+    \begin{enumerate}
+        \item $\mathbb{R}$ has the least upper bound property.
+        \item $\mathbb{R}$ contains the rational numbers $\mathbb{Q}$ as a subfield.
+    \end{enumerate}
+    This field is called the \underemphasise{real field} or the \underemphasise{field of real numbers}.
+\end{mytheorem}
+\begin{mytheorem}[Archimedean Property and Density of $\mathbb{Q}$ in $\mathbb{R}$]
+    The field of real numbers $\mathbb{R}$ satisfies the following properties:
+    \begin{enumerate}
+        \item \textbf{Archimedean Property:} For any two real numbers $x$ and $y$, there exists a natural number $n$ such that $nx>y$, i.e.:
+        $$\forall x, y \in \mathbb{R}, \exists n \in \mathbb{N}: nx >y$$
+        \item \textbf{Density of $\mathbb{Q}$ in $\mathbb{R}$:} For any two real numbers $x$ and $y$ with $x < y$, there exists a rational number $q \in \mathbb{Q}$ such that $x < q < y$, i.e: 
+        $$\forall x, y \in \mathbb{R}, (x < y) \implies \exists q \in \mathbb{Q}: x < q < y$$
+    \end{enumerate}
+\end{mytheorem}
+\begin{proof}
+\textbf{Archimedean Property:} \\
+We prove this by contradiction. Assume the contrapositive of the statement. That is: 
+$$\exists x, y \in \mathbb{R}: \forall n \in \mathbb{N}, nx \leq y$$
+Now, let $A = \{nx: n \in \N\}$. Then, $A$ is a non-empty subset of $\mathbb{R}$ that is bounded above by $y$. By the least upper bound property, $\sup A$ exists in $\mathbb{R}$. Let $\alpha = \sup A$. Then, we have:
+$$\forall n \in \mathbb{N}, nx \leq \alpha$$ 
+Let us consider the element $\alpha - x$. Since $\alpha$ is the least upper bound, we have:
+$$\alpha - x < \alpha \implies \exists m: \alpha - x < mx \implies \alpha < (m+1)x$$
+But $(m+1)x \in A$ since $m+1 \in \mathbb{N}$. This implies that $\alpha$ is not an upper bound of $A$, which contradicts the fact that $\alpha = \sup A$. Hence, our assumption is false and the Archimedean property holds. \\
+\textbf{Density of $\mathbb{Q}$ in $\mathbb{R}$:} \\
+Since $x < y$, we have $y - x >0$. Then by the archimedean property, there exists a natural number $n$ such that:
+$$n(y - x) > 1 \implies 1 + nx < ny$$
+Again, by the Archimedean property, there exist natural numbers $m_1, m_2$ such that:
+$$m_1 > nx \nd m_2 > -nx \implies -m_2 < nx < m_1$$
+Therefore there is an integer $m$ such that: 
+$$m-1 \leq nx < m \implies nx < m \leq 1 + nx < ny$$
+Therefore, we have that $$x < \frac{m}{n} < y$$
+where $\frac{m}{n} \in \mathbb{Q}$. Thus, we have shown that for any two real numbers $x$ and $y$ with $x < y$, there exists a rational number $q = \frac{m}{n}$ such that $x < q < y$. Hence, the density of $\mathbb{Q}$ in $\mathbb{R}$ holds.
+\end{proof}
+\begin{mytheorem}[Density of $\R \backslash \Q$ or the set of irrational numbers in $\mathbb{R}$]
+The set of irrational numbers $\R \backslash \Q$ is dense in $\mathbb{R}$. That is, for any two real numbers $x$ and $y$ with $x < y$, there exists an irrational number $r \in \R \backslash \Q$ such that $x < r < y$.
+\end{mytheorem}
+\begin{proof}
+Let $x, y \in \mathbb{R}$ such that $x < y$. Therefore, $x + \sqrt{2} < y + \sqrt{2}$. By the density of $\mathbb{Q}$ in $\mathbb{R}$, there exists a rational number $q \in \mathbb{Q}$ such that: 
+$$x + \sqrt{2} < q < y + \sqrt{2} \implies x < q - \sqrt{2} < y$$
+The number $q - \sqrt{2}$ is irrational since it is the difference of a rational number and an irrational number (see exercises for proof). Hence, we have shown that for any two real numbers $x$ and $y$ with $x < y$, there exists an irrational number $r = q - \sqrt{2}$ such that $x < r < y$. Thus, the set of irrational numbers is dense in $\mathbb{R}$.
+\end{proof} 
+\begin{mytheorem}[The Completeness Property of $\mathbb{R}$]
+The completeness property of the real numbers states that every non-empty subset of $\mathbb{R}$ that is bounded above has a supremum in $\mathbb{R}$. This is a fundamental property that distinguishes the real numbers from the rational numbers, which do not have this property. 
+\end{mytheorem}
+\begin{proof}
+The property holds from the definition of the real field, as it is constructed to have the least upper bound property, and by Theorem 1.3. The theorem also guarantess that the infimum of a non-empty subset of $\mathbb{R}$ that is bounded below exists in $\mathbb{R}$.
+\end{proof}
+\begin{example}
+To show that the set defined by $A = \{x \in \mathbb{Q}: x^2 < 2\}$ is bounded above and has a supremum, we first note that $A$ is non-empty. The set $A$ is bounded above by $2$, since for all $x \in A$, we have $x^2 < 2 \implies |x| < \sqrt{2}$. Therefore, $\sqrt{2}$ is an upper bound of $A$. By the completeness property, we know that $\sup A$ exists in $\mathbb{R}$. In fact, we can show that $\sup A = \sqrt{2}$.
+\end{example}
+\begin{mytheorem}[Cantor's Intersection Theorem]
+Let $\{A_n\}_{n=1}^{\infty}$ be a sequence of closed and bounded intervals in $\mathbb{R}$ such that $A_n \supseteq A_{n+1}$ for all $n \in \mathbb{N}$. Then, the intersection of all these intervals is non-empty. That is:
+$$\bigcap_{n=1}^{\infty} A_n \neq \phi$$
+\end{mytheorem}
+\begin{proof}
+Let $A_n = [a_n, b_n]$ be the closed and bounded intervals. Since $A_n \supseteq A_{n+1}$, we have $a_n \leq a_{n+1}$ and $b_n \geq b_{n+1}$ for all $n \in \mathbb{N}$. Consider the set (which can also be defined as a sequence): 
+$$B = \{a_n: n \in \mathbb{N}\}$$
+Then, $B$ is a non-empty set of all lower bounds of the intervals $A_n$. We show now that $b_k$ is an upper bound of $B$ for all $k \in \mathbb{N}$. Since $b_k \geq b_n$ for all $n \geq k$, we have:
+$$\forall n \geq k, a_n \leq b_k$$
+Similarly for $n < k$, we have $b_n \geq b_k \geq a_k \geq a_n$. Therefore, $b_k \geq a_n$ for all $n \in \mathbb{N}$. Hence, $B$ is bounded above by $b_k$. By the completeness property of $\mathbb{R}$, we know that $\sup B$ exists in $\mathbb{R}$. Let $\alpha = \sup B$. By the completeness property, we know that $\alpha$ is the least upper bound of $B$. Therefore, the intersection of all the intervals contains at least one element, which is $\alpha$.
+
+\end{proof}
+\subsection{Functions defined on $\mathbb{R}$}
+\begin{mydefinition}{Absolute Value}
+    The \underemphasise{absolute value} of a real number $x$ is defined as $|x|: \R \rightarrow \R$ such that:
+    $$|x| = 
+    \begin{cases}
+        x & \text{if } x \geq 0 \\
+        -x & \text{if } x < 0
+    \end{cases}$$
+\end{mydefinition}
+\begin{mytheorem}[Absolute Value Theorems] The absolute value function $|x|$ satisfies the following properties for all $x, y \in \R$ and $\epsilon > 0$:
+    \begin{enumerate}
+        \item $\abs{x} = \max\{x, -x\}$ for all $x \in \R$
+        \item $-\abs{x} \leq x \leq \abs{x}$ for all $x \in \R$
+        \item $\abs{x - a} < \epsilon \implies a - \epsilon < x < a + \epsilon$ for all $x, a \in \R$ and $\epsilon > 0$
+        \item If $x, y \in \R$, then $\abs{x + y} \leq \abs{x} + \abs{y}$ (Triangle Inequality)
+        \item $\abs{\abs{x} - \abs{y}} \leq \abs{x - y}$ for all $x, y \in \R$
+        \item $\max\{x, y\} = \frac{1}{2}(|x| + |y| + |x - y|)$ for all $x, y \in \R$
+        \item $\min\{x, y\} = \frac{1}{2}(|x| + |y| - |x - y|)$ for all $x, y \in \R$
+    \end{enumerate}
+\end{mytheorem}
+\begin{proof}
+    We provide a proof for all the theorems in the following manner:
+    \begin{enumerate}
+    \item $\max\{x, -x\} = \begin{dcases}
+        x & \text{if } x \geq 0 \\
+        -x & \text{if } x < 0
+    \end{dcases}$ which is the definition of absolute value. Hence, the first theorem holds.
+    \item We know $\abs{x} \geq \pm x$ for all $x \in \R$. Therefore, we have:
+i    $$-\abs{x} \leq x \leq \abs{x}$$
+    \item If $\abs{x - a} < \epsilon$, then by the definition of absolute value, we have the following cases: 
+    $$\begin{cases}
+        x - a < \epsilon \implies x < a + \epsilon & \text{if } x - a \geq 0  \\
+        -(x - a) < \epsilon \implies a - \epsilon < x & \text{if } x - a < 0
+    \end{cases}$$
+    Then we can combine the two cases to get:
+    $$a - \epsilon < x < a + \epsilon$$
+    \item We know that $\pm x \leq \abs{x}$ and $\pm y \leq \abs{y}$ for all $x, y \in \R$. Therefore, we have:
+    $$\pm(x + y) \leq \abs{x + y} \leq \abs{x} + \abs{y}$$
+    \item $\abs{x} \leq \abs{x-y} + \abs{y} \implies \abs{x} - \abs{y} \leq \abs{x - y}$ and similarly $\abs{y} \leq \abs{x} + \abs{x - y}$. Therefore, we have:
+    $$\abs{\abs{x} - \abs{y}} \leq \abs{x - y}$$
+    \item Expand RHS to show equality.
+    \item Expand RHS to show equality.
+    \end{enumerate}
+    Thus, we have shown that all the theorems hold.
+\end{proof}
+\section{Exercises}
+\subsection{Selected exercises from Rudin}
+\begin{exercise}
+    For $r \in \Q: r\neq0$ and $x \in \R\backslash \Q$, show that $x + r$ is irrational. Show also that $rx$ is irrational.
+\end{exercise}
+\begin{proof}
+We assume that $x + r$ is rational. Then, we can write:
+$$x + r = \frac{p}{q}$$
+where $p, q \in \Z$ and $q \neq 0$. We can write $r$ as $r = \frac{a}{b}$ where $a, b \in \Z$ and $b \neq 0$. Then, we have:
+$$x = \frac{p}{q} - \frac{a}{b} = \frac{pb - aq}{qb}$$
+Since $p, q, a, b \in \Z$, we see that $x$ is rational, which contradicts our assumption that $x \in \R \backslash \Q$. Hence, we conclude that $x + r$ is irrational. \\
+Now, we assume that $rx$ is rational. Then, we can write:
+$$rx = \frac{p}{q}$$
+where $p, q \in \Z$ and $q \neq 0$. We can write $r$ as $r = \frac{a}{b}$ where $a, b \in \Z$ and $b \neq 0$. Since $r>0$, we know that $a>0$. Then, we have:
+$$x = \frac{p}{q} \cdot \frac{b}{a} = \frac{pb}{aq}$$
+Since $p, q, a, b \in \Z$, we see that $x$ is rational, which contradicts our assumption that $x \in \R \backslash \Q$. Hence, we conclude that $rx$ is irrational.
+\end{proof}
+\begin{exercise}
+    Show that there is no rational number $r$ such that $r^2 = 12$.
+\end{exercise}
+\begin{proof}
+We assume that there exists a rational number $r$ such that $r^2 = 12$. Then, we can write $r$ as $r = \frac{p}{q}$ where $p, q \in \Z$ and $q \neq 0$ and $\gcd(p, q) = 1$. Then, we have:
+$$\left(\frac{p}{q}\right)^2 = 12 \implies p^2 = 12q^2$$
+Since $12 = 3 \cdot 4$, we can write:
+$$p^2 = 3 \cdot 4q^2$$
+This implies that $p^2$ is divisible by $3$. Therefore, $p$ must also be divisible by $3$. Let us write $p = 3k$ for some integer $k$. Then, we have:
+$$p^2 = 9k^2 \implies 9k^2 = 12q^2 \implies 3k^2 = 4q^2$$
+This implies that $q^2$ is divisible by $3$. Therefore, $q$ must also be divisible by $3$. Let us write $q = 3m$ for some integer $m$. Then, we have:
+$$p = 3k \implies \gcd(p, q) = \gcd(3k, 3m) = 3\gcd(k, m)$$
+This contradicts our assumption that $\gcd(p, q) = 1$. Hence, we conclude that there is no rational number $r$ such that $r^2 = 12$.
+\textbf{There exists a similar proof for $r^2 = 2$ and $r^2 = 3$.}
+\end{proof}
+\begin{exercise}
+    Let $E$ be a non-empty subset of an ordered set $S$. Let $E$ be bounded above and below by $a$ and $b$ respectively. Show that $a \leq b$. From this conclude that $\sup E \geq \inf E$.
+\end{exercise}
+\begin{proof}
+We assume that $E$ is bounded above by $a$ and below by $b$. Then, we have:
+$$\forall x \in E, x \leq a \nd b \leq x$$
+Combining the two inequalities, we have:
+$$b \leq x \leq a$$
+Since this holds for all $x \in E$, we can conclude that $b \leq a$.
+Then from this it directly follows that: 
+$$\sup E \geq \inf E$$
+since $\sup E$ is the least upper bound of $E$ and $\inf E$ is the greatest lower bound of $E$.
+\end{proof}
+\begin{exercise}
+    Let $A$ be a non-empty subset of $\R$ that is bounded below. Show that the set defined by: 
+    $$B = \{x \in A: -x\}$$ 
+    is bounded above and that $\sup B = -\inf A$.
+\end{exercise}
+\begin{proof}
+    Since $A$ is bounded below, by the completeness property of $\mathbb{R}$, we know that $\inf A$ exists in $\mathbb{R}$. Let $\alpha = \inf A$. Then, by definition, we have:
+    $$\forall x \in A, \alpha \leq x$$
+    Now, we consider the set $B = \{-x: x \in A\}$. We need to show that $B$ is bounded above. For any $x \in A$, we have:
+    $$-x \leq -\alpha$$
+    Therefore, $-\alpha$ is an upper bound of $B$. Now, we need to show that it is the least upper bound of $B$. Assume $-\alpha$ is not the least upper bound of $B$. Then, there exists an upper bound $\beta < -\alpha$ such that: 
+    $$\forall y \in B, y \leq \beta \implies -y \geq -\beta \implies \forall x \in A: x \geq -\beta \implies x \geq \alpha$$
+    But this contradicts the fact that $\alpha$ is the greatest lower bound of $A$. Hence, we conclude that $-\alpha$ is the least upper bound of $B$. 
+\end{proof}
+\subsection{Exercises and Selected proofs from Bartle and Sherbert}
+\begin{exercise}
+    Show that if $a \in \R$ such that $0 \leq a < \epsilon$ for every $\epsilon > 0$, then $a = 0$. \\
+    We then define the \underemphasise{epsilon neighbourhood} of $a$ as the set:
+    $$V_\epsilon(a) = \{x \in \R: |x - a| < \epsilon\}$$
+    Show that if $ x \in V_\epsilon(a)$ for every $\epsilon > 0$, then $x = a$.
+\end{exercise}
+\begin{proof}
+    We assume that $a \neq 0$. Then, we have:
+    $$\forall \epsilon \in \R: 0 < a < \epsilon$$
+    Setting $\epsilon = \frac{a}{2}$, we have:
+    $$0 < a < \frac{a}{2}$$
+    However, since $a > 0$, we have $a < \frac{a}{2}$ which is a contradiction. Hence, we conclude that our assumption is false and $a = 0$. \\
+    Now, from the definition of the epsilon neighbourhood, we have:
+    $$\abs{x-a} < \epsilon$$
+    for every $\epsilon > 0$. By the proof above, we can conclude that $\abs{x-a} = 0$. Therefore, we have $x - a = 0 \implies x = a$. 
+\end{proof}
+\begin{exercise}
+    Let $S = \{x \in \R: x \geq 0\}$. Show that $S$ has lower bounds, but does not have an upper bound. Show that $\inf S = 0$.  
+\end{exercise}
+\begin{proof}
+    It is obvious from the definition of $S$ that 0 is a lower bound of $S$. In fact, any negative number is a lower bound of $S$. We now show that $\inf S = 0$. Let us assume the contrary that $\inf S = a < 0$. Then, by the definition of infimum, we have: 
+    $$\forall \epsilon > 0, \exists x \in S: a < x < a + \epsilon$$
+    Let us take $\epsilon = -a$ (since $a < 0$, $-a > 0$). Then, we have: 
+    $$\exists x \in S: a < x < 0$$
+    Therefore, $x$ is negative, which contradicts the fact that $S$ contains only non-negative numbers. Hence, we conclude that $\inf S = 0$. \\
+    Now, we show that $S$ does not have an upper bound. Assume that there exists an upper bound $u$ of $S$. Then, by the archimedean property: 
+    $$\forall x \in A, \exists n \in \N: nx > u$$ 
+    Since $x \geq 0$, we have $nx \geq 0 \implies nx \in S$. Therefore, $u$ is not an upper bound of $S$, which contradicts our assumption. Hence, we conclude that $S$ does not have an upper bound.
+\end{proof}
+\begin{exercise}
+    Let $S = \{\frac{1}{n}: n \in \N\}$. Show that $S$ is bounded above and below. Find $\sup S$ and $\inf S$.
+\end{exercise}
+\begin{proof}
+    We first show that $S$ is bounded above. It is sufficient to show that: 
+    $$\forall n \in \N, \frac{1}{n} \leq 1$$
+    Assume the contrary that there exists an $n \in \N$ such that $\frac{1}{n} > 1$. Then, we have:
+    $$n < 1$$
+    This is a contradiction since $n$ is a natural number and hence $n \geq 1$. Hence, we conclude that $S$ is bounded above by 1. \\
+    Now, we show that $S$ is bounded below. It is sufficient to show that:
+    $$\forall n \in \N, \frac{1}{n} \geq 0$$
+    Assume the contrary that there exists an $n \in \N$ such that $\frac{1}{n} < 0$. Then, we have:
+    $$n < 0$$
+    This is a contradiction since $n$ is a natural number and hence $n \geq 1$. Hence, we conclude that $S$ is bounded below by 0. \\
+    Now, we find $\sup S$ and $\inf S$. We know that $S$ is bounded above by 1. We now show that 1 is the least upper bound of $S$. \textbf{We eliminate the case $\sup S < 1$ as trivial.} Assume the contrary that $\sup S = u > 1$. Then, by the definition of supremum, we have:
+    $$\forall \epsilon > 0, \exists x \in S: u - \epsilon < x < u$$ 
+    Let us take $\epsilon = u - 1$. Then, we have that: 
+    $$\exists x \in S: u - (u - 1) < x < u \implies 1 < x < u$$
+    But this is a contradiction since $x \leq 1$ for all $x \in S$ since 1 is an upper bound of S. Hence, we conclude that $\sup S = 1$. \\
+    Now, we find $\inf S$. We know that $S$ is bounded below by 0. We now show that 0 is the greatest lower bound of $S$. \textbf{We eliminate the case $\inf S > 0$ as trivial.} Assume the contrary that there $\inf S = l < 0$. Then, by the definition of infimum, we have:
+    $$\forall \epsilon > 0, \exists x \in S: l < x < l + \epsilon$$
+    Let us take $\epsilon = -l$. Then, we have that: 
+    $$\exists x \in S: l < x < l - l \implies l < x < 0$$
+    But this is a contradiction since $x \geq 0$ for all $x \in S$ since 0 is a lower bound of S. Hence, we conclude that $\inf S = 0$.
+\end{proof}
+\begin{exercise}
+    Let $S$ be a non-empty subset of $\R$. Show that $u$ is an upper bound of $S$ iff $t \in \R \nd t > u \implies t \notin S$. 
+\end{exercise}
+\begin{proof}
+    Assume that $S$ is bounded above by $u$. Then, by the definition of upper bound, we have that for any $t \in \R$: 
+    $$\forall x \in S, x \leq u \implies \nexists t \in S: t > u$$
+    This proves the first direction. Now, we prove the other direction. Assume that $t \in \R$ such that $t > u \implies t \notin S$. Then, we have that: 
+    $$\nexists x \in S: x > u \implies \forall x \in S, x \leq u$$
+    This gives us that $u$ is an upper bound of $S$. Hence, we have shown that $u$ is an upper bound of $S$ iff $t \in \R \nd t > u \implies t \notin S$.
+\end{proof}
+\begin{exercise}
+    Show that there exists a real number $x$ such that $x^2 = 2$. Denote such an $x$ by $\sqrt{2}$.
+\end{exercise}
+\begin{proof}
+We consider the set $S = \{x \in \R: x \geq 0 \nd x^2 < 2\}$. This set is non-empty since it contains 1 as an element. It is obvious from the definition of $S$ that is is bounded above (verifiable for any suitable number, e.g. 2). By the completeness property of $\mathbb{R}$, we know that $\sup S$ exists in $\mathbb{R}$. Let us denote $\alpha = \sup S$. We now show that $\alpha^2 = 2$. \\
+Assume that $\alpha^2 < 2$. 
+We find a suitable $n \in \N$ such that: 
+$$\left(\alpha + \frac{1}{n}\right)^2 < 2$$
+To find such an $n$, we get:
+$$\left(\alpha + \frac{1}{n}\right)^2 = \alpha^2 + 2\alpha \cdot \frac{1}{n} + \frac{1}{n^2} \leq \alpha^2 + \frac{1}{n}(2x+1)$$ \\ 
+Then, we can choose $n$ such that:
+$$\frac{1}{n}(2\alpha + 1) < 2 - \alpha^2$$
+This is possible since $\alpha^2 < 2$ and hence $2 - \alpha^2 > 0$. Therefore, we can find an $n \in \N$ such that:
+$$\frac{1}{n} = \frac{2 - \alpha^2}{2\alpha + 1}$$
+The archimedean property guarantees that such an $n$ exists. Therefore, we have:
+$$\exists n \in \N: \left(\alpha + \frac{1}{n}\right)^2 < 2$$
+This implies that $\alpha + \frac{1}{n} \in S$ since $S$ is the set of all non-negative real numbers whose square is less than 2. This is a contradiction since $\alpha$ is the least upper bound of $S$. Hence, we conclude that $\alpha^2 \geq 2$. \\
+We can similarly show that $\alpha^2 > 2$ is false. Hence, we conclude that $\alpha^2 = 2$. 
+\end{proof}
+\begin{exercise}
+    Let $S \subseteq \R$ be a non-empty set that is bounded above. Suppose that $ \exists \alpha \in S: \alpha = \sup S$. If $u \notin S$ show that: 
+    $$\sup S \union \{u\} = \sup \{\alpha, u\}$$
+    Use this result to show that any non-empty finite set $A \subseteq \R$ contains its supremum. 
+\end{exercise}
+\begin{proof}
+    We first show that $\sup S \union \{u\} = \sup \{\alpha, u\}$. 
+    We consider the following cases: 
+    \begin{enumerate}
+        \item If $u < \alpha$, then $\sup S \union \{u\} = \sup S = \alpha = \sup \{\alpha, u\}$.
+        \item If $u = \alpha$, then $\sup S \union \{u\} = \sup S = \alpha = \sup \{\alpha, u\}$.
+        \item If $u > \alpha$, then $\sup S \union \{u\} = u = \sup \{\alpha, u\}$.
+    \end{enumerate}
+    All the cases follow directly from the definition of supremum. Hence, we have shown that $\sup S \union \{u\} = \sup \{\alpha, u\}$. \\
+    Now, we show that any non-empty finite set $A \subseteq \R$ contains its supremum. We show this by induction. Let $A_n$ denote an arbitrary non-empty finite set of $n$ elements, where $n \in \N$. 
+    The base case is $n = 1$. In this case, $A_1 = \{a\}$ for some $a \in \R$. Then, we have $\sup A_1 = a$ and hence $A_1$ contains its supremum. \\
+    We assume that the statement holds for $n = k$. That is, $A_k$ contains its supremum. Now, we consider the set $A_{k+1} = A_k \union \{u\}$ where $u \in \R$. By the induction hypothesis, we know that $\sup A_k$ exists in $\R$. If $u \notin A_k$, then by the result we proved above, we have:
+    $$\sup A_{k+1} = \sup A_k \union \{u\} = \sup \{\sup A_k, u\}$$
+    Since $\sup A_k$ exists in $\R$, we know that $\sup A_{k+1}$ also exists in $\R$. Therefore, $A_{k+1}$ contains its supremum. \\
+    Hence, by induction, we have shown that any non-empty finite set $A \subseteq \R$ contains its supremum.
+\end{proof}
+\begin{exercise}
+    Show that: 
+    $$\megaintersect{n \in \N}{}\left(0, \frac{1}{n}\right) = \phi$$
+    Also show that: 
+    $$\megaintersect{n \in \N}{}\left[0, \frac{1}{n}\right] \neq \phi$$
+\end{exercise}
+\begin{proof}
+    We first show that $\megaintersect{n \in \N}{}\left(0, \frac{1}{n}\right) = \phi$. 
+    Let $x \in \megaintersect{n \in \N}{}\left(0, \frac{1}{n}\right)$. Then, we have:
+    $$\forall n \in \N: 0 < x < \frac{1}{n} \implies \forall n \in \N: 0 < nx < 1$$
+    But by the archimedean property, we know that there exists a natural number $m$ such that:
+    $$mx > 1$$
+    This is a contradiction. 
+    Hence, we conclude that $\megaintersect{n \in \N}{}\left(0, \frac{1}{n}\right) = \phi$. \\ 
+    Now, we show that $\megaintersect{n \in \N}{}\left[0, \frac{1}{n}\right] \neq \phi$. This follows directly from Cantor's intersection theorem. We can see that the intervals $\left[0, \frac{1}{n}\right]$ are closed and bounded, and they are nested since $\frac{1}{n} \geq \frac{1}{n+1}$ for all $n \in \N$. Therefore, by Cantor's intersection theorem, we have:
+    $$\megaintersect{n \in \N}{}\left[0, \frac{1}{n}\right] \neq \phi$$
+    In fact, we can show that the intersection is equal to $\{0\}$.
+\end{proof}
+\begin{exercise}
+    Show that for two non-empty sets $A, B \subseteq \R$: 
+    $$\exists \sup(A), \sup(B) \implies \exists \sup (A + B) = \sup(A) + \sup(B)$$
+\end{exercise}
+\begin{proof}
+Let $\alpha = \sup(A)$ and $\beta = \sup(B)$. We need to show that $\sup(A + B) = \alpha + \beta$.
+We first show that $\alpha + \beta$ is an upper bound of $A + B$. For any $a \in A$ and $b \in B$, we have:
+$$a \leq \alpha \nd b \leq \beta \implies a + b \leq \alpha + \beta$$
+Therefore, $\alpha + \beta$ is an upper bound of $A + B$. Therefore, by the completeness property of $\mathbb{R}$, we know that $\sup(A + B)$ exists in $\mathbb{R}$. We now show that $\sup(A + B) \leq \alpha + \beta$. We know by definition of supremum that: 
+\begin{align*}
+    &\forall \epsilon > 0, x \in A: \alpha - \frac{\epsilon}{2} < x \leq \alpha \\
+    &\forall \epsilon > 0, y \in B: \beta - \frac{\epsilon}{2} < y \leq \beta 
+\end{align*}
+Combining the two inequalities, we get - 
+$$ \forall \epsilon > 0,: \alpha + \beta - \epsilon < x + y \leq \alpha + \beta$$
+Since $x+y \in A+B$, we have $\sup(A+B) = \alpha + \beta$
+\end{proof}
+
+
+%% End of the First Chapter
+
+
+\chapter{Sequences and Series}
+All undefined terms have their usual meanings. 
+\section{Sequences}
+\subsection{Sequences and their limits}
+\begin{mydefinition}{Sequences and Terms}
+    A \underemphasise{sequence} in a set $S$ is a function: $f: \N \rightarrow A$ where $A \subseteq S$. \\ 
+    The value of this function $f$ at any fixed $n \in \N$ is denoted by $x_n$ and is referred to as the  $n^{th}$ \underemphasise{term} of the sequence. Other letters can be used as identifiers for terms, such as $z, y$, etc. \\\\
+    A sequence in $\R$ for example, is a function $f: \N \rightarrow A$, where $A \subseteq \R$ and the terms of the sequence are denoted by $x_n = f(n)$ for $n \in \N$. \\\\
+    A sequence itself is denoted as $(x_n : n \in \N)$, this is different from the notation for a set, which is denoted as $\{x_n : n \in \N\}$. The former denotes a sequence, while the latter denotes a set of terms (the difference is that a sequence has an ordering, while a set does not). 
+\end{mydefinition}
+\begin{mydefinition}{Limit of a Sequence and convergence/divergence}
+    Let $(x_n : n \in \N)$ be a sequence in $\R$. We say that the sequence \underemphasise{converges} to a real number $L$ if:
+    $$\forall \epsilon > 0, \exists N \in \N: n > N \implies |x_n - L| < \epsilon$$
+    In this case, we write $\limit{n}{\infty}{x_n} = L$ or simply $\lim(x_n) = L$. If a sequence does not converge to any real number, we say that it is \underemphasise{divergent}. \\
+    The number $L$ is called the \underemphasise{limit} of the sequence $(x_n : n \in \N)$.
+\end{mydefinition}
+\begin{mynote}
+    Intuitively, the definition of convergence means that as $n$ becomes larger and larger, the terms of the sequence get arbitrarily close to the limit $L$. The number $N$ in the definition is a threshold beyond which all terms of the sequence are within $\epsilon$ distance from $L$. That just means that for any epsilon you can think of, for sufficiently large $n$, the terms of the sequence will be within that epsilon distance from $L$. The sufficiently large is defined by $N$.
+\end{mynote}
+\begin{mytheorem}[Uniqueness of Limits]
+    If a sequence $(x_n : n \in \N)$ converges to two different limits $L_1$ and $L_2$, then $L_1 = L_2$.
+\end{mytheorem}
+\begin{proof}
+    Assume that $(x_n : n \in \N)$ converges to two different limits $L_1$ and $L_2$. Then, by the definition of convergence, we have:
+    $$\forall \epsilon > 0, \exists N_1 \in \N: n > N_1 \implies |x_n - L_1| < \epsilon$$
+    $$\forall \epsilon > 0, \exists N_2 \in \N: n > N_2 \implies |x_n - L_2| < \epsilon$$
+    Let $N = \max(N_1, N_2)$.
+    By the triangle inequality, we have:
+    $$\forall \epsilon > 0, n>N: |L_1 - L_2| = |(L_1 - x_n) + (x_n - L_2)| \leq |L_1 - x_n| + |x_n - L_2| < 2\epsilon$$ 
+    $$\implies \abs{L_1 -L_2} = 0 \implies L_1 = L_2$$
+    Hence, we conclude that if a sequence converges to two different limits, then those limits must be equal.
+\end{proof}
+\begin{mytheorem}[Presence of infinite terms within epsilon distance from the limit]
+    If a sequence $(x_n : n \in \N)$ converges, then we can find a natural number $N$ such that for all $n > N$, the terms of the sequence are within a distance of $\epsilon$ from each other. That is:
+    $$\forall \epsilon > 0, \exists N \in \N: m, n > N \implies |x_n - x_m| < \epsilon$$
+\end{mytheorem}
+\begin{proof}
+    Let $(x_n : n \in \N)$ be a sequence that converges to $L$. Then, by the definition of convergence, we have:
+    $$\forall \epsilon > 0, \exists N \in \N: m , n > N \implies |x_n - L| < \frac{\epsilon}{2} \nd |x_m - L| < \frac{\epsilon}{2}$$
+    Then, by the triangle inequality, we have:
+    $$|x_n - x_m| = |(x_n - L) + (L - x_m)| \leq |x_n - L| + |L - x_m| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+    Hence, we conclude that for all $m, n > N$, the terms of the sequence are within a distance of $\epsilon$ from each other.
+\end{proof}
+\subsection{Limit Theorems}
+\begin{mydefinition}{Bounded Sequences}
+    A sequence $(x_n : n \in \N)$ is said to be \underemphasise{bounded above} if there exists a real number $\alpha$ such that:
+    $$\forall n \in \N, x_n \leq \alpha$$
+    Similarly, a sequence is said to be \underemphasise{bounded below} if there exists a real number $\beta$ such that:
+    $$\forall n \in \N, x_n \geq \beta$$
+    If a sequence is bounded above and below, we say that it is \underemphasise{bounded}.
+\end{mydefinition}
+\begin{mytheorem}[Convergent Sequences are bounded]
+    If a sequence $X = (x_n : n \in \N)$ converges, then it is bounded. 
+\end{mytheorem}
+\begin{proof}
+    Let $X = (x_n : n \in \N)$ be a sequence that converges to $L$. Then, by the definition of convergence, we have:
+    $$\forall \epsilon > 0, \exists N \in \N: n > N \implies |x_n - L| < \epsilon$$
+    Let us take $\epsilon = 1$. Then, we have:
+    $$\exists N \in \N: n > N \implies |x_n - L| < 1$$
+    This implies that for all $n > N$, we have:
+    $$x_n < L + 1$$
+    Let $\alpha = \max\{L + 1, x_1, x_2, \ldots, x_N\}$. 
+    Then, we have:
+    $$\forall n \in \N, x_n \leq \alpha$$
+    We also know that for $n > N$, all terms of the sequence are within a distance of 1 from $L$. Therefore, we have:
+    $$\forall n> N: x_n > L - 1$$
+    Let $\beta = \min\{L - 1, x_1, x_2, \ldots, x_N\}$. 
+    Then, we have:
+    $$\forall n \in \N, x_n \geq\beta$$
+    Therefore, we have shown that the sequence $X = (x_n : n \in \N)$ is bounded above by $\alpha$ and below by $\beta$. Hence, we conclude that convergent sequences are bounded.
+\end{proof}
+\begin{mynote}
+    The definition of convergence is useful only to verify that a sequence converges to a limit. It is not useful to find the limit of a sequence. It does not provide an algorithm to find the limit. 
+\end{mynote}
+\begin{mydefinition}{Tail of a Sequence}
+    The \underemphasise{tail} of a sequence $(x_n : n \in \N)$ is the sequence $(x_n : n \geq N)$ for some fixed $N \in \N$. \\
+    In general, we can define the $m^{th}$ tail of a sequence $(x_n : n \in \N)$ as the sequence $(x_{m+n} : n \in \N)$.
+\end{mydefinition}
+\begin{mytheorem}[Convergence of Tails]
+    If and only if a sequence $(x_n : n \in \N)$ converges to $L$, then all its tails converge to $L$. 
+\end{mytheorem}
+\begin{proof}
+    The $p^{th}$ term of the $m^{th}$ tail of a sequence $(x_n : n \in \N)$ is $x_{m+p}$ or the $(m+p)^{th}$ term of the original sequence. 
+    By the definition of convergence, we have:
+    $$\forall \epsilon > 0, \exists N \in \N: n > N \implies |x_n - L| < \epsilon$$
+    If $N< m$, then the above definition holds for all $m^{th}$ tails by definition. 
+    If $N \geq m$, then we can take $N' = N - m$. Then, we have:
+    $$\forall \epsilon > 0, \exists N' \in \N: n > N' \implies |x_{m+n} - L| < \epsilon$$
+    Hence, we conclude that all tails of a convergent sequence converge to the same limit.
+    Conversely, if all tails of a sequence converge to $L$, then by the definition of convergence, we have:
+    $$\forall \epsilon > 0, \exists N \in \N: n > N \implies |x_{m+n} - L| < \epsilon$$
+    Let $N' = N + m$. Then, we have:
+    $$\forall \epsilon > 0, \exists N' \in \N: n > N' \implies |x_n - L| < \epsilon$$
+    Hence, we conclude that the sequence converges to $L$.
+\end{proof}
+\begin{mydefinition}{Ultimate Properties}
+    A sequence $(x_n : n \in \N)$ ultimately has a property if there exists a tail of the sequence that has the property.
+\end{mydefinition}
+\begin{mytheorem}[Algebra of Limits]
+    Let $(x_n : n \in \N)$ and $(y_n : n \in \N)$ be two sequences in $\R$ that converge to $L_x$ and $L_y$ respectively. Then, we have the following results:
+    \begin{enumerate}
+        \item $\limit{n}{\infty}{(x_n + y_n)} = L_x + L_y$
+        \item $\limit{n}{\infty}{(cx_n)} = c L_x$ for any $c \in \R$
+        \item $\limit{n}{\infty}{(x_n y_n)} = L_x L_y$
+    \end{enumerate}
+\end{mytheorem}
+\begin{proof}
+    We prove all the results using the Triangle Inequality. 
+    \begin{enumerate}
+    \item Let $\epsilon > 0$. Then, by the definition of convergence, we have:
+    $$\exists N_x \in \N: n > N_x \implies |x_n - L_x| < \frac{\epsilon}{2}$$
+    $$\exists N_y \in \N: n > N_y \implies |y_n - L_y| < \frac{\epsilon}{2}$$
+    Let $N = \max(N_x, N_y)$. Then, we have:
+    $$\forall n > N: |(x_n + y_n) - (L_x + L_y)| = |(x_n - L_x) + (y_n - L_y)| \leq |x_n - L_x| + |y_n - L_y| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+    Hence, we conclude that $\limit{n}{\infty}{(x_n + y_n)} = L_x + L_y$. \\
+    \item Let $\epsilon > 0$. Then, by the definition of convergence, we have:
+    $$\exists N_x \in \N: n > N_x \implies |x_n - L_x| < \frac{\epsilon}{|c|}$$
+    Then, we have:  
+    $$\forall n > N_x: |cx_n - cL_x| = |c(x_n - L_x)| = |c||x_n - L_x| < |c|\frac{\epsilon}{|c|} = \epsilon$$
+    Hence, we conclude that $\limit{n}{\infty}{(cx_n)} = c L_x$. \\
+    \item Let $\epsilon > 0$. Then, by the definition of convergence, we have:
+    $$\exists N_x \in \N: n > N_x \implies |x_n - L_x| < \epsilon$$
+    $$\exists N_y \in \N: n > N_y \implies |y_n - L_y| < \epsilon$$
+    Consider: 
+    $$\abs{x_n y_n - L_x L_y} = \abs{(x_n - L_x)L_y + L_x(y_n - L_y)}$$
+    By the triangle inequality, we have:
+    $$\abs{x_n y_n - L_x L_y} \leq |y_n||x_n - L_x| + |L_x||y_n - L_y|$$
+    Since $y_n$ converges, we can find a real number $M$ such that it is bounded by $M$. That is: 
+    $$\exists M \in \R: \forall n \in \N, |y_n| \leq M$$
+    Also, since $x_n$ converges, we can find a real number $N_x$ such that:
+    $$\forall n > N_x, |x_n - L_x| < \frac{\epsilon}{2M}$$
+    \begin{enumerate}
+        \item \textbf{Case 1: $L_x = 0$}: In this case, we have:
+        $$\abs{x_n y_n - L_x L_y} = \abs{L_y}\abs{(x_n - L_x)} < \frac{\epsilon}{2} < \epsilon$$
+        \item \textbf{Case 2: $L_x \neq 0$}: Since $y_n$ converges, we can find a real number $N_y$ such that:
+        $$\forall n > N_y, |y_n - L_y| < \frac{\epsilon}{2|L_x|}$$
+        Then we have:
+        $$\abs{x_n y_n - L_x L_y} < M\frac{\epsilon}{2M} + |L_x|\frac{\epsilon}{2|L_x|} = \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+    \end{enumerate}
+    \end{enumerate}
+\end{proof}
+\begin{mytheorem}[Squeeze Theorem or The Sandwich Theorem]
+    Let $(x_n : n \in \N)$, $(y_n : n \in \N)$ and $(z_n : n \in \N)$ be three sequences in $\R$ such that:
+    $$x_n \leq y_n \leq z_n$$
+    for all $n > N$ for some $N \in \N$. If $\limit{n}{\infty}{x_n} = L$ and $\limit{n}{\infty}{z_n} = L$, then $\limit{n}{\infty}{y_n} = L$, that is: 
+    $$(\exists N \in \N: n > N \implies x_n \leq y_n \leq z_n) \nd (\limit{n}{\infty}{x_n} = L \nd \limit{n}{\infty}{z_n} = L) \implies \exists \limit{n}{\infty}{y_n} \in \R : \limit{n}{\infty}{y_n} = L$$
+\end{mytheorem}
+\begin{proof}
+    Let $\epsilon > 0$. Let $K$ be the natural number such that: 
+    $$\forall n > K: x_n \leq y_n \leq z_n$$
+    Then, by the definition of convergence, we have:
+    $$\exists N_x \in \N: n > N_x \implies |x_n - L| < \epsilon$$
+    $$\exists N_z \in \N: n > N_z \implies |z_n - L| < \epsilon$$
+    Let $N = \max(N_x, N_z, K)$. Then, we have:
+    $$\forall n > N: |x_n - L| < \epsilon \nd |z_n - L| < \epsilon$$
+    Since $x_n \leq y_n \leq z_n$, we have:
+    $$L - \epsilon < x_n \leq y_n \leq z_n < L + \epsilon$$
+    Hence, we conclude that:
+    $$|y_n - L| < \epsilon$$
+    Therefore, we have shown that $\limit{n}{\infty}{y_n} = L$.
+\end{proof}
+\begin{mytheorem}[Inequality of Limits]
+    Let $(x_n : n \in \N)$ and $(y_n : n \in \N)$ be two sequences in $\R$ that converge to $L_x$ and $L_y$ respectively. If $x_n \leq y_n$ for all $n \in \N$, then $L_x \leq L_y$.
+\end{mytheorem}
+\begin{proof}
+    Let $z_n = y_n - x_n$. Then, we have:
+    $$\forall n \in \N, z_n \geq 0$$
+    Since $z_n$ is a sequence of non-negative real numbers, we know that it is bounded below by 0. By the algebra of limits, we have:
+    $$\limit{n}{\infty}{z_n} = \limit{n}{\infty}{(y_n - x_n)} = L_y - L_x$$
+    Since $z_n \geq 0$ for all $n \in \N$, we have:
+    $$L_y - L_x \geq 0 \implies L_y \geq L_x$$
+    Hence, we conclude that if $x_n \leq y_n$ for all $n \in \N$, then $L_x \leq L_y$.
+\end{proof}
+\begin{mytheorem}[Ratio test for convergence]
+    Let $(x_n : n \in \N)$ be a sequence in $\R$ such that $x_n > 0$ for all $n \in \N$. If the limit of the sequence of ratios $\frac{x_{n+1}}{x_n}$ exists and is less than 1, then the sequence converges to 0. That is:
+    $$\limit{n}{\infty}{\frac{x_{n+1}}{x_n}} = L < 1 \implies \limit{n}{\infty}{x_n} = 0$$
+\end{mytheorem}
+\begin{proof}
+    By the theorem proved above, we can say that limit of the sequence of ratios $\limit{n}{\infty}{\frac{x_{n+1}}{x_n}} \geq 0$. \\
+    Let $r$ be a number such that: $$L < r < 1$$
+    Let $\epsilon = r-L > 0$. Then, by the definition of convergence, we have:
+    $$\exists N \in \N: n > N \implies \left|\frac{x_{n+1}}{x_n} - L\right| < \epsilon$$
+    Now we can write:
+    $$\forall n > N: \frac{x_{n+1}}{x_n} < L + \epsilon = r$$
+    Therefore, if we take $n > N$, we have:
+    $$\frac{x_{n+1}}{x_n} < r \implies x_{n+1} < r x_n < x_{n-1}r^2 ... x_N r^{n - N +1}$$
+    Set $C = \frac{x_N}{r^N}$. Then, we have:
+    $$0< x_{n+1} < C r^{n+1}$$
+    Now, since $r < 1$, we know that $r^{n+1} \rightarrow 0$ as $n \rightarrow \infty$ (see exercises for proof). Therefore, by the sandwich theorem we have:
+    $$\lim_{n \to \infty} C r^{n+1} = C \cdot 0 = 0$$
+    Hence, we conclude that $\limit{n}{\infty}{x_n} = 0$. 
+\end{proof}
+\subsection{Monotonic Sequences}
+
+\end{document}

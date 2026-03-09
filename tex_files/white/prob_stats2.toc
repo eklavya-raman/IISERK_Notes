@@ -1,0 +1,4 @@
+\contentsline {part}{I\hspace {1em}Probability}{3}{part.1}%
+\contentsline {chapter}{\numberline {1}Continous Random Variables and Distributions}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Continous Random Variables}{4}{section.1.1}%
+\contentsline {subsubsection}{Example}{6}{subsubsection*.2}%

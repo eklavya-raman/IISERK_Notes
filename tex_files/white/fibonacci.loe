@@ -1,0 +1,14 @@
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.1\else \numberline {1.1}Theorem\fi \thmtformatoptarg {Fibonacci Sequence is not convergent}}{6}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.2\else \numberline {1.2}Theorem\fi \thmtformatoptarg {Sum of first n Fibonacci numbers}}{6}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.3\else \numberline {1.3}Theorem\fi \thmtformatoptarg {Sum of squares of first n Fibonacci numbers}}{7}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.4\else \numberline {1.4}Theorem\fi \thmtformatoptarg {Cassini's Identity}}{7}{mytheorem.4}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.5\else \numberline {1.5}Theorem\fi \thmtformatoptarg {Series Representation of Pi using Fibonacci Numbers}}{9}{mytheorem.5}%
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~3.1\else \numberline {3.1}Theorem\fi }{14}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~3.2\else \numberline {3.2}Theorem\fi }{16}{mytheorem.2}%
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~4.1\else \numberline {4.1}Theorem\fi \thmtformatoptarg {Quasi-Periodicity of the Fibonacci Sequence}}{18}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~4.2\else \numberline {4.2}Theorem\fi }{19}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~4.3\else \numberline {4.3}Theorem\fi \thmtformatoptarg {Quasi-Periodicity of Fibonacci Sequence Modulo m}}{19}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~4.4\else \numberline {4.4}Theorem\fi \thmtformatoptarg {The Fibonacci Numbers with the Fibonacci Topology Form a Topological Space}}{20}{mytheorem.4}%

@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+\title{Mock Test}
+\date{\today}
+\maketitle
+\textbf{Exam Questions}
+\begin{enumerate}
+    \item Suppose we have two sets, $A = \{n \in \mathbb{N} \mid n^2 \text{ is even}\}$ and $B = \{m \in \mathbb{N} \mid m \text{ is odd}\}$
+    \begin{itemize}
+        \item What is the intersection of these two sets? Explain your reasoning. \item Also show that the union of these two sets is equal to the set of all natural numbers $\mathbb{N}$.
+    \end{itemize}
+    \item \begin{itemize}
+    \item Let $Q$ be a relation on a set $S$. Prove or disprove that if $Q9$ is symmetric and transitive, then it is also reflexive.
+    \item Let $R$ be a relation on a set $S$. Prove or disprove that if $R$ is reflexive and transitive, then it is also symmetric.
+    \item Let $P$ be a relation on a set $S$. Prove or disprove that if $P$ is reflexive and symmetric, then it is also transitive.
+    \end{itemize}
+    \item Show that for any sets $A$, $B$ and $C$, the following distributive property holds:
+    $$A \times (B \cup C) = (A \times B) \cup (A \times C)$$
+    where $\times$ denotes the Cartesian product of two sets.
+\end{enumerate}
+
+\newpage
+\textbf{Solutions}
+\begin{enumerate}
+    \item 
+    \begin{itemize}
+    \item We have $A = \{n \in \mathbb{N} \mid n^2 \text{ is even}\}$ and $B = \{m \in \mathbb{N} \mid m \text{ is odd}\}$. The intersection of these two sets is the empty set, denoted by $\emptyset$. We can see this because if $n^2$ is even, then $n$ must also be even (since the square of an odd number is odd) [Prove by contradiction]. Therefore, there are no elements that are both in $A$ and $B$, which means their intersection is empty.
+    \item To show that the union of these two sets is equal to the set of all natural numbers $\mathbb{N}$, we need to prove that every natural number is either in $A$ or in $B$.
+    Let $k$ be an arbitrary natural number. If $k$ is even, then $k^2$ is also even, which means $k \in A$ [Show rigorously by considering $k = 2z, z \in \mathbb{N}$]. If $k$ is odd, then by definition, $k \in B$. Therefore, every natural number is either in $A$ or in $B$, which means that $A \cup B = \mathbb{N}$.
+    \end{itemize}
+    \item \begin{itemize}
+        \item Let $Q$ be a relation on a set $S$. We need to prove or disprove that if $Q$ is symmetric and transitive, then it is also reflexive. 
+        Suppose $Q$ is symmetric and transitive. To show that $Q$ is reflexive, we need to prove that for every element $a \in S$, the pair $(a, a)$ is in $Q$. 
+        This is true. We have that $Q$ is symmetric, so if $(a, b) \in Q$, then $(b, a) \in Q$. Also, since $Q$ is transitive, if $(a, b) \in Q$ and $(b, c) \in Q$, then $(a, c) \in Q$.
+        Now, consider any two elements $a, b \in S$ such that $aQb$. Since $Q$ is symmetric, we have $bQa$. By transitivity, we can conclude that $aQa$. Therefore, $Q$ is reflexive.
+        \item Let $R$ be a relation on a set $S$. We need to prove or disprove that if $R$ is reflexive and transitive, then it is also symmetric.
+        This is false. We can provide a counterexample to disprove this statement. Consider the set $S = \{1, 2\}$ and the relation $R = \{(1, 1), (2, 2), (1, 2)\}$.
+        The relation $R$ is reflexive because it contains the pairs $(1, 1)$ and $(2, 2)$. It is also transitive because there are no pairs $(a, b)$ and $(b, c)$ such that $a \neq c$. However, $R$ is not symmetric because it contains the pair $(1, 2)$ but does not contain the pair $(2, 1)$. Therefore, we have found a counterexample, and the statement is false.
+        \item Let $P$ be a relation on a set $S$. We need to prove or disprove that if $P$ is reflexive and symmetric, then it is also transitive.
+        This is false. We can provide a counterexample to disprove this statement. Consider the set $S = \{1, 2, 3\}$ and the relation - $$P = \{(1, 1), (2, 2), (3, 3), (1, 2), (2, 1), (2, 3), (3, 2)\}$$
+        The relation $P$ is reflexive because it contains the pairs $(1, 1)$, $(2, 2)$, and $(3, 3)$. It is also symmetric because for every pair $(a, b)$ in $P$, the pair $(b, a)$ is also in $P$. However, $P$ is not transitive because it contains the pairs $(1, 2)$ and $(2, 3)$ but does not contain the pair $(1, 3)$. Therefore, we have found a counterexample, and the statement is false.
+    \end{itemize}
+    \item To prove the distributive property of Cartesian products over unions, we need to show that both sides of the equation are subsets of each other.
+    First, we prove that
+    $$A \times (B \cup C) \subseteq (A \times B) \cup (A \times C)$$
+    \begin{align*}
+        &A \times (B \cup C) = (A \times B) \cup (A \times C) \\
+        &A \times (B \cup C) = \{(x, y) \mid x \in A \text{ and } y \in (B \cup C)\} \\
+        \implies &x \in A \text{ and } (y \in B \text{ or } y \in C) \\
+        \implies &(x \in A \text{ and } y \in B) \text{ or } (x \in A \text{ and } y \in C)\quad \text{(Distributive Property)} \\ 
+        \implies &(x, y) \in (A \times B) \text {or } (x, y) \in (A \times C) \\
+        \implies &(x, y) \in (A \times B) \cup (A \times C) \\
+        \therefore &A \times (B \cup C) \subseteq (A \times B) \cup (A \times C)
+    \end{align*}
+\end{enumerate}
+
+Now we prove the other side - 
+$$(A \times B) \cup (A \times C) \subseteq A \times (B \cup C)$$
+$$(A \times B) \cup (A \times C) = \{(x, y) \mid (x, y) \in (A \times B) \text {or } (x, y) \in (A \times C)\}$$
+$$\implies (x \in A \text{ and } y \in B) \text {or } (x \in A \text{ and } y \in C)$$
+$$\implies x \in A \text{ and } (y \in B \text{ or } y \in C)$$
+$$\implies (x, y) \in A \times (B \cup C)$$
+$$\therefore (A \times B) \cup (A \times C) \subseteq A \times (B \cup C)$$
+Since both sides are subsets of each other, we conclude that
+$$A \times (B \cup C) = (A \times B) \cup (A \times C)$$
+\end{document}

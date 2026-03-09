@@ -1,0 +1,24 @@
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.1\else \numberline {1.1}Theorem\fi \thmtformatoptarg {The Basic Result - 1}}{11}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.2\else \numberline {1.2}Theorem\fi \thmtformatoptarg {The Basic Result - 2}}{11}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.3\else \numberline {1.3}Theorem\fi \thmtformatoptarg {The Basic Result - 3}}{11}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.4\else \numberline {1.4}Theorem\fi \thmtformatoptarg {Church's Thesis}}{12}{mytheorem.4}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.5\else \numberline {1.5}Theorem\fi \thmtformatoptarg {Countability of Recursive Functions}}{12}{mytheorem.5}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.6\else \numberline {1.6}Theorem\fi \thmtformatoptarg {Existence of Non-Recursive Functions}}{12}{mytheorem.6}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.7\else \numberline {1.7}Theorem\fi \thmtformatoptarg {Countability of Indices}}{12}{mytheorem.7}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.8\else \numberline {1.8}Theorem\fi \thmtformatoptarg {Enumeration Theorem}}{13}{mytheorem.8}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.9\else \numberline {1.9}Theorem\fi \thmtformatoptarg {s-m-n Theorem}}{13}{mytheorem.9}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.10\else \numberline {1.10}Theorem\fi \thmtformatoptarg {Composite of Partial Recursive Functions are Partial Recursive}}{14}{mytheorem.10}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.11\else \numberline {1.11}Theorem\fi \thmtformatoptarg {Recursive Unsolvability of the Halting Problem}}{14}{mytheorem.11}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.12\else \numberline {1.12}Theorem\fi \thmtformatoptarg {The Halting Problem for Total Functions}}{15}{mytheorem.12}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.13\else \numberline {1.13}Theorem\fi \thmtformatoptarg {Correspondence of partial functions with algorithmic mapping on uncoded expressions}}{16}{mytheorem.13}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.14\else \numberline {1.14}Theorem\fi \thmtformatoptarg {The Mu Theorem}}{16}{mytheorem.14}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.15\else \numberline {1.15}Theorem\fi \thmtformatoptarg {Kleene Normal-form Theorem}}{17}{mytheorem.15}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.16\else \numberline {1.16}Theorem\fi \thmtformatoptarg {Ex. 2-8 theorem}}{17}{mytheorem.16}%
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.1\else \numberline {2.1}Theorem\fi \thmtformatoptarg {Unsolvable (a)}}{18}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.2\else \numberline {2.2}Theorem\fi \thmtformatoptarg {Extension of Partial Recursive Functions}}{19}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.3\else \numberline {2.3}Theorem\fi \thmtformatoptarg {Existence of Partial Recursive Functions not obtained by $\mu $}}{19}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.4\else \numberline {2.4}Theorem\fi \thmtformatoptarg {Important Corollary of the Halting Problem}}{19}{mytheorem.4}%
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~5.1\else \numberline {5.1}Theorem\fi \thmtformatoptarg {The Incompleteness Theorem}}{28}{mytheorem.1}%

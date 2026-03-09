@@ -1,0 +1,3 @@
+\contentsline {chapter}{\numberline {1}Preliminaries}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Linear Recurrence Sequences}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Diophantine Equations}{5}{section.1.2}%

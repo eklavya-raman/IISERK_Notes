@@ -1,0 +1,146 @@
+\documentclass[openany]{book}
+\input{notes_light}
+\usepackage{mathtools}
+\settitle{Analysis Pre-class Notes}
+\begin{document}
+\title{\Large{\underemphasise{Analysis Notes}} \\ \vspace{5pt}
+\large{Analysis 1, course material overview}}
+\author{Eklavya Raman}
+\date{\today}
+\maketitle
+\tableofcontents
+\listoftheorems[
+    show=mytheorem,
+    title={List of Theorems}]
+\listoffigures
+\chapter{The Real Field}
+\section{Ordered Sets and Fields}
+\subsection{Ordered Sets}
+We use basic set theoretic notation and definitions.
+\begin{mydefinition}{Order and Ordered Set}
+    We define and order and an ordered set as follows:
+    \begin{enumerate}
+    \item An \underemphasise{order} on a set $S$ is relation $<$ defined such that:
+    \begin{enumerate}
+        \item For all $x, y, z \in S$, either $x < y$, $y < x$ or $x = y$.
+        \item For all $x, y, z \in S$, if $x < y$ and $y < z$, then $x < z$. (Transitivity)
+    \end{enumerate}
+    \item An \underemphasise{ordered set} is a set $S$ with an order $\leq$ defined on it.
+    \end{enumerate}
+\end{mydefinition}
+\begin{mydefinition}{Upper and Lower Bounds}
+    Let $S$ be an ordered set and $A \subset S$.
+    \begin{enumerate}
+        \item An element $x \in S$ is an \underemphasise{upper bound} of $A$ if for all $a \in A$, $a \leq x$. Then $A$ is \underemphasise{bounded above} if there exists an upper bound of $A$.
+        \item An element $x \in S$ is a \underemphasise{lower bound} of $A$ if for all $a \in A$, $x \leq a$. Then $A$ is \underemphasise{bounded below} if there exists a lower bound of $A$.
+    \end{enumerate}
+\end{mydefinition}
+\begin{mytheorem}[Every finite non-empty set is bounded]
+    Every finite non-empty subset $A$ of an ordered set $S$ is bounded above and below. That is, there exists an upper bound and a lower bound of $A$ in $S$.
+\end{mytheorem}
+\begin{proof}
+We show this using induction. As a base case, let - 
+$$A_1 = \{x_1\}$$
+Then, we see that $x_1$ is an upper bound of $A_1$ and also a lower bound of $A_1$. Now, let us assume that for some $n \in \mathbb{N}$, the statement holds for all sets of size $n$. That is, for any set $A_n$ of size $n$, there exists an upper bound and a lower bound. Now, let us consider a set $A_{n+1}$ of size $n+1$. We can write -
+$$A_{n+1} = A_n \cup \{x_{n+1}\}$$
+where $A_n$ is a set of size $n$. By the inductive hypothesis, we know that $A_n$ has an upper bound $u$ and a lower bound $l$. Now, we consider the following cases: 
+\begin{enumerate}
+    \item If $x_{n+1} \leq u$, then $u$ is an upper bound of $A_{n+1}$.
+    \item If $x_{n+1} > u$, then $x_{n+1}$ is an upper bound of $A_{n+1}$.
+    \item If $x_{n+1} \geq l$, then $l$ is a lower bound of $A_{n+1}$.
+    \item If $x_{n+1} < l$, then $x_{n+1}$ is a lower bound of $A_{n+1}$.
+\end{enumerate}
+Thus, in all cases, we see that $A_{n+1}$ has an upper bound and a lower bound. Hence, by induction, we conclude that every finite set is bounded above and below. 
+\end{proof}
+\begin{mydefinition}{Supremum and Infimum}
+    Let $S$ be an ordered set and $A \subset S$.
+    \begin{enumerate}
+        \item The \underemphasise{supremum} of $A$, denoted $\sup A$, is the least upper bound of $A$ i.e. - 
+        $$\sup A = \min ( \{x \in S : x \text{ is an upper bound of } A \} )$$
+        \item The \underemphasise{infimum} of $A$, denoted $\inf A$, is the greatest lower bound of $A$.
+    \end{enumerate}
+\end{mydefinition}
+\underemphasise{Important Points}: 
+\begin{itemize}
+    \item The supremum and infimum of a set may not exist. 
+    \item Either of the supremum or infimum may not be an element of the set.
+    \item If the supremum or infimum exists, it is unique.
+\end{itemize}
+\begin{mytheorem}[Supremum and Infimum are unique]
+    Let $S$ be an ordered set and $A \subset S$. If $\sup A$ exists, then it is unique. Similarly, if $\inf A$ exists, then it is unique.
+\end{mytheorem}
+\begin{proof}
+    Let $\alpha$ and $\beta$ be two supremums of $A$. Then, by definition, $\alpha$ is an upper bound of $A$ and $\beta$ is an upper bound of $A$. Since $\alpha$ is the least upper bound, we have $\alpha \leq \beta$. Similarly, since $\beta$ is the least upper bound, we have $\beta \leq \alpha$. Hence, we conclude that $\alpha = \beta$. Thus, the supremum is unique. The proof for the infimum is similar.
+\end{proof}
+\begin{mydefinition}{Least upper bound property}
+    An ordered set $S$ is said to have the \underemphasise{least upper bound property} if every non-empty subset of $S$ that is bounded above has a supremum in $S$. That is - 
+    $$\forall A \subset S: ((A \neq \phi) \nd (A \text{ is bounded above})) \implies \sup A \in S$$
+\end{mydefinition}
+\begin{mytheorem}[Existence of Infimum in $S$ with the least upper bound property]
+    Let $S$ be an ordered set with the least upper bound property. Then for any non empty subset $A$ of $S$ that is bounded below and $L$ be the set of all lower bounds of $A$, then the following hold: \\ 
+    $\alpha = \sup L$ exists in $S$ and is the infimum of $A$, i.e.: 
+    $$\exists \alpha \in S: \alpha = \sup L = \inf A \implies \inf A \in S$$
+\end{mytheorem}
+\begin{proof}
+    Since $A$ is bounded below, $L$ is non-empty (there exists at least one lower bound of $A$). Now: 
+    $$L = \{y\in S: \forall x \in A, y \leq x\}$$
+    Since $S$ has the least upper bound property, $L$ is bounded above (by any element of $A$) and hence by the property, $\sup L$ exists in $S$. Now, we need to show that $\sup L = \inf A$. \\ \\ 
+    Let $\alpha = \sup L$. Then: 
+    $$\gamma < \alpha \implies \gamma \text{ is not an upper bound of } L$$
+    Thus $\gamma \notin A$. Therefore, $\alpha \leq x$ for all $x \in A$. Hence, $\alpha$ is a lower bound of $A$. \\
+    $$\alpha < \beta \implies \beta \notin L$$ since $\alpha$ is an upper bound of $L$. \\
+    Therefore, $\alpha \in L$ but any number greater than $\alpha$ is not in $L$. Hence, $\alpha$ is the greatest lower bound of $A$. \\
+    Thus, $\alpha = \inf A$. Since $\alpha$ is in $S$, we have shown that $\inf A \in S$.
+\end{proof}
+\subsection{Fields}
+\begin{mydefinition}{Field}
+    A \underemphasise{field} is a set $F$ with two operations $+$ and $\cdot$ defined on it such that it satisfies the following axioms: 
+    \begin{itemize}
+    \item \textbf{Addition Axioms:}
+        \begin{enumerate}
+            \item $x \in F \nd y \in F \implies x + y \in F$ (Closure under addition)
+            \item $x \in F \nd y \in F \implies y + x = x + y$ (Commutativity of addition)
+            \item $x \in F \nd y \in F \nd z \in F \implies (x + y) + z = x + (y + z)$ (Associativity of addition)
+            \item There exists an element $0 \in F$ such that for all $x \in F$, $x + 0 = x$ (Existence of additive identity)
+            \item For every $x \in F$, there exists an element $-x \in F$ such that $x + (-x) = 0$ (Existence of additive inverse)
+        \end{enumerate}
+    \item \textbf{Multiplication Axioms:}
+        \begin{enumerate}
+            \item $x \in F \nd y \in F \implies x \cdot y \in F$ (Closure under multiplication)
+            \item $x \in F \nd y \in F \implies y \cdot x = x \cdot y$ (Commutativity of multiplication)
+            \item $x \in F \nd y \in F \nd z \in F \implies (x \cdot y) \cdot z = x \cdot (y \cdot z)$ (Associativity of multiplication)
+            \item There exists an element $1 \in F$ such that for all $x \in F$, $x \cdot 1 = x$ (Existence of multiplicative identity)
+            \item For every $x \in F$ such that $x \neq 0$, there exists an element $x^{-1} = 1/x$ such that $x \cdot x^{-1} = 1$ (Existence of multiplicative inverse)
+        \end{enumerate}
+    \item \textbf{Distributive Axiom:} $$\forall x, y, z \in F: x \cdot (y + z) = x \cdot y + x \cdot z$$   
+    \end{itemize}
+    \begin{example}
+        The set of rational numbers $\mathbb{Q}$ with the usual operations of addition and multiplication is a field.
+    \end{example}
+\end{mydefinition}
+\begin{mydefinition}{Ordered Field}
+    An \underemphasise{ordered field} is a field $F$ with an order $\leq$ defined on it such that:
+    \begin{enumerate}
+        \item For all $x, y, z \in F$, if $x < y$, then $x + z < y + z$ (Order is preserved under addition)
+        \item For all $x, y, z \in F$, if $0 < x$ and $0 < y$, then $0 < x \cdot y$ (Order is preserved under multiplication)
+    \end{enumerate}
+\end{mydefinition}
+\begin{mytheorem}[Existence Theorem of the Real Field]
+    There exists a unique ordered field $\mathbb{R}$ such that:
+    \begin{enumerate}
+        \item $\mathbb{R}$ has the least upper bound property.
+        \item $\mathbb{R}$ contains the rational numbers $\mathbb{Q}$ as a subfield.
+    \end{enumerate}
+    This field is called the \underemphasise{real field} or the \underemphasise{field of real numbers}.
+\end{mytheorem}
+\begin{mytheorem}[Archimedean Property and Denseness of $\mathbb{Q}$ in $\mathbb{R}$]
+    The field of real numbers $\mathbb{R}$ satisfies the following properties:
+    \begin{enumerate}
+        \item \textbf{Archimedean Property:} For any two real numbers $x$ and $y$, there exists a natural number $n$ such that $nx>y$, i.e.:
+        $$\forall x, y \in \mathbb{R}, \exists n \in \mathbb{N}: nx >y$$
+        \item \textbf{Density of $\mathbb{Q}$ in $\mathbb{R}$:} For any two real numbers $x$ and $y$ with $x < y$, there exists a rational number $q \in \mathbb{Q}$ such that $x < q < y$, i.e: 
+        $$\forall x, y \in \mathbb{R}, (x < y) \implies \exists q \in \mathbb{Q}: x < q < y$$
+    \end{enumerate}
+    
+\end{mytheorem}
+\end{document}

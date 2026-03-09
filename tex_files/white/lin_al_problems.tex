@@ -1,0 +1,138 @@
+\documentclass[openany]{book}
+\input{notes_white}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\settitle{Fibonacci and Golden Ratio}
+\renewcommand{\theexercise}{\Roman{exercise}}
+\renewcommand{\thesection}{\Roman{section}}
+\begin{document}
+\title{\Large{\underemphasise{The Fibonacci Sequence and Golden Ratio}} \\ \vspace{5pt} 
+\large{A detailed study of the Fibonacci sequence, its properties, and its connection to the Golden Ratio}}
+\author{Eklavya Raman \\ \vspace{5pt} er24ms024@iiserkol.ac.in \\ \vspace{5pt}}
+\date{\today}
+\maketitle
+\section{Exercises after Tutorials}
+\begin{exercise}
+    Prove or disprove that the rank of a Gram Matrix is invariant under a change of basis.
+\end{exercise}
+\begin{proof}
+    We claim that the rank of a Gram matrix is invariant under a change of basis.
+    Let \( G \) be the Gram matrix in the original basis and \( G' \) be the Gram matrix in the new basis. Let $B(u, v)$ be the form associated with the Gram matrix \( G \). The Gram matrix \( G' \) in the new basis is given by \( G' = P^T G P \), where \( P \) is the change of basis matrix.
+    We show that $dim \text{Im}(B) = dim \text{Im}(B')$.
+    We have $\dim \text{ker}(B)$ is the dimension of the kernel of the form $B$. Suppose $u, v \in \text{ker}(B)$, then $B(u, v) = 0$. Under the change of basis, we have $u' = P^T u$, where $u' = P^T u$ and $v' = P^T v$. 
+    Then, $B'(u', v') = B(P^T u, P^T v) = P^T B(u, v) P = 0$. Thus, $u', v' \in \text{ker}(B')$.
+    The converse is also true. If $u', v' \in \text{ker}(B')$, then $B'(u', v') = 0$. This implies that $B(P u', P v') = 0$, which means $u, v \in \text{ker}(B)$.
+    Therefore, we have $\dim \text{ker}(B) = \dim \text{ker}(B')$.
+    By rank-nullity theorem, we have:
+    \[
+    \dim \text{Im}(B) + \dim \text{ker}(B) = \dim \text{Im}(B') + \dim \text{ker}(B')
+    \]
+    Combining these results, we find that:
+    \[
+    \dim \text{Im}(B) = \dim \text{Im}(B')
+    \]
+    This contradicts our assumption that the rank of the Gram matrix changes under a change of basis. Therefore, the rank of a Gram matrix is invariant under a change of basis.
+\end{proof}
+
+\begin{exercise}
+    Let $V$ be a finite-dimensional real vector space and let $W_1, W_2, \ldots, W_n$ be proper subspaces of $V$. Show that $V \neq \bigcup_{i=1}^n W_i$.
+\end{exercise}
+\begin{proof}
+    We will prove this by induction on \( n \), the number of proper subspaces. \\
+    \textbf{Base Case:} For \( n = 1 \), let \( W_1 \) be a proper subspace of \( V \). Since \( W_1 \) is a proper subspace, there exists at least one vector \( v \in V \) such that \( v \notin W_1 \). Therefore, \( V \neq W_1 \). \\
+    \textbf{Inductive Step:} Assume that for some \( k \geq 1 \), the statement holds for \( n = k \); that is, \( V \neq \bigcup_{i=1}^k W_i \). We need to show that it also holds for \( n = k + 1 \). \\
+    Consider the subspaces \( W_1, W_2, \ldots, W_k, W_{k+1} \). By the inductive hypothesis, there exists a vector \( v \in V \) such that \( v \notin \bigcup_{i=1}^k W_i \). Now, we need to check if this vector \( v \) is in \( W_{k+1} \). \\
+    If \( v \notin W_{k+1} \), then we have found a vector in \( V \) that is not in any of the subspaces \( W_1, W_2, \ldots, W_k, W_{k+1} \), and thus \( V \neq \bigcup_{i=1}^{k+1} W_i \). \\
+    If \( v \in W_{k+1} \), we can choose another vector \( u \in V \) such that \( u \notin W_{k+1} \) (since \( W_{k+1} \) is a proper subspace). Now consider the vector \( w = v + u \). Since both \( v \) and \( u \) are in \( V \), their sum \( w \) is also in \( V \). \\
+    If $w \in \union_{i=1}^{k+1} W_i$, then it must belong to at least one of the subspaces. However, since \( v \notin \bigcup_{i=1}^k W_i \), $w$ cannot be in any of the first \( k \) subspaces. Therefore, $w$ must be in \( W_{k+1} \). But this contradicts our choice of \( u \) since \( w = v + u \) and \( v \in W_{k+1} \) implies that \( u \) must also be in \( W_{k+1} \), which is a contradiction. \\
+    Thus, in either case, we can find a vector in \( V \) that is not in any of the subspaces \( W_1, W_2, \ldots, W_{k+1} \). Therefore, by induction, we conclude that for any finite number of proper subspaces \( W_1, W_2, \ldots, W_n \) of \( V \), we have \( V \neq \bigcup_{i=1}^n W_i \).
+\end{proof}
+\begin{exercise}
+    We need to show $\text{rank}(M) = \text{rank}(M^T M)$ for any real matrix \( M \in M_n(F) \).
+\end{exercise}
+\begin{proof}
+    Consider the tranformation \( T: F^n \to F^n \) defined by \( T(x) = Mx \). The rank of the matrix \( M \) is equal to the dimension of the image of the transformation \( T \), i.e., \( \text{rank}(M) = \dim(\text{Im}(T)) \). \\
+    Now, consider the transformation \( S: F^n \to F^n \) defined by \( S(x) = M^T x \). We show that $\dim(\text{Im}(T)) = \dim(\text{Im}(S \cdot T )$. \\
+    Suppose $x \in \text{ker}{T}, x \neq 0$, then $S(T(x)) = S(0) = 0$. Thus, $x \in \text{ker}(S)$. Therefore, $\text{ker}(T) \subseteq \text{ker}(S \cdot T)$. \\
+    Suppose $x \in \text{ker}(S \cdot T), x \neq 0$, then $S(T(x)) = 0$. Therefore - 
+    $$x^TM^TMx = 0 \implies (Mx)^T(Mx) = 0 \implies \|Mx\|^2 = 0 \implies x \in \text{ker}(T)$$
+    Thus, $\text{ker}(S \cdot T) \subseteq \text{ker}(T)$. \\
+    Combining both results, we have $\text{ker}(T) = \text{ker}(S \cdot T)$. \\
+    By rank-nullity theorem, we have:
+    \[
+    \dim(\text{Im}(T)) = \dim(\text{Im}(S \cdot T))
+    \]
+    Hence proved. 
+\end{proof}
+\begin{exercise}
+    $\mathbb{B} = \{\begin{pmatrix}1 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix}, \begin{pmatrix}0 & 1 \\ -1 & 0 \end{pmatrix}, \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix}\}$ is a basis for $M_2(\mathbb{R})$. We have $\mathbb{B'} = \{e_1, e_2, e_3, e_4\}$ is the standard basis for $M_2(\mathbb{R})$. Find the change of basis matrix from $\mathbb{B}$ to $\mathbb{B'}$.
+\end{exercise}
+We have the following representations of the basis vectors in $\mathbb{B}$ in terms of the standard basis $\mathbb{B'}$:
+\[
+\begin{pmatrix}1 & 0 \\ 0 & 1 \end{pmatrix} = 1 \cdot e_1 + 0 \cdot e_2 + 0 \cdot e_3 + 1 \cdot e_4
+\]
+\[
+\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = 1 \cdot e_1 + 0 \cdot e_2 + 0 \cdot e_3 - 1 \cdot e_4
+\]
+\[
+\begin{pmatrix}0 & 1 \\ -1 & 0 \end{pmatrix} = 0 \cdot e_1 + 1 \cdot e_2 - 1 \cdot e_3 + 0 \cdot e_4
+\]
+\[
+\begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} = 0 \cdot e_1 + 1 \cdot e_2 + 1 \cdot e_3 + 0 \cdot e_4
+\]
+Thus, the change of basis matrix from $\mathbb{B}$ to $\mathbb{B'}$ is given by:
+\[P = \begin{pmatrix}
+1 & 1 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & -1 & 1 \\
+1 & -1 & 0 & 0
+\end{pmatrix}
+\]
+\begin{exercise}
+    We have $W_1, W_2, \ldots W_k$ are subspaces of a finite-dimensional vector space $V$ such that $$W_1 + W_2 + \ldots + W_k = V$$ and $$W_i \cap (W_1 + W_2 + \ldots + W_{i-1}) = \{0\}$$ for each $i$. Show that $V$ is the direct sum of $W_1, W_2, \ldots, W_k$.
+\end{exercise}
+\begin{proof}
+    We need to show that every vector \( v \in V \) can be uniquely expressed as a sum of vectors from each subspace \( W_i \). \\
+    Since \( W_1 + W_2 + \ldots + W_k = V \), for any vector \( v \in V \), there exist vectors \( w_1 \in W_1, w_2 \in W_2, \ldots, w_k \in W_k \) such that:
+    \[
+    v = w_1 + w_2 + \ldots + w_k
+    \]
+    Now, we need to show that this representation is unique. Suppose there exists another representation of \( v \):
+    \[
+    v = w_1' + w_2' + \ldots + w_k'
+    \]
+    where \( w_i' \in W_i \) for each \( i \). Subtracting the two representations, we get:
+    \[
+    0 = (w_1 - w_1') + (w_2 - w_2') + \ldots + (w_k - w_k')
+    \]
+    Let \( u_i = w_i - w_i' \). Then we have:
+    \[
+    0 = u_1 + u_2 + \ldots + u_k
+    \]
+    where \( u_i \in W_i \) for each \( i \). We will show that each \( u_i = 0 \). \\
+    Consider the last term \( u_k \). Since \( u_1 + u_2 + \ldots + u_k = 0 \), we can rearrange this to:
+    \[
+    u_k = -(u_1 + u_2 + \ldots + u_{k-1})
+    \]
+    The right-hand side belongs to the subspace \( W_1 + W_2 + \ldots + W_{k-1} \). However, by the given condition, we have:
+    \[
+    W_k \cap (W_1 + W_2 + \ldots + W_{k-1}) = \{0\}
+    \]
+    This implies that the only way for \( u_k \) to equal the right-hand side is if \( u_k = 0 \). \\
+    Repeating this argument for each \( u_i \), we find that:
+    \[
+    u_i = 0 \quad \text{for all } i = 1, 2, \ldots, k
+    \]
+    This shows that the representation of \( v \) as a sum of vectors from each subspace \( W_i \) is unique. \\
+    Hence, \( V \) is the direct sum of \( W_1, W_2, \ldots, W_k \).
+\end{proof}
+\begin{exercise}
+    Let $V$ be a finite-dimensional vector space over a field $F$, and let $T: V \to V$ be a linear transformation such that $\text{rank}(T^2) = \text{rank}(T)$. Show that $V$ can be decomposed into a direct sum of the image and kernel of $T$, i.e., $V = \text{Im}(T) \oplus \text{Ker}(T)$.
+\end{exercise}
+\begin{proof}
+    Suppose there exists \( v \in \text{Im}(T) \cap \text{Ker}(T) \). Then, there exists \( u \in V \) such that \( T(u) = v \) and \( T(v) = 0 \). Applying \( T \) to both sides of the equation \( T(u) = v \), we get:
+    \[T^2(u) = T(v) = 0\]
+    This implies that \( u \in \text{Ker}(T^2) \). Since \( v \in \text{Im}(T) \), we have \( v = T(u) \). Thus, \( v \in T(\text{Ker}(T^2)) \). \\
+    
+\end{proof}
+\end{document}
