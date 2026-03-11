@@ -8,3 +8,6 @@
 \contentsline {section}{\numberline {1.4}Dihedral Groups}{15}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Symmetric Groups}{15}{section.1.5}%
 \contentsline {subsection}{\numberline {1.5.1}Cycle Type}{21}{subsection.1.5.1}%
+\contentsline {section}{\numberline {1.6}Lagrange's Theorem}{22}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Classifying Groups of Order 4}{24}{subsection.1.6.1}%
+\contentsline {section}{\numberline {1.7}Group Homomorphisms}{26}{section.1.7}%

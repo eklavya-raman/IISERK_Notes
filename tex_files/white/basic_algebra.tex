@@ -759,7 +759,7 @@ We now define a two cycle in a symmetric group.
     \end{itemize}
 
     \textbf{Closure:} Let \( \sigma_1, \sigma_2 \in S_{n_e} \) be two even permutations. By definition, \( \sigma_1 \) can be expressed as a product of an even number of transpositions, and \( \sigma_2 \) can also be expressed as a product of an even number of transpositions. When we compose \( \sigma_1 \) and \( \sigma_2 \), the resulting permutation \( \sigma_1 \cdot \sigma_2 \) can be expressed as a product of the transpositions from \( \sigma_1 \) and the transpositions from \( \sigma_2 \). Since both \( \sigma_1 \) and \( \sigma_2 \) are even, the total number of transpositions in the composition \( \sigma_1 \cdot \sigma_2 \) is also even. Therefore, \( \sigma_1 \cdot \sigma_2 \in S_{n_e} \).
-    \textbf{Identity:} The identity permutation \( e \) can be expressed as a product of zero transpositions, which is an even number. Therefore, \( e \in S_{n_e} \).
+    \textbf{Identity:} The identity permutation \( e \) can be expressed as a product of zero transpositions, which is an even number. Therefore, \( e \in S_{n_e} \). \\
     \textbf{Inverses:} Let \( \sigma \in S_{n_e} \) be an even permutation. Since \( \sigma \) can be expressed as a product of an even number of transpositions, we can write:
     \[\sigma = t_1 t_2 \cdots t_{2k}\]
     where \( t_i \) are transpositions and \( 2k \) is an even number. The inverse of \( \sigma \) can be expressed as:
@@ -814,7 +814,224 @@ We note the following facts:
     \]
     Hence proved.
 \end{proof}
+\section{Lagrange's Theorem}
+\begin{mydefinition}{Cosets}
+    Let \( G \) be a group and \( H \) be a subgroup of \( G \). For any element \( g \in G \), the left coset of \( H \) in \( G \) with respect to \( g \) is defined as the set:
+    \[
+    gH = \{ gh : h \in H \}
+    \]
+    Similarly, the right coset of \( H \) in \( G \) with respect to \( g \) is defined as the set:
+    \[
+    Hg = \{ hg : h \in H \}
+    \]
+\end{mydefinition}
+It is easy to see that if we have $g \in H$, then the left coset $gH$ is just $H$ itself, and the right coset $Hg$ is also just $H$. However, if $g \notin H$, then the left coset $gH$ and the right coset $Hg$ are different from $H$. In fact, they are disjoint from $H$ and from each other. \\
+Further, we should also note that the left coset $gH$ and the right coset $Hg$ may not be the same. For example, if we take $G = S_3$ and $H = \{ e, (1\ 2) \}$, then the left coset of $H$ with respect to $(1\ 3)$ is $(1\ 3)H = \{ (1\ 3), (1\ 2\ 3) \}$, while the right coset of $H$ with respect to $(1\ 3)$ is $H(1\ 3) = \{ (1\ 3), (1\ 3\ 2) \}$. Thus, in this case, the left coset and the right coset are different. However, for abelian groups, the left coset and the right coset are always the same, since the group operation is commutative. In general, for non-abelian groups, the left coset and the right coset may be different.
+Now, suppose, we have a finite group \( G \) and a subgroup \( H \) of \( G \) and let $g \in G$ be some fixed element, $h \in H$. We can state the following - 
+\begin{itemize}
+    \item If $gh = gk$ for some $k \in H$, then $h = k$. This means that the left coset $gH$ has the same number of elements as $H$.
+    \item Either $gH = g'H$ or $gH \cap g'H = \emptyset$ for any $g, g' \in G$. This means that the left cosets of $H$ in $G$ are either identical or disjoint. The same is true for the right cosets.
+\end{itemize}
+We prove the second point as follows -
+\begin{proof}
+    Let \( g, g' \in G \) be two elements such that \( gH \cap g'H \neq \emptyset \). This means that there exists an element \( x \in G \) such that \( x \in gH \) and \( x \in g'H \). Therefore, we can write:
+    \[
+    x = gh_1 = g'h_2
+    \]
+    for some \( h_1, h_2 \in H \). Rearranging this equation gives us:
+    \[
+    g^{-1}g' = h_1 h_2^{-1}
+    \]
+    Since \( h_1 h_2^{-1} \in H \), we have \( g^{-1}g' \in H \). This implies that \( g' = gh \) for some \( h \in H \). Therefore, we can write:
+    \[
+    g'H = (gh)H = g(Hh) = gH
+    \]
+    Thus, if the left cosets \( gH \) and \( g'H \) are not disjoint, they must be identical. The same argument applies to the right cosets. Hence proved.
+\end{proof}
+we can clearly see that the left cosets of \( H \) in \( G \) partition the group \( G \) into disjoint subsets, and the same is true for the right cosets. Moreover, each left coset has the same number of elements as \( H \), and each right coset also has the same number of elements as \( H \).
+Let us take an example to illustrate this fact - \\
+\begin{example}
+Consider the finite group \( G = S_3 \) and the subgroup \( H = \{ e, (1\ 2) \} \). The left cosets of \( H \) in \( G \) are:
+\[eH = \{ e, (1\ 2) \}\]
+\[(1\ 3)H = \{ (1\ 3), (1\ 2\ 3) \}\]
+\[(2\ 3)H = \{ (2\ 3), (1\ 3\ 2) \}\]
+Taking the union of these left cosets, we have:
+\[eH \cup (1\ 3)H \cup (2\ 3)H = \{ e, (1\ 2), (1\ 3), (1\ 2\ 3), (2\ 3), (1\ 3\ 2) \} = S_3\]
+Thus, the left cosets of \( H \) in \( G \) partition the group \( G \) into disjoint subsets, and each left coset has the same number of elements as \( H \). Similarly, we can find the right cosets of \( H \) in \( G \) and verify that they also partition \( G \) into disjoint subsets with the same number of elements as \( H \).
+\end{example}
+We prove that the left cosets of \( H \) in \( G \) partition the group \( G \) into disjoint subsets as follows -
+\begin{proof}
+    Let \( G \) be a finite group and \( H \) be a subgroup of \( G \). We want to show that the left cosets of \( H \) in \( G \) partition the group \( G \) into disjoint subsets. 
 
+    First, we show that every element of \( G \) belongs to at least one left coset of \( H \). Let \( g \in G \) be an arbitrary element. Then, the left coset of \( H \) with respect to \( g \) is given by:
+    \[
+    gH = \{ gh : h \in H \}
+    \]
+    Since \( e \in H \), we have \( g = ge \in gH \). Therefore, every element of \( G \) belongs to at least one left coset of \( H \).
+
+    Next, we show that the left cosets of \( H \) are either identical or disjoint. Let \( g, g' \in G \) be two elements such that \( gH \cap g'H \neq \emptyset \). This means that there exists an element \( x \in G \) such that \( x \in gH \) and \( x \in g'H \). Therefore, we can write:
+    \[
+    x = gh_1 = g'h_2
+    \]
+    for some \( h_1, h_2 \in H \). Rearranging this equation gives us:
+    \[
+    g^{-1}g' = h_1 h_2^{-1}
+    \]
+    Since \( h_1 h_2^{-1} \in H \), we have \( g^{-1}g' \in H \). This implies that \( g' = gh \) for some \( h \in H \). Therefore, we can write:
+    \[
+    g'H = (gh)H = g(Hh) = gH
+    \]
+    Thus, if the left cosets \( gH \) and \( g'H \) are not disjoint, they must be identical.
+
+    Since every element of \( G \) belongs to at least one left coset of \( H \), and any two left cosets are either identical or disjoint, it follows that the left cosets of \( H \) in \( G \) partition the group \( G \) into disjoint subsets. The same argument applies to the right cosets. Hence proved.
+\end{proof}
+Now, we are equipped to break a finite group $G$ into cosets of any subgroup $H$ of $G$. Since all cosets of $H$ have the same number of elements as $H$ and the same number of elements pairwise, we can conclude that the order of $G$ is a multiple of the order of $H$. This leads us to the statement of Lagrange's theorem.
+\begin{mytheorem}[Lagrange's Theorem]
+    Let \( G \) be a finite group and \( H \) be a subgroup of \( G \). Then the order of \( H \) divides the order of \( G \).
+\end{mytheorem}
+\begin{proof}
+    Let \( G \) be a finite group and \( H \) be a subgroup of \( G \). We will show that the order of \( H \) divides the order of \( G \). Let \( |G| = n \) denote the order of \( G \) and \( |H| = m \) denote the order of \( H \). \\
+    \textbf{Trivial case:} If \( H = \{ e \} \) is the trivial subgroup, then \( |H| = 1 \) divides \( |G| \) for any finite group \( G \). Thus, the theorem holds in this case. Further if $H = G$, then $|H| = |G|$ and the theorem holds. \\
+    \textbf{Non-trivial case:} Assume \( H \) is a non-trivial proper subgroup of \( G \). We will use the concept of left cosets to partition \( G \) into disjoint subsets. Pick $g_1 \in G, g_1 \notin H$. Then we can form the left coset \( g_1H \). Since \( g_1 \notin H \), the left coset \( g_1H \) is disjoint from \( H \). Next, take $g_2 \in G\setminus \{H \cup g_1H\}$ and form the left coset \( g_2H \). This left coset is also disjoint from both \( H \) and \( g_1H \). We can continue this process until we have partitioned \( G \) into disjoint left cosets of \( H \):
+\[G = H \cup g_1H \cup g_2H \cup \ldots \cup g_kH\]
+    where \( k \) is the number of left cosets of \( H \) in \( G \). Since each left coset has the same number of elements as \( H \), we have:
+    \[|G| = |H| + |g_1H| + |g_2H| + \ldots + |g_kH| = (k+1)|H|\]
+    This shows that the order of \( G \) is a multiple of the order of \( H \). Therefore, we can conclude that the order of \( H \) divides the order of \( G \). Hence proved.    
+\end{proof}
+This is a powerful result which says that subgroups cannot have arbitrary orders; they must divide the order of the group. For example, if \( G \) is a group of order 12, then any subgroup \( H \) of \( G \) must have an order that divides 12, which means \( H \) can only have orders 1, 2, 3, 4, 6, or 12. This theorem has many applications in group theory and helps us understand the structure of groups and their subgroups.
+\begin{mynote}
+    We must note that the converse is not true, i.e., if \( d \) divides the order of \( G \), it does not necessarily mean that there is a subgroup of \( G \) with order \( d \). For example, the group \( A_4 \) (the alternating group on 4 elements) has order 12, but it does not have a subgroup of order 6, even though 6 divides 12.
+\end{mynote}
+\begin{corollary}
+    In a finite group \( G \), the order of any element \( g \in G \) divides the order of \( G \).
+\end{corollary}
+\begin{proof}
+    Let \( G \) be a finite group and \( g \in G \) be an arbitrary element. Consider the subgroup generated by \( g \), denoted by \( \langle g \rangle \). The order of the subgroup \( \langle g \rangle \) is equal to the order of the element \( g \), which we denote by \( o(g) \). Since \( \langle g \rangle \) is a subgroup of \( G \), we can apply Lagrange's theorem, which states that the order of any subgroup divides the order of the group. Therefore, we have:
+    \[
+    o(g) = |\langle g \rangle| \text{ divides } |G|
+    \]
+    Hence proved.
+\end{proof}
+\begin{corollary}
+    If \( G \) is a finite group of prime order \( p \), then \( G \) is cyclic and thus isomorphic to the additive group of integers modulo \( p \), denoted by \( \mathbb{Z}_p \).
+\end{corollary}
+\begin{proof}
+    Let \( G \) be a finite group of prime order \( p \). Since \( p \) is prime, the only divisors of \( p \) are 1 and \( p \). By Lagrange's theorem, the order of any subgroup of \( G \) must divide \( p \). Therefore, the only subgroups of \( G \) are the trivial subgroup \( \{ e \} \) and the group \( G \) itself. 
+
+    Now, let \( g \in G \) be any non-identity element. The subgroup generated by \( g \), denoted by \( \langle g \rangle \), must have an order that divides \( p \). Since \( g \) is not the identity element, the order of \( g \) cannot be 1. Therefore, the order of \( g \) must be \( p \). This means that \( g \) generates the entire group \( G \), and thus \( G = \langle g \rangle \).
+
+    Since \( G \) is generated by a single element, it is cyclic. Moreover, a cyclic group of prime order is isomorphic to the additive group of integers modulo that prime. Therefore, we have:
+    \[
+    G \cong \mathbb{Z}_p
+    \]
+    Hence proved.
+\end{proof}
+\subsection{Classifying Groups of Order 4}
+Let $(G, \cdot)$ be a group of order 4. We want to classify all possible groups of order 4 up to isomorphism. We can use Lagrange's theorem to determine the possible orders of elements in \( G \). Since \( G \) has order 4, the possible orders of elements are 1, 2, or 4.
+\begin{itemize}
+    \item If \( G \) has an element of order 4, then \( G \) is cyclic and isomorphic to \( \mathbb{Z}_4 \).
+    \item If \( G \) has no element of order 4, but has an element of order 2, then \( G \) must have two distinct elements of order 2 (since the identity element has order 1). In this case, \( G \) is isomorphic to the Klein four-group \( V_4 \), which can be represented as:
+    \[
+    V_4 = \{ e, a, b, ab \}
+    \]
+    where \( a^2 = b^2 = e \) and \( ab = ba \).    
+\end{itemize}
+Thus, there are exactly two groups of order 4 up to isomorphism: the cyclic group \( \mathbb{Z}_4 \) and the Klein four-group \( V_4 \). We can note that all groups of order 4 are abelian, since both \( \mathbb{Z}_4 \) and \( V_4 \) are abelian groups. Therefore, there are no non-abelian groups of order 4. This classification of groups of order 4 is a direct consequence of Lagrange's theorem and the properties of group elements.
+
+\begin{exercise}
+    Prove the following statements:
+    \begin{enumerate}
+        \item Every group of order less than 6 is abelian.
+        \item If $H \leq G$ such that $|G| = 6$, then $H$ is cyclic. 
+        \item Let $n > 2$ be a prime number. Suppose we have a non commutative group $G$ of order $2n$, then $G$ has a subgroup of order $n$.
+        \item Suppose $G$ is a finite group, then for every element $a \in G$, $a^{|G|} = e$.
+        \item Suppose $G$ is a finite group and we have $k$ such that $\gcd(k, |G|) = 1$, then the map $f: G \to G$ defined by $f(g) = g^k$ is a bijection.
+    \end{enumerate}
+\end{exercise}
+\underline{Solution:} We prove each part seperately. 
+\begin{enumerate}
+    \item Let \(G\) be a group of order less than 6. The possible orders of \(G\) are 1, 2, 3, 4, or 5. If \(G\) has order 1, it is the trivial group and is abelian. If \(G\) has order 2 or 3 or 5, it is cyclic (since any group of prime order is cyclic) and thus abelian. If \(G\) has order 4, it can either be isomorphic to \(\mathbb{Z}_4\) or \(V_4\), both of which are abelian. Therefore, every group of order less than 6 is abelian.
+    \item Let \(G\) be a group of order 6 and \(H\) be a subgroup of \(G\). The possible orders of \(H\) are 1, 2, 3. If \(H\) has order 1, it is the trivial subgroup and is cyclic. If \(H\) has order 2 or 3, it is cyclic (since any group of prime order is cyclic).
+    \item Let \(G\) be a non-commutative group of order \(2n\) where \(n > 2\) is a prime number. By Lagrange's theorem, the possible orders of subgroups of \(G\) are 1, 2, \(n\). Suppose it does not have a subgroup of order \(n\). Then the only subgroups are the trivial subgroup and subgroups of order 2. Now, this would imply that all elements of \(G\) other than identity have order 2. Consider two such elements \(a\) and \(b\). Since \(G\) is non-commutative, we must have \(ab \neq ba\). However, since both \(a\) and \(b\) have order 2, we have:
+    \[(ab)^2 = abab = a(ba)b = a(ab)b = (aa)(bb) = e\]
+    This is a contradiction since this means that the group operation is commutative. Therefore, \(G\) must have a subgroup of order \(n\).
+    \item Suppose \(G\) is a finite group and let \(a \in G\). Let \(o(a)\) denote the order of the element \(a\). By Lagrange's theorem, the order of any element divides the order of the group. Therefore, we can write:
+    \[o(a) \text{ divides } |G|\]
+    This means that there exists an integer \(k\) such that \(o(a) \cdot k = |G|\). Therefore, we have:
+    \[a^{|G|} = a^{o(a) \cdot k} = (a^{o(a)})^k = e^k = e\]
+    Hence proved.
+    \item Suppose \(G\) is a finite group and let \(k\) be an integer such that \(\gcd(k, |G|) = 1\). We want to show that the map \(f: G \to G\) defined by \(f(g) = g^k\) is a bijection. First, we show that \(f\) is injective. Suppose \(f(g_1) = f(g_2)\) for some \(g_1, g_2 \in G\). This means that:
+    \[g_1^k = g_2^k\]
+    Rearranging this gives us:
+    \[g_1^k g_2^{-k} = e\]
+    This implies that \((g_1 g_2^{-1})^k = e\). Since \(\gcd(k, |G|) = 1\), the order of \(g_1 g_2^{-1}\) must divide \(k\) and \(|G|\). Therefore, \(g_1 g_2^{-1} = e\), which means \(g_1 = g_2\). Thus, \(f\) is injective. Next, we show that \(f\) is surjective. Let \(y \in G\) be an arbitrary element. We want to find an element \(x \in G\) such that \(f(x) = y\). Since \(\gcd(k, |G|) = 1\), there exist integers \(m\) and \(n\) such that \(mk + n|G| = 1\). Recall note 1.2.2.4. Since we have $k, |G|$ are coprime, the identity demonstrated still holds. Therefore, we can write:
+\[y = y^{mk + n|G|} = y^{mk} \cdot y^{n|G|} = (y^m)^k \cdot e = (y^m)^k\]
+    Let \(x = y^m\). Then we have:
+    \[f(x) = f(y^m) = (y^m)^k = y\]
+    Thus, for every element \(y \in G\), there exists an element \(x = y^m \in G\) such that \(f(x) = y\). Therefore, \(f\) is surjective.
+\end{enumerate}
+\section{Group Homomorphisms}
+Let us compare two groups for structural similarity. Consider the group of integers under addition, denoted by \((\mathbb{Z}, +)\), and the group of integers modulo \(2\) under addition, denoted by \((\mathbb{Z}_2, +)\). We can partition the set of integers into two subsets: the even integers and the odd integers. The even integers form a subgroup of \(\mathbb{Z}\) isomorphic to \(\mathbb{Z}\) itself, while the odd integers do not form a subgroup. Consider adding elements of these sets in different ways -
+\begin{center}
+\begin{tabular}{c|c}
+\((\mathbb{Z}, +)\) & \((\mathbb{Z}_2, +)\) \\
+\hline
+even + even = even & $0 + 0 \equiv 0 \mod 2$ \\
+odd + odd = even & $1 + 1 \equiv 0 \mod 2$ \\
+even + odd = odd & $0 + 1 \equiv 1 \mod 2$ \\
+odd + even = odd & $1 + 0 \equiv 1 \mod 2$ \\
+\hline
+\end{tabular}
+\end{center}
+From this comparison, we can see that the structure of the group \((\mathbb{Z}, +)\) is similar to the structure of the group \((\mathbb{Z}_2, +)\) in terms of how elements combine under the group operation. We can define a function $f: \mathbb{Z} \to \mathbb{Z}_2$ by:
+\[f(n) = \begin{cases}0 & \text{if } n \text{ is even} \\ 1 & \text{if } n \text{ is odd}\end{cases}\]
+This function preserves the group operation, since for any \(m, n \in \mathbb{Z}\), we have:
+\[f(m + n) = \begin{cases}0 & \text{if }m + n \text{ is even} \\ 1 & \text{if } m + n \text{ is odd}\end{cases}\]
+and
+\[f(m) + f(n) = \begin{cases}0 & \text{if }m \text{ and } n \text{ are both even or both odd} \\ 1 & \text{if }m \text{ and } n \text{ have different parity}\end{cases}\]
+Let us now consider more examples to illustrate this more concretely. \\
+Consider the group $Z_4$ under addition modulo 4 and the group of complex numbers of the form $\{1, i, -1, -i\}$ under multiplication. Let us construct the cayley tables for both groups -
+\begin{center}
+\begin{tabular}{c|cccc}
+$+$ & 0 & 1 & 2 & 3 \\
+\hline
+0 & 0 & 1 & 2 & 3 \\
+1 & 1 & 2 & 3 & 0 \\
+2 & 2 & 3 & 0 & 1 \\
+3 & 3 & 0 & 1 & 2 \\
+\end{tabular}
+\begin{tabular}{c|cccc}
+$\cdot$ & 1 & $i$ & $-1$ & $-i$ \\
+\hline
+1 & 1 & $i$ & $-1$ & $-i$ \\
+$i$ & $i$ & $-1$ & $-i$ & 1 \\
+$-1$ & $-1$ & $-i$ & 1 & $i$ \\
+$-i$ & $-i$ & 1 & $i$ & $-1$ \\
+\end{tabular}
+\end{center}
+From the cayley tables, we can see that the structure of the group \(Z_4\) under addition modulo 4 is similar to the structure of the group of complex numbers \(\{1, i, -1, -i\}\) under multiplication. We can define a function \(f: Z_4 \to \{1, i, -1, -i\}\) by:
+\[f(0) = 1, \quad f(1) = i, \quad f(2) = -1, \quad f(3) = -i\]
+This function preserves the group operation, since for any \(a, b \in Z_4\), we have:
+\[f(a + b) = f((a + b) \mod 4)\]
+and
+\[f(a) \cdot f(b) = f(a) \cdot f(bmod 4)\]
+Now, we note that the function \(f\) is a bijection, since it is both injective and surjective. Therefore, we can conclude that the group \(Z_4\) under addition modulo 4 is isomorphic to the group of complex numbers \(\{1, i, -1, -i\}\) under multiplication. This illustrates how two seemingly different groups can have the same structure and be considered the same in terms of group theory. \\
+Note also that the function in the previous example is not a bijection and hence does not have an inverse, however, it still preserves the group operation. This tells us that groups can have similar structures even if they are not isomorphic, and that the concept of homomorphisms allows us to compare groups in a more general way than just looking for isomorphisms. 
+\begin{mydefinition}{Group Homomorphism}
+    Let $(G, \star), (H, \cdot)$ be two groups. A group homomorphism from $G \to H$ is a map $f: G \to H$ such that for all $g_1, g_2 \in G$, we have:
+    \[f(g_1 \star g_2) = f(g_1) \cdot f(g_2)\]
+\end{mydefinition}
+\begin{mynote}
+    We note the following points - 
+    \begin{itemize}
+        \item For $f$ defined as above, we have $f(e_G) = e_H$, where $e_G$ and $e_H$ are the identity elements of $G$ and $H$ respectively. This can be shown as follows:
+        \[f(e_G) = f(e_G \star e_G) = f(e_G) \cdot f(e_G)\]
+        Let $f(e_G) = s$. Then we have $s = s \cdot s$. Multiplying both sides by $s^{-1}$ gives us $e_H = s$, which means $f(e_G) = e_H$.
+        \item For any $g \in G$, we have $f(g^{-1}) = f(g)^{-1}$. This can be shown as follows:
+        \[e_H = f(e_G) = f(g \star g^{-1}) = f(g) \cdot f(g^{-1})\]
+        Multiplying both sides by $f(g)^{-1}$ gives us $f(g) \cdot f(g)^{-1} = e_H$, which means $f(g^{-1}) = f(g)^{-1}$.
+    \end{itemize}
+\end{mynote}
 
 \end{document}
 

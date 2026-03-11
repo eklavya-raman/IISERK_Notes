@@ -417,6 +417,9 @@ INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\generic\circuitikz\pgfcirclabel.
 INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\generic\circuitikz\pgfcircvoltage.tex
 INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\generic\circuitikz\pgfcirccurrent.tex
 INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\generic\circuitikz\pgfcircflow.tex
+INPUT .\basic_algebra.aux
+INPUT .\basic_algebra.aux
+INPUT basic_algebra.aux
 OUTPUT basic_algebra.aux
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -428,8 +431,14 @@ INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\00miktex\epstopdf-sys.cfg
 INPUT C:\Program Files\MiKTeX\tex\latex\base\textcomp.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\textcomp.sty
-OUTPUT basic_algebra.out
+INPUT .\basic_algebra.out
+INPUT .\basic_algebra.out
+INPUT basic_algebra.out
+INPUT basic_algebra.out
 OUTPUT basic_algebra.pdf
+INPUT .\basic_algebra.out
+INPUT .\basic_algebra.out
+OUTPUT basic_algebra.out
 INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-english.trsl
 INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-english.trsl
 INPUT C:\Users\Admin\AppData\Roaming\MiKTeX\tex\latex\translations\dicts\translations-basic-dictionary-english.trsl
@@ -476,14 +485,17 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\Admin\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-OUTPUT basic_algebra.toc
-INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
+INPUT .\basic_algebra.toc
+INPUT .\basic_algebra.toc
+INPUT basic_algebra.toc
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+OUTPUT basic_algebra.toc
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
-INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmbxti10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
