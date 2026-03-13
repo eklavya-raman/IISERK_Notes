@@ -1,0 +1,28 @@
+{
+  "files": {
+    "analysis_white.html": {
+      "title": "Analysis 1 Course Notes",
+      "section": "course_notes"
+    },
+    "basic_algebra.html": {
+      "title": "Basic Algebra Course Notes",
+      "section": "course_notes"
+    },
+    "cyclic_vectors.html": {
+      "title": "Cyclic Vectors",
+      "section": "personal_study"
+    },
+    "lin_al.html": {
+      "title": "Linear Algebra 1 Course Notes",
+      "section": "course_notes"
+    },
+    "prob_stats1.html": {
+      "title": "Prob Stats 1 Course Notes",
+      "section": "course_notes"
+    },
+    "skolem.html": {
+      "title": "Skolem Positivity Problem",
+      "section": "personal_study"
+    }
+  }
+}

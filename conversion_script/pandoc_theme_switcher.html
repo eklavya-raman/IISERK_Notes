@@ -1,0 +1,417 @@
+<script>
+(() => {
+  const THEMES = [
+    { value: "dawn", label: "Dawn Light" },
+    { value: "pearl", label: "Pearl Light" },
+    { value: "sage", label: "Sage Light" },
+    { value: "lilac", label: "Lilac Light" },
+    { value: "ivory", label: "Obsidian Dark" },
+    { value: "slate", label: "Nocturne Dark" },
+    { value: "forest", label: "Emerald Night Dark" },
+    { value: "midnight", label: "Midnight Indigo Dark" },
+  ];
+
+  const TEXT_FONTS = [
+    { value: "serif", label: "Serif" },
+    { value: "sans", label: "Sans" },
+    { value: "system", label: "System UI" },
+    { value: "palatino", label: "Palatino" },
+    { value: "georgia", label: "Georgia" },
+    { value: "times", label: "Times" },
+    { value: "garamond", label: "Garamond" },
+    { value: "mono", label: "Mono" },
+  ];
+
+  const MATH_FONTS = [
+    { value: "cambria", label: "Cambria" },
+    { value: "stix", label: "STIX" },
+    { value: "latinmodern", label: "Latin Modern" },
+    { value: "noto", label: "Noto Sans Math" },
+    { value: "xits", label: "XITS" },
+    { value: "libertinus", label: "Libertinus" },
+    { value: "asana", label: "Asana" },
+    { value: "termes", label: "TeX Gyre Termes" },
+  ];
+
+  const MATH_FONT_STACKS = {
+    cambria: '"Cambria Math", Cambria, "Times New Roman", serif',
+    stix: '"STIX Two Math", "STIX Math", "Cambria Math", serif',
+    latinmodern: '"Latin Modern Math", "Cambria Math", "STIX Two Math", serif',
+    noto: '"Noto Sans Math", "Cambria Math", "STIX Two Math", serif',
+    xits: '"XITS Math", "STIX Two Math", "Cambria Math", serif',
+    libertinus: '"Libertinus Math", "XITS Math", "STIX Two Math", "Cambria Math", serif',
+    asana: '"Asana Math", "Cambria Math", "STIX Two Math", serif',
+    termes: '"TeX Gyre Termes Math", "STIX Two Math", "Cambria Math", serif',
+  };
+
+  const TEXT_SIZES = [
+    { value: "85", label: "85%" },
+    { value: "95", label: "95%" },
+    { value: "100", label: "100%" },
+    { value: "110", label: "110%" },
+    { value: "120", label: "120%" },
+    { value: "130", label: "130%" },
+  ];
+
+  const MATH_SIZES = [
+    { value: "80", label: "80%" },
+    { value: "90", label: "90%" },
+    { value: "100", label: "100%" },
+    { value: "110", label: "110%" },
+    { value: "120", label: "120%" },
+    { value: "135", label: "135%" },
+    { value: "150", label: "150%" },
+  ];
+
+  const THEME_STORAGE_KEY = "pandoc-book-theme";
+  const TEXT_FONT_STORAGE_KEY = "pandoc-book-text-font";
+  const MATH_FONT_STORAGE_KEY = "pandoc-book-math-font";
+  const TEXT_SIZE_STORAGE_KEY = "pandoc-book-text-size";
+  const MATH_SIZE_STORAGE_KEY = "pandoc-book-math-size";
+
+  const validThemes = new Set(THEMES.map((theme) => theme.value));
+  const validTextFonts = new Set(TEXT_FONTS.map((font) => font.value));
+  const validMathFonts = new Set(MATH_FONTS.map((font) => font.value));
+  const validTextSizes = new Set(TEXT_SIZES.map((size) => size.value));
+  const validMathSizes = new Set(MATH_SIZES.map((size) => size.value));
+
+  function normalizeChoice(value, validSet) {
+    if (!value) {
+      return null;
+    }
+    return validSet.has(value) ? value : null;
+  }
+
+  function getStoredChoice(storageKey, validSet) {
+    try {
+      return normalizeChoice(window.localStorage.getItem(storageKey), validSet);
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function setStoredChoice(storageKey, value) {
+    try {
+      window.localStorage.setItem(storageKey, value);
+    } catch (_error) {
+      // Ignore storage errors in restricted environments
+    }
+  }
+
+  function getStoredTheme() {
+    return getStoredChoice(THEME_STORAGE_KEY, validThemes);
+  }
+
+  function getStoredTextFont() {
+    return getStoredChoice(TEXT_FONT_STORAGE_KEY, validTextFonts);
+  }
+
+  function getStoredMathFont() {
+    return getStoredChoice(MATH_FONT_STORAGE_KEY, validMathFonts);
+  }
+
+  function getStoredTextSize() {
+    return getStoredChoice(TEXT_SIZE_STORAGE_KEY, validTextSizes);
+  }
+
+  function getStoredMathSize() {
+    return getStoredChoice(MATH_SIZE_STORAGE_KEY, validMathSizes);
+  }
+
+  function setStoredTheme(theme) {
+    setStoredChoice(THEME_STORAGE_KEY, theme);
+  }
+
+  function setStoredTextFont(font) {
+    setStoredChoice(TEXT_FONT_STORAGE_KEY, font);
+  }
+
+  function setStoredMathFont(font) {
+    setStoredChoice(MATH_FONT_STORAGE_KEY, font);
+  }
+
+  function setStoredTextSize(size) {
+    setStoredChoice(TEXT_SIZE_STORAGE_KEY, size);
+  }
+
+  function setStoredMathSize(size) {
+    setStoredChoice(MATH_SIZE_STORAGE_KEY, size);
+  }
+
+  function getPreferredTheme() {
+    const fromStorage = getStoredTheme();
+    if (fromStorage) {
+      return fromStorage;
+    }
+    const darkQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+    if (darkQuery && darkQuery.matches) {
+      return "midnight";
+    }
+    return "dawn";
+  }
+
+  function getPreferredTextFont() {
+    return getStoredTextFont() || "serif";
+  }
+
+  function getPreferredMathFont() {
+    return getStoredMathFont() || "cambria";
+  }
+
+  function getPreferredTextSize() {
+    return getStoredTextSize() || "100";
+  }
+
+  function getPreferredMathSize() {
+    return getStoredMathSize() || "100";
+  }
+
+  function applyTheme(theme) {
+    const chosen = normalizeChoice(theme, validThemes) || "dawn";
+    document.documentElement.setAttribute("data-theme", chosen);
+    setStoredTheme(chosen);
+    return chosen;
+  }
+
+  function applyTextFont(font) {
+    const chosen = normalizeChoice(font, validTextFonts) || "serif";
+    document.documentElement.setAttribute("data-font", chosen);
+    setStoredTextFont(chosen);
+    return chosen;
+  }
+
+  function resolveMathFontStack(font) {
+    return MATH_FONT_STACKS[font] || MATH_FONT_STACKS.cambria;
+  }
+
+  function applyMathFontToElements(fontStack) {
+    document.documentElement.style.setProperty("--font-math", fontStack);
+    document.querySelectorAll("math, math *").forEach((node) => {
+      node.style.fontFamily = fontStack;
+    });
+  }
+
+  function applyMathSizeToElements(size) {
+    const numeric = Number.parseFloat(size);
+    if (!Number.isFinite(numeric) || numeric <= 0) {
+      return;
+    }
+    const scale = numeric / 100;
+    document.querySelectorAll("math").forEach((node) => {
+      node.style.fontSize = `${scale}em`;
+    });
+  }
+
+  function applyMathFont(font) {
+    const chosen = normalizeChoice(font, validMathFonts) || "cambria";
+    document.documentElement.setAttribute("data-math-font", chosen);
+    applyMathFontToElements(resolveMathFontStack(chosen));
+    setStoredMathFont(chosen);
+    return chosen;
+  }
+
+  function applyTextSize(size) {
+    const chosen = normalizeChoice(size, validTextSizes) || "100";
+    document.documentElement.setAttribute("data-font-size", chosen);
+    setStoredTextSize(chosen);
+    return chosen;
+  }
+
+  function applyMathSize(size) {
+    const chosen = normalizeChoice(size, validMathSizes) || "100";
+    document.documentElement.setAttribute("data-math-size", chosen);
+    applyMathSizeToElements(chosen);
+    setStoredMathSize(chosen);
+    return chosen;
+  }
+
+  function markTocLayout() {
+    if (document.getElementById("TOC")) {
+      document.body.classList.add("pandoc-has-toc");
+    }
+  }
+
+  function setupMobileTocDrawer() {
+    const toc = document.getElementById("TOC");
+    if (!toc || document.querySelector(".toc-mobile-toggle")) {
+      return;
+    }
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "toc-mobile-toggle";
+    toggle.setAttribute("aria-controls", "TOC");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Contents";
+
+    const backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "toc-mobile-backdrop";
+    backdrop.setAttribute("aria-label", "Close contents panel");
+
+    function isOpen() {
+      return document.body.classList.contains("toc-mobile-open");
+    }
+
+    function setOpen(open) {
+      document.body.classList.toggle("toc-mobile-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    toggle.addEventListener("click", () => {
+      setOpen(!isOpen());
+    });
+
+    backdrop.addEventListener("click", () => {
+      setOpen(false);
+    });
+
+    toc.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
+
+    document.body.append(toggle, backdrop);
+  }
+
+  function resolveSwitcherHost() {
+    const toc = document.getElementById("TOC");
+    if (toc) {
+      return { node: toc, mode: "toc" };
+    }
+
+    const title = document.getElementById("title-block-header");
+    if (title) {
+      return { node: title, mode: "header" };
+    }
+
+    return { node: document.body, mode: "header" };
+  }
+
+  function createControl({ id, labelText, options, selectedValue, onChange }) {
+    const control = document.createElement("div");
+    control.className = "theme-switcher-control";
+
+    const label = document.createElement("label");
+    label.setAttribute("for", id);
+    label.textContent = labelText;
+
+    const select = document.createElement("select");
+    select.id = id;
+    select.name = id;
+
+    options.forEach((optionData) => {
+      const option = document.createElement("option");
+      option.value = optionData.value;
+      option.textContent = optionData.label;
+      select.appendChild(option);
+    });
+
+    select.value = selectedValue;
+    select.addEventListener("change", (event) => {
+      if (!event.target || !event.target.value) {
+        return;
+      }
+      onChange(event.target.value);
+    });
+
+    control.append(label, select);
+    return control;
+  }
+
+  function createSwitcher(currentTheme, currentTextFont, currentMathFont, currentTextSize, currentMathSize) {
+    if (document.querySelector(".theme-switcher")) {
+      return;
+    }
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "theme-switcher";
+    wrapper.setAttribute("role", "group");
+    wrapper.setAttribute("aria-label", "Theme switcher");
+
+    const controls = document.createElement("div");
+    controls.className = "theme-switcher-controls";
+
+    controls.append(
+      createControl({
+        id: "theme-switcher-select",
+        labelText: "Theme",
+        options: THEMES,
+        selectedValue: currentTheme,
+        onChange: (value) => applyTheme(value),
+      }),
+      createControl({
+        id: "text-font-switcher-select",
+        labelText: "Text Font",
+        options: TEXT_FONTS,
+        selectedValue: currentTextFont,
+        onChange: (value) => applyTextFont(value),
+      }),
+      createControl({
+        id: "math-font-switcher-select",
+        labelText: "Math Font",
+        options: MATH_FONTS,
+        selectedValue: currentMathFont,
+        onChange: (value) => applyMathFont(value),
+      }),
+      createControl({
+        id: "text-size-switcher-select",
+        labelText: "Text Size",
+        options: TEXT_SIZES,
+        selectedValue: currentTextSize,
+        onChange: (value) => applyTextSize(value),
+      }),
+      createControl({
+        id: "math-size-switcher-select",
+        labelText: "Math Size",
+        options: MATH_SIZES,
+        selectedValue: currentMathSize,
+        onChange: (value) => applyMathSize(value),
+      })
+    );
+
+    wrapper.append(controls);
+
+    const host = resolveSwitcherHost();
+    if (host.mode === "toc") {
+      wrapper.classList.add("theme-switcher--toc");
+      host.node.prepend(wrapper);
+      return;
+    }
+
+    wrapper.classList.add("theme-switcher--header");
+    if (host.node === document.body) {
+      host.node.prepend(wrapper);
+      return;
+    }
+    host.node.appendChild(wrapper);
+  }
+
+  function init() {
+    if (!document.body) {
+      return;
+    }
+    markTocLayout();
+    setupMobileTocDrawer();
+    const currentTheme = applyTheme(getPreferredTheme());
+    const currentTextFont = applyTextFont(getPreferredTextFont());
+    const currentMathFont = applyMathFont(getPreferredMathFont());
+    const currentTextSize = applyTextSize(getPreferredTextSize());
+    const currentMathSize = applyMathSize(getPreferredMathSize());
+    createSwitcher(currentTheme, currentTextFont, currentMathFont, currentTextSize, currentMathSize);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+})();
+</script>
