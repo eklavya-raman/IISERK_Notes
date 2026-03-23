@@ -106,5 +106,74 @@ $$f_Y(y) = \begin{dcases}
 \end{dcases}$$
 
 
+\subsection{Ludeberg Levy CLT}
+\begin{mytheorem}{Ludeberg Levy CLT}
+    Let \( X_1, X_2, \ldots, X_n \) be a sequence of independent and identically distributed (i.i.d.) random variables with mean \( \mu \) and variance \( \sigma^2 \). Let \( S_n = X_1 + X_2 + \ldots + X_n \). Then, as \( n \to \infty \),
+    \[
+        \frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0, 1)
+    \]
+    where \( N(0, 1) \) is the standard normal distribution.
+\end{mytheorem}
+\begin{proof}
+    Write $y_i = \frac{X_i - \mu}{\sigma}$, then $y_i$ are i.i.d. with mean 0 and variance 1 for all $i$. Let $M(\cdot)$ be the moment generating function (MGF) of $y_i$. Then, we have -
+    $$M_{S_n^*}(t) = E[e^{t \cdot \frac{S_n - n\mu}{\sigma\sqrt{n}}}] = E[e^{t \cdot \frac{\sum_{i=1}^{n} (X_i - \mu)}{\sigma\sqrt{n}}}] = E[e^{t \cdot \frac{\sum_{i=1}^{n} y_i}{\sqrt{n}}}]$$
+    Since $y_i$ are i.i.d., we can write -
+    $$M_{S_n^*}(t) = \prod_{i=1}^{n} E[e^{t \cdot \frac{y_i}{\sqrt{n}}}] = \left( M\left( \frac{t}{\sqrt{n}} \right) \right)^n$$
+    Now, we can use the Taylor expansion of $M(t)$ around $t=0$ to get -
+    $$M\left( \frac{t}{\sqrt{n}} \right) = 1 + \frac{t^2}{2n} + o\left( \frac{1}{n} \right)$$
+    Therefore, we have -
+    $$M_{S_n^*}(t) = \left( 1 + \frac{t^2}{2n} + o\left( \frac{1}{n} \right) \right)^n$$
+    Taking the limit as $n \to \infty$, we get -
+    $$\lim_{n \to \infty} M_{S_n^*}(t) = \lim_{n \to \infty} \left( 1 + \frac{t^2}{2n} + o\left( \frac{1}{n} \right) \right)^n = e^{\frac{t^2}{2}}$$
+    This is the MGF of the standard normal distribution. Therefore, by the uniqueness of MGFs, we have -
+    $$\frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0, 1)$$
+\end{proof}
+\begin{mytheorem}[De Moivere-Laplace CLT]
+    Let \( X_1, X_2, \ldots, X_n \) be a sequence of independent and identically distributed (i.i.d.) random variables with mean \( \mu \) and variance \( \sigma^2 \). Let \( S_n = X_1 + X_2 + \ldots + X_n \). Then, as \( n \to \infty \),
+    \[
+        \frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0, 1)
+    \]
+    where \( N(0, 1) \) is the standard normal distribution.
+\end{mytheorem}
+\begin{proof}
+    The proof of the De Moivere-Laplace CLT is similar to the proof of the Ludeberg Levy CLT, but it uses the characteristic function instead of the moment generating function. Let $\phi(t)$ be the characteristic function of $y_i$. Then, we have -
+    $$\phi_{S_n^*}(t) = E[e^{it \cdot \frac{S_n - n\mu}{\sigma\sqrt{n}}}] = E[e^{it \cdot \frac{\sum_{i=1}^{n} (X_i - \mu)}{\sigma\sqrt{n}}}] = E[e^{it \cdot \frac{\sum_{i=1}^{n} y_i}{\sqrt{n}}}]$$
+    Since $y_i$ are i.i.d., we can write -
+    $$\phi_{S_n^*}(t) = \prod_{i=1}^{n} E[e^{it \cdot \frac{y_i}{\sqrt{n}}}] = \left( \phi\left( \frac{t}{\sqrt{n}} \right) \right)^n$$
+    Now, we can use the Taylor expansion of $\phi(t)$ around $t=0$ to get -
+    $$\phi\left( \frac{t}{\sqrt{n}} \right) = 1 - \frac{t^2}{2n} + o\left( \frac{1}{n} \right)$$
+    Therefore, we have -
+    $$\phi_{S_n^*}(t) = \left( 1 - \frac{t^2}{2n} + o\left( \frac{1}{n} \right) \right)^n$$
+    Taking the limit as $n \to \infty$, we get -
+    $$\lim_{n \to \infty} \phi_{S_n^*}(t) = \lim_{n \to \infty} \left( 1 - \frac{t^2}{2n} + o\left( \frac{1}{n} \right) \right)^n = e^{-\frac{t^2}{2}}$$
+    This is the characteristic function of the standard normal distribution. Therefore, by the uniqueness of characteristic functions, we have -
+    $$\frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0, 1)$$
+\end{proof}
+\part{Statistics}
+Let $(x_i, y_i), i\in \{1, 2, \ldots, n\}$ be n paired observations.
+$$\Cov(x, y) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})$$
+$$\implies \Cov(x, y) = \frac{1}{n} \sum_{i=1}^{n} x_i y_i - \bar{x} \bar{y}$$
+$$\Var(x) = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 = \frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2$$
+$$\Var(y) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \bar{y})^2 = \frac{1}{n} \sum_{i=1}^{n} y_i^2 - \bar{y}^2$$
+\subsection{Identities of Covariance and Variance}
+\begin{itemize}
+    \item $\Cov(ax, by) = ab \cdot \Cov(x, y)$
+    \item $\Cov(x, x) = \Var(x)$
+    \item $\Cov(ax+ b, cy+d) = ac \cdot \Cov(x, y)$
+\end{itemize}
+Let $\rho$ be the correlation coefficient between $x$ and $y$. Then, we have -
+$$\rho = \frac{\Cov(x, y)}{\sqrt{\Var(x) \cdot \Var(y)}} = \frac{\frac{1}{n} \sum_{i=1}^{n} x_i y_i - \bar{x} \bar{y}}{\sqrt{\left( \frac{1}{n} \sum_{i=1}^{n} x_i^2 - \bar{x}^2 \right) \cdot \left( \frac{1}{n} \sum_{i=1}^{n} y_i^2 - \bar{y}^2 \right)}}$$
+Using Cauchy-Schwarz inequality, we can show that $|\rho| \leq 1$. We also have the following identities -
+Define $u_i = \frac{x_i - a}{b}$ and $v_i = \frac{y_i - c}{d}$, where $a, b, c, d$ are constants. Then, we have -
+$$\rho(u,v) = \pm \rho(x,y)$$
+where the sign depends on the signs of $b$ and $d$. If $b$ and $d$ have the same sign, then $\rho(u,v) = \rho(x,y)$. If $b$ and $d$ have opposite signs, then $\rho(u,v) = -\rho(x,y)$.
+
+\subsection{Pearson's Product-Moment Correlation Coefficient}
+Let $x_i, y_i$ be plotted on a scatter plot. The data does not always increase liearly. Now, we change the coordinates of the points and view them in the coordinates defined by $\bar{x}$ and $\bar{y}$. Let the transformed data points be $x_i', y_i'$. 
+Take - 
+$$\sum_{i=1}^{n} x_i' y_i' = \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})$$
+If the sum is positive, then the data points are approximately positively linearly correlated. If the sum is negative, then the data points are negatively correlated. If the sum is zero, then the data points are uncorrelated. \\\\
+However, this sum is dependent on the number of data points. Therefore, we need to normalise it by the number of data points and the standard deviations of $x$ and $y$. To get rid of units and to make it independent of the number of data points, we define the Pearson's product-moment correlation coefficient as -
+$$r = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^{n} (x_i - \bar{x})^2} \cdot \sqrt{\sum_{i=1}^{n} (y_i - \bar{y})^2}}$$
 
 \end{document}

@@ -242,7 +242,21 @@
     toggle.className = "toc-mobile-toggle";
     toggle.setAttribute("aria-controls", "TOC");
     toggle.setAttribute("aria-expanded", "false");
-    toggle.textContent = "Contents";
+    toggle.textContent = "☰ Contents";
+
+    const navbar = document.createElement("nav");
+    navbar.className = "mobile-navbar";
+    navbar.setAttribute("aria-label", "Mobile navigation");
+
+    const navbarTitle = document.createElement("div");
+    navbarTitle.className = "mobile-navbar-title";
+    navbarTitle.textContent = "Notes";
+
+    const navbarActions = document.createElement("div");
+    navbarActions.className = "mobile-navbar-actions";
+    navbarActions.append(toggle);
+
+    navbar.append(navbarTitle, navbarActions);
 
     const backdrop = document.createElement("button");
     backdrop.type = "button";
@@ -278,7 +292,7 @@
       }
     });
 
-    document.body.append(toggle, backdrop);
+    document.body.append(navbar, backdrop);
   }
 
   function resolveSwitcherHost() {

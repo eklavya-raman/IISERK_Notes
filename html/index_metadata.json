@@ -1,23 +1,35 @@
 {
   "files": {
+    "analysis_I_problem_set_1.html": {
+      "title": "Analysis Problem Set 1",
+      "section": "assignments"
+    },
     "analysis_white.html": {
-      "title": "Analysis 1 Course Notes",
+      "title": "Analysis 1",
       "section": "course_notes"
     },
     "basic_algebra.html": {
-      "title": "Basic Algebra Course Notes",
+      "title": "Basic Algebra 1",
       "section": "course_notes"
     },
     "cyclic_vectors.html": {
       "title": "Cyclic Vectors",
       "section": "personal_study"
     },
+    "fibonacci.html": {
+      "title": "Fibonacci Numbers",
+      "section": "personal_study"
+    },
     "lin_al.html": {
-      "title": "Linear Algebra 1 Course Notes",
+      "title": "Linear Algebra 1",
       "section": "course_notes"
     },
+    "lin_al_problems.html": {
+      "title": "Linearl Algebra Problems",
+      "section": "assignments"
+    },
     "prob_stats1.html": {
-      "title": "Prob Stats 1 Course Notes",
+      "title": "Probability 1",
       "section": "course_notes"
     },
     "skolem.html": {

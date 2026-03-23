@@ -1,0 +1,3 @@
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.1\else \numberline {1.1}Theorem\fi }{6}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~1.2\else \numberline {1.2}Theorem\fi \thmtformatoptarg {De Moivere-Laplace CLT}}{7}{mytheorem.2}%

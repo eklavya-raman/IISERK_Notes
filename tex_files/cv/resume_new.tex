@@ -1,0 +1,268 @@
+%-------------------------
+% Resume in Latex
+% Author
+% License : MIT
+%------------------------
+
+%---- Required Packages and Functions ----
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.15cm, right=1.4cm, bottom=0.3cm}
+% Adjust margins
+%\addtolength{\oddsidemargin}{-0.5in}
+%\addtolength{\evensidemargin}{-0.5in}
+%\addtolength{\textwidth}{1in}
+\usepackage[most]{tcolorbox}
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+	colback=gray!20,
+	colframe=white,
+	width=\dimexpr\textwidth\relax,
+	enlarge left by=-2mm,
+	boxsep=4pt,
+	arc=0pt,outer arc=0pt,
+}
+
+\urlstyle{same}
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-10pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+% \renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{justify}\begin{itemize}[leftmargin=3ex, rightmargin=2ex, noitemsep,labelsep=1.2mm,itemsep=0mm]\small}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{0mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-3mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+%---- End of Packages and Functions ------
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%
+%%%%%% DEFINE ELEMENTS HERE %%%%%%%
+\newcommand{\name}{Eklavya Raman} % Your Name
+\newcommand{\course}{BS-MS Dual Degree Program} % Your Program
+\newcommand{\roll}{24MS024} % Your Roll No.
+\newcommand{\phone}{+91-9560040793} % Your Phone Number
+\newcommand{\emaila}{er24ms024@iiserkol.ac.in} %Email 1
+\newcommand{\emailb}{} %Email 2
+
+
+
+
+\begin{document}
+\fontfamily{cmr}\selectfont
+%----------HEADING-----------------
+
+
+\parbox{2.35cm}{%
+\includegraphics[width=2.3cm,clip]{images/IISER-K_Logo.png}
+}
+\parbox{\dimexpr\linewidth-2.8cm\relax}{
+\begin{tabularx}{\linewidth}{L r} \\
+  \textbf{\Large Eklavya Raman} & {\raisebox{0.0\height}{\footnotesize \faPhone}\ +91-9560040793}\\
+  {Roll No.: 24MS024} & \href{mailto:er24ms024@iiserkol.ac.in}{\raisebox{0.0\height}{\footnotesize \faEnvelope}\ {er24ms024@iiserkol.ac.in}} \\
+  2$^{nd}$ Year BS-MS Dual Degree Program & \href{https://www.linkedin.com/in/eklavya-raman-0b3595279/}{\raisebox{0.0\height}{\footnotesize \faLinkedin}\ {linkedin}} \\
+  {Indian Institute Of Science Education and Research, Kolkata} & \href{https://github.com/eklavya-raman}{\raisebox{0.0\height}{\footnotesize \faGithub}\ {github}} \\
+\end{tabularx}
+}
+% \parbox{3.0cm}{%
+% \flushright \includegraphics[width=2cm,clip]{nitp_logo.png}
+% }
+
+
+
+\section{\textbf{About Me}}
+\begin{sloppypar}
+I am a second year undergraduate student at IISER Kolkata with a strong foundation in computer science and mathematics. I am passionate about these fields and eager to learn and contribute to research. I am currently exploring diverse areas within computer science and mathematics to identify my long-term interests, and I am open to opportunities that help me grow my skills and knowledge.
+\end{sloppypar}
+\vspace{-2.5mm}
+
+%-----------EDUCATION-----------
+\section{\textbf{Education}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {BS-MS Dual Degree Program}{Pre-Majors: Mathematics and Biology}
+      {Indian Institute Of Science Education and Research, Kolkata}{2024-Present}
+    \resumeSubheading
+      {High School Diploma}{CBSE Class 12: 95.4\%; Prefect of Student Body}
+      {Gyan Bharati School, Saket, New Delhi}{2014-2024}
+    \resumeSubheading{Secondary School Diploma}{CBSE Class 10: 95.6\%}{Gyan Bharati School, Saket, New Delhi}{2022}
+  \resumeSubHeadingListEnd
+\vspace{-5.5mm}
+
+%-----------Technical skills-----------------
+\section{\textbf{Skills and Interests}}
+ \begin{itemize}[leftmargin=0.05in, label={}]
+    \item{
+  \textbf{Languages:}{ English (Native Proficiency), Hindi (Native Proficiency)} \\
+  \textbf{Computer Languages:}{ Python, Java, LaTeX, SQL} \\
+  \textbf{Frameworks:}{ Django} \\
+  \textbf{Libraries:}{ PyTorch} \\
+  \textbf{Skills:}{ Mathematica, Manim, Git, Data Visualization, Typst} \\
+  \textbf{Areas of Interest:}{ Automata Theory and Formal Methods, Combinatorics, Machine Learning, Differential Geometry, Optimization} \\
+  \textbf{Activities:}{ Lawn Tennis, Football, Coding}}
+\end{itemize}
+\vspace{-5mm}
+
+%-----------PROJECTS AND RESEARCH EXPERIENCE-----------
+\section{\textbf{Projects and Research Experience}}
+\resumeSubHeadingListStart
+\resumeProject
+  {NeuroHTz}
+  {Software Lead}
+  {2024-Current}
+  {IISER Kolkata}
+\resumeItemListStart
+  \item Leading software development for a neurotechnology startup focused on machine-learning-based early detection of neurological disorders, including designing and implementing the ML workflow, data preprocessing, model training pipelines, and prototype integration in Python; key achievements include securing funding from the MeitY GENESIS EIR program (10 lakh INR), participating in the Inter Institute Entrepreneurship Meet at IISER Tirupati, and selection into the first cohort of the IISER Kolkata Incubation Center.
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\vspace{-5.5mm}
+
+%-----------AWARDS AND SCHOLARSHIPS-----------
+\section{\textbf{Awards and Scholarships}}
+\resumeSubHeadingListStart
+\resumeProject
+  {DST-Inspire Scholarship}
+  {Awarded to the top 1\% of students in India based on CBSE Class 12 performance}
+  {2024}
+  {DST, Govt. of India}
+
+\resumeProject
+  {Award for Outstanding Achievements in Technical Pursuits}
+  {Awarded for excellence in competitive programming and mathematics during school years}
+  {2024}
+  {Gyan Bharati School}
+
+\resumeProject
+  {Mukhya Mantri Vigyan Protsahan Pariksha (MVPP) Scholarship}
+  {Awarded to top rankers in an exam conducted by the Govt. of Delhi}
+  {2021}
+  {Govt. of Delhi}
+\resumeSubHeadingListEnd
+\vspace{-5.5mm}
+
+%-----------EXAM SCORES-----------
+\section{\textbf{Exam Scores}}
+\begin{itemize}[leftmargin=0.05in, label={}]
+    \item{
+    \textbf{IAT (2024):} All India Rank 1575 \\
+    \textbf{CBSE Class 12 Board Exams (2024):} 95.4\% (Physics 91, Mathematics 97, Computer Science 98, Chemistry 95, English 96) \\
+    \textbf{CBSE Class 10 Board Exams (2022):} 95.6\% \\
+    \textbf{SAT (2023):} 1540/1600 (Math 800, EBRW 740) \\
+    \textbf{IELTS (2023):} Overall 8.0 (Listening 8.5, Reading 8.5, Writing 7.0, Speaking 7.0)}
+\end{itemize}
+  \vspace{-6.5mm}
+
+%
+\section{\textbf{Student Activities and Positions of Responsibility}}
+\begin{itemize}[leftmargin=0.05in, label={}]
+    \item{
+  \textbf{Office Bearer for Lawn Tennis Club, IISER Kolkata (2025-2026)}} \\
+  Organizing and coordinating tennis events and activities for club members; managing club resources and facilities for smooth operations. \\
+  \textbf{LaTeX Workshop Conductor, IISER Kolkata (Spring 2024)} \\
+  Conducted a workshop on LaTeX for scientific researchers and students, covering document structure, formatting, mathematical typesetting, and bibliography management. \\
+  \textbf{IISM Participant, Lawn Tennis, IISER Kolkata (Autumn 2024)} \\
+  Represented IISER Kolkata in the inter-IISER sports meet for lawn tennis and won a silver medal in the men's team event.
+\end{itemize}
+
+
+
+
+%-----------Achievements----------------
+\vspace{-7mm}
+\setlength{\footskip}{4.08003pt}
+
+
+
+
+
+
+
+%-------------------------------------------
+\end{document}

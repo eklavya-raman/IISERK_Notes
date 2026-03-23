@@ -1,0 +1,551 @@
+\documentclass[openany]{book}
+\input{notes_white}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\settitle{Analysis II Course Notes}
+\begin{document}
+\title{\Large{\underemphasise{Analysis Notes}} \\ \vspace{5pt}
+\large{Analysis 2: Notes, Exercises and Solutions}}
+\author{Eklavya Raman \\ \vspace{5pt} er24ms024@iiserkol.ac.in \\ \vspace{5pt}}
+\date{\today}
+\maketitle
+\tableofcontents
+\listoftheorems[
+    show=mytheorem,
+    title={List of Theorems}]
+
+\chapter{Continuity}
+\chapter{Differentiability}
+We have already defined the concept of continuity of a function at a point and on an interval. Now we will define the concept of differentiability of a function at a point and on an interval. Differentiability is a stronger condition than continuity, as it implies that the function is not only continuous but also has a well-defined tangent line at every point in its domain. In other words, if a function is differentiable at a point, then it must be continuous at that point, but the converse is not necessarily true. For example, the function $f(x) = |x|$ is continuous at $x = 0$ but not differentiable at $x = 0$.
+\section{Derivative of a function}
+Let us consider a function $f: I \to \R$. We want to define the derivative of $f$ at a point $x_0 \in I$. Intuitively, the derivative represents the rate of change of the function at that point. We can think of the derivative as the slope of the tangent line to the graph of the function at the point $x_0$. Let us now formalize this intuition. 
+\begin{mydefinition}{Derivative}
+    Let $f: I \to \R$ be a function and let $x_0 \in I$. We say that $f$ is differentiable at $x_0$ if the following limit exists:
+    \[
+        f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}.
+    \]
+    If this limit exists, we call it the derivative of $f$ at $x_0$ and denote it by $f'(x_0)$ or $\frac{df}{dx}(x_0)$.
+    For endpoints of the interval $I$, we can define the derivative using one-sided limits. If $x_0$ is the left endpoint of $I$, we define the derivative as
+\[
+    f'(x_0) = \lim_{h \to 0^+} \frac{f(x_0 + h) - f(x_0)}{h}.
+\]
+If $x_0$ is the right endpoint of $I$, we define the derivative as
+\[
+    f'(x_0) = \lim_{h \to 0^-} \frac{f(x_0 + h) - f(x_0)}{h}.
+\]
+Hence, the derivative is well defined at every point in the interior of $I$ and at the endpoints of $I$ as long as the appropriate one-sided limits exist.
+\end{mydefinition}
+We see that it is not always the case that the derivative of a function exists at every point. For example, consider the function $f(x) = |x|$. The derivative of $f$ at $x = 0$ does not exist because the limit from the left and the limit from the right do not agree. However, the derivative of $f$ exists at every other point. For $x > 0$, we have $f'(x) = 1$ and for $x < 0$, we have $f'(x) = -1$. This illustrates the fact that a continuous function may not be differentiable at every point. In fact, there are many examples of continuous functions that are not differentiable at any point, such as the Weierstrass function.
+\begin{mydefinition}{Differentiability}
+    A function $f: I \to \R$ is said to be differentiable on an point $x_0 \in I$ if the derivative of $f$ at $x_0$ exists. If $f$ is differentiable at every point in an interval $I$, we say that $f$ is differentiable on $I$.
+\end{mydefinition}
+\begin{mynote}
+\textbf{Linearity of the derivative:} If $f$ and $g$ are differentiable at $x_0$, then for any constants $a, b \in \R$, the function $h = af + bg$ is also differentiable at $x_0$ and we have 
+\[
+    h'(x_0) = a f'(x_0) + b g'(x_0).
+\]
+Let us consider the space of all differentiable functions on an interval $I$ (denoted by $C^1(I)$). We can view the derivative as a linear operator from $C^1(I)$ to the space of all functions on $I$ (denoted by $C(I)$). This means that the derivative satisfies the properties of linearity, such as additivity and homogeneity. In particular, if we have two differentiable functions $f$ and $g$, and a constant $c$, we have:
+\begin{align*}
+    (f + g)'(x) &= f'(x) + g'(x), \\
+    (cf)'(x) &= c f'(x).
+\end{align*}
+If we consider the space of all infinitely differentiable functions on $I$. (denoted by $C^\infty(I)$), we can view the derivative as a linear operator from $C^\infty(I)$ to itself. This has important implications in the study of differential equations and functional analysis, as it allows us to apply linear algebraic techniques to the study of differentiable functions.
+\end{mynote}
+\begin{mytheorem}[Condition for differentiability]
+    Let $f: I \to \R$ be a function and let $x_0 \in I$. Then $f$ is differentiable at $x_0$ if and only if -
+    \begin{itemize}
+        \item There exists $f_1: I \to \R$ such that $f_1$ is continuous at $x_0$ and
+        \item $f(x) = f(x_0) + f_1(x)(x - x_0)$ for all $x \in I$.
+    \end{itemize}
+\end{mytheorem}
+\begin{proof}
+    Suppose $f$ is differentiable at $x_0$. Then we can define $f_1: I \to \R$ as follows:
+\[
+    f_1(x) = \begin{cases}
+        \frac{f(x) - f(x_0)}{x - x_0} & \text{if } x \neq x_0, \\
+        f'(x_0) & \text{if } x = x_0
+    \end{cases}
+\]
+We need to show that $f_1$ is continuous at $x_0$. By the definition of the derivative, we have
+\[
+    \lim_{x \to x_0} f_1(x) = \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} = f'(x_0) = f_1(x_0).
+\]
+This shows that $f_1$ is continuous at $x_0$.
+Now we need to show that $f(x) = f(x_0) + f_1(x)(x - x_0)$ for all $x \in I$. For $x \neq x_0$, we have
+\[
+    f(x) = f(x_0) + \frac{f(x) - f(x_0)}{x - x_0}(x - x_0) = f(x_0) + f_1(x)(x - x_0)
+\]
+For $x = x_0$, we have
+\[
+    f(x_0) = f(x_0) + f_1(x_0)(x_0 - x_0) = f(x_0)
+\]
+This shows that $f(x) = f(x_0) + f_1(x)(x - x_0)$ for all $x \in I$.
+Conversely, suppose there exists $f_1: I \to \R$ such that $f_1$ is continuous at $x_0$ and $f(x) = f(x_0) + f_1(x)(x - x_0)$ for all $x \in I$. We need to show that $f$ is differentiable at $x_0$. We have
+\[
+    \frac{f(x) - f(x_0)}{x - x_0} = \frac{f(x_0) + f_1(x)(x - x_0) - f(x_0)}{x - x_0} = f_1(x)
+\]
+Since $f_1$ is continuous at $x_0$, we have
+\[
+    \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \to x_0} f_1(x) = f_1(x_0)
+\]
+This shows that $f$ is differentiable at $x_0$ and $f'(x_0) = f_1(x_0)$.
+\end{proof}
+
+\section{Algebra of Differentiable Functions}
+As mentioned earlier, the derivative is a linear operator. This means that if we have two differentiable functions $f$ and $g$, and a constant $c$, we have:
+\begin{itemize}
+    \item $(f + g)'(x) = f'(x) + g'(x)$, \\
+    \item $(cf)'(x) = c f'(x)$, \\
+    \item $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$, \\
+    \item $f(x_0) \neq 0 \implies \left(\frac{1}{f}\right)'(x) = -\frac{f'(x)}{f(x)^2}$.
+\end{itemize}
+Let us prove all of these properties one by one.
+\begin{proof}
+    We will prove all of these properties one by one.
+\begin{itemize}
+    \item \textbf{Additivity:} We need to show that $(f + g)'(x) = f'(x) + g'(x)$. We have
+\[
+    (f + g)'(x) = \lim_{h \to 0} \frac{(f + g)(x + h) - (f + g)(x)}{h} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} + \lim_{h \to 0} \frac{g(x + h) - g(x)}{h} = f'(x) + g'(x)
+\]
+\item \textbf{Homogeneity:} We need to show that $(cf)'(x) = c f'(x)$. We have
+\[
+    (cf)'(x) = \lim_{h \to 0} \frac{(cf)(x + h) - (cf)(x)}{h} = \lim_{h \to 0} \frac{c f(x + h) - c f(x)}{h} = c \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} = c f'(x)
+\]
+\item \textbf{Product Rule:} We need to show that $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$. We have
+\begin{align*}
+    (fg)'(x) &= \lim_{h \to 0} \frac{f(x + h)g(x + h) - f(x)g(x)}{h} \\
+    &= \lim_{h \to 0} \frac{f(x + h)g(x + h) - f(x)g(x + h) + f(x)g(x + h) - f(x)g(x)}{h} \\
+    &= \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} g(x + h) + f(x) \lim_{h \to 0} \frac{g(x + h) - g(x)}{h} \\
+    &= f'(x)g(x) + f(x)g'(x)
+\end{align*}
+\item \textbf{Quotient Rule:} We need to show that if $f(x_0) \neq 0$, then $\left(\frac{1}{f}\right)'(x) = -\frac{f'(x)}{f(x)^2}$. We have
+\begin{align*}
+    \left(\frac{1}{f}\right)'(x) &= \lim_{h \to 0} \frac{\frac{1}{f(x + h)} - \frac{1}{f(x)}}{h} \\
+    &= \lim_{h \to 0} \frac{f(x) - f(x + h)}{h f(x) f(x + h)} \\
+    &= -\lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \cdot \frac{1}{f(x) f(x + h)} \\
+    &= -\frac{f'(x)}{f(x)^2}
+\end{align*}
+\end{itemize}
+Hence, we have proved all the properties of the derivative.
+\end{proof}
+These properties of the derivative are very useful in computing the derivatives of more complicated functions. For example, if we want to compute the derivative of the function $f(x) = (x^2 + 1)(\sin x)$, we can use the product rule to get
+\[
+    f'(x) = (2x)(\sin x) + (x^2 + 1)(\cos x).
+\]
+Let us now define and prove the chain rule, which is another important property of the derivative.
+\begin{mytheorem}[Chain Rule]
+    Let $f: I \to \R$ and $g: J \to \R$ be functions such that $f(I) \subseteq J$. If $f$ is differentiable at $x_0 \in I$ and $g$ is differentiable at $f(x_0)$, then the composition $g \circ f$ is differentiable at $x_0$ and we have
+    \[
+        (g \circ f)'(x_0) = g'(f(x_0)) f'(x_0).
+    \]
+\end{mytheorem}
+\begin{proof}
+    We need to show that the limit \[
+        \lim_{h \to 0} \frac{g(f(x_0 + h)) - g(f(x_0))}{h}
+    \]exists and is equal to $g'(f(x_0)) f'(x_0)$. We can write
+Since $f$ is differentiable at $x_0$, we have that $\exists f_1: I \to \R$ such that $f_1$ is continuous at $x_0$ and $f(x) = f(x_0) + f_1(x)(x - x_0)$ for all $x \in I$. Similarly, since $g$ is differentiable at $f(x_0)$, we have that $\exists g_1: J \to \R$ such that $g_1$ is continuous at $f(x_0)$ and $g(y) = g(f(x_0)) + g_1(y)(y - f(x_0))$ for all $y \in J$. Choose $y = f(x)$ in the second equation to get
+\[
+    g(f(x)) = g(f(x_0)) + g_1(f(x))(f(x) - f(x_0))
+\]
+Using the first equation, we can write
+\[
+    g(f(x)) = g(f(x_0)) + g_1(f(x)) f_1(x)(x - x_0)
+\]
+Define $h(x) = g_1(f(x)) f_1(x)$. We need to show that $h$ is continuous at $x_0$. Since $f_1$ is continuous at $x_0$ and $g_1$ is continuous at $f(x_0)$, we have
+\[
+    \lim_{x \to x_0} h(x) = \lim_{x \to x_0} g_1(f(x)) f_1(x) = g_1(f(x_0)) f_1(x_0) = g'(f(x_0)) f'(x_0)
+\]
+Since $h$ is continuous at $x_0$, therefore, the composition $g \circ f$ is differentiable at $x_0$ and we have $(g \circ f)'(x_0) = h(x_0) = g'(f(x_0)) f'(x_0)$.
+\end{proof}
+
+Now, let us consider the application of derivatives in optimization problems. Optimization problems are of the form - 
+$\max f(x)$ or $\min f(x)$ subject to some constraints. The function $f$ is called the objective function and the constraints are usually given in the form of inequalities or equalities. The goal is to find the value of $x$ that maximizes or minimizes the objective function while satisfying the constraints. Let us define what it means for a point to a maximum or minimum of a function.
+\begin{mydefinition}{Global Maximum and Minimum}
+    Let $f: I \to \R$ be a function. We say that $f$ has a global maximum at $x_0 \in I$ if $f(x_0) \geq f(x)$ for all $x \in I$. Similarly, we say that $f$ has a global minimum at $x_0 \in I$ if $f(x_0) \leq f(x)$ for all $x \in I$.
+\end{mydefinition}
+We can also define the concept of local maximum and minimum, which is a weaker condition than global maximum and minimum.
+\begin{mydefinition}{Local Maximum and Minimum}
+    Let $f: I \to \R$ be a function. We say that $f$ has a local maximum at $x_0 \in I$ if there exists an interval $(x_0 - \delta, x_0 + \delta) \subseteq I$ such that $f(x_0) \geq f(x)$ for all $x \in (x_0 - \delta, x_0 + \delta)$. Similarly, we say that $f$ has a local minimum at $x_0 \in I$ if there exists an interval $(x_0 - \delta, x_0 + \delta) \subseteq I$ such that $f(x_0) \leq f(x)$ for all $x \in (x_0 - \delta, x_0 + \delta)$.
+\end{mydefinition}
+Let us prove some theorems that give us a more concrete understanding of how functions behave at and around their local maxima and minima. The first theorem is the following:
+\begin{mytheorem}[Interior Extremum Theorem]
+    Let $f: I \to \R$ be a function and let $x_0 \in I$ be an interior point of $I$. If $f$ has a local maximum or minimum at $x_0$, then $f'(x_0) = 0$.
+\end{mytheorem}
+\begin{proof}
+    WLOG, assume $f$ has a local maximum at $x_0$. Then there exists an interval $(x_0 - \delta, x_0 + \delta) \subseteq I$ such that $f(x_0) \geq f(x)$ for all $x \in (x_0 - \delta, x_0 + \delta)$. We need to show that $f'(x_0) = 0$. We have 
+\[
+    f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}
+\]
+Since $f(x_0) \geq f(x)$ for all $x \in (x_0 - \delta, x_0 + \delta)$, we have $f(x_0 + h) \leq f(x_0)$ for all $h$ such that $|h| < \delta$. This implies that $\frac{f(x_0 + h) - f(x_0)}{h} \leq 0$ for all $h$ such that $|h| < \delta$. Therefore, we have
+\[
+    \lim_{h \to 0^+} \frac{f(x_0 + h) - f(x_0)}{h} \leq 0
+\]
+Similarly, we can show that
+\[
+    \lim_{h \to 0^-} \frac{f(x_0 + h) - f(x_0)}{h} \geq 0
+\]
+Since the left and right limits are equal, we have $f'(x_0) = 0$.
+\end{proof}
+Notice that points where the derivatives are zero are where the function has a local maximum or minimum. However, it is not always the case that if the derivative of a function is zero at a point, then the function has a local maximum or minimum at that point. For example, consider the function $f(x) = x^3$. The derivative of $f$ at $x = 0$ is zero, but $f$ does not have a local maximum or minimum at $x = 0$. Therefore, we need to define the concept of critical points to capture these points where the derivative is zero but there is no local extremum.
+\begin{mydefinition}{Critical Point}
+    Let $f: I \to \R$ be a differentiable function. A point $x_0 \in I$ is called a critical point of $f$ if either $f'(x_0) = 0$ or $f'(x_0)$ does not exist.
+\end{mydefinition}
+Now, we need to determine whether a critical point exists in a given interval. The following theorem gives us a sufficient condition for the existence of a critical point in an interval.
+\begin{mytheorem}[Rolle's Theorem]
+    Let $f: [a, b] \to \R$ be a continuous function on $[a, b]$ and differentiable on $(a, b)$. If $f(a) = f(b)$, then there exists a point $c \in (a, b)$ such that $f'(c) = 0$.
+\end{mytheorem}
+\begin{proof}
+    Since $f$ is continuous on $[a, b]$, it attains its maximum and minimum on $[a, b]$. Let $M = \sup f(x)$ and $m = \inf f(x)$ for $x \in [a, b]$. We have two cases:
+\begin{itemize}
+    \item If $M = m$, then $f(x) = M$ for all $x \in [a, b]$. In this case, we can choose any point $c \in (a, b)$ and we have $f'(c) = 0$.
+    \item If $M > m$, then there exists a point $c_1 \in (a, b)$ such that $f(c_1) = M$ and a point $c_2 \in (a, b)$ such that $f(c_2) = m$. Since $f(a) = f(b)$, either $c_1$ or $c_2$ must be in the interior of $(a, b)$. Without loss of generality, assume $c_1 \in (a, b)$. Since $f(c_1) = M$ is a local maximum, we have $f'(c_1) = 0$.
+\end{itemize}
+Hence, in either case, there exists a point $c \in (a, b)$ such that $f'(c) = 0$.
+\end{proof}
+We now extend Rolle's Theorem to the more general Lagrange's Mean Value Theorem, which gives us a more general condition for the existence of a critical point in an interval.
+\begin{mytheorem}[Lagrange's Mean Value Theorem]
+    Let $f: [a, b] \to \R$ be a continuous function on $[a, b]$ and differentiable on $(a, b)$. Then there exists a point $c \in (a, b)$ such that
+    \[
+        f'(c) = \frac{f(b) - f(a)}{b - a}.
+    \]
+\end{mytheorem}
+\begin{proof}
+    We can define a function $g: [a, b] \to \R$ as follows:
+    \[
+        g(x) = f(a) - \left( \frac{f(b) - f(a)}{b - a} \right)(x - a)
+    \]
+    Then $g(a) = f(a)$ and $g(b) = f(b)$. Define a function $h: [a, b] \to \R$ as follows:
+\[
+    h(x) = f(x) - g(x).
+\]
+    Then $h(a) = h(b) = 0$. By Rolle's Theorem, there exists a point $c \in (a, b)$ such that $h'(c) = 0$. This implies that
+    \[
+        f'(c) = \frac{f(b) - f(a)}{b - a} 
+    \]
+    Hence, the theorem is proved.
+\end{proof}
+\begin{corollary}
+    Let $f: I \to \R$ be a differentiable function. If $f'(x) = 0$ for all $x \in I$, then $f$ is a constant function on $I$.
+\end{corollary}
+\begin{proof}
+    Let $x_1, x_2 \in I$ be two arbitrary points. We need to show that $f(x_1) = f(x_2)$. Without loss of generality, assume $x_1 < x_2$. Since $f$ is differentiable on $I$, it is continuous on $I$. Therefore, we can apply Lagrange's Mean Value Theorem to the interval $[x_1, x_2]$ to get that there exists a point $c \in (x_1, x_2)$ such that
+    \[
+        f'(c) = \frac{f(x_2) - f(x_1)}{x_2 - x_1}.
+    \]
+    Since $f'(c) = 0$, we have $\frac{f(x_2) - f(x_1)}{x_2 - x_1} = 0$. This implies that $f(x_2) = f(x_1)$. Since $x_1$ and $x_2$ were arbitrary points in $I$, we have that $f$ is a constant function on $I$.
+\end{proof}
+\begin{corollary}
+    Let $f: I \to \R$ be a differentiable function. If $f'(x) > 0$ for all $x \in I$, then $f$ is an increasing function on $I$. Similarly, if $f'(x) < 0$ for all $x \in I$, then $f$ is a decreasing function on $I$.
+\end{corollary}
+\begin{proof}
+    Let $x_1, x_2 \in I$ be two arbitrary points such that $x_1 < x_2$. Since $f$ is differentiable on $I$, it is continuous on $I$. Therefore, we can apply Lagrange's Mean Value Theorem to the interval $[x_1, x_2]$ to get that there exists a point $c \in (x_1, x_2)$ such that
+    \[
+        f'(c) = \frac{f(x_2) - f(x_1)}{x_2 - x_1}.
+    \]
+    If $f'(x) > 0$ for all $x \in I$, then we have $\frac{f(x_2) - f(x_1)}{x_2 - x_1} > 0$. This implies that $f(x_2) > f(x_1)$, which means that $f$ is an increasing function on $I$. Similarly, if $f'(x) < 0$ for all $x \in I$, then we have $\frac{f(x_2) - f(x_1)}{x_2 - x_1} < 0$. This implies that $f(x_2) < f(x_1)$, which means that $f$ is a decreasing function on $I$.
+\end{proof}
+
+\begin{corollary}
+    Let $f: I \to \R$ be a differentiable function. If $|f'(x)| \leq M$ for all $x \in I$ and some constant $M > 0$, then $f$ is a Lipschitz continuous function on $I$ with Lipschitz constant $M$.
+\end{corollary}
+\begin{proof}
+    Let $x_1, x_2 \in I$ be two arbitrary points. Since $f$ is differentiable on $I$, it is continuous on $I$. Therefore, we can apply Lagrange's Mean Value Theorem to the interval $[x_1, x_2]$ to get that there exists a point $c \in (x_1, x_2)$ such that
+    \[
+        f'(c) = \frac{f(x_2) - f(x_1)}{x_2 - x_1}.
+    \]
+    Since $|f'(c)| \leq M$, we have $\left|\frac{f(x_2) - f(x_1)}{x_2 - x_1}\right| \leq M$. This implies that $|f(x_2) - f(x_1)| \leq M|x_2 - x_1|$. Since $x_1$ and $x_2$ were arbitrary points in $I$, we have that $f$ is a Lipschitz continuous function on $I$ with Lipschitz constant $M$.
+\end{proof}
+We provide another form of the Mean Value Theorem, which is known as Cauchy's Mean Value Theorem.
+\begin{mytheorem}[Cauchy's Mean Value Theorem]
+    Let $f, g: [a, b] \to \R$ be continuous functions on $[a, b]$ and differentiable on $(a, b)$. If $g'(x) \neq 0$ for all $x \in (a, b)$, then there exists a point $c \in (a, b)$ such that
+    \[
+        \frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}
+    \]
+\end{mytheorem}
+\begin{mynote}
+    Note that $g(b) - g(a) \neq 0$ since $g'(x) \neq 0$ for all $x \in (a, b)$ and $g$ is continuous on $[a, b]$. Therefore, the right-hand side of the equation in Cauchy's Mean Value Theorem is well-defined.
+\end{mynote}
+\begin{proof}
+    We can define a function $h: [a, b] \to \R$ as follows:
+    \[
+        h(x) = f(x) - \frac{f(b) - f(a)}{g(b) - g(a)} g(x)
+    \]
+    Then $h(a) = h(b) = 0$. By Rolle's Theorem, there exists a point $c \in (a, b)$ such that $h'(c) = 0$. This implies that
+    \[
+        f'(c) - \frac{f(b) - f(a)}{g(b) - g(a)} g'(c) = 0
+    \]
+    Hence, we have $\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$.
+\end{proof}
+We now have a good understanding of the properties of the derivative and how it can be used to analyze the behavior of functions. Let us now discover how the derivatives behave for given constraints. 
+\begin{mytheorem}[Darboux's Theorem]
+    Let $f: I \to \R$ be a differentiable function. If $f'(x_1) < \lambda < f'(x_2)$ for some $x_1, x_2 \in I$ and $\lambda \in \R$, then there exists a point $c \in (x_1, x_2)$ such that $f'(c) = \lambda$.
+\end{mytheorem}
+\begin{proof}
+    We can define a function $g: I \to \R$ as follows:
+    \[
+        g(x) = f(x) - \lambda x
+    \]
+    Then $g'(x) = f'(x) - \lambda$. We have $g'(x_1) < 0$ and $g'(x_2) > 0$. By the Intermediate Value Theorem, there exists a point $c \in (x_1, x_2)$ such that $g'(c) = 0$. This implies that $f'(c) = \lambda$.
+    We can show that $c \neq a \neq b$ as follows. If $c = a$, then we have $f'(a) = \lambda$. This contradicts the fact that $f'(x_1) < \lambda < f'(x_2)$ since $a < x_1 < x_2$. Similarly, if $c = b$, then we have $f'(b) = \lambda$. This also contradicts the fact that $f'(x_1) < \lambda < f'(x_2)$ since $x_1 < x_2 < b$. Hence, we have $c \neq a \neq b$.
+\end{proof}
+We now define a useful property which allows us to predict whether a function has an inverse or not based on the behavior of its derivative.
+\begin{mytheorem}[Inverse Function Theorem]
+    Let $f: I \to \R$ be a differentiable function and let $x_0 \in I$ be such that $f'(x_0) \neq 0 \forall x_0 \in I$. Then there exists an interval $J$ containing $f(x_0)$ such that the inverse function $f^{-1}: J \to I$ exists and is differentiable at $f(x_0)$ and we have
+    \[
+        (f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)}.
+    \]
+    Further, $f$ is strictly monotone on $I$ and hence, the inverse function $f^{-1}$ is well-defined on $J$.
+\end{mytheorem}
+\begin{proof}
+    Let $f: (a, b) \to \R$ be a differentiable function and let $x_0 \in (a, b)$ be such that $f'(x_0) \neq 0$. Without loss of generality, assume $f'(x_0) > 0$. We claim $f'(x) > 0$ for all $x \in (a, b)$. Suppose not. Then there exists a point $x_1 \in (a, b)$ such that $f'(x_1) \leq 0$. Since $f'(x_0) > 0$ and $f'(x_1) \leq 0$, by Darboux's Theorem, there exists a point $c \in (x_0, x_1)$ such that $f'(c) = 0$. This contradicts the fact that $f'(x) \neq 0$ for all $x \in (a, b)$. Hence, we have $f'(x) > 0$ for all $x \in (a, b)$. This implies that $f$ is strictly increasing on $(a, b)$. \\
+    Take $J = f((a, b))$. Since $f$ is strictly increasing on $(a, b)$, it is a bijection from $(a, b)$ to $J$. Therefore, the inverse function $f^{-1}: J \to (a, b)$ exists. We need to show that $f^{-1}$ is differentiable at $f(x_0)$ and that $(f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)}$. We have
+\begin{align*}
+    (f^{-1})'(f(x_0)) &= \lim_{h \to 0} \frac{f^{-1}(f(x_0) + h) - f^{-1}(f(x_0))}{h} \\
+    &= \lim_{h \to 0} \frac{f^{-1}(f(x_0) + h) - x_0}{h} \\
+    &= \lim_{h \to 0} \frac{f^{-1}(f(x_0) + h) - f^{-1}(f(x_0))}{h} \\
+    &= \lim_{h \to 0} \frac{f^{-1}(f(x_0) + h) - f^{-1}(f(x_0))}{(f(x_0) + h) - f(x_0)} \cdot \frac{(f(x_0) + h) - f(x_0)}{h} \\
+    &= \lim_{h \to 0} \frac{f^{-1}(f(x_0) + h) - f^{-1}(f(x_0))}{(f(x_0) + h) - f(x_0)} \cdot \lim_{h \to 0} \frac{(f(x_0) + h) - f(x_0)}{h} \\
+    &= (f^{-1})'(f(x_0)) f'(x_0)
+\end{align*}
+This implies that $(f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)}$.
+\end{proof}
+This helps us easily calculate the derivatives of inverse functions such as the logarithmic function. We can use the Inverse Function Theorem to find the derivative of the logarithmic function as follows. Let $f(x) = e^x$. Then $f'(x) = e^x$ and $f^{-1}(y) = \ln y$. Therefore, we have
+\[
+    (\ln y)' = (f^{-1})'(y) = \frac{1}{f'(f^{-1}(y))} = \frac{1}{e^{\ln y}} = \frac{1}{y}.
+\]
+Now, we are ready to prove the L'Hôpital's Rule, which is a powerful tool for evaluating limits of indeterminate forms.
+\begin{mytheorem}[L'Hôpital's Rule I]
+    Let $f, g: I \to \R$ be differentiable functions and let $x_0 \in I$ be such that 
+    \[ \lim_{x \to x_0+} f(x) = \lim_{x \to x_0+} g(x) = 0 \]
+    and $g'(x) \neq 0$ for all $x \in (x_0, x_0 + \delta)$ for some $\delta > 0$. If the limit
+    \[
+        \lim_{x \to x_0+} \frac{f'(x)}{g'(x)} = L
+    \]
+    for some $L \in \R$, then
+    \[
+        \lim_{x \to x_0+} \frac{f(x)}{g(x)} = L.
+    \]
+    Similarly, if $L = \pm \infty$, then $\lim_{x \to x_0+} \frac{f(x)}{g(x)} = L$.
+\end{mytheorem}
+\begin{proof}
+    Let $f, g: I \to \R$ be differentiable functions and let $x_0 \in I$ be such that $\lim_{x \to x_0+} f(x) = \lim_{x \to x_0+} g(x) = 0$ and $g'(x) \neq 0$ for all $x \in (x_0, x_0 + \delta)$ for some $\delta > 0$. We need to show that if $\lim_{x \to x_0+} \frac{f'(x)}{g'(x)} = L$ for some $L \in \R$, then $\lim_{x \to x_0+} \frac{f(x)}{g(x)} = L$. We can define a function $h: (x_0, x_0 + \delta) \to \R$ as follows:
+    \[
+        h(x) = f(x) - L g(x)
+    \]
+    Then we have
+    \[
+        h'(x) = f'(x) - L g'(x)
+    \]
+    Since $\lim_{x \to x_0+} \frac{f'(x)}{g'(x)} = L$, we have $\lim_{x \to x_0+} h'(x) = 0$. Since $h(x_0) = f(x_0) - L g(x_0) = 0$, by the Mean Value Theorem, there exists a point $c_x \in (x, x_0 + \delta)$ such that
+    \[
+        h(c_x) = h(x) - h(x_0) = h'(c_x)(c_x - x_0).
+    \]
+    Since $\lim_{x \to x_0+} h'(c_x) = 0$, we have $\lim_{x \to x_0+} h(c_x) = 0$. This implies that $\lim_{x \to x_0+} (f(x) - L g(x)) = 0$. Therefore, we have $\lim_{x \to x_0+} f(x)/g(x) = L$.
+    If $L = \pm \infty$, since $\lim_{x \to x_0+} \frac{f'(x)}{g'(x)} = L$, $\exists c \in (a, b)$ such that $\frac{f'(x)}{g'(x)} > M$ for all $x \in (x_0, c)$ for some $M > 0$. This implies that $f'(x) > M g'(x)$ for all $x \in (x_0, c)$. By the Mean Value Theorem, there exists a point $c_x \in (x, c)$ such that 
+\[
+    f(c_x) - f(x_0) = f'(c_x)(c_x - x_0) > M g'(c_x)(c_x - x_0) = M (g(c_x) - g(x_0)).
+\]
+Since $\lim_{x \to x_0+} g(x) = 0$, we have $\lim_{x \to x_0+} g(c_x) = 0$. This implies that $\lim_{x \to x_0+} f(c_x) > 0$. Therefore, we have $\lim_{x \to x_0+} f(x)/g(x) = +\infty$. Similarly, if $L = -\infty$, we can show that $\lim_{x \to x_0+} f(x)/g(x) = -\infty$.
+\end{proof}
+We now tackle the case when $\lim_{x \to x_0+} f(x) = \lim_{x \to x_0+} g(x) = \pm \infty$ and $g'(x) \neq 0$ for all $x \in (x_0, x_0 + \delta)$ for some $\delta > 0$. The following theorem gives us a condition for evaluating limits of indeterminate forms of the type $\frac{\infty}{\infty}$.
+\begin{mytheorem}[L'Hôpital's Rule II]
+    Let $f, g: I \to \R$ be differentiable functions and let $x_0 \in I$ be such that 
+    \[ \lim_{x \to x_0+} f(x) = \lim_{x \to x_0+} g(x) = \pm \infty \]
+    and $g'(x) \neq 0$ for all $x \in (x_0, x_0 + \delta)$ for some $\delta > 0$. If the limit
+    \[
+        \lim_{x \to x_0+} \frac{f'(x)}{g'(x)} = L
+    \]
+    for some $L \in \R$, then
+    \[
+        \lim_{x \to x_0+} \frac{f(x)}{g(x)} = L.
+    \]
+    Similarly, if $L = \pm \infty$, then $\lim_{x \to x_0+} \frac{f(x)}{g(x)} = L$.
+\end{mytheorem}
+\section{Higher Order Derivatives}
+We can also define higher order derivatives of a function, that is applying the derivative operator multiple times to a function. The second derivative of a function $f$ is denoted by $f''$ and is defined as the derivative of the first derivative $f'$. Similarly, the $n$-th derivative of a function $f$ is denoted by $f^{(n)}$ and is defined as the derivative of the $(n-1)$-th derivative $f^{(n-1)}$. Higher order derivatives are useful in analyzing the behavior of functions and in solving differential equations. 
+\begin{mydefinition}{Twice Differentiable Function}
+    Let $f: I \to \R$ be a function. We say that $f$ is twice differentiable at $x_0 \in I$ if - 
+    \begin{itemize}
+        \item $f$ is differentiable in $(x_0 - \delta, x_0 + \delta) \intersect I$ for some $\delta > 0$ and 
+        \item $f': (x_0 - \delta, x_0 + \delta) \intersect I \to \R$ is differentiable at $x_0$.
+    \end{itemize}
+    We denote the second derivative of $f$ at $x_0$ by $f''(x_0)$ and we have $f''(x_0) = (f')'(x_0)$. Alternatively, the $n^{th}$ derivative of $f$ is denoted by $f^{(n)}(x_0)$ and we have $f^{(n)}(x_0) = (f^{(n-1)})'(x_0)$ or $\frac{d^n f}{dx^n}(x_0)$.
+\end{mydefinition}
+Similar to twice differentiable functions, we can define $n$-times differentiable functions and the $n$-th derivative of a function. We can also define the concept of smooth functions, which are functions that are infinitely differentiable. Smooth functions are very useful in analysis and in solving differential equations.
+\begin{mydefinition}{$n$-times Differentiable Function}
+    Let $f: I \to \R$ be a function. We say that $f$ is $n$-times differentiable at $x_0 \in I$ if - 
+    \begin{itemize}
+        \item $f$ is differentiable in $(x_0 - \delta, x_0 + \delta) \intersect I$ for some $\delta > 0$ and 
+        \item $f': (x_0 - \delta, x_0 + \delta) \intersect I \to \R$ is $(n-1)$-times differentiable at $x_0$.
+    \end{itemize}
+    We denote the $n^{th}$ derivative of $f$ at $x_0$ by $f^{(n)}(x_0)$ and we have $f^{(n)}(x_0) = (f^{(n-1)})'(x_0)$. 
+\end{mydefinition}
+We also define the concept of smooth functions, which are functions that are infinitely differentiable.
+\begin{mydefinition}{Smooth Function}
+    Let $f: I \to \R$ be a function. We say that $f$ is a smooth function if $f$ is $n$-times differentiable at $x_0$ for all $n \in \N$ and for all $x_0 \in I$.
+\end{mydefinition}
+\begin{example}
+    The function $f(x) = e^x$ is a smooth function since $f^{(n)}(x) = e^x$ for all $n \in \N$ and for all $x \in \R$. Similarly, the function $f(x) = \sin x$ is a smooth function since $f^{(n)}(x)$ is either $\sin x$ or $\cos x$ for all $n \in \N$ and for all $x \in \R$. On the other hand, the function $f(x) = |x|$ is not a smooth function since $f'(0)$ does not exist.
+\end{example}
+We now apply the concept of higher order derivatives and prove some theorems concerning the behavior of functions based on their higher order derivatives. The first theorem is the following:
+\begin{mytheorem}[Leibniz's Rule]
+    Let $f, g: I \to \R$ be two functions that are $n$-times differentiable at $x_0 \in I$. Then the product $f g$ is also $n$-times differentiable at $x_0$ and we have
+    \[
+        (f g)^{(n)}(x_0) = \sum_{k=0}^n \binom{n}{k} f^{(k)}(x_0) g^{(n-k)}(x_0).
+    \]
+\end{mytheorem}
+\begin{proof}
+    We can prove this theorem by induction on $n$. For $n = 0$, we have $(f g)^{(0)}(x_0) = f(x_0) g(x_0)$, which is true. Assume that the theorem holds for some $n \geq 0$. We need to show that the theorem holds for $n + 1$. We have
+    \[
+        (f g)^{(n+1)}(x_0) = \frac{d}{dx} (f g)^{(n)}(x_0).
+    \]
+    By the product rule, we have
+    \[
+        (f g)^{(n+1)}(x_0) = f'(x_0) g^{(n)}(x_0) + f^{(n)}(x_0) g'(x_0).
+    \]
+    Using the induction hypothesis, we get
+    \[
+        (f g)^{(n+1)}(x_0) = \sum_{k=0}^n \binom{n}{k} f^{(k+1)}(x_0) g^{(n-k)}(x_0) + \sum_{k=0}^n \binom{n}{k} f^{(k)}(x_0) g^{(n-k+1)}(x_0).
+    \]
+    Shifting the index in the first sum and combining the sums, we obtain
+    \[
+        (f g)^{(n+1)}(x_0) = \sum_{k=0}^{n+1} \binom{n+1}{k} f^{(k)}(x_0) g^{(n+1-k)}(x_0).
+    \]
+    This completes the proof.
+\end{proof}
+\begin{mynote}
+    On the space of smooth functions, a linear map satisfies the Leibniz's Rule if and only if it is a derivative operator. This is a consequence of the fact that the space of smooth functions is a free module over the ring of smooth functions, and the derivative operator is a derivation on this module.
+\end{mynote}
+\begin{mytheorem}[Taylor's Theorem]
+    Let $f: I \to \R$ be a function that is $n+1$-times differentiable at $x_0 \in I$. if $f^{n}$ is continous on $I$, then for $x, x_0 \in I, x \neq x_0$, there exists a point $c$ between $x$ and $x_0$ such that
+    \[
+        f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + \frac{f^{(n+1)}(c)}{(n+1)!}(x - x_0)^{n+1}
+    \]
+    The last term in the expansion is called the remainder term and is denoted by $R_n(x)$. We have $R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x - x_0)^{n+1}$.
+    The rest of the terms in the expansion are called the Taylor polynomial of degree $n$ of $f$ at $x_0$ and is denoted by $P_n(x)$. We have
+    \[
+        P_n(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n
+    \]
+\end{mytheorem}
+\begin{proof}
+    Define $F: I \to \R$ as follows:
+    \[
+        F(t) = f(t) + M(x - t)^{n+1} + P_n(x)
+    \]
+    where $M$ is chosen such that $F(x) = f(x_0)$. Then we have $F(x_0) = f(x_0)$ and $F(x) = f(x_0)$. 
+    This implies 
+    \[ M = \frac{1}{(x-x_0)^{n+1}} (f(x) - P_n(x)) \]
+    By Rolle's Theorem, there exists a point $c$ between $x$ and $x_0$ such that $F'(c) = 0$. This implies that
+    \[
+        F'(c) = \frac{(x-c)^n}{n!} (f^{(n+1)}(c) - M(n+1)(x - c)^n) = 0
+    \]
+    Hence, we have $M = \frac{f^{(n+1)}(c)}{(n+1)!}$. 
+    Comparing the two expressions for $M$, we get
+    \[
+        \frac{1}{(x-x_0)^{n+1}} (f(x) - P_n(x)) = \frac{f^{(n+1)}(c)}{(n+1)!}
+    \]
+    This implies that
+    \[
+        f(x) = P_n(x) + \frac{f^{(n+1)}(c)}{(n+1)!}(x - x_0)^{n+1}
+    \]
+    This completes the proof.
+\end{proof}
+We now apply Taylor's Theorem to prove some useful results concerning the behavior of functions based on their higher order derivatives. The first result is the following:
+\begin{mytheorem}[Test for Local Extrema]
+    Let $f: I \to \R$ be a function that is $n$-times differentiable at $x_0 \in I$. If $f'(x_0) = f''(x_0) = \cdots = f^{(n-1)}(x_0) = 0$ and $f^{(n)}(x_0) \neq 0$, then
+    \begin{itemize}
+        \item If $n$ is even and $f^{(n)}(x_0) > 0$, then $f$ has a local minimum at $x_0$.
+        \item If $n$ is even and $f^{(n)}(x_0) < 0$, then $f$ has a local maximum at $x_0$.
+        \item If $n$ is odd, then $f$ does not have a local extremum at $x_0$.
+    \end{itemize}
+\end{mytheorem}
+\begin{proof}
+    Since $f'(x_0) = f''(x_0) = \cdots = f^{(n-1)}(x_0) = 0$, we have
+    \[
+        f(x) = f(x_0) + \frac{f^{(n)}(c)}{n!}(x - x_0)^n
+    \]
+    for some $c$ between $x$ and $x_0$. If $n$ is even and $f^{(n)}(x_0) > 0$, then we have $\frac{f^{(n)}(c)}{n!} > 0$ for all $c$ between $x$ and $x_0$. This implies that $f(x) > f(x_0)$ for all $x$ in a neighborhood of $x_0$. Hence, $f$ has a local minimum at $x_0$. Similarly, if $n$ is even and $f^{(n)}(x_0) < 0$, then we have $\frac{f^{(n)}(c)}{n!} < 0$ for all $c$ between $x$ and $x_0$. This implies that $f(x) < f(x_0)$ for all $x$ in a neighborhood of $x_0$. Hence, $f$ has a local maximum at $x_0$. If $n$ is odd, then we have $\frac{f^{(n)}(c)}{n!}$ changes sign for some values of $c$ between $x$ and $x_0$. This implies that there are points in a neighborhood of $x_0$ where $f(x) > f(x_0)$ and points where $f(x) < f(x_0)$. Hence, $f$ does not have a local extremum at $x_0$.
+\end{proof}
+\section{Convex Functions}
+Let us now define the concept of convex functions, which are functions that have a certain shape and are useful in optimization problems. We can also analyze the behavior of convex functions based on their derivatives.
+\begin{mydefinition}{Convex Function}
+    Let $I$ be an interval and let $f: I \to \R$ be a function. We say that $f$ is a convex function if for all $x, y \in I$ and for all $\lambda \in [0, 1]$, we have
+    \[
+        f(\lambda x + (1 - \lambda) y) \leq \lambda f(x) + (1 - \lambda) f(y)
+    \]
+    If the inequality is strict for all $x \neq y$ and for all $\lambda \in (0, 1)$, then we say that $f$ is a strictly convex function.
+\end{mydefinition}
+\begin{mytheorem}[Convexity and Second Derivative]
+    Let $f: I \to \R$ be a twice differentiable function. If and only if $f''(x) \geq 0$ for all $x \in I$, then $f$ is a convex function on $I$. Similarly, if $f''(x) > 0$ for all $x \in I$, then $f$ is a strictly convex function on $I$.
+\end{mytheorem}
+\begin{proof}
+    $(\rightarrow)$ Let $f: I \to \R$ be a twice differentiable function such that $f''(x) \geq 0$ for all $x \in I$. We need to show that $f$ is a convex function on $I$. Let $\alpha \in I$. Now, 
+    \[f''(\alpha) = \lim_{h \to 0} \frac{f'(\alpha + h) - f'(\alpha)}{h} = \lim_{h \to 0} \frac{f(\alpha + h) + f(\alpha -h) - 2f(\alpha)}{h^2/2} \geq 0
+    \]
+    Choose $h$ such that $\alpha + h, \alpha - h \in I$. Choose $\lambda = \frac{1}{2}$. Then we have
+    \[
+        f\left(\frac{\alpha + h + \alpha - h}{2}\right) = f(\alpha) \leq \frac{f(\alpha + h) + f(\alpha - h)}{2} = \lambda f(\alpha + h) + (1 - \lambda) f(\alpha - h)
+    \]
+    This shows that $f$ is a convex function on $I$.
+    $(\leftarrow)$ Let $f: I \to \R$ be a convex function on $I$. We need to show that $f''(x) \geq 0$ for all $x \in I$. Let $\alpha \in I$. Since $f$ is convex, we have
+    \[
+        f(\alpha + h) + f(\alpha - h) - 2f(\alpha) \geq 0
+    \]
+    for all $h$ such that $\alpha + h, \alpha - h \in I$. Dividing by $h^2/2$, we get
+    \[
+        \frac{f(\alpha + h) + f(\alpha - h) - 2f(\alpha)}{h^2/2} \geq 0
+    \]
+    Taking the limit as $h \to 0$, we obtain
+    \[
+        f''(\alpha) = \lim_{h \to 0} \frac{f(\alpha + h) + f(\alpha - h) - 2f(\alpha)}{h^2/2} \geq 0
+    \]
+    This shows that $f''(x) \geq 0$ for all $x \in I$.
+\end{proof}
+\chapter{Integration}
+Now, we have a good understanding of the properties of derivatives and how they can be used to analyze the behavior of functions. Let us now discover how to reverse the process of differentiation, that is, how to find a function given its derivative. This process is called integration and it is a fundamental concept in analysis. We will define the concept of the integral and prove some theorems concerning the properties of integrals and how they can be used to analyze the behavior of functions.
+\begin{mydefinition}{Riemann Integral}
+    Let $f: [a, b] \to \R$ be a function. We say that $f$ is Riemann integrable on $[a, b]$ if the limit
+    \[
+        \int_a^b f(x) dx = \lim_{n \to \infty} \sum_{k=1}^{n-1} f(a + k\frac{b-a}{n}) \cdot \frac{b-a}{n}
+    \]
+    exists. The limit $\int_a^b f(x) dx$ is called the Riemann integral of $f$ on $[a, b]$.
+\end{mydefinition}
+It is useful to have a geometric intuition for this sum. We can think of the Riemann integral as the area under the curve of the function $f$ from $a$ to $b$. The sum $\sum_{k=1}^{n-1} f(a + k\frac{b-a}{n}) \cdot \frac{b-a}{n}$ can be thought of as the area of a rectangle with height $f(a + k\frac{b-a}{n})$ and width $\frac{b-a}{n}$. As $n$ increases, the rectangles become thinner and the sum approaches the area under the curve of $f$ from $a$ to $b$. 
+\begin{example}
+    An example of a Riemann Integrable Function is the Dirichlet function, which is defined as follows:
+\[
+    f(x) = \begin{cases}
+        1 & \text{if } x \in \Q \\
+        0 & \text{if } x \in \R \setminus \Q
+    \end{cases}
+\]
+If $a, b \in \Q$, then we have $\int_a^b f(x) dx = 1$. If $a, b \in \R \setminus \Q$, then we have $\int_a^b f(x) dx = 0$. If $a \in \Q$ and $b \in \R \setminus \Q$, then we have $\int_a^b f(x) dx = 0$. If $a \in \R \setminus \Q$ and $b \in \Q$, then we have $\int_a^b f(x) dx = 0$.
+\end{example}
+We now provide a more solid base for the concept of integration. First, we provide the definition of a partition of an interval, which is a crucial concept in the definition of the Riemann integral.
+\begin{mydefinition}{Partition of an Interval}
+    Let $[a, b]$ be an interval. A partition of $[a, b]$ is a finite set of points $\{x_0, x_1, \ldots, x_n\}$ such that $a = x_0 < x_1 < \cdots < x_n = b$. The points $x_0, x_1, \ldots, x_n$ are called the partition points and the intervals $[x_{k-1}, x_k]$ for $k = 1, 2, \ldots, n$ are called the subintervals of the partition.
+\end{mydefinition}
+We now define the refinements of a partition, which are used to define the upper and lower sums of a function with respect to a partition.
+\begin{mydefinition}{Refinement of a Partition}
+    Let $P = \{x_0, x_1, \ldots, x_n\}$ be a partition of $[a, b]$. A refinement of $P$ is a partition $Q = \{y_0, y_1, \ldots, y_m\}$ such that $P \subseteq Q$. In other words, every partition point of $P$ is also a partition point of $Q$.
+\end{mydefinition}
+We now define the upper and lower sums of a function with respect to a partition, which are used to define the Riemann integral.
+\begin{mydefinition}{Upper and Lower Sums}
+    Let $f: [a, b] \to \R$ be a function and let $P = \{x_0, x_1, \ldots, x_n\}$ be a partition of $[a, b]$. The upper sum of $f$ with respect to $P$ is defined as
+    \[
+        U(f, P) = \sum_{k=1}^n M_k (x_k - x_{k-1})
+    \]
+    where $M_k = \sup\{f(x) : x \in [x_{k-1}, x_k]\}$ for $k = 1, 2, \ldots, n$. The lower sum of $f$ with respect to $P$ is defined as
+    \[
+        L(f, P) = \sum_{k=1}^n m_k (x_k - x_{k-1})
+    \]
+    where $m_k = \inf\{f(x) : x \in [x_{k-1}, x_k]\}$ for $k = 1, 2, \ldots, n$.
+\end{mydefinition}
+\begin{mynote}
+    Note that $U(f, P) \geq L(f, P)$ for all partitions $P$ of $[a, b]$. This is because $M_k \geq m_k$ for all $k = 1, 2, \ldots, n$. \\
+    Also, if $Q$ is a refinement of $P$, then we have $U(f, Q) \leq U(f, P)$ and $L(f, Q) \geq L(f, P)$. This is because the supremum of a set is greater than or equal to the supremum of any subset and the infimum of a set is less than or equal to the infimum of any subset.
+\end{mynote}
+
+
+\end{document}

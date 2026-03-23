@@ -24,6 +24,7 @@ if "%PUBLISH_BRANCH%"=="" set "PUBLISH_BRANCH=%PUBLISH_BRANCH_DEFAULT%"
 
 set "HTML_DIR=%~5"
 if "%HTML_DIR%"=="" set "HTML_DIR=%HTML_DIR_DEFAULT%"
+set "IMAGES_SUBDIR=images_folder"
 
 where git >nul 2>&1
 if errorlevel 1 (
@@ -36,9 +37,21 @@ if not exist "%HTML_DIR%" (
   exit /b 1
 )
 
+set "HAS_HTML=0"
+set "HAS_METADATA=0"
+set "HAS_IMAGES=0"
+
 dir /b "%HTML_DIR%\*.html" >nul 2>&1
-if errorlevel 1 (
-  echo [error] No .html files found in "%HTML_DIR%".
+if not errorlevel 1 set "HAS_HTML=1"
+
+if exist "%HTML_DIR%\index_metadata.json" set "HAS_METADATA=1"
+if exist "%HTML_DIR%\%IMAGES_SUBDIR%" set "HAS_IMAGES=1"
+
+if "%HAS_HTML%%HAS_METADATA%%HAS_IMAGES%"=="000" (
+  echo [error] Nothing to publish in "%HTML_DIR%". Expected at least one of:
+  echo         - *.html
+  echo         - index_metadata.json
+  echo         - %IMAGES_SUBDIR%\
   exit /b 1
 )
 
@@ -87,15 +100,30 @@ if errorlevel 1 goto :fail_worktree
 
 git rm -rf . >nul 2>&1
 
-copy /Y "%HTML_DIR%\*.html" . >nul
+if "%HAS_HTML%"=="1" (
+  copy /Y "%HTML_DIR%\*.html" . >nul
+) else (
+  echo [info] No .html files found; publishing deletions for previously published HTML.
+)
 if exist "%HTML_DIR%\index_metadata.json" (
   copy /Y "%HTML_DIR%\index_metadata.json" . >nul
+)
+if exist "%HTML_DIR%\%IMAGES_SUBDIR%" (
+  echo [info] Including images folder: "%HTML_DIR%\%IMAGES_SUBDIR%"
+  xcopy "%HTML_DIR%\%IMAGES_SUBDIR%" ".\%IMAGES_SUBDIR%\" /E /I /Y >nul
+  if errorlevel 1 (
+    echo [error] Failed to copy images folder from "%HTML_DIR%\%IMAGES_SUBDIR%".
+    goto :fail_worktree
+  )
+) else (
+  echo [warn] Images folder not found: "%HTML_DIR%\%IMAGES_SUBDIR%". Publishing without images.
 )
 
 git add *.html >nul 2>&1
 if exist ".\index_metadata.json" git add index_metadata.json >nul 2>&1
+if exist ".\%IMAGES_SUBDIR%\" git add "%IMAGES_SUBDIR%" >nul 2>&1
 
-git commit -m "Publish HTML and metadata snapshot"
+git commit -m "Publish HTML, metadata, and images snapshot"
 if errorlevel 1 goto :fail_worktree
 
 echo [info] Pushing "%PUBLISH_BRANCH%" to "%REMOTE_NAME%/%TARGET_BRANCH%"...
@@ -108,7 +136,7 @@ rmdir /s /q "%PUBLISH_DIR%" >nul 2>&1
 popd
 
 echo [ok] Published HTML snapshot.
-echo [ok] Remote: %REMOTE_NAME% -> %REMOTE_URL%
+echo [ok] Remote: %REMOTE_NAME% -^> %REMOTE_URL%
 echo [ok] Branch: %TARGET_BRANCH%
 echo [ok] Source: %HTML_DIR%
 exit /b 0

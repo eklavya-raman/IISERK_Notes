@@ -1,0 +1,15 @@
+\addvspace {10\p@ }
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.1\else \numberline {2.1}Theorem\fi \thmtformatoptarg {Condition for differentiability}}{5}{mytheorem.1}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.2\else \numberline {2.2}Theorem\fi \thmtformatoptarg {Chain Rule}}{7}{mytheorem.2}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.3\else \numberline {2.3}Theorem\fi \thmtformatoptarg {Interior Extremum Theorem}}{7}{mytheorem.3}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.4\else \numberline {2.4}Theorem\fi \thmtformatoptarg {Rolle's Theorem}}{8}{mytheorem.4}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.5\else \numberline {2.5}Theorem\fi \thmtformatoptarg {Lagrange's Mean Value Theorem}}{8}{mytheorem.5}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.6\else \numberline {2.6}Theorem\fi \thmtformatoptarg {Cauchy's Mean Value Theorem}}{9}{mytheorem.6}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.7\else \numberline {2.7}Theorem\fi \thmtformatoptarg {Darboux's Theorem}}{10}{mytheorem.7}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.8\else \numberline {2.8}Theorem\fi \thmtformatoptarg {Inverse Function Theorem}}{10}{mytheorem.8}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.9\else \numberline {2.9}Theorem\fi \thmtformatoptarg {L'Hôpital's Rule I}}{11}{mytheorem.9}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.10\else \numberline {2.10}Theorem\fi \thmtformatoptarg {L'Hôpital's Rule II}}{11}{mytheorem.10}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.11\else \numberline {2.11}Theorem\fi \thmtformatoptarg {Leibniz's Rule}}{12}{mytheorem.11}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.12\else \numberline {2.12}Theorem\fi \thmtformatoptarg {Taylor's Theorem}}{13}{mytheorem.12}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.13\else \numberline {2.13}Theorem\fi \thmtformatoptarg {Test for Local Extrema}}{14}{mytheorem.13}%
+\contentsline {mytheorem}{\ifthmt@listswap Theorem~2.14\else \numberline {2.14}Theorem\fi \thmtformatoptarg {Convexity and Second Derivative}}{14}{mytheorem.14}%

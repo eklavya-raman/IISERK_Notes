@@ -1,0 +1,20 @@
+\contentsline {chapter}{\numberline {1}Proof of Concept}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Abstract}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Methodology}{4}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Neural Stimulation and EEG Acquisition}{5}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Signal Preprocessing}{5}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Feature Extraction}{5}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Machine Learning Analysis}{6}{subsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.2.5}Risk Assessment and Clinical Decision Support}{7}{subsection.1.2.5}%
+\contentsline {section}{\numberline {1.3}Components and Implementation}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Feature Extraction and Selection}{8}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Features Used in Alzheimer's Disease Detection}{9}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Time Domain Feature Extraction}{9}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Frequency Domain Feature Extraction}{9}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Time-Frequency Feature Extraction}{9}{subsection.1.5.3}%
+\contentsline {subsection}{\numberline {1.5.4}Connectivity Feature Extraction}{10}{subsection.1.5.4}%
+\contentsline {section}{\numberline {1.6}Dimensionality Reduction}{10}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Basic Overview of Fuzzy Logic}{11}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Basic priniciples and definitions}{11}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Construction of Fuzzy Membership Functions}{12}{subsection.1.7.2}%
+\contentsline {section}{\numberline {1.8}Fuzzy Features and Fuzzy Logic-Based Machine Learning Models}{12}{section.1.8}%

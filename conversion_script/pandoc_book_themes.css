@@ -333,6 +333,9 @@ html {
   font-size: calc(var(--base-font-size) * var(--text-scale));
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -343,6 +346,9 @@ body {
   line-height: 1.72;
   text-rendering: optimizeLegibility;
   min-height: 100dvh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body > * {
@@ -350,6 +356,7 @@ body > * {
   max-width: var(--content-max);
   margin-inline: 0;
   padding-inline: var(--content-pad);
+  min-width: 0;
 }
 
 .site-index-link {
@@ -528,6 +535,7 @@ p,
 li,
 dd {
   color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 p {
@@ -936,6 +944,8 @@ div.math.display math,
 span.math.display math {
   display: block;
   max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin: 0.95rem auto;
 }
 
@@ -1008,28 +1018,39 @@ span.math.display math {
   display: none;
 }
 
+.mobile-navbar {
+  display: none;
+}
+
 @media (min-width: 1150px) {
-  body.pandoc-has-toc {
-    display: grid;
-    grid-template-columns: minmax(16rem, var(--toc-width)) minmax(0, 1fr);
-    column-gap: clamp(0.95rem, 1.8vw, 1.65rem);
-    align-items: start;
-    padding-inline: clamp(0.45rem, 1.1vw, 1rem);
+  body.pandoc-has-toc,
+  body:has(> #TOC) {
+    --desktop-side-pad: clamp(0.45rem, 1.1vw, 1rem);
+    --desktop-toc-gap: clamp(0.95rem, 1.8vw, 1.65rem);
+    --desktop-toc-width: clamp(16rem, 22vw, var(--toc-width));
+
+    padding-inline: var(--desktop-side-pad);
+    padding-left: calc(var(--desktop-side-pad) + var(--desktop-toc-width) + var(--desktop-toc-gap));
+    min-height: 100dvh;
   }
 
-  body.pandoc-has-toc > #TOC {
-    grid-column: 1;
-    position: sticky;
+  body.pandoc-has-toc > #TOC,
+  body:has(> #TOC) > #TOC {
+    position: fixed;
+    left: var(--desktop-side-pad);
     top: 0.75rem;
-    max-height: calc(100dvh - 1rem);
+    bottom: 0.75rem;
+    width: var(--desktop-toc-width);
+    height: auto;
+    max-height: none;
     overflow: auto;
-    margin: 0.75rem 0;
-    width: 100%;
+    margin: 0;
     padding: 0.85rem 0.85rem;
+    z-index: 900;
   }
 
-  body.pandoc-has-toc > *:not(#TOC) {
-    grid-column: 2;
+  body.pandoc-has-toc > *:not(#TOC),
+  body:has(> #TOC) > *:not(#TOC) {
     width: 100%;
     max-width: none;
     margin-inline: 0;
@@ -1039,7 +1060,7 @@ span.math.display math {
 
 @media (max-width: 1149px) {
   body {
-    padding-top: 3rem;
+    padding-top: 3.7rem;
   }
 
   body > * {
@@ -1047,6 +1068,39 @@ span.math.display math {
     max-width: none;
     margin-inline: 0;
     padding-inline: var(--content-pad);
+  }
+
+  .mobile-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1210;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    min-height: 3.05rem;
+    padding: 0.48rem 0.72rem;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--panel) 90%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .mobile-navbar-title {
+    color: var(--heading);
+    font-family: var(--font-ui);
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .mobile-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
   }
 
   #TOC {
@@ -1071,10 +1125,6 @@ span.math.display math {
   }
 
   .toc-mobile-toggle {
-    position: fixed;
-    top: 0.65rem;
-    left: 0.72rem;
-    z-index: 1210;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -1083,11 +1133,11 @@ span.math.display math {
     background: var(--panel);
     color: var(--text);
     font-family: var(--font-ui);
-    font-size: 0.84rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.02em;
-    padding: 0.36rem 0.82rem;
-    box-shadow: var(--shadow);
+    padding: 0.32rem 0.74rem;
+    box-shadow: none;
     cursor: pointer;
   }
 
@@ -1117,8 +1167,21 @@ span.math.display math {
   }
 
   .theme-switcher {
+    width: 100%;
+    display: flex;
     gap: 0.4rem;
     padding: 0.35rem 0.45rem 0.35rem 0.55rem;
+  }
+
+  .theme-switcher-controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+  }
+
+  .theme-switcher-control {
+    min-width: 0;
   }
 
   .theme-switcher label {
@@ -1126,21 +1189,36 @@ span.math.display math {
   }
 
   .theme-switcher select {
+    width: 100%;
     font-size: 0.78rem;
-    min-width: 6.2rem;
+    min-width: 0;
     padding: 0.2rem 0.55rem 0.2rem 0.42rem;
   }
 
   .toc-mobile-toggle {
-    top: 0.58rem;
-    left: 0.58rem;
     font-size: 0.78rem;
-    padding: 0.3rem 0.7rem;
+    padding: 0.28rem 0.64rem;
+  }
+
+  .mobile-navbar {
+    min-height: 2.9rem;
+    padding: 0.42rem 0.58rem;
+  }
+
+  .mobile-navbar-title {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .theme-switcher-controls {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media print {
   .theme-switcher,
+  .mobile-navbar,
   .toc-mobile-toggle,
   .toc-mobile-backdrop,
   #TOC {

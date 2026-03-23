@@ -44,7 +44,26 @@ STANDARD_PREAMBLE = r"""
 
 
 NOTES_TEMPLATE_INPUT_RE = re.compile(
-	r"\\input\{(?:\./)?(?:notes_white|assignments_white)\}"
+	r"\\input\{(?:\./)?(?:notes_white|notes_light|notes|assignments_white)\}"
+)
+
+INPUT_INCLUDE_RE = re.compile(r"\\(?:input|include)\{([^}]+)\}")
+
+FILECONTENTS_ENV_RE = re.compile(
+	r"\\begin\{filecontents\*?\}(?:\[[^\]]*\])?\{[^}]+\}[\s\S]*?\\end\{filecontents\*?\}",
+	flags=re.MULTILINE,
+)
+
+TIKZ_CONTEXT_LINE_RE = re.compile(
+	r"^\s*\\(?:"
+	r"usepackage(?:\[[^\]]*\])?\{(?:tikz|pgfplots|xcolor|graphicx|color)\}"
+	r"|usetikzlibrary\{[^}]+\}"
+	r"|usepgfplotslibrary\{[^}]+\}"
+	r"|pgfplotsset\{[^}]+\}"
+	r"|tikzset\{[^}]+\}"
+	r"|definecolor\{[^}]+\}\{[^}]+\}\{[^}]+\}"
+	r")\s*$",
+	flags=re.MULTILINE,
 )
 
 TIKZ_ENV_RE = re.compile(
@@ -295,16 +314,23 @@ def _render_tikz_env_to_image(
 	env_block: str,
 	image_dir: Path,
 	image_stem: str,
+	extra_preamble: str = "",
 ) -> Path | None:
 	image_dir.mkdir(parents=True, exist_ok=True)
 
-	tex_document = "\n".join([
+	preamble_parts = [
 		r"\documentclass[border=2pt]{standalone}",
 		r"\usepackage{amsmath,amssymb,mathtools}",
 		r"\usepackage{tikz}",
 		r"\usepackage{pgfplots}",
 		r"\pgfplotsset{compat=1.18}",
 		r"\usepackage{circuitikz}",
+	]
+	if extra_preamble.strip():
+		preamble_parts.append(extra_preamble.strip())
+
+	tex_document = "\n".join([
+		*preamble_parts,
 		r"\begin{document}",
 		env_block,
 		r"\end{document}",
@@ -355,6 +381,7 @@ def _replace_tikz_with_image_placeholders(
 	source_path: Path | None,
 	images_dir: Path | None,
 	image_path_prefix: str,
+	extra_preamble: str = "",
 ) -> str:
 	counter = 0
 	safe_prefix = image_path_prefix.strip().strip("/\\") or "images_folder"
@@ -370,7 +397,12 @@ def _replace_tikz_with_image_placeholders(
 
 		if images_dir is not None:
 			light_stem = f"{image_stem}_light"
-			rendered = _render_tikz_env_to_image(env_block, images_dir, light_stem)
+			rendered = _render_tikz_env_to_image(
+				env_block,
+				images_dir,
+				light_stem,
+				extra_preamble=extra_preamble,
+			)
 			if rendered is not None:
 				dark_variant = _create_dark_variant(rendered)
 				light_rel_path = f"{safe_prefix}/{rendered.name}".replace("\\", "/")
@@ -413,6 +445,94 @@ def _remove_listoftheorems_blocks(text: str) -> str:
 		i = j
 
 	return "".join(out)
+
+
+def _remove_auxiliary_list_commands(text: str) -> str:
+	text = re.sub(r"\\listoffigures(?:\s*\[[^\]]*\])?", "", text)
+	text = re.sub(r"\\listoftables(?:\s*\[[^\]]*\])?", "", text)
+	return text
+
+
+def _extract_preamble_block(text: str) -> str:
+	begin_match = re.search(r"\\begin\{document\}", text)
+	if begin_match is None:
+		return ""
+
+	docclass_match = re.search(r"\\documentclass(?:\[[^\]]*\])?\{[^}]+\}", text)
+	if docclass_match is not None and docclass_match.end() < begin_match.start():
+		return text[docclass_match.end() : begin_match.start()]
+
+	return text[: begin_match.start()]
+
+
+def _resolve_include_path(base_dir: Path | None, include_target: str) -> Path | None:
+	if base_dir is None:
+		return None
+
+	target = include_target.strip()
+	if not target:
+		return None
+
+	raw = Path(target)
+	candidates: list[Path] = []
+	if raw.suffix:
+		candidates.append(raw)
+	else:
+		candidates.append(raw)
+		candidates.append(raw.with_suffix(".tex"))
+
+	for candidate in candidates:
+		resolved = (base_dir / candidate).resolve()
+		if resolved.exists() and resolved.is_file():
+			return resolved
+
+	return None
+
+
+def _expand_include_commands(text: str, base_dir: Path | None, seen: set[Path], depth: int = 0) -> str:
+	if base_dir is None or depth > 6:
+		return text
+
+	def repl(match: re.Match[str]) -> str:
+		include_target = match.group(1).strip()
+		resolved = _resolve_include_path(base_dir, include_target)
+		if resolved is None:
+			return ""
+		if resolved in seen:
+			return ""
+
+		seen.add(resolved)
+		try:
+			included_text = _read_text(resolved)
+		except OSError:
+			return ""
+
+		return _expand_include_commands(included_text, resolved.parent, seen, depth + 1)
+
+	return INPUT_INCLUDE_RE.sub(repl, text)
+
+
+def _collect_tikz_render_context(text: str, source_path: Path | None) -> str:
+	preamble = _extract_preamble_block(text)
+	if preamble and source_path is not None:
+		preamble = _expand_include_commands(preamble, source_path.parent, seen=set())
+
+	context_blocks: list[str] = []
+	seen_entries: set[str] = set()
+
+	for match in FILECONTENTS_ENV_RE.finditer(text):
+		block = match.group(0).strip()
+		if block and block not in seen_entries:
+			context_blocks.append(block)
+			seen_entries.add(block)
+
+	for line_match in TIKZ_CONTEXT_LINE_RE.finditer(preamble):
+		line = line_match.group(0).strip()
+		if line and line not in seen_entries:
+			context_blocks.append(line)
+			seen_entries.add(line)
+
+	return "\n".join(context_blocks).strip()
 
 
 def _replace_custom_preamble(text: str) -> str:
@@ -566,8 +686,10 @@ def convert_tex_content(
 ) -> str:
 	line_ending = "\r\n" if "\r\n" in text else "\n"
 	text = text.replace("\r\n", "\n").replace("\r", "\n")
+	tikz_context = _collect_tikz_render_context(text, source_path)
 
 	text = _remove_listoftheorems_blocks(text)
+	text = _remove_auxiliary_list_commands(text)
 	text = NOTES_TEMPLATE_INPUT_RE.sub("", text)
 	text = _replace_custom_preamble(text)
 	text = _normalize_math_delimiters(text)
@@ -578,6 +700,7 @@ def convert_tex_content(
 		source_path=source_path,
 		images_dir=images_dir,
 		image_path_prefix=image_path_prefix,
+		extra_preamble=tikz_context,
 	)
 
 	text = _normalize_custom_environments(text)

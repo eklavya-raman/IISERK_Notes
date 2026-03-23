@@ -2,3 +2,6 @@
 \contentsline {chapter}{\numberline {1}Continous Random Variables and Distributions}{4}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Continous Random Variables}{4}{section.1.1}%
 \contentsline {subsubsection}{Example}{6}{subsubsection*.2}%
+\contentsline {subsection}{\numberline {1.1.1}Ludeberg Levy CLT}{6}{subsection.1.1.1}%
+\contentsline {part}{II\hspace {1em}Statistics}{8}{part.2}%
+\contentsline {subsection}{\numberline {1.1.2}Identities of Covariance and Variance}{9}{subsection.1.1.2}%

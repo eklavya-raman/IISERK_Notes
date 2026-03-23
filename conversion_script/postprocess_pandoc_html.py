@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import os
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -55,6 +56,7 @@ LABEL_CLASS_MAP = {
 }
 
 THEOREM_LIST_LABELS = {"Theorem", "Corollary"}
+ABSOLUTE_URL_RE = re.compile(r"^(?:[a-z][a-z0-9+.-]*:|//)", flags=re.IGNORECASE)
 
 
 def _strip_tags(value: str) -> str:
@@ -316,7 +318,35 @@ def _add_theorem_link_to_toc(body: str) -> str:
     return body[:insert_at] + entry + body[insert_at:]
 
 
-def _replace_tikz_placeholders(body: str) -> str:
+def _normalize_image_base_url(value: str | None) -> str | None:
+    if value is None:
+        return None
+    cleaned = value.strip().strip('"').strip("'")
+    if not cleaned:
+        return None
+    return cleaned.rstrip("/")
+
+
+def _resolve_image_src(src: str, image_base_url: str | None) -> str:
+    normalized_src = src.replace("\\", "/").strip()
+    if not normalized_src:
+        return normalized_src
+
+    if ABSOLUTE_URL_RE.match(normalized_src) is not None:
+        return normalized_src
+
+    base = _normalize_image_base_url(image_base_url)
+    if base is None:
+        return normalized_src
+
+    relative_src = normalized_src.lstrip("./")
+    if base.endswith("/images_folder") and relative_src.startswith("images_folder/"):
+        relative_src = relative_src[len("images_folder/") :]
+
+    return f"{base}/{relative_src.lstrip('/')}"
+
+
+def _replace_tikz_placeholders(body: str, image_base_url: str | None = None) -> str:
     def parse_payload(payload: str) -> tuple[str, str, str]:
         parts = [part.strip() for part in payload.split("|")]
         if not parts:
@@ -344,8 +374,8 @@ def _replace_tikz_placeholders(body: str) -> str:
     def repl(match: re.Match[str]) -> str:
         payload = match.group(1).strip()
         light_src, dark_src, caption = parse_payload(payload)
-        light_src = light_src.replace("\\", "/")
-        dark_src = dark_src.replace("\\", "/")
+        light_src = _resolve_image_src(light_src, image_base_url=image_base_url)
+        dark_src = _resolve_image_src(dark_src, image_base_url=image_base_url)
 
         if GENERIC_TIKZ_CAPTION_RE.match(caption or ""):
             caption = ""
@@ -405,7 +435,7 @@ def _insert_theorem_list(body: str, theorem_entries: list[tuple[str, str]]) -> s
     return _add_theorem_link_to_toc(theorem_list_html + body)
 
 
-def postprocess_html_document(document: str) -> str:
+def postprocess_html_document(document: str, image_base_url: str | None = None) -> str:
     body_match = BODY_RE.search(document)
     if body_match is None:
         return document
@@ -415,7 +445,7 @@ def postprocess_html_document(document: str) -> str:
     body_content, theorem_entries = _wrap_heading_boxes(body_content)
     body_content = _wrap_corollary_div_boxes(body_content, theorem_entries)
     body_content = _inline_proof_divs(body_content)
-    body_content = _replace_tikz_placeholders(body_content)
+    body_content = _replace_tikz_placeholders(body_content, image_base_url=image_base_url)
     body_content = _wrap_tables(body_content)
     body_content = _insert_theorem_list(body_content, theorem_entries)
 
@@ -427,6 +457,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Post-process pandoc-generated HTML.")
     parser.add_argument("--input", "-i", required=True, help="Input HTML file.")
     parser.add_argument("--output", "-o", help="Output HTML file. Defaults to in-place update.")
+    parser.add_argument(
+        "--image-base-url",
+        help="Optional absolute base URL for externally hosted tikz images (e.g. CDN/S3/R2 path).",
+    )
     args = parser.parse_args()
 
     input_path = Path(args.input).expanduser().resolve()
@@ -437,9 +471,12 @@ def main() -> int:
         return 1
 
     source = input_path.read_text(encoding="utf-8", errors="replace")
-    processed = postprocess_html_document(source)
+    image_base_url = args.image_base_url or os.environ.get("NOTES_IMAGE_BASE_URL")
+    processed = postprocess_html_document(source, image_base_url=image_base_url)
     output_path.write_text(processed, encoding="utf-8")
     print(f"[ok] Post-processed HTML: {output_path}")
+    if _normalize_image_base_url(image_base_url):
+        print(f"[ok] External image base URL applied: {_normalize_image_base_url(image_base_url)}")
     return 0
 
 

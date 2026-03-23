@@ -13,6 +13,8 @@ set "SWITCHER_FILE=%SCRIPT_DIR%pandoc_theme_switcher.html"
 set "CONVERTER_FILE=%SCRIPT_DIR%temp_to_vanilla.py"
 set "POSTPROCESS_FILE=%SCRIPT_DIR%postprocess_pandoc_html.py"
 set "INDEXER_FILE=%SCRIPT_DIR%update_html_index.py"
+set "TEX_HTML_LINKS_FILE=%SCRIPT_DIR%tex_html_links.map"
+set "TEX_HTML_LINKS_TMP=%TEX_HTML_LINKS_FILE%.tmp"
 
 if not exist "%CSS_FILE%" (
   echo [error] Missing CSS file: "%CSS_FILE%"
@@ -53,6 +55,7 @@ if not exist "%INPUT_TEX%" (
 
 set "CUSTOM_TITLE=%NOTES_CUSTOM_TITLE%"
 set "NOTE_SECTION=%NOTES_SECTION%"
+set "IMAGE_BASE_URL=%NOTES_IMAGE_BASE_URL%"
 
 for %%F in ("%INPUT_TEX%") do set "INPUT_DIR=%%~dpF"
 set "LOCAL_IMAGE_DIR=%INPUT_DIR%images"
@@ -65,8 +68,11 @@ if /I not "%~x1"==".tex" (
   exit /b 1
 )
 
+for %%F in ("%INPUT_TEX%") do set "DEFAULT_OUTPUT_HTML=%DEFAULT_HTML_DIR%\%%~nF.html"
+set "LINKED_OUTPUT_USED=0"
+
 if "%~2"=="" (
-  for %%F in ("%INPUT_TEX%") do set "OUTPUT_HTML=%DEFAULT_HTML_DIR%\%%~nF.html"
+  call :resolve_linked_output "%INPUT_TEX%" "%DEFAULT_OUTPUT_HTML%"
 ) else (
   for %%F in ("%~2") do set "OUTPUT_HTML=%%~fF"
 )
@@ -82,6 +88,7 @@ set "PANDOC_INPUT=%INPUT_TEX%"
 
 echo [info] Input : "%INPUT_TEX%"
 echo [info] Output: "%OUTPUT_HTML%"
+if "%~2"=="" if "%LINKED_OUTPUT_USED%"=="1" echo [info] Using saved TeX-to-HTML link.
 echo [info] Preprocess: converting to pandoc-friendly vanilla LaTeX...
 echo [info] Images: "%IMAGES_DIR%"
 
@@ -97,19 +104,10 @@ if not exist "%CONVERTED_TEX%" (
 )
 
 set "PANDOC_INPUT=%CONVERTED_TEX%"
+set "PANDOC_FROM_PRIMARY=latex+raw_tex+latex_macros+smart"
+set "PANDOC_FROM_FALLBACK=latex+latex_macros+smart"
 
-pandoc "%PANDOC_INPUT%" ^
-  -s ^
-  --to=html5 ^
-  --mathml ^
-  --number-sections ^
-  --toc ^
-  --toc-depth=3 ^
-  --resource-path="%PANDOC_RESOURCE_PATH%" ^
-  --css="%CSS_FILE%" ^
-  --include-after-body="%SWITCHER_FILE%" ^
-  --embed-resources ^
-  -o "%OUTPUT_HTML%"
+call :run_pandoc "%PANDOC_INPUT%" "%OUTPUT_HTML%"
 
 if errorlevel 1 (
   echo [error] pandoc conversion failed.
@@ -118,7 +116,8 @@ if errorlevel 1 (
 )
 
 echo [info] Postprocess: applying theorem list, counters, boxes, and tikz image insertion...
-call :run_postprocess "%OUTPUT_HTML%"
+if not "%IMAGE_BASE_URL%"=="" echo [info] External image base URL: "%IMAGE_BASE_URL%"
+call :run_postprocess "%OUTPUT_HTML%" "%IMAGE_BASE_URL%"
 if errorlevel 1 (
   echo [error] HTML postprocessing failed.
   if exist "%CONVERTED_TEX%" del "%CONVERTED_TEX%" >nul 2>&1
@@ -135,10 +134,59 @@ if errorlevel 1 (
   exit /b 1
 )
 
+call :remember_tex_html_link "%INPUT_TEX%" "%OUTPUT_HTML%"
+if errorlevel 1 (
+  echo [warn] Could not persist TeX-to-HTML output link.
+) else (
+  echo [info] Saved TeX-to-HTML link for future recompiles.
+)
+
 if exist "%CONVERTED_TEX%" del "%CONVERTED_TEX%" >nul 2>&1
 
 echo [ok] HTML generated with themed book style and switchable themes.
 exit /b 0
+
+:run_pandoc
+setlocal
+set "SRC=%~1"
+set "DST=%~2"
+
+pandoc "%SRC%" ^
+  -s ^
+  --from="%PANDOC_FROM_PRIMARY%" ^
+  --to=html5 ^
+  --mathml ^
+  --number-sections ^
+  --toc ^
+  --toc-depth=3 ^
+  --resource-path="%PANDOC_RESOURCE_PATH%" ^
+  --css="%CSS_FILE%" ^
+  --include-after-body="%SWITCHER_FILE%" ^
+  --embed-resources ^
+  -o "%DST%"
+
+if not errorlevel 1 (
+  endlocal & exit /b 0
+)
+
+echo [warn] Primary pandoc parse failed. Retrying with compatibility mode...
+
+pandoc "%SRC%" ^
+  -s ^
+  --from="%PANDOC_FROM_FALLBACK%" ^
+  --to=html5 ^
+  --mathml ^
+  --number-sections ^
+  --toc ^
+  --toc-depth=3 ^
+  --resource-path="%PANDOC_RESOURCE_PATH%" ^
+  --css="%CSS_FILE%" ^
+  --include-after-body="%SWITCHER_FILE%" ^
+  --embed-resources ^
+  -o "%DST%"
+
+set "RC=%ERRORLEVEL%"
+endlocal & exit /b %RC%
 
 :run_converter
 setlocal
@@ -165,17 +213,26 @@ endlocal & exit /b 1
 :run_postprocess
 setlocal
 set "HTML_FILE=%~1"
+set "IMAGE_BASE=%~2"
 
 where python >nul 2>&1
 if not errorlevel 1 (
-  python "%POSTPROCESS_FILE%" --input "%HTML_FILE%"
+  if not "%IMAGE_BASE%"=="" (
+    python "%POSTPROCESS_FILE%" --input "%HTML_FILE%" --image-base-url "%IMAGE_BASE%"
+  ) else (
+    python "%POSTPROCESS_FILE%" --input "%HTML_FILE%"
+  )
   set "RC=%ERRORLEVEL%"
   endlocal & exit /b %RC%
 )
 
 where py >nul 2>&1
 if not errorlevel 1 (
-  py -3 "%POSTPROCESS_FILE%" --input "%HTML_FILE%"
+  if not "%IMAGE_BASE%"=="" (
+    py -3 "%POSTPROCESS_FILE%" --input "%HTML_FILE%" --image-base-url "%IMAGE_BASE%"
+  ) else (
+    py -3 "%POSTPROCESS_FILE%" --input "%HTML_FILE%"
+  )
   set "RC=%ERRORLEVEL%"
   endlocal & exit /b %RC%
 )
@@ -212,13 +269,59 @@ if not errorlevel 1 (
 echo [error] Python was not found in PATH.
 endlocal & exit /b 1
 
+:resolve_linked_output
+setlocal EnableDelayedExpansion
+set "TEX_KEY=%~f1"
+set "DEFAULT_OUT=%~f2"
+set "FOUND_OUT="
+
+if exist "%TEX_HTML_LINKS_FILE%" (
+  for /f "usebackq tokens=1,* delims=|" %%A in ("%TEX_HTML_LINKS_FILE%") do (
+    if /I "%%~fA"=="!TEX_KEY!" set "FOUND_OUT=%%~fB"
+  )
+)
+
+if defined FOUND_OUT (
+  endlocal & set "OUTPUT_HTML=%FOUND_OUT%" & set "LINKED_OUTPUT_USED=1" & exit /b 0
+)
+
+endlocal & set "OUTPUT_HTML=%DEFAULT_OUT%" & set "LINKED_OUTPUT_USED=0" & exit /b 0
+
+:remember_tex_html_link
+setlocal EnableDelayedExpansion
+set "TEX_KEY=%~f1"
+set "OUT_VALUE=%~f2"
+set "LINKS_FILE=%TEX_HTML_LINKS_FILE%"
+set "TMP_FILE=%TEX_HTML_LINKS_TMP%"
+
+if exist "!TMP_FILE!" del /f /q "!TMP_FILE!" >nul 2>&1
+
+if exist "!LINKS_FILE!" (
+  for /f "usebackq tokens=1,* delims=|" %%A in ("!LINKS_FILE!") do (
+    if /I not "%%~fA"=="!TEX_KEY!" (
+      >>"!TMP_FILE!" echo %%~fA^|%%~fB
+    )
+  )
+)
+
+>>"!TMP_FILE!" echo !TEX_KEY!^|!OUT_VALUE!
+move /Y "!TMP_FILE!" "!LINKS_FILE!" >nul 2>&1
+if errorlevel 1 (
+  endlocal & exit /b 1
+)
+
+endlocal & exit /b 0
+
 :usage
 echo Usage:
 echo   %~n0 input-file.tex [output-file.html]
-echo   - If output-file.html is omitted, output goes to .\html\<input-name>.html
+echo   - If output-file.html is omitted, the script reuses a saved mapping for this input file if present.
+echo   - Otherwise output goes to .\html\^<input-name^>.html
+echo   - Saved mappings are stored in conversion_script\tex_html_links.map
 echo   - Optional metadata via env vars:
 echo       set NOTES_CUSTOM_TITLE=Your Custom Title
 echo       set NOTES_SECTION=course notes ^| assignments ^| personal study
+echo       set NOTES_IMAGE_BASE_URL=https://cdn.example.com/images_folder
 echo.
 echo Example:
 echo   %~n0 tex_files\white\basic_algebra.tex

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes Converter & Publisher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <h1>Notes Converter & Publisher</h1>
+        <p class="subtitle">Run TeX→HTML conversion and publish HTML snapshots from one GUI.</p>
+      </div>
+      <div class="header-actions">
+        <div class="workspace-chip">
+          <span>Workspace</span>
+          <strong id="workspace-root">Loading...</strong>
+        </div>
+        <button id="btn-stop-app" class="danger" type="button">Stop App</button>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Main tabs">
+      <button id="tab-btn-converter" class="tab-btn active" data-tab="converter" type="button">Converter</button>
+      <button id="tab-btn-publisher" class="tab-btn" data-tab="publisher" type="button">Publisher</button>
+    </nav>
+
+    <main class="tab-panels">
+      <section id="tab-converter" class="tab-panel active" aria-labelledby="tab-btn-converter">
+        <div class="card">
+          <h2>Conversion Controls</h2>
+          <div class="form-grid">
+            <label>
+              Mode
+              <select id="convert-mode">
+                <option value="selected">Selected files</option>
+                <option value="all">All TeX files</option>
+                <option value="linked">Mapped TeX files only</option>
+              </select>
+            </label>
+            <label>
+              Section override
+              <select id="convert-section"></select>
+            </label>
+            <label>
+              Custom title override
+              <input id="convert-title" type="text" placeholder="Optional title override" />
+            </label>
+            <label>
+              Image base URL
+              <input id="convert-image-base" type="text" placeholder="Optional external image base URL" />
+            </label>
+          </div>
+          <p class="hint">For bulk modes, leave section/title empty to preserve existing metadata behavior.</p>
+
+          <div class="stat-grid" aria-label="Workspace file stats">
+            <div class="stat-item">
+              <span>Total TeX</span>
+              <strong id="stat-tex-total">0</strong>
+            </div>
+            <div class="stat-item">
+              <span>Mapped TeX</span>
+              <strong id="stat-tex-linked">0</strong>
+            </div>
+            <div class="stat-item">
+              <span>Total HTML</span>
+              <strong id="stat-html-total">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <div class="card-header-row">
+              <h2>TeX Files</h2>
+              <div class="inline-actions">
+                <button id="btn-tex-select-all" type="button">Select all</button>
+                <button id="btn-tex-select-linked" type="button">Select linked</button>
+                <button id="btn-tex-clear" type="button">Clear</button>
+                <button id="btn-refresh" type="button">Refresh</button>
+              </div>
+            </div>
+
+            <label>
+              Filter TeX files
+              <input id="tex-filter" type="text" placeholder="Type to filter TeX list" />
+            </label>
+            <div id="tex-file-list" class="scroll-list" role="listbox" aria-label="TeX files"></div>
+          </div>
+
+          <div class="card">
+            <h2>Existing HTML Files</h2>
+
+            <label>
+              Filter HTML files
+              <input id="html-filter" type="text" placeholder="Type to filter HTML list" />
+            </label>
+            <div id="html-file-list" class="scroll-list" role="radiogroup" aria-label="HTML files"></div>
+          </div>
+        </div>
+
+        <div class="card action-card">
+          <div class="inline-actions wrap">
+            <button id="btn-link" type="button">Link Selected TeX → Selected HTML</button>
+            <button id="btn-convert" class="primary" type="button">Run Conversion</button>
+          </div>
+          <p class="hint">Linking requires exactly one checked TeX file and one selected HTML file.</p>
+        </div>
+      </section>
+
+      <section id="tab-publisher" class="tab-panel" aria-labelledby="tab-btn-publisher" hidden>
+        <div class="card">
+          <h2>Publisher Settings</h2>
+          <div class="form-grid">
+            <label>
+              Remote URL
+              <input id="publish-remote-url" type="text" placeholder="https://github.com/owner/repo.git" />
+            </label>
+            <label>
+              Remote name
+              <input id="publish-remote-name" type="text" placeholder="origin" />
+            </label>
+            <label>
+              Target branch
+              <input id="publish-target-branch" type="text" placeholder="main" />
+            </label>
+            <label>
+              Publish branch (temp orphan)
+              <input id="publish-branch" type="text" placeholder="html-subtree" />
+            </label>
+            <label class="span-all">
+              HTML directory
+              <input id="publish-html-dir" type="text" placeholder="html" />
+            </label>
+          </div>
+          <div class="inline-actions">
+            <button id="btn-publish" class="primary" type="button">Publish HTML Snapshot</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="card output-card">
+      <div class="card-header-row">
+        <h2>Output</h2>
+        <div class="inline-actions">
+          <button id="btn-copy-log" type="button">Copy log</button>
+          <button id="btn-clear-log" type="button">Clear log</button>
+        </div>
+      </div>
+      <p id="run-status" class="hint">Status: Ready</p>
+      <pre id="output-log" aria-live="polite"></pre>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
