@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1774265634.85883 "c:/Users/Admin/Documents/GitHub/Latex_notes/tex_files/white/analysis2.tex" "analysis2.pdf" "analysis2" 1774265638.71673 0
+["pdflatex"] 1774346529.27395 "c:/Users/Admin/Documents/GitHub/Latex_notes/tex_files/white/analysis2.tex" "analysis2.pdf" "analysis2" 1774346533.54848 2
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/tcrm1000.tfm" 993062508 1436 c7f957a372ef2fbe93c0982f96625e12 ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -272,12 +272,12 @@
   "C:/Users/Admin/AppData/Roaming/MiKTeX/tex/latex/translations/dicts/translations-basic-dictionary-english.trsl" 1644048522 5588 0c1628daf15f4411ff1f463114c634a3 ""
   "C:/Users/Admin/AppData/Roaming/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/Admin/AppData/Roaming/MiKTeX/tex/latex/upquote/upquote.sty" 1335534756 1088 517e01cde97c1c0baf72e69d43aa5a2e ""
-  "analysis2.aux" 1774265638 4478 458e9a09ec5842ed8c1fb3f2bdaf3b22 "pdflatex"
-  "analysis2.loe" 1774265638 2121 776660f2d3a84b0607b23667ed3de4c9 "pdflatex"
-  "analysis2.out" 1774265638 1156 d89eeabacfe4d1fd4aa44fe4239f4f31 "pdflatex"
-  "analysis2.tex" 1774265633 48237 008b3b2600057fa9120a38f4bb7a7e8d ""
-  "analysis2.toc" 1774265638 618 bc84438e6555e275b6b16c84253f9a00 "pdflatex"
-  "c:/Users/Admin/Documents/GitHub/Latex_notes/tex_files/white/analysis2.tex" 1774265633 48237 008b3b2600057fa9120a38f4bb7a7e8d ""
+  "analysis2.aux" 1774346533 4478 458e9a09ec5842ed8c1fb3f2bdaf3b22 "pdflatex"
+  "analysis2.loe" 1774346533 2121 776660f2d3a84b0607b23667ed3de4c9 "pdflatex"
+  "analysis2.out" 1774346533 1156 d89eeabacfe4d1fd4aa44fe4239f4f31 "pdflatex"
+  "analysis2.tex" 1774346521 48245 9392b86d2469a88c803db110d53fee8a ""
+  "analysis2.toc" 1774346533 618 bc84438e6555e275b6b16c84253f9a00 "pdflatex"
+  "c:/Users/Admin/Documents/GitHub/Latex_notes/tex_files/white/analysis2.tex" 1774346521 48245 9392b86d2469a88c803db110d53fee8a ""
   "notes_white.tex" 1773123486 12708 310ed90b89053dbfcdc2bbf11b57d2af ""
   (generated)
   "analysis2.aux"
