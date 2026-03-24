@@ -502,6 +502,121 @@ Let us now define the concept of convex functions, which are functions that have
     \]
     This shows that $f''(x) \geq 0$ for all $x \in I$.
 \end{proof}
+\section{Exercises}
+\begin{exercise}
+    Let $f: \R \to \R$ be a function defined as follows:
+    \[ f(x) = \begin{cases}
+    x^2 & \text{if } x \in \Q \\
+    0 & \text{if } x \in \R \setminus \Q
+    \end{cases}
+    \]
+    Show that $f$ is differentiable at $x = 0$ and find $f'(0)$.
+\end{exercise} \\
+\emphasise{Soln:} We need to show that the limit \[
+    \lim_{h \to 0} \frac{f(0 + h) - f(0)}{h}
+\]
+exists. We have
+\[
+    \frac{f(0 + h) - f(0)}{h} = \begin{cases}
+    \frac{h^2}{h} = h & \text{if } h \in \Q \\
+    0 & \text{if } h \in \R \setminus \Q
+    \end{cases}
+\]
+As $h \to 0$, we have $\frac{f(0 + h) - f(0)}{h} \to 0$. Hence, $f$ is differentiable at $x = 0$ and we have $f'(0) = 0$. \\ \\
+\begin{exercise}
+    Let $I$ be an open interval and let $f: I \to \R$ be a function. Let $c$ be an interior point of $I$. $f$ is said to be increasing at $c$ if there exists a $\delta > 0$ such that $f(x) < f(c)$ for all $x \in (c - \delta, c)$ and $f(x) > f(c)$ for all $x \in (c, c + \delta)$. Show that -
+    \begin{itemize}
+        \item If $f$ is differentiable at $c$ and $f'(c) > 0$, then $f$ is increasing at $c$.
+        \item If $f$ is increasing at all points of $I$, then $f$ is increasing on $I$.
+        \item Let us consider $g: \R \to \R$ defined as follows:
+        \[
+            g(x) = \begin{cases}
+            x + 2x^2 \sin{\frac{1}{x}} & \text{if } x \neq 0 \\
+            0 & \text{if } x =0
+            \end{cases}
+        \]
+        Prove that $g$ is increasing at $x = 0$ but there does not exist any neighbourhood of $x = 0$ such that $g$ is increasing on that neighbourhood.
+    \end{itemize}
+\end{exercise} 
+\emphasise{Soln:} We need to show that if $f$ is differentiable at $c$ and $f'(c) > 0$, then $f$ is increasing at $c$. Since $f$ is differentiable at $c$, we have
+\[
+    f'(c) = \lim_{h \to 0} \frac{f(c + h) - f(c)}{h} > 0
+\]
+This implies that there exists a $\delta > 0$ such that $\frac{f(c + h) - f(c)}{h} > 0$ for all $h \in (-\delta, \delta)$. This implies that $f(c + h) > f(c)$ for all $h \in (0, \delta)$ and $f(c + h) < f(c)$ for all $h \in (-\delta, 0)$. Hence, $f$ is increasing at $c$. \\
+We need to show that if $f$ is increasing at all points of $I$, then $f$ is increasing on $I$. Let $x, y \in I$ such that $x < y$. Since $f$ is increasing at all points of $I$, we have $f(x) < f(y)$. Hence, $f$ is increasing on $I$. \\
+We need to show that $g$ is increasing at $x = 0$ but there does not exist any neighbourhood of $x = 0$ such that $g$ is increasing on that neighbourhood. We have
+\[
+    \frac{g(0 + h) - g(0)}{h} = \begin{cases}
+    1 + 2h \sin{\frac{1}{h}} & \text{if } h \neq 0 \\
+    0 & \text{if } h = 0
+    \end{cases}
+\]
+As $h \to 0$, we have $\frac{g(0 + h) - g(0)}{h} \to 1$. Hence, $g$ is increasing at $x = 0$. However, for any $\delta > 0$, we can choose $h_1, h_2 \in (-\delta, \delta)$ such that $\sin{\frac{1}{h_1}} = 1$ and $\sin{\frac{1}{h_2}} = -1$. This implies that $\frac{g(0 + h_1) - g(0)}{h_1} = 1 + 2h_1 > 0$ and $\frac{g(0 + h_2) - g(0)}{h_2} = 1 - 2h_2 < 0$. Hence, there does not exist any neighbourhood of $x = 0$ such that $g$ is increasing on that neighbourhood. \\\\
+\begin{exercise}
+    Let $I \subset \R$ be an interval and let $f: I \to \R$ be a twice differentiable function. Suppose that $f''(a) > 0$ for some $a \in I$. Show that 
+    \[ f''(a) = \lim_{h \to 0} \frac{f(a + h) + f(a - h) - 2f(a)}{h^2} \]
+    Give and example where this limit exists, but $f''(a)$ does not exist.
+\end{exercise} \\
+\emphasise{Soln:} Since $f$ is twice differentiable at $a$, we have
+\[ f''(a) = \lim_{h \to 0} \frac{f'(a + h) - f'(a)}{h} \]
+Since $f'$ is differentiable at $a$, we have
+\[ f'(a) = \lim_{h \to 0} \frac{f(a + h) - f(a)}{h} \]
+Substituting the expression for $f'(a)$ into the expression for $f''(a)$, we get
+\[
+    f''(a) = \lim_{h \to 0} \frac{\frac{f(a + h) - f(a)}{h} - \frac{f(a) - f(a - h)}{h}}{h} = \lim_{h \to 0} \frac{f(a + h) + f(a - h) - 2f(a)}{h^2}
+\]
+As an example where this limit exists but $f''(a)$ does not exist, we can consider the function $f: \R \to \R$ defined as follows:
+\[ f(x) = \begin{cases}
+    x^2 & \text{if } x \in \Q \\
+    0 & \text{if } x \in \R \setminus \Q
+\end{cases}
+\]
+We have
+\[ \frac{f(a + h) + f(a - h) - 2f(a)}{h^2} = \begin{cases}
+    1 & \text{if } h \in \Q \\
+    0 & \text{if } h \in \R \setminus \Q
+\end{cases}
+\]
+As $h \to 0$, we have $\frac{f(a + h) + f(a - h) - 2f(a)}{h^2} \to 0$. Hence, the limit exists and is equal to $0$. However, $f''(a)$ does not exist since $f'$ is not differentiable at $a$. \\\\
+\begin{exercise}
+    We wish to approximate $\sin$ by a polynomial on [-1, 1], such that the error is less than 0.001. Show that we have - 
+\[ \left|\sin x - \left(x - \frac{x^3}{3!} + \frac{x^5}{5!}\right)\right| < \frac{1}{5040} \]
+for all $x \in [-1, 1]$. Hence, the error is less than 0.001.
+\end{exercise} \\
+\emphasise{Soln:} By applying Taylor's Theorem, we have
+\[ \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} + \frac{\sin c}{7!} x^7 \]
+for some $c$ between $0$ and $x$. Since $|\sin c| \leq 1$ for all $c \in \R$, we have
+\[ \left|\sin x - \left(x - \frac{x^3}{3!} + \frac{x^5}{5!}\right)\right| = \left|\frac{\sin c}{7!} x^7\right| \leq \frac{1}{5040} \]
+\\\\
+\begin{exercise}
+    If $f$ is a convex function in $(a, b)$, and $a < s < t < u < b$, then show that
+\[ \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u - t} \]
+\end{exercise}
+\emphasise{Soln:} Since $f$ is a convex function in $(a, b)$, we have
+\[ f(\lambda s + (1 - \lambda) t) \leq \lambda f(s) + (1 - \lambda) f(t) \]
+for all $\lambda \in [0, 1]$. Choosing $\lambda = \frac{t-s}{u-s}$, we get
+\[ f(t) \leq \frac{t-s}{u-s} f(s) + \frac{u-t}{u-s} f(u) \]
+Rearranging the terms, we get
+\[ \frac{f(t) - f(s)}{t - s} \leq \frac{f(u) - f(s)}{u - s} \]
+Similarly, we have
+\[ f(\lambda t + (1 - \lambda) u) \leq \lambda f(t) + (1 - \lambda) f(u) \]
+for all $\lambda \in [0, 1]$. Choosing $\lambda = \frac{u-t}{u-s}$, we get
+\[ f(u) \leq \frac{u-t}{u-s} f(s) + \frac{t-s}{u-s} f(t) \]
+Rearranging the terms, we get
+\[ \frac{f(u) - f(s)}{u - s} \leq \frac{f(u) - f(t)}{u - t} \]
+This completes the proof.
+
+
+Prove that $e^x \geq ex$ for all $x \in \R$. \\
+\emphasise{Soln:}
+We need to show that $e^x - ex \geq 0$ for all $x \in \R$. Let $f(x) = e^x - ex$. We have
+\[ f'(x) = e^x - e \]
+We have $f'(x) = 0$ if and only if $x = 1$. We have $f''(x) = e^x > 0$ for all $x \in \R$. Hence, $f$ has a local minimum at $x = 1$. For $x < 1$, we have $f'(x) < 0$ and for $x > 1$, we have $f'(x) > 0$. Hence, $f$ is decreasing on $(-\infty, 1)$ and increasing on $(1, \infty)$. This implies that $f(x) \geq f(1) = e - e = 0$ for all $x \in \R$. Hence, we have $e^x \geq ex$ for all $x \in \R$.
+
+
+\\
+
+
 \chapter{Integration}
 Now, we have a good understanding of the properties of derivatives and how they can be used to analyze the behavior of functions. Let us now discover how to reverse the process of differentiation, that is, how to find a function given its derivative. This process is called integration and it is a fundamental concept in analysis. We will define the concept of the integral and prove some theorems concerning the properties of integrals and how they can be used to analyze the behavior of functions.
 \begin{mydefinition}{Riemann Integral}

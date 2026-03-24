@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.23)  23 MAR 2026 14:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.3.23)  23 MAR 2026 17:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1114,30 +1114,50 @@ pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.1
 <to be read again> 
                    \relax 
 l.472 \begin{mydefinition}{Convex Function}
-                                            [14] [15]
+                                            [14]
+Underfull \hbox (badness 10000) in paragraph at lines 524--529
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 553--557
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 579--583
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 589--593
+
+ []
+
+[16] [17]
 Chapter 3.
 
 pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.507 \begin{mydefinition}{Riemann Integral}
+l.619 \begin{mydefinition}{Riemann Integral}
                                             
 pdfTeX warning (ext4): destination with the same identifier (name{example.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.516     A
+l.628     A
            n example of a Riemann Integrable Function is the Dirichlet funct...
 pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.526 ...n{mydefinition}{Partition of an Interval}
+l.638 ...n{mydefinition}{Partition of an Interval}
                                                   
 pdfTeX warning (ext4): destination with the same identifier (name{mydefinition.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.530 ...{mydefinition}{Refinement of a Partition}
+l.642 ...{mydefinition}{Refinement of a Partition}
                                                   
-Overfull \hbox (7.78667pt too wide) in paragraph at lines 530--532
+Overfull \hbox (7.78667pt too wide) in paragraph at lines 642--644
 \OT1/cmr/m/n/10 Let $\OML/cmm/m/it/10 P \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 x[]; x[]; [] ; x[]\OMS/cmsy/m/n/10 g$ \OT1/cmr/m/n/10 be a par-ti-tion of $[\OML/cmm/m/it/10 a; b\OT1/cmr/m/n/10 ]$. A re-fine-ment of $\OML/cmm/m/it/10 P$ \OT1/cmr/m/n/10 is a par-ti-tion $\OML/cmm/m/it/10 Q \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 y[]; y[]; [] ; y[]\OMS/cmsy/m/n/10 g$
  []
 
@@ -1147,18 +1167,18 @@ Underfull \vbox (badness 1033) has occurred while \output is active []
 
 Underfull \vbox (badness 1033) has occurred while \output is active []
 
- [16
+ [18
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{mynote.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.546     N
-           ote that $U(f, P) \geq L(f, P)$ for all partitions $P$ of $[a, b]... [17]
+l.658     N
+           ote that $U(f, P) \geq L(f, P)$ for all partitions $P$ of $[a, b]... [19]
 \tf@loe=\write7
 \openout7 = `analysis2.loe'.
 
-runsystem(latexminted cleantemp  --timestamp 20260323142141 01164FC5940DDD460D7BA0389181268F)...disabled (restricted).
+runsystem(latexminted cleantemp  --timestamp 20260323170355 01164FC5940DDD460D7BA0389181268F)...disabled (restricted).
 
  (analysis2.aux)
  ***********
@@ -1166,20 +1186,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `analysis2.out' has not changed.
-(rerunfilecheck)             Checksum: 84F26376D39BD37D8AB66859EC9D43BD;1057.
+(rerunfilecheck)             Checksum: D89EEABACFE4D1FD4AA44FE4239F4F31;1156.
  ) 
 Here is how much of TeX's memory you used:
- 49996 strings out of 467867
- 1205371 string characters out of 5428401
+ 50007 strings out of 467867
+ 1205519 string characters out of 5428401
  1914792 words of memory out of 5000000
- 78101 multiletter control sequences out of 15000+600000
+ 78104 multiletter control sequences out of 15000+600000
  639135 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  121i,12n,124p,867b,1378s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on analysis2.pdf (17 pages, 287979 bytes).
+Output written on analysis2.pdf (19 pages, 300819 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 69 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 286 PDF objects out of 1000 (max. 8388607)
+ 70 named destinations out of 1000 (max. 500000)
+ 77 words of extra memory for PDF output out of 10000 (max. 10000000)
 
