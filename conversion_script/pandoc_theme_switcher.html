@@ -1,5 +1,7 @@
 <script>
 (() => {
+  const MATH_FONT_MANIFEST_URL = "fonts_folder/math_fonts_manifest.json";
+
   const THEMES = [
     { value: "dawn", label: "Dawn Light" },
     { value: "pearl", label: "Pearl Light" },
@@ -9,40 +11,20 @@
     { value: "slate", label: "Nocturne Dark" },
     { value: "forest", label: "Emerald Night Dark" },
     { value: "midnight", label: "Midnight Indigo Dark" },
+    { value: "amoled", label: "AMOLED Darkest" },
   ];
 
   const TEXT_FONTS = [
     { value: "serif", label: "Serif" },
     { value: "sans", label: "Sans" },
     { value: "system", label: "System UI" },
+    { value: "custom", label: "Custom" },
     { value: "palatino", label: "Palatino" },
     { value: "georgia", label: "Georgia" },
     { value: "times", label: "Times" },
     { value: "garamond", label: "Garamond" },
     { value: "mono", label: "Mono" },
   ];
-
-  const MATH_FONTS = [
-    { value: "cambria", label: "Cambria" },
-    { value: "stix", label: "STIX" },
-    { value: "latinmodern", label: "Latin Modern" },
-    { value: "noto", label: "Noto Sans Math" },
-    { value: "xits", label: "XITS" },
-    { value: "libertinus", label: "Libertinus" },
-    { value: "asana", label: "Asana" },
-    { value: "termes", label: "TeX Gyre Termes" },
-  ];
-
-  const MATH_FONT_STACKS = {
-    cambria: '"Cambria Math", Cambria, "Times New Roman", serif',
-    stix: '"STIX Two Math", "STIX Math", "Cambria Math", serif',
-    latinmodern: '"Latin Modern Math", "Cambria Math", "STIX Two Math", serif',
-    noto: '"Noto Sans Math", "Cambria Math", "STIX Two Math", serif',
-    xits: '"XITS Math", "STIX Two Math", "Cambria Math", serif',
-    libertinus: '"Libertinus Math", "XITS Math", "STIX Two Math", "Cambria Math", serif',
-    asana: '"Asana Math", "Cambria Math", "STIX Two Math", serif',
-    termes: '"TeX Gyre Termes Math", "STIX Two Math", "Cambria Math", serif',
-  };
 
   const TEXT_SIZES = [
     { value: "85", label: "85%" },
@@ -69,11 +51,143 @@
   const TEXT_SIZE_STORAGE_KEY = "pandoc-book-text-size";
   const MATH_SIZE_STORAGE_KEY = "pandoc-book-math-size";
 
+  const canPersistChoice = (() => {
+    try {
+      return window.location.protocol !== "file:" && typeof window.localStorage !== "undefined";
+    } catch (_error) {
+      return false;
+    }
+  })();
+
   const validThemes = new Set(THEMES.map((theme) => theme.value));
   const validTextFonts = new Set(TEXT_FONTS.map((font) => font.value));
-  const validMathFonts = new Set(MATH_FONTS.map((font) => font.value));
   const validTextSizes = new Set(TEXT_SIZES.map((size) => size.value));
   const validMathSizes = new Set(MATH_SIZES.map((size) => size.value));
+
+  let activeMathFonts = [];
+  let activeMathFontValues = new Set();
+  const mathFontMap = new Map();
+
+  function escapeCssString(value) {
+    if (typeof value !== "string") {
+      return "";
+    }
+    return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+  }
+
+  function normalizeMathFontEntry(entry) {
+    if (!entry || typeof entry !== "object") {
+      return null;
+    }
+
+    const value = typeof entry.value === "string" ? entry.value.trim() : "";
+    const label = typeof entry.label === "string" ? entry.label.trim() : "";
+    const file = typeof entry.file === "string" ? entry.file.trim() : "";
+    const family = typeof entry.family === "string" ? entry.family.trim() : "";
+
+    if (!value || !label || !file || !family) {
+      return null;
+    }
+
+    return {
+      value,
+      label,
+      file,
+      family,
+    };
+  }
+
+  function resolveFontFormat(filePath) {
+    const file = filePath.toLowerCase();
+    if (file.endsWith(".woff2")) {
+      return "woff2";
+    }
+    if (file.endsWith(".woff")) {
+      return "woff";
+    }
+    if (file.endsWith(".ttf")) {
+      return "truetype";
+    }
+    return "opentype";
+  }
+
+  function applyMathFontFaceStyles() {
+    const styleId = "repo-math-font-faces";
+    let styleEl = document.getElementById(styleId);
+    if (!styleEl) {
+      styleEl = document.createElement("style");
+      styleEl.id = styleId;
+      document.head.appendChild(styleEl);
+    }
+
+    const css = activeMathFonts
+      .map((font) => {
+        const family = escapeCssString(font.family);
+        const filePath = encodeURI(font.file);
+        const format = resolveFontFormat(filePath);
+        return `@font-face{font-family:"${family}";src:url("fonts_folder/${filePath}") format("${format}");font-style:normal;font-weight:400;font-display:swap;}`;
+      })
+      .join("\n");
+
+    styleEl.textContent = css;
+  }
+
+  async function loadMathFontsFromManifest() {
+    const embedded = window.__PANDOC_MATH_FONTS_MANIFEST__;
+    if (embedded && Array.isArray(embedded.fonts)) {
+      const normalizedEmbedded = embedded.fonts
+        .map(normalizeMathFontEntry)
+        .filter(Boolean);
+
+      if (normalizedEmbedded.length > 0) {
+        const uniqueEmbedded = [];
+        const seenEmbedded = new Set();
+        normalizedEmbedded.forEach((font) => {
+          if (seenEmbedded.has(font.value)) {
+            return;
+          }
+          seenEmbedded.add(font.value);
+          uniqueEmbedded.push(font);
+        });
+        return uniqueEmbedded;
+      }
+    }
+
+    const isHttp = window.location.protocol === "http:" || window.location.protocol === "https:";
+    if (!isHttp) {
+      return [];
+    }
+
+    try {
+      const response = await fetch(MATH_FONT_MANIFEST_URL, { cache: "no-store" });
+      if (!response.ok) {
+        return [];
+      }
+
+      const payload = await response.json();
+      if (!payload || !Array.isArray(payload.fonts)) {
+        return [];
+      }
+
+      const normalized = payload.fonts
+        .map(normalizeMathFontEntry)
+        .filter(Boolean);
+
+      const unique = [];
+      const seenValues = new Set();
+      normalized.forEach((font) => {
+        if (seenValues.has(font.value)) {
+          return;
+        }
+        seenValues.add(font.value);
+        unique.push(font);
+      });
+
+      return unique;
+    } catch (_error) {
+      return [];
+    }
+  }
 
   function normalizeChoice(value, validSet) {
     if (!value) {
@@ -83,6 +197,9 @@
   }
 
   function getStoredChoice(storageKey, validSet) {
+    if (!canPersistChoice) {
+      return null;
+    }
     try {
       return normalizeChoice(window.localStorage.getItem(storageKey), validSet);
     } catch (_error) {
@@ -91,6 +208,9 @@
   }
 
   function setStoredChoice(storageKey, value) {
+    if (!canPersistChoice) {
+      return;
+    }
     try {
       window.localStorage.setItem(storageKey, value);
     } catch (_error) {
@@ -107,7 +227,7 @@
   }
 
   function getStoredMathFont() {
-    return getStoredChoice(MATH_FONT_STORAGE_KEY, validMathFonts);
+    return getStoredChoice(MATH_FONT_STORAGE_KEY, activeMathFontValues);
   }
 
   function getStoredTextSize() {
@@ -155,7 +275,21 @@
   }
 
   function getPreferredMathFont() {
-    return getStoredMathFont() || "cambria";
+    const fromStorage = getStoredMathFont();
+    if (fromStorage) {
+      return fromStorage;
+    }
+    return activeMathFonts[0]?.value || null;
+  }
+
+  async function refreshActiveMathFonts() {
+    activeMathFonts = await loadMathFontsFromManifest();
+    activeMathFontValues = new Set(activeMathFonts.map((font) => font.value));
+    mathFontMap.clear();
+    activeMathFonts.forEach((font) => {
+      mathFontMap.set(font.value, font);
+    });
+    applyMathFontFaceStyles();
   }
 
   function getPreferredTextSize() {
@@ -180,32 +314,23 @@
     return chosen;
   }
 
-  function resolveMathFontStack(font) {
-    return MATH_FONT_STACKS[font] || MATH_FONT_STACKS.cambria;
-  }
-
-  function applyMathFontToElements(fontStack) {
-    document.documentElement.style.setProperty("--font-math", fontStack);
-    document.querySelectorAll("math, math *").forEach((node) => {
-      node.style.fontFamily = fontStack;
-    });
-  }
-
-  function applyMathSizeToElements(size) {
-    const numeric = Number.parseFloat(size);
-    if (!Number.isFinite(numeric) || numeric <= 0) {
-      return;
-    }
-    const scale = numeric / 100;
-    document.querySelectorAll("math").forEach((node) => {
-      node.style.fontSize = `${scale}em`;
-    });
-  }
-
   function applyMathFont(font) {
-    const chosen = normalizeChoice(font, validMathFonts) || "cambria";
+    const chosen = normalizeChoice(font, activeMathFontValues)
+      || normalizeChoice(getPreferredMathFont(), activeMathFontValues)
+      || activeMathFonts[0]?.value
+      || null;
+    if (!chosen) {
+      document.documentElement.removeAttribute("data-math-font");
+      document.documentElement.style.removeProperty("--font-math");
+      return null;
+    }
+    const selected = mathFontMap.get(chosen);
+    if (!selected) {
+      return null;
+    }
+
     document.documentElement.setAttribute("data-math-font", chosen);
-    applyMathFontToElements(resolveMathFontStack(chosen));
+    document.documentElement.style.setProperty("--font-math", `"${selected.family}", serif`);
     setStoredMathFont(chosen);
     return chosen;
   }
@@ -220,7 +345,6 @@
   function applyMathSize(size) {
     const chosen = normalizeChoice(size, validMathSizes) || "100";
     document.documentElement.setAttribute("data-math-size", chosen);
-    applyMathSizeToElements(chosen);
     setStoredMathSize(chosen);
     return chosen;
   }
@@ -329,12 +453,17 @@
     });
 
     select.value = selectedValue;
-    select.addEventListener("change", (event) => {
-      if (!event.target || !event.target.value) {
+
+    function applySelection() {
+      const value = select.value;
+      if (!value) {
         return;
       }
-      onChange(event.target.value);
-    });
+      onChange(value);
+    }
+
+    select.addEventListener("input", applySelection);
+    select.addEventListener("change", applySelection);
 
     control.append(label, select);
     return control;
@@ -348,12 +477,23 @@
     const wrapper = document.createElement("div");
     wrapper.className = "theme-switcher";
     wrapper.setAttribute("role", "group");
-    wrapper.setAttribute("aria-label", "Theme switcher");
+    wrapper.setAttribute("aria-label", "Display controls");
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "theme-switcher-toggle";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Display Controls ▾";
+
+    const panel = document.createElement("div");
+    panel.className = "theme-switcher-panel";
+    panel.id = "theme-switcher-panel";
+    toggle.setAttribute("aria-controls", panel.id);
 
     const controls = document.createElement("div");
     controls.className = "theme-switcher-controls";
 
-    controls.append(
+    const controlsToAppend = [
       createControl({
         id: "theme-switcher-select",
         labelText: "Theme",
@@ -369,13 +509,6 @@
         onChange: (value) => applyTextFont(value),
       }),
       createControl({
-        id: "math-font-switcher-select",
-        labelText: "Math Font",
-        options: MATH_FONTS,
-        selectedValue: currentMathFont,
-        onChange: (value) => applyMathFont(value),
-      }),
-      createControl({
         id: "text-size-switcher-select",
         labelText: "Text Size",
         options: TEXT_SIZES,
@@ -389,9 +522,49 @@
         selectedValue: currentMathSize,
         onChange: (value) => applyMathSize(value),
       })
-    );
+    ];
 
-    wrapper.append(controls);
+    if (activeMathFonts.length > 0) {
+      controlsToAppend.splice(
+        2,
+        0,
+        createControl({
+          id: "math-font-switcher-select",
+          labelText: "Math Font",
+          options: activeMathFonts,
+          selectedValue: currentMathFont || activeMathFonts[0].value,
+          onChange: (value) => applyMathFont(value),
+        })
+      );
+    }
+
+    controls.append(...controlsToAppend);
+
+    panel.append(controls);
+    wrapper.append(toggle, panel);
+
+    function setOpen(open) {
+      wrapper.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "Display Controls ▴" : "Display Controls ▾";
+    }
+
+    toggle.addEventListener("click", () => {
+      const open = wrapper.classList.contains("is-open");
+      setOpen(!open);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!wrapper.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
 
     const host = resolveSwitcherHost();
     if (host.mode === "toc") {
@@ -408,12 +581,13 @@
     host.node.appendChild(wrapper);
   }
 
-  function init() {
+  async function init() {
     if (!document.body) {
       return;
     }
     markTocLayout();
     setupMobileTocDrawer();
+    await refreshActiveMathFonts();
     const currentTheme = applyTheme(getPreferredTheme());
     const currentTextFont = applyTextFont(getPreferredTextFont());
     const currentMathFont = applyMathFont(getPreferredMathFont());

@@ -5,8 +5,6 @@
   - Optional runtime switcher works with `pandoc_theme_switcher.html`
 */
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap");
-
 :root,
 :root[data-theme="ivory"] {
   --bg: #0e131c;
@@ -37,7 +35,7 @@
   --font-heading: "Palatino Linotype", Palatino, "Iowan Old Style", Georgia, serif;
   --font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Cascadia Code", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
-  --font-math: "Cambria Math", "STIX Two Math", "Latin Modern Math", "XITS Math", serif;
+  --font-math: serif;
   --base-font-size: 17px;
   --text-scale: 1;
   --math-scale: 1;
@@ -49,21 +47,21 @@
 }
 
 :root[data-theme="dawn"] {
-  --bg: #faf8f3;
-  --panel: #ffffff;
-  --panel-2: #f3efe6;
-  --text: #222834;
-  --muted: #677186;
-  --heading: #131a27;
-  --accent: #3667c7;
-  --accent-soft: #e8efff;
-  --border: #d8deeb;
-  --rule: #c8d1e2;
-  --quote-bg: #f4f1ea;
-  --code-bg: #f8f9fc;
-  --code-inline-bg: #eaf0fb;
-  --code-text: #1d2a42;
-  --table-stripe: #f7f9fd;
+  --bg: #f2efe8;
+  --panel: #f8f4ec;
+  --panel-2: #ece4d8;
+  --text: #252a34;
+  --muted: #5f6878;
+  --heading: #171d2a;
+  --accent: #3d62b4;
+  --accent-soft: #e3e9f7;
+  --border: #c8cfdb;
+  --rule: #b9c3d5;
+  --quote-bg: #ebe5da;
+  --code-bg: #f3f4f8;
+  --code-inline-bg: #e1e7f3;
+  --code-text: #1f2a3f;
+  --table-stripe: #eef1f6;
   --token-keyword: #7440c6;
   --token-string: #1d7b55;
   --token-number: #9a5a12;
@@ -71,25 +69,25 @@
   --token-function: #8e6600;
   --token-comment: #6f788a;
   --token-constant: #a33d63;
-  --shadow: 0 12px 28px rgba(18, 29, 47, 0.08);
+  --shadow: 0 12px 24px rgba(18, 29, 47, 0.12);
 }
 
 :root[data-theme="pearl"] {
-  --bg: #f5f8fb;
-  --panel: #ffffff;
-  --panel-2: #eaf0f7;
-  --text: #1f2b3a;
-  --muted: #60748c;
-  --heading: #122033;
-  --accent: #2d71bf;
-  --accent-soft: #e1efff;
-  --border: #d2dceb;
-  --rule: #c4d1e4;
-  --quote-bg: #edf3fa;
-  --code-bg: #f4f8fd;
-  --code-inline-bg: #e3edf9;
-  --code-text: #1a2f4a;
-  --table-stripe: #f2f7fc;
+  --bg: #edf2f7;
+  --panel: #f5f8fc;
+  --panel-2: #e1e9f3;
+  --text: #1f2d3f;
+  --muted: #5e728b;
+  --heading: #142336;
+  --accent: #2d6aaa;
+  --accent-soft: #dce8f7;
+  --border: #c5d1e2;
+  --rule: #b8c7dc;
+  --quote-bg: #e6edf5;
+  --code-bg: #edf3f9;
+  --code-inline-bg: #d8e5f3;
+  --code-text: #1b314b;
+  --table-stripe: #eaf1f8;
   --token-keyword: #6a45c5;
   --token-string: #17795a;
   --token-number: #9c5d08;
@@ -97,25 +95,25 @@
   --token-function: #8f6500;
   --token-comment: #667c95;
   --token-constant: #a53f68;
-  --shadow: 0 12px 28px rgba(16, 36, 60, 0.08);
+  --shadow: 0 12px 24px rgba(16, 36, 60, 0.12);
 }
 
 :root[data-theme="sage"] {
-  --bg: #f4f8f3;
-  --panel: #fcfffc;
-  --panel-2: #e8f1e6;
-  --text: #223126;
-  --muted: #5f7868;
-  --heading: #162519;
-  --accent: #2f7c4a;
-  --accent-soft: #e1f3e6;
-  --border: #cfdfd2;
-  --rule: #bfd2c4;
-  --quote-bg: #edf5ea;
-  --code-bg: #f5faf4;
-  --code-inline-bg: #e6f0e3;
-  --code-text: #1f3426;
-  --table-stripe: #f2f8f1;
+  --bg: #edf3ec;
+  --panel: #f4faf2;
+  --panel-2: #dde8db;
+  --text: #25352a;
+  --muted: #5a7262;
+  --heading: #18281d;
+  --accent: #2f7348;
+  --accent-soft: #d8e9dd;
+  --border: #c4d5c7;
+  --rule: #b3c8b8;
+  --quote-bg: #e5eee1;
+  --code-bg: #edf4eb;
+  --code-inline-bg: #d9e5d6;
+  --code-text: #213629;
+  --table-stripe: #e9f1e7;
   --token-keyword: #6f43c5;
   --token-string: #1a7a45;
   --token-number: #95570e;
@@ -123,25 +121,25 @@
   --token-function: #866700;
   --token-comment: #6a8474;
   --token-constant: #9f3d62;
-  --shadow: 0 12px 28px rgba(22, 48, 27, 0.08);
+  --shadow: 0 12px 24px rgba(22, 48, 27, 0.12);
 }
 
 :root[data-theme="lilac"] {
-  --bg: #f8f6fc;
-  --panel: #ffffff;
-  --panel-2: #efeaf9;
-  --text: #2b2638;
-  --muted: #766f8f;
-  --heading: #1f1930;
-  --accent: #5f61c8;
-  --accent-soft: #ebe9ff;
-  --border: #ddd7ed;
-  --rule: #ccc5df;
-  --quote-bg: #f2edf9;
-  --code-bg: #f8f6fd;
-  --code-inline-bg: #ede7fb;
-  --code-text: #2a2640;
-  --table-stripe: #f7f4fc;
+  --bg: #f1eef8;
+  --panel: #f7f3ff;
+  --panel-2: #e7dff3;
+  --text: #2d2940;
+  --muted: #6d6687;
+  --heading: #211a33;
+  --accent: #5e5fb3;
+  --accent-soft: #e2ddf4;
+  --border: #d1cae4;
+  --rule: #bfb7d6;
+  --quote-bg: #e9e3f3;
+  --code-bg: #f0ecf9;
+  --code-inline-bg: #e0d8f0;
+  --code-text: #2b2740;
+  --table-stripe: #ede7f6;
   --token-keyword: #7440c6;
   --token-string: #1d7b55;
   --token-number: #99600f;
@@ -149,7 +147,7 @@
   --token-function: #8d6500;
   --token-comment: #7c7598;
   --token-constant: #a13f6d;
-  --shadow: 0 12px 28px rgba(36, 24, 64, 0.08);
+  --shadow: 0 12px 24px rgba(36, 24, 64, 0.12);
 }
 
 :root[data-theme="slate"] {
@@ -230,6 +228,32 @@
   --shadow: 0 16px 38px rgba(0, 0, 0, 0.48);
 }
 
+:root[data-theme="amoled"] {
+  --bg: #050507;
+  --panel: #0a0a0d;
+  --panel-2: #121218;
+  --text: #e7e7ee;
+  --muted: #9a9aaa;
+  --heading: #ffffff;
+  --accent: #7aa2ff;
+  --accent-soft: rgba(122, 162, 255, 0.18);
+  --border: #1f1f2a;
+  --rule: #2a2a38;
+  --quote-bg: #0d1018;
+  --code-bg: #090b12;
+  --code-inline-bg: #1a1f2d;
+  --code-text: #ebefff;
+  --table-stripe: #0d0f16;
+  --token-keyword: #c7b8ff;
+  --token-string: #96e4bc;
+  --token-number: #f3c38f;
+  --token-type: #93c9ff;
+  --token-function: #f2d99e;
+  --token-comment: #9ca8c7;
+  --token-constant: #ffaad0;
+  --shadow: 0 16px 38px rgba(0, 0, 0, 0.65);
+}
+
 :root[data-font="serif"] {
   --font-body: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   --font-heading: "Palatino Linotype", Palatino, "Iowan Old Style", Georgia, serif;
@@ -278,36 +302,10 @@
   --font-ui: "Cascadia Code", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
-:root[data-math-font="cambria"] {
-  --font-math: "Cambria Math", "STIX Two Math", "Latin Modern Math", "XITS Math", serif;
-}
-
-:root[data-math-font="stix"] {
-  --font-math: "STIX Two Math", "STIX Math", "Cambria Math", "Latin Modern Math", serif;
-}
-
-:root[data-math-font="latinmodern"] {
-  --font-math: "Latin Modern Math", "Cambria Math", "STIX Two Math", "XITS Math", serif;
-}
-
-:root[data-math-font="noto"] {
-  --font-math: "Noto Sans Math", "Cambria Math", "STIX Two Math", "XITS Math", serif;
-}
-
-:root[data-math-font="xits"] {
-  --font-math: "XITS Math", "STIX Two Math", "Cambria Math", "Latin Modern Math", serif;
-}
-
-:root[data-math-font="libertinus"] {
-  --font-math: "Libertinus Math", "STIX Two Math", "Cambria Math", "XITS Math", serif;
-}
-
-:root[data-math-font="asana"] {
-  --font-math: "Asana Math", "Cambria Math", "STIX Two Math", "Latin Modern Math", serif;
-}
-
-:root[data-math-font="termes"] {
-  --font-math: "TeX Gyre Termes Math", "STIX Two Math", "Cambria Math", "Latin Modern Math", serif;
+:root[data-font="custom"] {
+  --font-body: "Notes Custom", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Notes Custom", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 :root[data-font-size="85"] { --text-scale: 0.85; }
@@ -360,10 +358,14 @@ body > * {
 }
 
 .site-index-link {
-  margin: 0.65rem 0 0.2rem;
-  padding-inline: var(--content-pad);
+  margin: 0.65rem 0 0.25rem;
+  padding: 0.35rem var(--content-pad);
   font-family: var(--font-ui);
   font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
 }
 
 .site-index-link a {
@@ -409,11 +411,11 @@ body > * {
 
 #TOC {
   margin: 1.2rem auto 1.75rem;
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.1rem 1.1rem;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18), inset 0 0 0 1px color-mix(in srgb, var(--panel-2) 40%, transparent);
 }
 
 #TOC::before {
@@ -749,10 +751,12 @@ figcaption {
 :root[data-theme="slate"] .tikz-figure .tikz-img-light,
 :root[data-theme="forest"] .tikz-figure .tikz-img-light,
 :root[data-theme="midnight"] .tikz-figure .tikz-img-light,
+:root[data-theme="amoled"] .tikz-figure .tikz-img-light,
 :root[data-theme="ivory"] .tikz-embed .tikz-img-light,
 :root[data-theme="slate"] .tikz-embed .tikz-img-light,
 :root[data-theme="forest"] .tikz-embed .tikz-img-light,
-:root[data-theme="midnight"] .tikz-embed .tikz-img-light {
+:root[data-theme="midnight"] .tikz-embed .tikz-img-light,
+:root[data-theme="amoled"] .tikz-embed .tikz-img-light {
   display: none;
 }
 
@@ -760,10 +764,12 @@ figcaption {
 :root[data-theme="slate"] .tikz-figure .tikz-img-dark,
 :root[data-theme="forest"] .tikz-figure .tikz-img-dark,
 :root[data-theme="midnight"] .tikz-figure .tikz-img-dark,
+:root[data-theme="amoled"] .tikz-figure .tikz-img-dark,
 :root[data-theme="ivory"] .tikz-embed .tikz-img-dark,
 :root[data-theme="slate"] .tikz-embed .tikz-img-dark,
 :root[data-theme="forest"] .tikz-embed .tikz-img-dark,
-:root[data-theme="midnight"] .tikz-embed .tikz-img-dark {
+:root[data-theme="midnight"] .tikz-embed .tikz-img-dark,
+:root[data-theme="amoled"] .tikz-embed .tikz-img-dark {
   display: block;
 }
 
@@ -954,20 +960,48 @@ span.math.display math {
 }
 
 .theme-switcher {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 0.55rem;
-  padding: 0.42rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0.46rem 0.54rem;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--panel);
   box-shadow: var(--shadow);
 }
 
+.theme-switcher-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-2);
+  color: var(--heading);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.34rem 0.56rem;
+  cursor: pointer;
+}
+
+.theme-switcher-panel {
+  display: none;
+}
+
+.theme-switcher.is-open .theme-switcher-panel {
+  display: block;
+}
+
 .theme-switcher-controls {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
   gap: 0.5rem;
 }
 
@@ -981,9 +1015,9 @@ span.math.display math {
   width: 100%;
   justify-content: flex-start;
   margin: 0.2rem 0 0.75rem;
-  padding: 0.38rem 0.5rem;
+  padding: 0.4rem 0.5rem;
   background: var(--panel-2);
-  box-shadow: none;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border) 65%, transparent);
   position: sticky;
   top: 0;
   z-index: 1;
@@ -1082,10 +1116,11 @@ span.math.display math {
     gap: 0.6rem;
     min-height: 3.05rem;
     padding: 0.48rem 0.72rem;
-    border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--panel) 90%, transparent);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 0 0 10px 10px;
+    border-top: 0;
+    background: var(--panel);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
   }
 
   .mobile-navbar-title {
@@ -1112,7 +1147,7 @@ span.math.display math {
     max-height: 100dvh;
     margin: 0;
     padding: 0.85rem 0.85rem 1rem;
-    border-radius: 0 12px 12px 0;
+    border-radius: 0 10px 10px 0;
     transform: translateX(-106%);
     transition: transform 0.24s ease;
     z-index: 1200;
@@ -1129,15 +1164,15 @@ span.math.display math {
     align-items: center;
     gap: 0.4rem;
     border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--panel);
+    border-radius: 10px;
+    background: var(--panel-2);
     color: var(--text);
     font-family: var(--font-ui);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     padding: 0.32rem 0.74rem;
-    box-shadow: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     cursor: pointer;
   }
 
@@ -1175,7 +1210,6 @@ span.math.display math {
 
   .theme-switcher-controls {
     width: 100%;
-    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: end;
   }

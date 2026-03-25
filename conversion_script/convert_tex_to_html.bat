@@ -10,9 +10,11 @@ set "DEFAULT_HTML_DIR=%WORKSPACE_DIR%\html"
 
 set "CSS_FILE=%SCRIPT_DIR%pandoc_book_themes.css"
 set "SWITCHER_FILE=%SCRIPT_DIR%pandoc_theme_switcher.html"
+set "SWITCHER_INCLUDE_BUILDER_FILE=%SCRIPT_DIR%build_switcher_include.py"
 set "CONVERTER_FILE=%SCRIPT_DIR%temp_to_vanilla.py"
 set "POSTPROCESS_FILE=%SCRIPT_DIR%postprocess_pandoc_html.py"
 set "INDEXER_FILE=%SCRIPT_DIR%update_html_index.py"
+set "MATH_FONT_MANIFEST_FILE=%SCRIPT_DIR%generate_math_fonts_manifest.py"
 set "TEX_HTML_LINKS_FILE=%SCRIPT_DIR%tex_html_links.map"
 set "TEX_HTML_LINKS_TMP=%TEX_HTML_LINKS_FILE%.tmp"
 
@@ -23,6 +25,11 @@ if not exist "%CSS_FILE%" (
 
 if not exist "%SWITCHER_FILE%" (
   echo [error] Missing theme switcher file: "%SWITCHER_FILE%"
+  exit /b 1
+)
+
+if not exist "%SWITCHER_INCLUDE_BUILDER_FILE%" (
+  echo [error] Missing switcher include builder script: "%SWITCHER_INCLUDE_BUILDER_FILE%"
   exit /b 1
 )
 
@@ -41,6 +48,11 @@ if not exist "%INDEXER_FILE%" (
   exit /b 1
 )
 
+if not exist "%MATH_FONT_MANIFEST_FILE%" (
+  echo [error] Missing math font manifest script: "%MATH_FONT_MANIFEST_FILE%"
+  exit /b 1
+)
+
 where pandoc >nul 2>&1
 if errorlevel 1 (
   echo [error] pandoc was not found in PATH.
@@ -56,6 +68,8 @@ if not exist "%INPUT_TEX%" (
 set "CUSTOM_TITLE=%NOTES_CUSTOM_TITLE%"
 set "NOTE_SECTION=%NOTES_SECTION%"
 set "IMAGE_BASE_URL=%NOTES_IMAGE_BASE_URL%"
+set "FONTS_SOURCE_DIR=%NOTES_FONTS_SOURCE_DIR%"
+if "%FONTS_SOURCE_DIR%"=="" set "FONTS_SOURCE_DIR=%SCRIPT_DIR%fonts"
 
 for %%F in ("%INPUT_TEX%") do set "INPUT_DIR=%%~dpF"
 set "LOCAL_IMAGE_DIR=%INPUT_DIR%images"
@@ -82,6 +96,44 @@ if not exist "%OUTPUT_DIR%" mkdir "%OUTPUT_DIR%" >nul 2>&1
 set "IMAGES_DIR=%OUTPUT_DIR%images_folder"
 if not exist "%IMAGES_DIR%" mkdir "%IMAGES_DIR%" >nul 2>&1
 set "IMAGE_PREFIX=images_folder"
+set "FONTS_DIR=%OUTPUT_DIR%fonts_folder"
+set "PANDOC_FONTS_DIR=%SCRIPT_DIR%fonts_folder"
+set "SWITCHER_INCLUDE_FILE=%SWITCHER_FILE%"
+set "TEMP_SWITCHER_INCLUDE=%TEMP%\pandoc_switcher_include_%RANDOM%%RANDOM%.html"
+
+if exist "%FONTS_SOURCE_DIR%" (
+  if exist "%PANDOC_FONTS_DIR%" rmdir /s /q "%PANDOC_FONTS_DIR%" >nul 2>&1
+  mkdir "%PANDOC_FONTS_DIR%" >nul 2>&1
+  xcopy "%FONTS_SOURCE_DIR%" "%PANDOC_FONTS_DIR%\" /E /I /Y >nul
+  if errorlevel 1 (
+    echo [warn] Failed to stage fonts for pandoc from "%FONTS_SOURCE_DIR%".
+  )
+
+  if not exist "%FONTS_DIR%" mkdir "%FONTS_DIR%" >nul 2>&1
+  xcopy "%FONTS_SOURCE_DIR%" "%FONTS_DIR%\" /E /I /Y >nul
+  if errorlevel 1 (
+    echo [warn] Failed to copy fonts from "%FONTS_SOURCE_DIR%".
+  ) else (
+    echo [info] Fonts: "%FONTS_DIR%"
+    call :run_font_manifest "%FONTS_SOURCE_DIR%" "%FONTS_DIR%\math_fonts_manifest.json"
+    if errorlevel 1 (
+      echo [warn] Failed to generate math font manifest from "%FONTS_SOURCE_DIR%".
+      if exist "%TEMP_SWITCHER_INCLUDE%" del /f /q "%TEMP_SWITCHER_INCLUDE%" >nul 2>&1
+      call :run_switcher_include_builder "%SWITCHER_FILE%" "%FONTS_DIR%\math_fonts_manifest.json" "%TEMP_SWITCHER_INCLUDE%"
+      if not errorlevel 1 set "SWITCHER_INCLUDE_FILE=%TEMP_SWITCHER_INCLUDE%"
+    ) else (
+      if exist "%TEMP_SWITCHER_INCLUDE%" del /f /q "%TEMP_SWITCHER_INCLUDE%" >nul 2>&1
+      call :run_switcher_include_builder "%SWITCHER_FILE%" "%FONTS_DIR%\math_fonts_manifest.json" "%TEMP_SWITCHER_INCLUDE%"
+      if errorlevel 1 (
+        echo [warn] Failed to generate embedded switcher include. Falling back to base switcher.
+      ) else (
+        set "SWITCHER_INCLUDE_FILE=%TEMP_SWITCHER_INCLUDE%"
+      )
+    )
+  )
+) else (
+  echo [info] Fonts source not found: "%FONTS_SOURCE_DIR%" ^(skipping static fonts copy^)
+)
 
 set "CONVERTED_TEX=%TEMP%\%~n1_vanilla_%RANDOM%%RANDOM%.tex"
 set "PANDOC_INPUT=%INPUT_TEX%"
@@ -112,6 +164,7 @@ call :run_pandoc "%PANDOC_INPUT%" "%OUTPUT_HTML%"
 if errorlevel 1 (
   echo [error] pandoc conversion failed.
   if exist "%CONVERTED_TEX%" del "%CONVERTED_TEX%" >nul 2>&1
+  if exist "%TEMP_SWITCHER_INCLUDE%" del /f /q "%TEMP_SWITCHER_INCLUDE%" >nul 2>&1
   exit /b 1
 )
 
@@ -121,6 +174,7 @@ call :run_postprocess "%OUTPUT_HTML%" "%IMAGE_BASE_URL%"
 if errorlevel 1 (
   echo [error] HTML postprocessing failed.
   if exist "%CONVERTED_TEX%" del "%CONVERTED_TEX%" >nul 2>&1
+  if exist "%TEMP_SWITCHER_INCLUDE%" del /f /q "%TEMP_SWITCHER_INCLUDE%" >nul 2>&1
   exit /b 1
 )
 
@@ -131,6 +185,7 @@ call :run_indexer "%INDEX_HTML_DIR%" "%OUTPUT_HTML%" "%CUSTOM_TITLE%" "%NOTE_SEC
 if errorlevel 1 (
   echo [error] HTML index update failed.
   if exist "%CONVERTED_TEX%" del "%CONVERTED_TEX%" >nul 2>&1
+  if exist "%TEMP_SWITCHER_INCLUDE%" del /f /q "%TEMP_SWITCHER_INCLUDE%" >nul 2>&1
   exit /b 1
 )
 
@@ -142,6 +197,8 @@ if errorlevel 1 (
 )
 
 if exist "%CONVERTED_TEX%" del "%CONVERTED_TEX%" >nul 2>&1
+if exist "%PANDOC_FONTS_DIR%" rmdir /s /q "%PANDOC_FONTS_DIR%" >nul 2>&1
+if exist "%TEMP_SWITCHER_INCLUDE%" del /f /q "%TEMP_SWITCHER_INCLUDE%" >nul 2>&1
 
 echo [ok] HTML generated with themed book style and switchable themes.
 exit /b 0
@@ -161,7 +218,7 @@ pandoc "%SRC%" ^
   --toc-depth=3 ^
   --resource-path="%PANDOC_RESOURCE_PATH%" ^
   --css="%CSS_FILE%" ^
-  --include-after-body="%SWITCHER_FILE%" ^
+  --include-after-body="%SWITCHER_INCLUDE_FILE%" ^
   --embed-resources ^
   -o "%DST%"
 
@@ -181,7 +238,7 @@ pandoc "%SRC%" ^
   --toc-depth=3 ^
   --resource-path="%PANDOC_RESOURCE_PATH%" ^
   --css="%CSS_FILE%" ^
-  --include-after-body="%SWITCHER_FILE%" ^
+  --include-after-body="%SWITCHER_INCLUDE_FILE%" ^
   --embed-resources ^
   -o "%DST%"
 
@@ -269,6 +326,51 @@ if not errorlevel 1 (
 echo [error] Python was not found in PATH.
 endlocal & exit /b 1
 
+:run_font_manifest
+setlocal
+set "FONTS_SRC=%~1"
+set "MANIFEST_OUT=%~2"
+
+where python >nul 2>&1
+if not errorlevel 1 (
+  python "%MATH_FONT_MANIFEST_FILE%" --fonts-dir "%FONTS_SRC%" --output "%MANIFEST_OUT%"
+  set "RC=%ERRORLEVEL%"
+  endlocal & exit /b %RC%
+)
+
+where py >nul 2>&1
+if not errorlevel 1 (
+  py -3 "%MATH_FONT_MANIFEST_FILE%" --fonts-dir "%FONTS_SRC%" --output "%MANIFEST_OUT%"
+  set "RC=%ERRORLEVEL%"
+  endlocal & exit /b %RC%
+)
+
+echo [error] Python was not found in PATH.
+endlocal & exit /b 1
+
+:run_switcher_include_builder
+setlocal
+set "SWITCHER_SRC=%~1"
+set "MANIFEST_SRC=%~2"
+set "INCLUDE_OUT=%~3"
+
+where python >nul 2>&1
+if not errorlevel 1 (
+  python "%SWITCHER_INCLUDE_BUILDER_FILE%" --switcher "%SWITCHER_SRC%" --manifest "%MANIFEST_SRC%" --output "%INCLUDE_OUT%"
+  set "RC=%ERRORLEVEL%"
+  endlocal & exit /b %RC%
+)
+
+where py >nul 2>&1
+if not errorlevel 1 (
+  py -3 "%SWITCHER_INCLUDE_BUILDER_FILE%" --switcher "%SWITCHER_SRC%" --manifest "%MANIFEST_SRC%" --output "%INCLUDE_OUT%"
+  set "RC=%ERRORLEVEL%"
+  endlocal & exit /b %RC%
+)
+
+echo [error] Python was not found in PATH.
+endlocal & exit /b 1
+
 :resolve_linked_output
 setlocal EnableDelayedExpansion
 set "TEX_KEY=%~f1"
@@ -322,6 +424,7 @@ echo   - Optional metadata via env vars:
 echo       set NOTES_CUSTOM_TITLE=Your Custom Title
 echo       set NOTES_SECTION=course notes ^| assignments ^| personal study
 echo       set NOTES_IMAGE_BASE_URL=https://cdn.example.com/images_folder
+echo       set NOTES_FONTS_SOURCE_DIR=conversion_script\fonts
 echo.
 echo Example:
 echo   %~n0 tex_files\white\basic_algebra.tex

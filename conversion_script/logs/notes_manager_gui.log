@@ -1,0 +1,296 @@
+2026-03-24 21:48:43,783 | INFO | Initialized GUI logger
+2026-03-24 21:48:43,784 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 21:48:43,802 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-24 21:48:43,802 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-24 21:48:43,803 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 21:48:44,216 | INFO | GET /api/state
+2026-03-24 21:48:44,248 | INFO | State requested: tex=25, mapped=8, html=10
+2026-03-24 21:49:19,296 | INFO | POST /api/convert
+2026-03-24 21:49:19,296 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:49:19,302 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:49:19,303 | INFO | [1/1] Converting tex_files/white/analysis_I_problem_set_1.tex -> html/analysis_I_problem_set_1.html (mapped)
+2026-03-24 21:49:23,120 | INFO | [1/1] Done in 3.82s
+2026-03-24 21:49:23,120 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:49:23,138 | INFO | POST /api/convert
+2026-03-24 21:49:23,138 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:49:23,144 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:49:23,146 | INFO | [1/1] Converting tex_files/white/analysis_white.tex -> html/analysis_white.html (mapped)
+2026-03-24 21:50:00,236 | INFO | [1/1] Done in 37.09s
+2026-03-24 21:50:00,236 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:50:00,264 | INFO | POST /api/convert
+2026-03-24 21:50:00,264 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:50:00,269 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:50:00,271 | INFO | [1/1] Converting tex_files/white/basic_algebra.tex -> html/basic_algebra.html (mapped)
+2026-03-24 21:50:32,554 | INFO | [1/1] Done in 32.28s
+2026-03-24 21:50:32,554 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:50:32,567 | INFO | POST /api/convert
+2026-03-24 21:50:32,567 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:50:32,575 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:50:32,577 | INFO | [1/1] Converting tex_files/white/cyclic_vectors.tex -> html/cyclic_vectors.html (mapped)
+2026-03-24 21:50:36,530 | INFO | [1/1] Done in 3.95s
+2026-03-24 21:50:36,530 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:50:36,546 | INFO | POST /api/convert
+2026-03-24 21:50:36,546 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:50:36,553 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:50:36,555 | INFO | [1/1] Converting tex_files/white/fibonacci.tex -> html/fibonacci.html (mapped)
+2026-03-24 21:50:49,267 | INFO | [1/1] Done in 12.71s
+2026-03-24 21:50:49,267 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:50:49,285 | INFO | POST /api/convert
+2026-03-24 21:50:49,285 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:50:49,291 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:50:49,292 | INFO | [1/1] Converting tex_files/white/lin_al.tex -> html/lin_al.html (mapped)
+2026-03-24 21:50:56,207 | INFO | [1/1] Done in 6.91s
+2026-03-24 21:50:56,207 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:50:56,227 | INFO | POST /api/convert
+2026-03-24 21:50:56,227 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:50:56,235 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:50:56,236 | INFO | [1/1] Converting tex_files/white/prob_stats1.tex -> html/prob_stats1.html (mapped)
+2026-03-24 21:52:12,260 | INFO | [1/1] Done in 76.02s
+2026-03-24 21:52:12,260 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:52:12,290 | INFO | POST /api/convert
+2026-03-24 21:52:12,290 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:52:12,295 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:52:12,296 | INFO | [1/1] Converting tex_files/white/skolem.tex -> html/skolem.html (mapped)
+2026-03-24 21:52:15,729 | INFO | [1/1] Done in 3.43s
+2026-03-24 21:52:15,729 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:52:15,754 | INFO | GET /api/state
+2026-03-24 21:52:15,790 | INFO | State requested: tex=25, mapped=8, html=10
+2026-03-24 21:52:36,162 | INFO | POST /api/convert
+2026-03-24 21:52:36,163 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 21:52:36,167 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:52:36,168 | INFO | [1/1] Converting tex_files/white/analysis2.tex -> html/analysis2.html (default)
+2026-03-24 21:52:40,217 | INFO | [1/1] Done in 4.05s
+2026-03-24 21:52:40,217 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:52:40,260 | INFO | GET /api/state
+2026-03-24 21:52:40,321 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 21:53:03,160 | INFO | POST /api/link
+2026-03-24 21:53:03,169 | INFO | Link updated: tex_files/white/analysis2.tex -> html/analysis2.html
+2026-03-24 21:53:03,178 | INFO | GET /api/state
+2026-03-24 21:53:03,209 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 21:53:17,580 | INFO | POST /api/convert
+2026-03-24 21:53:17,580 | INFO | Conversion request: mode=selected, custom_title=True, section=course_notes, image_base_url=(none)
+2026-03-24 21:53:17,585 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:53:17,586 | INFO | [1/1] Converting tex_files/white/analysis2.tex -> html/analysis2.html (mapped)
+2026-03-24 21:53:21,629 | INFO | [1/1] Done in 4.04s
+2026-03-24 21:53:21,629 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:53:21,655 | INFO | GET /api/state
+2026-03-24 21:53:21,692 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 21:53:30,992 | INFO | POST /api/publish
+2026-03-24 21:53:30,994 | INFO | Publish request: remote_url=https://github.com/eklavya-raman/IISERK_Notes.git, remote_name=origin, target_branch=main, publish_branch=html-subtree, html_dir=html
+2026-03-24 21:53:43,617 | INFO | Publish result: Publish completed successfully. (code=0)
+2026-03-24 21:53:43,643 | INFO | GET /api/state
+2026-03-24 21:53:43,688 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 21:55:04,689 | INFO | Initialized GUI logger
+2026-03-24 21:55:04,689 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 21:55:04,700 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-24 21:55:04,700 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-24 21:55:04,700 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 21:55:04,985 | INFO | GET /api/state
+2026-03-24 21:55:05,030 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 21:55:28,040 | INFO | POST /api/convert
+2026-03-24 21:55:28,040 | INFO | Conversion request: mode=selected, custom_title=True, section=course_notes, image_base_url=(none)
+2026-03-24 21:55:28,045 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:55:28,046 | INFO | [1/1] Converting tex_files/white/analysis_white.tex -> html/analysis_white.html (mapped)
+2026-03-24 21:56:02,400 | INFO | [1/1] Done in 34.35s
+2026-03-24 21:56:02,400 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:56:02,544 | INFO | GET /api/state
+2026-03-24 21:56:02,583 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 21:56:57,961 | INFO | POST /api/convert
+2026-03-24 21:56:57,961 | INFO | Conversion request: mode=selected, custom_title=True, section=course_notes, image_base_url=(none)
+2026-03-24 21:56:57,970 | INFO | Starting conversion for 1 file(s)
+2026-03-24 21:56:57,983 | INFO | [1/1] Converting tex_files/white/basic_algebra.tex -> html/basic_algebra.html (mapped)
+2026-03-24 21:58:01,825 | INFO | [1/1] Done in 63.84s
+2026-03-24 21:58:01,826 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 21:58:01,872 | INFO | GET /api/state
+2026-03-24 21:58:01,974 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:00:11,983 | INFO | POST /api/convert
+2026-03-24 22:00:11,983 | INFO | Conversion request: mode=selected, custom_title=True, section=course_notes, image_base_url=(none)
+2026-03-24 22:00:11,995 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:00:11,996 | INFO | [1/1] Converting tex_files/white/cyclic_vectors.tex -> html/cyclic_vectors.html (mapped)
+2026-03-24 22:00:15,871 | INFO | [1/1] Done in 3.87s
+2026-03-24 22:00:15,871 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:00:15,884 | INFO | GET /api/state
+2026-03-24 22:00:15,924 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:00:30,807 | INFO | POST /api/convert
+2026-03-24 22:00:30,807 | INFO | Conversion request: mode=selected, custom_title=True, section=personal_study, image_base_url=(none)
+2026-03-24 22:00:30,814 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:00:30,815 | INFO | [1/1] Converting tex_files/white/fibonacci.tex -> html/fibonacci.html (mapped)
+2026-03-24 22:00:43,661 | INFO | [1/1] Done in 12.85s
+2026-03-24 22:00:43,661 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:00:43,677 | INFO | GET /api/state
+2026-03-24 22:00:43,706 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:00:57,912 | INFO | POST /api/convert
+2026-03-24 22:00:57,912 | INFO | Conversion request: mode=selected, custom_title=True, section=personal_study, image_base_url=(none)
+2026-03-24 22:00:57,919 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:00:57,920 | INFO | [1/1] Converting tex_files/white/cyclic_vectors.tex -> html/cyclic_vectors.html (mapped)
+2026-03-24 22:01:01,678 | INFO | [1/1] Done in 3.76s
+2026-03-24 22:01:01,679 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:01:01,694 | INFO | GET /api/state
+2026-03-24 22:01:01,746 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:01:20,569 | INFO | POST /api/convert
+2026-03-24 22:01:20,570 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 22:01:20,575 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:01:20,577 | INFO | [1/1] Converting tex_files/white/lin_al.tex -> html/lin_al.html (mapped)
+2026-03-24 22:01:28,140 | INFO | [1/1] Done in 7.56s
+2026-03-24 22:01:28,141 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:01:28,157 | INFO | GET /api/state
+2026-03-24 22:01:28,190 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:01:46,584 | INFO | POST /api/convert
+2026-03-24 22:01:46,584 | INFO | Conversion request: mode=selected, custom_title=True, section=(none), image_base_url=(none)
+2026-03-24 22:01:46,590 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:01:46,591 | INFO | [1/1] Converting tex_files/white/prob_stats1.tex -> html/prob_stats1.html (mapped)
+2026-03-24 22:03:09,680 | INFO | [1/1] Done in 83.09s
+2026-03-24 22:03:09,681 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:03:09,701 | INFO | GET /api/state
+2026-03-24 22:03:09,727 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:04:01,901 | INFO | Initialized GUI logger
+2026-03-24 22:04:01,901 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 22:04:01,919 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-24 22:04:01,919 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-24 22:04:01,919 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 22:04:02,208 | INFO | GET /api/state
+2026-03-24 22:04:02,241 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:04:45,725 | INFO | Initialized GUI logger
+2026-03-24 22:04:45,725 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 22:04:45,739 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-24 22:04:45,739 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-24 22:04:45,739 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 22:04:46,023 | INFO | GET /api/state
+2026-03-24 22:04:46,054 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:05:00,985 | INFO | POST /api/convert
+2026-03-24 22:05:00,985 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:05:00,991 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:05:00,992 | INFO | [1/1] Converting tex_files/white/analysis2.tex -> html/analysis2.html (mapped)
+2026-03-24 22:05:05,078 | INFO | [1/1] Done in 4.09s
+2026-03-24 22:05:05,079 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:05:05,095 | INFO | POST /api/convert
+2026-03-24 22:05:05,095 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:05:05,101 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:05:05,104 | INFO | [1/1] Converting tex_files/white/analysis_I_problem_set_1.tex -> html/analysis_I_problem_set_1.html (mapped)
+2026-03-24 22:05:08,506 | INFO | [1/1] Done in 3.40s
+2026-03-24 22:05:08,506 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:05:08,519 | INFO | POST /api/convert
+2026-03-24 22:05:08,520 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:05:08,530 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:05:08,531 | INFO | [1/1] Converting tex_files/white/analysis_white.tex -> html/analysis_white.html (mapped)
+2026-03-24 22:05:40,491 | INFO | [1/1] Done in 31.96s
+2026-03-24 22:05:40,491 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:05:40,507 | INFO | POST /api/convert
+2026-03-24 22:05:40,507 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:05:40,515 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:05:40,516 | INFO | [1/1] Converting tex_files/white/basic_algebra.tex -> html/basic_algebra.html (mapped)
+2026-03-24 22:06:11,832 | INFO | [1/1] Done in 31.32s
+2026-03-24 22:06:11,832 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:06:11,845 | INFO | POST /api/convert
+2026-03-24 22:06:11,845 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:06:11,853 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:06:11,854 | INFO | [1/1] Converting tex_files/white/cyclic_vectors.tex -> html/cyclic_vectors.html (mapped)
+2026-03-24 22:06:15,796 | INFO | [1/1] Done in 3.94s
+2026-03-24 22:06:15,796 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:06:15,810 | INFO | POST /api/convert
+2026-03-24 22:06:15,810 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:06:15,816 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:06:15,817 | INFO | [1/1] Converting tex_files/white/fibonacci.tex -> html/fibonacci.html (mapped)
+2026-03-24 22:06:28,389 | INFO | [1/1] Done in 12.57s
+2026-03-24 22:06:28,390 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:06:28,405 | INFO | POST /api/convert
+2026-03-24 22:06:28,406 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:06:28,412 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:06:28,413 | INFO | [1/1] Converting tex_files/white/lin_al.tex -> html/lin_al.html (mapped)
+2026-03-24 22:06:35,029 | INFO | [1/1] Done in 6.62s
+2026-03-24 22:06:35,029 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:06:35,053 | INFO | POST /api/convert
+2026-03-24 22:06:35,056 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:06:35,069 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:06:35,070 | INFO | [1/1] Converting tex_files/white/prob_stats1.tex -> html/prob_stats1.html (mapped)
+2026-03-24 22:07:42,930 | INFO | [1/1] Done in 67.86s
+2026-03-24 22:07:42,931 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:07:42,981 | INFO | POST /api/convert
+2026-03-24 22:07:42,981 | INFO | Conversion request: mode=selected, custom_title=False, section=(none), image_base_url=(none)
+2026-03-24 22:07:43,000 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:07:43,002 | INFO | [1/1] Converting tex_files/white/skolem.tex -> html/skolem.html (mapped)
+2026-03-24 22:07:46,301 | INFO | [1/1] Done in 3.30s
+2026-03-24 22:07:46,301 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:07:46,353 | INFO | GET /api/state
+2026-03-24 22:07:46,393 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:12:16,842 | INFO | POST /api/publish
+2026-03-24 22:12:16,846 | INFO | Publish request: remote_url=https://github.com/eklavya-raman/IISERK_Notes.git, remote_name=origin, target_branch=main, publish_branch=html-subtree, html_dir=html
+2026-03-24 22:12:27,912 | INFO | Publish result: Publish completed successfully. (code=0)
+2026-03-24 22:12:27,932 | INFO | GET /api/state
+2026-03-24 22:12:27,965 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:18:58,621 | INFO | Initialized GUI logger
+2026-03-24 22:18:58,621 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 22:18:58,638 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-24 22:18:58,638 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-24 22:18:58,639 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-24 22:18:58,903 | INFO | GET /api/state
+2026-03-24 22:18:58,939 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:20:29,329 | INFO | POST /api/convert
+2026-03-24 22:20:29,329 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:20:29,334 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:20:29,335 | INFO | [1/1] Converting tex_files/white/analysis_I_problem_set_1.tex -> html/analysis_I_problem_set_1.html (mapped)
+2026-03-24 22:20:33,027 | INFO | [1/1] Done in 3.69s
+2026-03-24 22:20:33,028 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:20:33,065 | INFO | GET /api/state
+2026-03-24 22:20:33,108 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:20:42,806 | INFO | POST /api/convert
+2026-03-24 22:20:42,807 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:20:42,813 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:20:42,815 | INFO | [1/1] Converting tex_files/white/analysis2.tex -> html/analysis2.html (mapped)
+2026-03-24 22:20:46,770 | INFO | [1/1] Done in 3.95s
+2026-03-24 22:20:46,770 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:20:46,780 | INFO | POST /api/convert
+2026-03-24 22:20:46,780 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:20:46,791 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:20:46,792 | INFO | [1/1] Converting tex_files/white/analysis_I_problem_set_1.tex -> html/analysis_I_problem_set_1.html (mapped)
+2026-03-24 22:20:50,200 | INFO | [1/1] Done in 3.41s
+2026-03-24 22:20:50,200 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:20:50,212 | INFO | POST /api/convert
+2026-03-24 22:20:50,212 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:20:50,219 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:20:50,221 | INFO | [1/1] Converting tex_files/white/analysis_white.tex -> html/analysis_white.html (mapped)
+2026-03-24 22:21:25,427 | INFO | [1/1] Done in 35.21s
+2026-03-24 22:21:25,427 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:21:25,442 | INFO | POST /api/convert
+2026-03-24 22:21:25,442 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:21:25,453 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:21:25,454 | INFO | [1/1] Converting tex_files/white/basic_algebra.tex -> html/basic_algebra.html (mapped)
+2026-03-24 22:21:57,294 | INFO | [1/1] Done in 31.84s
+2026-03-24 22:21:57,294 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:21:57,315 | INFO | POST /api/convert
+2026-03-24 22:21:57,316 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:21:57,322 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:21:57,323 | INFO | [1/1] Converting tex_files/white/cyclic_vectors.tex -> html/cyclic_vectors.html (mapped)
+2026-03-24 22:22:01,098 | INFO | [1/1] Done in 3.77s
+2026-03-24 22:22:01,098 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:22:01,113 | INFO | POST /api/convert
+2026-03-24 22:22:01,113 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:22:01,121 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:22:01,122 | INFO | [1/1] Converting tex_files/white/fibonacci.tex -> html/fibonacci.html (mapped)
+2026-03-24 22:22:13,805 | INFO | [1/1] Done in 12.68s
+2026-03-24 22:22:13,805 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:22:13,827 | INFO | POST /api/convert
+2026-03-24 22:22:13,827 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:22:13,835 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:22:13,836 | INFO | [1/1] Converting tex_files/white/lin_al.tex -> html/lin_al.html (mapped)
+2026-03-24 22:22:20,918 | INFO | [1/1] Done in 7.08s
+2026-03-24 22:22:20,918 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:22:20,935 | INFO | POST /api/convert
+2026-03-24 22:22:20,935 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:22:20,943 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:22:20,944 | INFO | [1/1] Converting tex_files/white/prob_stats1.tex -> html/prob_stats1.html (mapped)
+2026-03-24 22:23:32,878 | INFO | [1/1] Done in 71.93s
+2026-03-24 22:23:32,878 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:23:32,905 | INFO | POST /api/convert
+2026-03-24 22:23:32,905 | INFO | Conversion request: mode=selected, custom_title=True, section=assignments, image_base_url=(none)
+2026-03-24 22:23:32,916 | INFO | Starting conversion for 1 file(s)
+2026-03-24 22:23:32,917 | INFO | [1/1] Converting tex_files/white/skolem.tex -> html/skolem.html (mapped)
+2026-03-24 22:23:36,132 | INFO | [1/1] Done in 3.21s
+2026-03-24 22:23:36,132 | INFO | Conversion finished: Converted 1/1 file(s) successfully.
+2026-03-24 22:23:36,156 | INFO | GET /api/state
+2026-03-24 22:23:36,200 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-24 22:23:56,016 | INFO | POST /api/publish
+2026-03-24 22:23:56,017 | INFO | Publish request: remote_url=https://github.com/eklavya-raman/IISERK_Notes.git, remote_name=origin, target_branch=main, publish_branch=html-subtree, html_dir=html
+2026-03-24 22:24:06,174 | INFO | Publish result: Publish completed successfully. (code=0)
+2026-03-24 22:24:06,216 | INFO | GET /api/state
+2026-03-24 22:24:06,250 | INFO | State requested: tex=25, mapped=9, html=11

@@ -181,6 +181,7 @@ class NotesManagerService:
         self.default_html_dir = workspace_root / "html"
         self.converter_bat = workspace_root / "conversion_script" / "convert_tex_to_html.bat"
         self.publisher_bat = workspace_root / "conversion_script" / "publish_html_repo.bat"
+        self.indexer_script = workspace_root / "conversion_script" / "update_html_index.py"
         self.links_file = _links_file_path(workspace_root)
 
     def _display_path(self, path: Path) -> str:
@@ -484,6 +485,60 @@ class NotesManagerService:
             LOGGER.exception("Publish failed with exception")
             return self._result(False, f"Publish failed: {error}")
 
+    def update_index_metadata(self, payload: dict[str, Any]) -> dict[str, Any]:
+        try:
+            html_raw = str(payload.get("htmlPath", "")).strip()
+            title = str(payload.get("title", "")).strip()
+            section = _normalize_section(str(payload.get("section", "")).strip())
+
+            if not html_raw:
+                return self._result(False, "Choose one HTML file to update metadata.")
+            if not title and not section:
+                return self._result(False, "Provide a title or section override.")
+
+            html_path = self._to_abs_path(html_raw)
+            if not html_path.exists() or not html_path.is_file() or html_path.suffix.lower() != ".html":
+                return self._result(False, f"Invalid HTML file: {html_path}")
+
+            if html_path.parent.resolve() != self.default_html_dir.resolve():
+                return self._result(False, "HTML file must be inside the workspace html directory.")
+
+            if not self.indexer_script.exists():
+                return self._result(False, f"Missing indexer script: {self.indexer_script}")
+
+            command = [
+                sys.executable,
+                str(self.indexer_script),
+                "--html-dir",
+                str(self.default_html_dir),
+                "--target-file",
+                html_path.name,
+            ]
+
+            if title:
+                command.extend(["--title", title])
+            if section:
+                command.extend(["--section", section])
+
+            LOGGER.info(
+                "Metadata update request: html=%s, title=%s, section=%s",
+                self._display_path(html_path),
+                bool(title),
+                section or "(none)",
+            )
+
+            return_code, output = _run_command(command, cwd=self.workspace_root)
+            ok = return_code == 0
+            if ok:
+                summary = f"Updated index metadata for {self._display_path(html_path)}."
+            else:
+                summary = f"Index metadata update failed for {self._display_path(html_path)}."
+
+            return self._result(ok, summary, output, return_code)
+        except Exception as error:  # noqa: BLE001
+            LOGGER.exception("Metadata update failed with exception")
+            return self._result(False, f"Metadata update failed: {error}")
+
 
 class NotesGuiRequestHandler(SimpleHTTPRequestHandler):
     service: NotesManagerService
@@ -557,6 +612,11 @@ class NotesGuiRequestHandler(SimpleHTTPRequestHandler):
         if parsed.path == "/api/publish":
             LOGGER.info("POST /api/publish")
             self._send_json(self.service.publish_html(payload))
+            return
+
+        if parsed.path == "/api/index-metadata":
+            LOGGER.info("POST /api/index-metadata")
+            self._send_json(self.service.update_index_metadata(payload))
             return
 
         if parsed.path == "/api/shutdown":

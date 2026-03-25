@@ -28,6 +28,7 @@ const dom = {
   btnSelectLinked: document.getElementById("btn-tex-select-linked"),
   btnClearTex: document.getElementById("btn-tex-clear"),
   btnLink: document.getElementById("btn-link"),
+  btnIndexMetadata: document.getElementById("btn-index-metadata"),
   btnConvert: document.getElementById("btn-convert"),
   btnPublish: document.getElementById("btn-publish"),
   btnCopyLog: document.getElementById("btn-copy-log"),
@@ -65,6 +66,7 @@ const actionButtons = [
   dom.btnSelectLinked,
   dom.btnClearTex,
   dom.btnLink,
+  dom.btnIndexMetadata,
   dom.btnConvert,
   dom.btnPublish,
 ];
@@ -558,6 +560,37 @@ async function onConvert() {
   });
 }
 
+async function onUpdateIndexMetadata() {
+  const htmlPath = getSelectedHtmlPath();
+  if (!htmlPath) {
+    alert("Please choose one HTML target file.");
+    return;
+  }
+
+  const title = (dom.convertTitle.value || "").trim();
+  const section = (dom.convertSection.value || "").trim();
+
+  if (!title && !section) {
+    alert("Enter a title or section override before updating metadata.");
+    return;
+  }
+
+  await withBusy(async () => {
+    logLine("Updating index metadata without recompilation...");
+    setRunStatus("Updating index metadata...");
+    savePrefs();
+
+    const result = await apiPost("/api/index-metadata", {
+      htmlPath,
+      title,
+      section,
+    });
+
+    writeCommandResult(result, "Index Metadata");
+    await refreshState();
+  });
+}
+
 async function onPublish() {
   await withBusy(async () => {
     logLine("Starting publish task...");
@@ -646,6 +679,7 @@ function bindEvents() {
   dom.btnSelectLinked.addEventListener("click", onSelectLinkedTex);
   dom.btnClearTex.addEventListener("click", onClearTexSelection);
   dom.btnLink.addEventListener("click", onLink);
+  dom.btnIndexMetadata.addEventListener("click", onUpdateIndexMetadata);
   dom.btnConvert.addEventListener("click", onConvert);
   dom.btnPublish.addEventListener("click", onPublish);
   dom.btnCopyLog.addEventListener("click", onCopyLog);

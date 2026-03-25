@@ -25,6 +25,7 @@ if "%PUBLISH_BRANCH%"=="" set "PUBLISH_BRANCH=%PUBLISH_BRANCH_DEFAULT%"
 set "HTML_DIR=%~5"
 if "%HTML_DIR%"=="" set "HTML_DIR=%HTML_DIR_DEFAULT%"
 set "IMAGES_SUBDIR=images_folder"
+set "FONTS_SUBDIR=fonts_folder"
 
 where git >nul 2>&1
 if errorlevel 1 (
@@ -40,18 +41,21 @@ if not exist "%HTML_DIR%" (
 set "HAS_HTML=0"
 set "HAS_METADATA=0"
 set "HAS_IMAGES=0"
+set "HAS_FONTS=0"
 
 dir /b "%HTML_DIR%\*.html" >nul 2>&1
 if not errorlevel 1 set "HAS_HTML=1"
 
 if exist "%HTML_DIR%\index_metadata.json" set "HAS_METADATA=1"
 if exist "%HTML_DIR%\%IMAGES_SUBDIR%" set "HAS_IMAGES=1"
+if exist "%HTML_DIR%\%FONTS_SUBDIR%" set "HAS_FONTS=1"
 
-if "%HAS_HTML%%HAS_METADATA%%HAS_IMAGES%"=="000" (
+if "%HAS_HTML%%HAS_METADATA%%HAS_IMAGES%%HAS_FONTS%"=="0000" (
   echo [error] Nothing to publish in "%HTML_DIR%". Expected at least one of:
   echo         - *.html
   echo         - index_metadata.json
   echo         - %IMAGES_SUBDIR%\
+  echo         - %FONTS_SUBDIR%\
   exit /b 1
 )
 
@@ -119,9 +123,21 @@ if exist "%HTML_DIR%\%IMAGES_SUBDIR%" (
   echo [warn] Images folder not found: "%HTML_DIR%\%IMAGES_SUBDIR%". Publishing without images.
 )
 
+if exist "%HTML_DIR%\%FONTS_SUBDIR%" (
+  echo [info] Including fonts folder: "%HTML_DIR%\%FONTS_SUBDIR%"
+  xcopy "%HTML_DIR%\%FONTS_SUBDIR%" ".\%FONTS_SUBDIR%\" /E /I /Y >nul
+  if errorlevel 1 (
+    echo [error] Failed to copy fonts folder from "%HTML_DIR%\%FONTS_SUBDIR%".
+    goto :fail_worktree
+  )
+) else (
+  echo [warn] Fonts folder not found: "%HTML_DIR%\%FONTS_SUBDIR%". Publishing without custom fonts.
+)
+
 git add *.html >nul 2>&1
 if exist ".\index_metadata.json" git add index_metadata.json >nul 2>&1
 if exist ".\%IMAGES_SUBDIR%\" git add "%IMAGES_SUBDIR%" >nul 2>&1
+if exist ".\%FONTS_SUBDIR%\" git add "%FONTS_SUBDIR%" >nul 2>&1
 
 git commit -m "Publish HTML, metadata, and images snapshot"
 if errorlevel 1 goto :fail_worktree

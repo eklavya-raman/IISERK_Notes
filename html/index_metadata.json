@@ -1,40 +1,44 @@
 {
   "files": {
     "analysis_I_problem_set_1.html": {
-      "title": "Analysis Problem Set 1",
+      "title": "Analysis 1 Problem Set 1",
       "section": "assignments"
     },
     "analysis_white.html": {
-      "title": "Analysis 1",
-      "section": "course_notes"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     },
     "basic_algebra.html": {
-      "title": "Basic Algebra 1",
-      "section": "course_notes"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     },
     "cyclic_vectors.html": {
-      "title": "Cyclic Vectors",
-      "section": "personal_study"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     },
     "fibonacci.html": {
-      "title": "Fibonacci Numbers",
-      "section": "personal_study"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     },
     "lin_al.html": {
-      "title": "Linear Algebra 1",
-      "section": "course_notes"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     },
     "lin_al_problems.html": {
       "title": "Linearl Algebra Problems",
       "section": "assignments"
     },
     "prob_stats1.html": {
-      "title": "Probability 1",
-      "section": "course_notes"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     },
     "skolem.html": {
-      "title": "Skolem Positivity Problem",
-      "section": "personal_study"
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
+    },
+    "analysis2.html": {
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
     }
   }
 }

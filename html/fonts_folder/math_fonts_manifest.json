@@ -1,0 +1,22 @@
+{
+  "fonts": [
+    {
+      "value": "gfsneohellenicmath",
+      "label": "GFS Neohellenic Math",
+      "file": "GFSNeohellenicMath.otf",
+      "family": "Repo Math GFS Neohellenic Math"
+    },
+    {
+      "value": "libertinusmath-regular",
+      "label": "Libertinus Math",
+      "file": "LibertinusMath-Regular.otf",
+      "family": "Repo Math Libertinus Math"
+    },
+    {
+      "value": "stixmath-regular",
+      "label": "STIX Math",
+      "file": "STIXMath-Regular.otf",
+      "family": "Repo Math STIX Math"
+    }
+  ]
+}

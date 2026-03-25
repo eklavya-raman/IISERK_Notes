@@ -678,6 +678,20 @@ def _expand_custom_macros(text: str) -> str:
 	return text
 
 
+def _final_math_sanitization(text: str) -> str:
+	text = text.replace(r"\begin{dcases}", r"\begin{cases}")
+	text = text.replace(r"\end{dcases}", r"\end{cases}")
+
+	text = _replace_macro_with_args(
+		text,
+		"abs",
+		1,
+		lambda a: rf"\left| {a[0]} \right|",
+	)
+
+	return text
+
+
 def convert_tex_content(
 	text: str,
 	source_path: Path | None = None,
@@ -704,6 +718,7 @@ def convert_tex_content(
 	)
 
 	text = _normalize_custom_environments(text)
+	text = _final_math_sanitization(text)
 
 	text = re.sub(r"\n{3,}", "\n\n", text)
 	text = text.strip() + "\n"
