@@ -294,3 +294,101 @@
 2026-03-24 22:24:06,174 | INFO | Publish result: Publish completed successfully. (code=0)
 2026-03-24 22:24:06,216 | INFO | GET /api/state
 2026-03-24 22:24:06,250 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:10:41,478 | INFO | Initialized GUI logger
+2026-03-25 23:10:41,478 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:10:41,501 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:10:41,501 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:10:41,501 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:10:44,029 | INFO | GET /api/state
+2026-03-25 23:10:44,094 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:12:00,502 | INFO | POST /api/index-metadata
+2026-03-25 23:12:00,504 | INFO | Metadata update request: html=html/analysis2.html, title=True, section=course_notes
+2026-03-25 23:12:00,654 | INFO | Initialized GUI logger
+2026-03-25 23:12:00,654 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:12:00,662 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:12:00,662 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:12:00,662 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:12:00,928 | INFO | GET /api/state
+2026-03-25 23:12:00,961 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:12:23,779 | INFO | POST /api/index-metadata
+2026-03-25 23:12:23,781 | INFO | Metadata update request: html=html/analysis_white.html, title=True, section=course_notes
+2026-03-25 23:12:23,926 | INFO | Initialized GUI logger
+2026-03-25 23:12:23,926 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:12:23,933 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:12:23,934 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:12:23,934 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:12:24,199 | INFO | GET /api/state
+2026-03-25 23:12:24,234 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:12:48,545 | INFO | POST /api/index-metadata
+2026-03-25 23:12:48,547 | INFO | Metadata update request: html=html/basic_algebra.html, title=True, section=course_notes
+2026-03-25 23:12:48,693 | INFO | Initialized GUI logger
+2026-03-25 23:12:48,694 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:12:48,701 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:12:48,701 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:12:48,701 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:12:48,952 | INFO | GET /api/state
+2026-03-25 23:12:48,986 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:13:14,821 | INFO | POST /api/index-metadata
+2026-03-25 23:13:14,826 | INFO | Metadata update request: html=html/lin_al.html, title=True, section=course_notes
+2026-03-25 23:13:14,978 | INFO | Initialized GUI logger
+2026-03-25 23:13:14,979 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:13:14,986 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:13:14,986 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:13:14,987 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:13:15,236 | INFO | GET /api/state
+2026-03-25 23:13:15,268 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:13:38,772 | INFO | POST /api/index-metadata
+2026-03-25 23:13:38,774 | INFO | Metadata update request: html=html/prob_stats1.html, title=True, section=course_notes
+2026-03-25 23:13:38,920 | INFO | Initialized GUI logger
+2026-03-25 23:13:38,920 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:13:38,927 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:13:38,927 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:13:38,927 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:13:39,195 | INFO | GET /api/state
+2026-03-25 23:13:39,227 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:14:18,409 | INFO | POST /api/index-metadata
+2026-03-25 23:14:18,412 | INFO | Metadata update request: html=html/cyclic_vectors.html, title=True, section=personal_study
+2026-03-25 23:14:18,560 | INFO | Initialized GUI logger
+2026-03-25 23:14:18,561 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:14:18,568 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:14:18,568 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:14:18,568 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:04,171 | INFO | Initialized GUI logger
+2026-03-25 23:15:04,171 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:04,183 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:15:04,183 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:15:04,183 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:04,470 | INFO | GET /api/state
+2026-03-25 23:15:04,508 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:15:20,958 | INFO | POST /api/index-metadata
+2026-03-25 23:15:20,960 | INFO | Metadata update request: html=html/fibonacci.html, title=True, section=personal_study
+2026-03-25 23:15:21,135 | INFO | Initialized GUI logger
+2026-03-25 23:15:21,136 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:21,144 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:15:21,144 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:15:21,144 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:21,415 | INFO | GET /api/state
+2026-03-25 23:15:21,454 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:15:45,203 | INFO | POST /api/index-metadata
+2026-03-25 23:15:45,206 | INFO | Metadata update request: html=html/skolem.html, title=True, section=personal_study
+2026-03-25 23:15:45,866 | INFO | Initialized GUI logger
+2026-03-25 23:15:45,867 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:45,899 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:15:45,899 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:15:45,899 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:15:46,221 | INFO | GET /api/state
+2026-03-25 23:15:46,265 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:16:09,734 | INFO | POST /api/index-metadata
+2026-03-25 23:16:09,739 | INFO | Metadata update request: html=html/lin_al_problems.html, title=True, section=assignments
+2026-03-25 23:16:09,885 | INFO | Initialized GUI logger
+2026-03-25 23:16:09,885 | INFO | Log file: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:16:09,893 | INFO | Workspace: C:\Users\Admin\Documents\GitHub\Latex_notes
+2026-03-25 23:16:09,893 | INFO | GUI URL: http://127.0.0.1:8765/index.html
+2026-03-25 23:16:09,893 | INFO | Detailed logs: C:\Users\Admin\Documents\GitHub\Latex_notes\conversion_script\logs\notes_manager_gui.log
+2026-03-25 23:16:10,135 | INFO | GET /api/state
+2026-03-25 23:16:10,168 | INFO | State requested: tex=25, mapped=9, html=11
+2026-03-25 23:16:19,778 | INFO | POST /api/publish
+2026-03-25 23:16:19,780 | INFO | Publish request: remote_url=https://github.com/eklavya-raman/IISERK_Notes.git, remote_name=origin, target_branch=main, publish_branch=html-subtree, html_dir=html
+2026-03-25 23:16:32,258 | INFO | Publish result: Publish completed successfully. (code=0)
+2026-03-25 23:16:32,299 | INFO | GET /api/state
+2026-03-25 23:16:32,356 | INFO | State requested: tex=25, mapped=9, html=11
