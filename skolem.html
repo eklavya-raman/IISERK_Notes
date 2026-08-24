@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Eklavya Raman  er24ms024@iiserkol.ac.in " />
+  <meta name="dcterms.date" content="2026-03-30" />
+  <title>Open Problems in Computer Science  Skolem’s Problem</title>
+  <style>
+
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+  <style type="text/css">:root,:root[data-theme="ivory"] {--bg: #0e131c;--panel: #151d29;--panel-2: #1e2938;--text: #d9e2f2;--muted: #9cabcb;--heading: #f4f8ff;--accent: #8ab7ff;--accent-soft: rgba(138, 183, 255, 0.16);--border: #2c3a4f;--rule: #3a4d69;--quote-bg: #182436;--code-bg: #0f1724;--code-inline-bg: #223248;--code-text: #e1ecff;--table-stripe: #182233;--token-keyword: #c4adff;--token-string: #8fe0a9;--token-number: #f0ba85;--token-type: #8cc4ff;--token-function: #f2d991;--token-comment: #95a8c8;--token-constant: #ff9cc2;--shadow: 0 16px 38px rgba(0, 0, 0, 0.44);--font-body: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;--font-heading: "Palatino Linotype", Palatino, "Iowan Old Style", Georgia, serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-mono: "Cascadia Code", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;--font-math: serif;--base-font-size: 17px;--text-scale: 1;--math-scale: 1;--content-max: 100%;--content-pad: clamp(0.9rem, 2vw, 1.45rem);--toc-width: 21rem;--radius: 12px;}:root[data-theme="dawn"] {--bg: #f2efe8;--panel: #f8f4ec;--panel-2: #ece4d8;--text: #252a34;--muted: #5f6878;--heading: #171d2a;--accent: #3d62b4;--accent-soft: #e3e9f7;--border: #c8cfdb;--rule: #b9c3d5;--quote-bg: #ebe5da;--code-bg: #f3f4f8;--code-inline-bg: #e1e7f3;--code-text: #1f2a3f;--table-stripe: #eef1f6;--token-keyword: #7440c6;--token-string: #1d7b55;--token-number: #9a5a12;--token-type: #2c69af;--token-function: #8e6600;--token-comment: #6f788a;--token-constant: #a33d63;--shadow: 0 12px 24px rgba(18, 29, 47, 0.12);}:root[data-theme="pearl"] {--bg: #edf2f7;--panel: #f5f8fc;--panel-2: #e1e9f3;--text: #1f2d3f;--muted: #5e728b;--heading: #142336;--accent: #2d6aaa;--accent-soft: #dce8f7;--border: #c5d1e2;--rule: #b8c7dc;--quote-bg: #e6edf5;--code-bg: #edf3f9;--code-inline-bg: #d8e5f3;--code-text: #1b314b;--table-stripe: #eaf1f8;--token-keyword: #6a45c5;--token-string: #17795a;--token-number: #9c5d08;--token-type: #1e6db5;--token-function: #8f6500;--token-comment: #667c95;--token-constant: #a53f68;--shadow: 0 12px 24px rgba(16, 36, 60, 0.12);}:root[data-theme="sage"] {--bg: #edf3ec;--panel: #f4faf2;--panel-2: #dde8db;--text: #25352a;--muted: #5a7262;--heading: #18281d;--accent: #2f7348;--accent-soft: #d8e9dd;--border: #c4d5c7;--rule: #b3c8b8;--quote-bg: #e5eee1;--code-bg: #edf4eb;--code-inline-bg: #d9e5d6;--code-text: #213629;--table-stripe: #e9f1e7;--token-keyword: #6f43c5;--token-string: #1a7a45;--token-number: #95570e;--token-type: #2a6ca8;--token-function: #866700;--token-comment: #6a8474;--token-constant: #9f3d62;--shadow: 0 12px 24px rgba(22, 48, 27, 0.12);}:root[data-theme="lilac"] {--bg: #f1eef8;--panel: #f7f3ff;--panel-2: #e7dff3;--text: #2d2940;--muted: #6d6687;--heading: #211a33;--accent: #5e5fb3;--accent-soft: #e2ddf4;--border: #d1cae4;--rule: #bfb7d6;--quote-bg: #e9e3f3;--code-bg: #f0ecf9;--code-inline-bg: #e0d8f0;--code-text: #2b2740;--table-stripe: #ede7f6;--token-keyword: #7440c6;--token-string: #1d7b55;--token-number: #99600f;--token-type: #3a67b4;--token-function: #8d6500;--token-comment: #7c7598;--token-constant: #a13f6d;--shadow: 0 12px 24px rgba(36, 24, 64, 0.12);}:root[data-theme="slate"] {--bg: #101927;--panel: #182335;--panel-2: #223149;--text: #d8e4f7;--muted: #99afd1;--heading: #f3f8ff;--accent: #83d0ff;--accent-soft: rgba(131, 208, 255, 0.16);--border: #2f4462;--rule: #3f587c;--quote-bg: #18293f;--code-bg: #101a2a;--code-inline-bg: #203852;--code-text: #def0ff;--table-stripe: #1a2a41;--token-keyword: #c0b0ff;--token-string: #91e2c0;--token-number: #f1c08c;--token-type: #86cfff;--token-function: #f3db9b;--token-comment: #95add1;--token-constant: #ff9fca;--shadow: 0 16px 38px rgba(0, 0, 0, 0.45);}:root[data-theme="forest"] {--bg: #0f1815;--panel: #162420;--panel-2: #1f322c;--text: #d5e9df;--muted: #9ab7a9;--heading: #effdf6;--accent: #73d69f;--accent-soft: rgba(115, 214, 159, 0.15);--border: #2c4a40;--rule: #3a6254;--quote-bg: #182c25;--code-bg: #111e1a;--code-inline-bg: #243d35;--code-text: #dbf4e8;--table-stripe: #192b25;--token-keyword: #ccb4ff;--token-string: #7fe0aa;--token-number: #f2c28b;--token-type: #82cfff;--token-function: #f0da9a;--token-comment: #9ab8aa;--token-constant: #ffa4bf;--shadow: 0 16px 38px rgba(0, 0, 0, 0.45);}:root[data-theme="midnight"] {--bg: #120f1f;--panel: #1b1730;--panel-2: #282144;--text: #dfd9f7;--muted: #afa4d2;--heading: #f8f3ff;--accent: #9e95ff;--accent-soft: rgba(158, 149, 255, 0.2);--border: #3a3360;--rule: #4c4476;--quote-bg: #211b3a;--code-bg: #151129;--code-inline-bg: #30285a;--code-text: #ece7ff;--table-stripe: #201a3a;--token-keyword: #cfb8ff;--token-string: #9be4c8;--token-number: #f7c799;--token-type: #9bc4ff;--token-function: #f5dda6;--token-comment: #b0a6d7;--token-constant: #ffabd1;--shadow: 0 16px 38px rgba(0, 0, 0, 0.48);}:root[data-theme="amoled"] {--bg: #050507;--panel: #0a0a0d;--panel-2: #121218;--text: #e7e7ee;--muted: #9a9aaa;--heading: #ffffff;--accent: #7aa2ff;--accent-soft: rgba(122, 162, 255, 0.18);--border: #1f1f2a;--rule: #2a2a38;--quote-bg: #0d1018;--code-bg: #090b12;--code-inline-bg: #1a1f2d;--code-text: #ebefff;--table-stripe: #0d0f16;--token-keyword: #c7b8ff;--token-string: #96e4bc;--token-number: #f3c38f;--token-type: #93c9ff;--token-function: #f2d99e;--token-comment: #9ca8c7;--token-constant: #ffaad0;--shadow: 0 16px 38px rgba(0, 0, 0, 0.65);}:root[data-font="serif"] {--font-body: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;--font-heading: "Palatino Linotype", Palatino, "Iowan Old Style", Georgia, serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="sans"] {--font-body: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-heading: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="system"] {--font-body: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-heading: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-ui: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="palatino"] {--font-body: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;--font-heading: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="georgia"] {--font-body: Georgia, "Times New Roman", Times, serif;--font-heading: Georgia, "Times New Roman", Times, serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="times"] {--font-body: "Times New Roman", Times, Georgia, serif;--font-heading: "Times New Roman", Times, Georgia, serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="garamond"] {--font-body: Garamond, "EB Garamond", "Times New Roman", serif;--font-heading: Garamond, "EB Garamond", "Times New Roman", serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font="mono"] {--font-body: "Cascadia Code", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;--font-heading: "Cascadia Code", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;--font-ui: "Cascadia Code", "Fira Code", "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;}:root[data-font="custom"] {--font-body: "Notes Custom", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-heading: "Notes Custom", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-ui: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;}:root[data-font-size="85"] { --text-scale: 0.85; }:root[data-font-size="95"] { --text-scale: 0.95; }:root[data-font-size="100"] { --text-scale: 1; }:root[data-font-size="110"] { --text-scale: 1.1; }:root[data-font-size="120"] { --text-scale: 1.2; }:root[data-font-size="130"] { --text-scale: 1.3; }:root[data-math-size="80"] { --math-scale: 0.8; }:root[data-math-size="90"] { --math-scale: 0.9; }:root[data-math-size="100"] { --math-scale: 1; }:root[data-math-size="110"] { --math-scale: 1.1; }:root[data-math-size="120"] { --math-scale: 1.2; }:root[data-math-size="135"] { --math-scale: 1.35; }:root[data-math-size="150"] { --math-scale: 1.5; }* {box-sizing: border-box;}html {font-size: calc(var(--base-font-size) * var(--text-scale));scroll-behavior: smooth;-webkit-text-size-adjust: 100%;width: 100%;max-width: 100%;overflow-x: hidden;}body {margin: 0;background: var(--bg);color: var(--text);font-family: var(--font-body);line-height: 1.72;text-rendering: optimizeLegibility;min-height: 100dvh;width: 100%;max-width: 100%;overflow-x: hidden;}body > * {width: 100%;max-width: var(--content-max);margin-inline: 0;padding-inline: var(--content-pad);min-width: 0;}.site-index-link {margin: 0.65rem 0 0.25rem;padding: 0.35rem var(--content-pad);font-family: var(--font-ui);font-size: 0.9rem;border: 1px solid var(--border);border-radius: 10px;background: var(--panel);box-shadow: var(--shadow);}.site-index-link a {color: var(--accent);text-decoration: none;}.site-index-link a:hover,.site-index-link a:focus-visible {text-decoration: underline;text-underline-offset: 2px;}#title-block-header {padding-top: clamp(1.4rem, 5.5vw, 3.25rem);padding-bottom: clamp(0.95rem, 2.5vw, 1.35rem);border-bottom: 1px solid var(--rule);margin-bottom: 1.25rem;}#title-block-header .title {margin: 0 0 0.4rem;color: var(--heading);font-family: var(--font-heading);font-size: clamp(1.85rem, 2.7vw, 2.55rem);line-height: 1.15;}#title-block-header .subtitle {margin: 0.1rem 0 0.7rem;color: var(--muted);font-family: var(--font-ui);font-size: clamp(0.95rem, 1.2vw, 1.08rem);}#title-block-header .author,#title-block-header .date {margin: 0.12rem 0;color: var(--muted);font-family: var(--font-ui);font-size: 0.94rem;}#TOC {margin: 1.2rem auto 1.75rem;padding: 1rem 1.1rem 1.1rem;background: var(--panel);border: 1px solid var(--border);border-radius: var(--radius);box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18), inset 0 0 0 1px color-mix(in srgb, var(--panel-2) 40%, transparent);}#TOC::before {content: "Contents";display: block;margin-bottom: 0.55rem;color: var(--heading);font-family: var(--font-ui);font-weight: 700;letter-spacing: 0.01em;}#TOC ul {list-style: none;margin: 0;padding-left: 0;}#TOC li {margin: 0.16rem 0;}#TOC ul ul {margin-left: 0.48rem;margin-top: 0.24rem;padding-left: 0.62rem;border-left: 1px solid var(--border);}#TOC a {color: var(--muted);text-decoration: none;font-family: var(--font-ui);font-size: 0.94rem;}#TOC a:hover,#TOC a:focus-visible {color: var(--accent);text-decoration: underline;text-underline-offset: 2px;}h1,h2,h3,h4,h5,h6 {color: var(--heading);font-family: var(--font-heading);line-height: 1.24;margin-top: 1.7em;margin-bottom: 0.55em;scroll-margin-top: 1rem;overflow-wrap: anywhere;}h1 math,h2 math,h3 math,h4 math,h5 math,h6 math,.latex-box-title math,#TOC a math {color: inherit;}h1 math[display="inline"],h2 math[display="inline"],h3 math[display="inline"],h4 math[display="inline"],h5 math[display="inline"],h6 math[display="inline"],.latex-box-title math[display="inline"],#TOC a math[display="inline"],.list-of-theorems a math[display="inline"] {display: inline-block;vertical-align: -0.08em;}h1 math[display="block"],h2 math[display="block"],h3 math[display="block"],h4 math[display="block"],h5 math[display="block"],h6 math[display="block"],.latex-box-title math[display="block"],#TOC a math[display="block"],.list-of-theorems a math[display="block"] {display: inline-block;margin: 0;vertical-align: middle;}h1 {font-size: clamp(1.78rem, 2.35vw, 2.3rem);margin-top: 1.05em;}h2 {font-size: clamp(1.45rem, 1.65vw, 1.75rem);border-bottom: 1px solid var(--border);padding-bottom: 0.2rem;}h3 {font-size: clamp(1.2rem, 1.25vw, 1.36rem);}h4,h5,h6 {font-size: 1.02rem;}p,li,dd {color: var(--text);overflow-wrap: anywhere;}p {margin: 0.9rem 0;}ul,ol {margin: 0.7rem 0 1rem;padding-left: 1.35rem;}li + li {margin-top: 0.28rem;}dt {margin-top: 0.75rem;font-weight: 700;}dd {margin-left: 1.1rem;}a {color: var(--accent);text-decoration-thickness: 1.2px;text-underline-offset: 2px;}a:hover,a:focus-visible {color: var(--accent);}a:focus-visible,summary:focus-visible,button:focus-visible,select:focus-visible {outline: 2px solid var(--accent);outline-offset: 2px;}blockquote {margin: 1.25rem 0;padding: 0.8rem 1rem;border-left: 4px solid var(--accent);background: var(--quote-bg);border-radius: 0 10px 10px 0;}hr {border: 0;border-top: 1px solid var(--rule);margin: 2.2rem 0;}img,svg,video {max-width: 100%;height: auto;}img {border-radius: 10px;border: 1px solid var(--border);background: var(--panel);}figure {margin: 1.4rem 0;}figcaption {margin-top: 0.45rem;color: var(--muted);font-size: 0.92rem;}.list-of-theorems {margin: 1.2rem 0 1.7rem;padding: 0.9rem 1rem;border: 1px solid var(--border);border-radius: var(--radius);background: var(--panel);box-shadow: var(--shadow);}.list-of-theorems h2 {margin-top: 0.1rem;margin-bottom: 0.6rem;border-bottom: none;padding-bottom: 0;}.list-of-theorems ol {margin: 0;padding-left: 1.2rem;}.latex-box {margin: 1.1rem 0 1.3rem;border: 1px solid var(--border);border-left: 5px solid var(--accent);border-radius: var(--radius);background: var(--panel);box-shadow: var(--shadow);overflow: hidden;}.latex-box-title {padding: 0.56rem 0.82rem;font-family: var(--font-ui);font-weight: 700;color: var(--heading);background: var(--panel-2);border-bottom: 1px solid var(--border);}.latex-box-body {padding: 0.65rem 0.82rem;}.latex-box-body > :first-child {margin-top: 0;}.latex-box-body > :last-child {margin-bottom: 0;}.theorem-proof {margin-top: 0.7rem;border-top: 1px dashed var(--border);padding-top: 0.52rem;}.theorem-proof-title {margin-bottom: 0.28rem;color: var(--heading);font-family: var(--font-ui);font-weight: 700;}.theorem-proof-body > :first-child {margin-top: 0;}.theorem-proof-body > :last-child {margin-bottom: 0;}.theorem-box {border-left-color: var(--accent);}.definition-box {border-left-color: var(--token-keyword);}.identity-box,.axiom-box,.keyresult-box {border-left-color: var(--token-number);}.note-box,.highlight-box,.generic-box {border-left-color: var(--token-function);}.exercise-box,.example-box,.solution-box,.proof-box,.corollary-box {border-left-color: var(--token-type);}.tikz-figure,.tikz-embed {margin: 1rem 0;padding: 0;border: 0;border-radius: 0;background: transparent;box-shadow: none;}.tikz-figure img,.tikz-embed img {display: block;margin-inline: auto;width: auto;max-width: min(100%, 36rem);max-height: min(58vh, 30rem);object-fit: contain;border: none;background: transparent;}.tikz-figure .tikz-img-dark,.tikz-embed .tikz-img-dark {display: none;}:root[data-theme="ivory"] .tikz-figure .tikz-img-light,:root[data-theme="slate"] .tikz-figure .tikz-img-light,:root[data-theme="forest"] .tikz-figure .tikz-img-light,:root[data-theme="midnight"] .tikz-figure .tikz-img-light,:root[data-theme="amoled"] .tikz-figure .tikz-img-light,:root[data-theme="ivory"] .tikz-embed .tikz-img-light,:root[data-theme="slate"] .tikz-embed .tikz-img-light,:root[data-theme="forest"] .tikz-embed .tikz-img-light,:root[data-theme="midnight"] .tikz-embed .tikz-img-light,:root[data-theme="amoled"] .tikz-embed .tikz-img-light {display: none;}:root[data-theme="ivory"] .tikz-figure .tikz-img-dark,:root[data-theme="slate"] .tikz-figure .tikz-img-dark,:root[data-theme="forest"] .tikz-figure .tikz-img-dark,:root[data-theme="midnight"] .tikz-figure .tikz-img-dark,:root[data-theme="amoled"] .tikz-figure .tikz-img-dark,:root[data-theme="ivory"] .tikz-embed .tikz-img-dark,:root[data-theme="slate"] .tikz-embed .tikz-img-dark,:root[data-theme="forest"] .tikz-embed .tikz-img-dark,:root[data-theme="midnight"] .tikz-embed .tikz-img-dark,:root[data-theme="amoled"] .tikz-embed .tikz-img-dark {display: block;}.tikz-figure figcaption {text-align: center;}.tikz-caption {margin-top: 0.38rem;text-align: center;color: var(--muted);font-size: 0.92rem;}.table-wrap {width: 100%;overflow-x: auto;margin: 1.2rem 0;}table {width: 100%;max-width: 100%;border-collapse: collapse;border: 1px solid var(--border);border-radius: var(--radius);background: var(--panel);margin: 0;font-variant-numeric: tabular-nums;}thead th {background: var(--panel-2);color: var(--heading);font-family: var(--font-ui);font-weight: 700;}th,td {padding: 0.55rem 0.72rem;border-bottom: 1px solid var(--border);text-align: left;vertical-align: top;}tbody tr:nth-child(even) {background: var(--table-stripe);}tbody tr:last-child td {border-bottom: 0;}code,kbd,samp,pre {font-family: var(--font-mono);}code {background: var(--code-inline-bg);color: var(--code-text);padding: 0.12em 0.36em;border-radius: 6px;font-size: 0.92em;}pre {margin: 1.1rem 0;padding: 0.95rem 1.05rem;background: var(--code-bg);color: var(--code-text);border: 1px solid var(--border);border-radius: var(--radius);overflow: auto;line-height: 1.5;font-size: 0.9rem;}pre code {background: transparent;color: inherit;padding: 0;}div.sourceCode {margin: 1rem 0;}div.sourceCode pre {margin: 0;}.sourceCode .kw {color: var(--token-keyword);}.sourceCode .st,.sourceCode .vs,.sourceCode .ss {color: var(--token-string);}.sourceCode .dv,.sourceCode .bn,.sourceCode .fl,.sourceCode .ch {color: var(--token-number);}.sourceCode .dt,.sourceCode .bu {color: var(--token-type);}.sourceCode .fu {color: var(--token-function);}.sourceCode .co {color: var(--token-comment);font-style: italic;}.sourceCode .cn,.sourceCode .at {color: var(--token-constant);}.sourceCode .er {color: #ff6f7d;text-decoration: underline;}.footnotes {margin-top: 2.8rem;padding-top: 1rem;border-top: 1px solid var(--rule);color: var(--muted);}.footnote-ref,.footnote-back {text-decoration: none;font-family: var(--font-ui);}.math.display,div.math.display,span.math.display {overflow-x: auto;overflow-y: hidden;margin: 0.95rem 0;padding: 0.3rem 0.1rem;}.math.inline mjx-container,span.math.inline math {display: inline-block;vertical-align: -0.08em;}math {color: var(--text);font-family: var(--font-math) !important;font-size: calc(1em * var(--math-scale));}math * {font-family: var(--font-math) !important;}math[display="block"],.math.display math,div.math.display math,span.math.display math {display: block;max-width: 100%;overflow-x: auto;overflow-y: hidden;margin: 0.95rem auto;}::selection {background: var(--accent-soft);}.theme-switcher {display: flex;flex-direction: column;align-items: stretch;gap: 0.5rem;padding: 0.46rem 0.54rem;border: 1px solid var(--border);border-radius: 10px;background: var(--panel);box-shadow: var(--shadow);}.theme-switcher-toggle {display: inline-flex;align-items: center;justify-content: space-between;gap: 0.45rem;width: 100%;border: 1px solid var(--border);border-radius: 10px;background: var(--panel-2);color: var(--heading);font-family: var(--font-ui);font-size: 0.82rem;font-weight: 700;letter-spacing: 0.02em;text-transform: uppercase;padding: 0.34rem 0.56rem;cursor: pointer;}.theme-switcher-panel {display: none;}.theme-switcher.is-open .theme-switcher-panel {display: block;}.theme-switcher-controls {display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));align-items: end;gap: 0.5rem;}.theme-switcher-control {display: flex;flex-direction: column;gap: 0.2rem;}.theme-switcher--toc {width: 100%;justify-content: flex-start;margin: 0.2rem 0 0.75rem;padding: 0.4rem 0.5rem;background: var(--panel-2);box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border) 65%, transparent);position: sticky;top: 0;z-index: 1;}.theme-switcher--header {margin: 0.55rem 0 0;}.theme-switcher-control label {color: var(--muted);font-family: var(--font-ui);font-size: 0.75rem;text-transform: uppercase;letter-spacing: 0.05em;}.theme-switcher-control select {border: 1px solid var(--border);border-radius: 10px;background: var(--panel-2);color: var(--text);font-family: var(--font-ui);font-size: 0.84rem;font-weight: 600;min-width: 7rem;padding: 0.25rem 0.58rem 0.25rem 0.52rem;}.toc-mobile-toggle,.toc-mobile-backdrop {display: none;}.mobile-navbar {display: none;}@media (min-width: 1150px) {body.pandoc-has-toc,body:has(> #TOC) {--desktop-side-pad: clamp(0.45rem, 1.1vw, 1rem);--desktop-toc-gap: clamp(0.95rem, 1.8vw, 1.65rem);--desktop-toc-width: clamp(16rem, 22vw, var(--toc-width));padding-inline: var(--desktop-side-pad);padding-left: calc(var(--desktop-side-pad) + var(--desktop-toc-width) + var(--desktop-toc-gap));min-height: 100dvh;}body.pandoc-has-toc > #TOC,body:has(> #TOC) > #TOC {position: fixed;left: var(--desktop-side-pad);top: 0.75rem;bottom: 0.75rem;width: var(--desktop-toc-width);height: auto;max-height: none;overflow: auto;margin: 0;padding: 0.85rem 0.85rem;z-index: 900;}body.pandoc-has-toc > *:not(#TOC),body:has(> #TOC) > *:not(#TOC) {width: 100%;max-width: none;margin-inline: 0;padding-inline: var(--content-pad);}}@media (max-width: 1149px) {body {padding-top: 3.7rem;}body > * {width: 100%;max-width: none;margin-inline: 0;padding-inline: var(--content-pad);}.mobile-navbar {position: fixed;top: 0;left: 0;right: 0;z-index: 1210;display: flex;align-items: center;justify-content: space-between;gap: 0.6rem;min-height: 3.05rem;padding: 0.48rem 0.72rem;border: 1px solid var(--border);border-radius: 0 0 10px 10px;border-top: 0;background: var(--panel);box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);}.mobile-navbar-title {color: var(--heading);font-family: var(--font-ui);font-size: 0.86rem;font-weight: 700;letter-spacing: 0.03em;text-transform: uppercase;}.mobile-navbar-actions {display: flex;align-items: center;gap: 0.45rem;}#TOC {position: fixed;top: 0;left: 0;width: min(86vw, 23rem);height: 100dvh;max-height: 100dvh;margin: 0;padding: 0.85rem 0.85rem 1rem;border-radius: 0 10px 10px 0;transform: translateX(-106%);transition: transform 0.24s ease;z-index: 1200;overflow: auto;box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);}body.toc-mobile-open #TOC {transform: translateX(0);}.toc-mobile-toggle {display: inline-flex;align-items: center;gap: 0.4rem;border: 1px solid var(--border);border-radius: 10px;background: var(--panel-2);color: var(--text);font-family: var(--font-ui);font-size: 0.8rem;font-weight: 700;letter-spacing: 0.02em;padding: 0.32rem 0.74rem;box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);cursor: pointer;}.toc-mobile-backdrop {position: fixed;inset: 0;z-index: 1190;display: block;border: 0;margin: 0;padding: 0;background: rgba(4, 7, 13, 0.58);opacity: 0;pointer-events: none;transition: opacity 0.2s ease;}body.toc-mobile-open .toc-mobile-backdrop {opacity: 1;pointer-events: auto;}}@media (max-width: 720px) {:root {--base-font-size: 16px;}.theme-switcher {width: 100%;display: flex;gap: 0.4rem;padding: 0.35rem 0.45rem 0.35rem 0.55rem;}.theme-switcher-controls {width: 100%;grid-template-columns: repeat(2, minmax(0, 1fr));align-items: end;}.theme-switcher-control {min-width: 0;}.theme-switcher label {font-size: 0.68rem;}.theme-switcher select {width: 100%;font-size: 0.78rem;min-width: 0;padding: 0.2rem 0.55rem 0.2rem 0.42rem;}.toc-mobile-toggle {font-size: 0.78rem;padding: 0.28rem 0.64rem;}.mobile-navbar {min-height: 2.9rem;padding: 0.42rem 0.58rem;}.mobile-navbar-title {font-size: 0.78rem;}}@media (max-width: 460px) {.theme-switcher-controls {grid-template-columns: minmax(0, 1fr);}}@media print {.theme-switcher,.mobile-navbar,.toc-mobile-toggle,.toc-mobile-backdrop,#TOC {display: none !important;}body {background: #ffffff;color: #000000;}body > * {width: 100%;max-width: 100%;padding-inline: 0;}a {color: #000000;text-decoration: none;}pre,code {border-color: #bcbcbc;}}</style>
+</head>
+<body>
+<nav class="site-index-link"><a href="index.html" aria-label="Open notes index">&#8592; All Notes Index</a></nav>
+
+<header id="title-block-header">
+<h1 class="title"><span><strong>Open Problems in Computer
+Science</strong></span><br />
+<span>Skolem’s Problem</span></h1>
+<p class="author">Eklavya Raman<br />
+er24ms024@iiserkol.ac.in<br /></p>
+<p class="date">2026-03-30</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+  <li><a href="#list-of-theorems">List of Theorems</a></li>
+<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+<li><a href="#preliminaries" id="toc-preliminaries"><span class="toc-section-number">1</span> Preliminaries</a>
+<ul>
+<li><a href="#linear-recurrence-sequences" id="toc-linear-recurrence-sequences"><span class="toc-section-number">1.1</span> Linear Recurrence
+Sequences</a></li>
+<li><a href="#diophantine-equations" id="toc-diophantine-equations"><span class="toc-section-number">1.2</span> Diophantine Equations</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="list-of-theorems" class="list-of-theorems">
+  <h2>List of Theorems</h2>
+  <ol>
+  <li><a href="#theorem-1-1-1-roots-of-characteristic-polynomial">Theorem 1.1.1 (Roots of
+Characteristic Polynomial)</a></li>
+  <li><a href="#theorem-1-1-2-some-properties-of-linear-recurrence-sequences">Theorem 1.1.2 (Some properties
+of linear recurrence sequences)</a></li>
+  <li><a href="#theorem-1-2-1-hilbert-s-tenth-problem">Theorem 1.2.1 (Hilbert’s Tenth
+Problem)</a></li>
+  </ol>
+</section>
+
+<h1 class="unnumbered" id="introduction">Introduction</h1>
+<p>Skolem’s Problem is a long-standing open problem in the field of
+theoretical computer science and number theory. It concerns the
+decidability of whether a given linear recurrence sequence contains a
+zero term. More formally, given a linear recurrence relation defined by
+integer coefficients, the problem asks whether there exists an integer
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+such that the
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>-th
+term of the sequence is zero. This problem has significant implications
+in various areas, including automata theory, formal languages, and the
+theory of computation. Despite considerable efforts, Skolem’s Problem
+remains unsolved in its general form, and it continues to be a subject
+of active research.</p>
+<h1 data-number="1" id="preliminaries"><span class="header-section-number">1</span> Preliminaries</h1>
+<p>We define some basic concepts and notations that will be used
+throughout the discussion of Skolem’s Problem.</p>
+<h2 data-number="1.1" id="linear-recurrence-sequences"><span class="header-section-number">1.1</span> Linear Recurrence
+Sequences</h2>
+<div class="latex-box definition-box" id="definition-1-1-1-linear-recurrence-sequence" data-label="Definition" data-number="1.1.1">
+  <div class="latex-box-title">Definition 1.1.1 (Linear
+Recurrence Sequence)</div>
+  <div class="latex-box-body">
+<p>A linear recurrence sequence is a sequence of numbers
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{a_n\}</annotation></semantics></math>
+defined by a linear recurrence relation of the form:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><msub><mi>c</mi><mn>1</mn></msub><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msub><mo>+</mo><mi>…</mi><mo>+</mo><msub><mi>c</mi><mi>k</mi></msub><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">a_n = c_1 a_{n-1} + c_2 a_{n-2} + \ldots + c_k a_{n-k}</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">n \geq k</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mi>c</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">c_1, c_2, \ldots, c_k</annotation></semantics></math>
+are fixed coefficients and the initial terms
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>a</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">a_0, a_1, \ldots, a_{k-1}</annotation></semantics></math>
+are given.</p>
+<p>We will also need the concept of characteristic polynomials
+associated with linear recurrence sequences.</p>
+  </div>
+</div>
+<div class="latex-box definition-box" id="definition-1-1-2-characteristic-polynomial" data-label="Definition" data-number="1.1.2">
+  <div class="latex-box-title">Definition 1.1.2 (Characteristic Polynomial)</div>
+  <div class="latex-box-body">
+<p>The characteristic polynomial of a linear recurrence relation defined
+by coefficients
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mi>c</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">c_1, c_2, \ldots, c_k</annotation></semantics></math>
+is given by:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mi>k</mi></msup><mo>−</mo><msub><mi>c</mi><mn>1</mn></msub><msup><mi>x</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><msub><mi>c</mi><mn>2</mn></msub><msup><mi>x</mi><mrow><mi>k</mi><mo>−</mo><mn>2</mn></mrow></msup><mo>−</mo><mi>…</mi><mo>−</mo><msub><mi>c</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">P(x) = x^k - c_1 x^{k-1} - c_2 x^{k-2} - \ldots - c_k</annotation></semantics></math></p>
+  </div>
+</div>
+<div class="latex-box theorem-box" id="theorem-1-1-1-roots-of-characteristic-polynomial" data-label="Theorem" data-number="1.1.1">
+  <div class="latex-box-title">Theorem 1.1.1 (Roots of
+Characteristic Polynomial)</div>
+  <div class="latex-box-body">
+<p>The general solution of a linear recurrence sequence can be expressed
+in terms of the roots of its characteristic polynomial. If the
+characteristic polynomial has distinct roots
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>,</mo><msub><mi>r</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>r</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">r_1, r_2, \ldots, r_m</annotation></semantics></math>
+with multiplicities
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mn>1</mn></msub><mo>,</mo><msub><mi>m</mi><mn>2</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>m</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">m_1, m_2, \ldots, m_m</annotation></semantics></math>,
+then the general term of the sequence can be written as:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>P</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo><msubsup><mi>r</mi><mi>i</mi><mi>n</mi></msubsup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">a_n = \sum_{i=1}^{m} \left( P_i(n) r_i^n \right)</annotation></semantics></math>
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P_i(n)</annotation></semantics></math>
+is a polynomial of degree
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">m_i - 1</annotation></semantics></math>.</p>
+<div class="theorem-proof" data-label="Proof">
+  <div class="theorem-proof-title">Proof</div>
+  <div class="theorem-proof-body">
+<p>The proof follows from the theory of linear
+difference equations. By substituting the general form of the solution
+into the recurrence relation and using the properties of polynomials and
+exponentials, we can derive the coefficients of the polynomials
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P_i(n)</annotation></semantics></math>
+based on the initial conditions of the sequence. The details involve
+solving a system of linear equations derived from the initial terms and
+the recurrence relation. ◻</p>
+  </div>
+</div>
+  </div>
+</div>
+<div class="latex-box example-box" id="example-1-1-1" data-label="Example" data-number="1.1.1">
+  <div class="latex-box-title">Example 1.1.1</div>
+  <div class="latex-box-body">
+<p>Consider the linear recurrence relation defined by:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mn>2</mn><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mn>3</mn><msub><mi>a</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">a_n = 2a_{n-1} + 3a_{n-2}</annotation></semantics></math>
+with initial conditions
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a_0 = 1</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">a_1 = 2</annotation></semantics></math>.
+The characteristic polynomial is:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>x</mi><mn>2</mn></msup><mo>−</mo><mn>2</mn><mi>x</mi><mo>−</mo><mn>3</mn><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>−</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P(x) = x^2 - 2x - 3 = (x -3)(x + 1)</annotation></semantics></math>
+The roots are
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">r_1 = 3</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>2</mn></msub><mo>=</mo><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">r_2 = -1</annotation></semantics></math>.
+The general solution is:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mi>A</mi><mo>⋅</mo><msup><mn>3</mn><mi>n</mi></msup><mo>+</mo><mi>B</mi><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">a_n = A \cdot 3^n + B \cdot (-1)^n</annotation></semantics></math>
+To find the constants
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math>,
+we use the initial conditions: For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n=0</annotation></semantics></math>:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a_0 = A + B = 1</annotation></semantics></math>
+For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n=1</annotation></semantics></math>:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn><mi>A</mi><mo>−</mo><mi>B</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">a_1 = 3A - B = 2</annotation></semantics></math>
+Solving this system of equations, we find
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac></mrow><annotation encoding="application/x-tex">A = \frac{3}{4}</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mfrac><mn>1</mn><mn>4</mn></mfrac></mrow><annotation encoding="application/x-tex">B = \frac{1}{4}</annotation></semantics></math>.
+Thus, the explicit formula for the sequence is:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>⋅</mo><msup><mn>3</mn><mi>n</mi></msup><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">a_n = \frac{3}{4} \cdot 3^n + \frac{1}{4} \cdot (-1)^n</annotation></semantics></math>
+We can verify that this formula satisfies the recurrence relation and
+initial conditions as follows - For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n=2</annotation></semantics></math>:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>⋅</mo><msup><mn>3</mn><mn>2</mn></msup><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>⋅</mo><mn>9</mn><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>⋅</mo><mn>1</mn><mo>=</mo><mfrac><mn>27</mn><mn>4</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">a_2 = \frac{3}{4} \cdot 3^2 + \frac{1}{4} \cdot (-1)^2 = \frac{3}{4} \cdot 9 + \frac{1}{4} \cdot 1 = \frac{27}{4} + \frac{1}{4} = 7</annotation></semantics></math>
+For
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n=3</annotation></semantics></math>:
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mn>3</mn></msub><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>⋅</mo><msup><mn>3</mn><mn>3</mn></msup><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msup><mo>=</mo><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>⋅</mo><mn>27</mn><mo>+</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>⋅</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>81</mn><mn>4</mn></mfrac><mo>−</mo><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>=</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">a_3 = \frac{3}{4} \cdot 3^3 + \frac{1}{4} \cdot (-1)^3 = \frac{3}{4} \cdot 27 + \frac{1}{4} \cdot (-1) = \frac{81}{4} - \frac{1}{4} = 20</annotation></semantics></math>
+Thus, the sequence generated by the recurrence relation is
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>7</mn><mo>,</mo><mn>20</mn><mo>,</mo><mi>…</mi></mrow><annotation encoding="application/x-tex">1, 2, 7, 20, \ldots</annotation></semantics></math>,
+which matches the values computed using the recurrence relation.</p>
+  </div>
+</div>
+<div class="latex-box theorem-box" id="theorem-1-1-2-some-properties-of-linear-recurrence-sequences" data-label="Theorem" data-number="1.1.2">
+  <div class="latex-box-title">Theorem 1.1.2 (Some properties
+of linear recurrence sequences)</div>
+  <div class="latex-box-body">
+<p>Let
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{a_n\}</annotation></semantics></math>
+be a linear recurrence sequence defined by a linear recurrence relation
+of order
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+with integer coefficients. Then the following properties hold:</p>
+<ol>
+<li><p>The sequence
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{a_n\}</annotation></semantics></math>
+is eventually periodic modulo any integer
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>.
+That is, there exist integers
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
+such that for all
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">n \geq N</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mi>p</mi></mrow></msub><mo>≡</mo><msub><mi>a</mi><mi>n</mi></msub><mrow><mspace width="0.444em"></mspace><mrow><mi mathvariant="normal">mod</mi><mo>⁡</mo></mrow><mspace width="0.222em"></mspace><mi>m</mi></mrow></mrow><annotation encoding="application/x-tex">a_{n+p} \equiv a_n \mod m</annotation></semantics></math>.</p></li>
+<li><p>If the characteristic polynomial has a root that is a root of
+unity, then the sequence
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">{</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">\{a_n\}</annotation></semantics></math>
+is periodic.</p></li>
+<li><p>The set of indices
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+for which
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a_n = 0</annotation></semantics></math>
+is a union of finitely many arithmetic progressions along with a finite
+set.</p></li>
+</ol>
+<div class="theorem-proof" data-label="Proof">
+  <div class="theorem-proof-title">Proof</div>
+  <div class="theorem-proof-body">
+<p>The proofs of these properties rely on the structure
+of linear recurrence sequences and their characteristic polynomials.</p>
+<ol>
+<li><p>The eventual periodicity modulo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>
+follows from the fact that there are only finitely many possible states
+for the vector of the last
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>k</mi><annotation encoding="application/x-tex">k</annotation></semantics></math>
+terms of the sequence modulo
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>m</mi><annotation encoding="application/x-tex">m</annotation></semantics></math>.
+By the pigeonhole principle, the sequence must eventually
+repeat.</p></li>
+<li><p>If the characteristic polynomial has a root that is a root of
+unity, then the corresponding term in the general solution will be
+periodic, leading to the overall periodicity of the sequence.</p></li>
+<li><p>The structure of the zeros of linear recurrence sequences can be
+analyzed using techniques from algebraic number theory and Diophantine
+equations, leading to the conclusion about their distribution.</p></li>
+</ol>
+<p> ◻</p>
+  </div>
+</div>
+  </div>
+</div>
+<h2 data-number="1.2" id="diophantine-equations"><span class="header-section-number">1.2</span> Diophantine Equations</h2>
+<div class="latex-box definition-box" id="definition-1-2-1-diophantine-equation" data-label="Definition" data-number="1.2.1">
+  <div class="latex-box-title">Definition 1.2.1 (Diophantine
+Equation)</div>
+  <div class="latex-box-body">
+<p>A Diophantine equation is a polynomial equation where the variables
+are intended to take integer values. A classic example is the equation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>x</mi><mo>+</mo><mi>b</mi><mi>y</mi><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">ax + by = c</annotation></semantics></math>,
+where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>b</mi><annotation encoding="application/x-tex">b</annotation></semantics></math>,
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>c</mi><annotation encoding="application/x-tex">c</annotation></semantics></math>
+are given integers, and the solutions
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x, y)</annotation></semantics></math>
+are sought in integers.</p>
+  </div>
+</div>
+<div class="latex-box theorem-box" id="theorem-1-2-1-hilbert-s-tenth-problem" data-label="Theorem" data-number="1.2.1">
+  <div class="latex-box-title">Theorem 1.2.1 (Hilbert’s Tenth
+Problem)</div>
+  <div class="latex-box-body">
+<p>Hilbert’s Tenth Problem asks for an algorithm to determine whether a
+given Diophantine equation has an integer solution. It was proven by
+Yuri Matiyasevich in 1970 that no such general algorithm exists, meaning
+that the problem is undecidable.</p>
+<p>The proof of the undecidability of Hilbert’s Tenth Problem involves
+showing that every recursively enumerable set can be represented as the
+set of integer solutions to some Diophantine equation. This is achieved
+by constructing specific Diophantine equations that encode the behavior
+of Turing machines, thereby linking the problem to the Halting Problem,
+which is known to be undecidable. The details of the construction are
+intricate and involve techniques from number theory and computability
+theory.For computability theory, read Roger Hartley’s book &quot;Theory of
+recursive functions and effective computability&quot;.</p>
+<script>window.__PANDOC_MATH_FONTS_MANIFEST__={"fonts":[{"value":"gfsneohellenicmath","label":"GFS Neohellenic Math","file":"GFSNeohellenicMath.otf","family":"Repo Math GFS Neohellenic Math"},{"value":"libertinusmath-regular","label":"Libertinus Math","file":"LibertinusMath-Regular.otf","family":"Repo Math Libertinus Math"},{"value":"stixmath-regular","label":"STIX Math","file":"STIXMath-Regular.otf","family":"Repo Math STIX Math"}]};</script>
+<script>
+(() => {
+  const MATH_FONT_MANIFEST_URL = "fonts_folder/math_fonts_manifest.json";
+
+  const THEMES = [
+    { value: "dawn", label: "Dawn Light" },
+    { value: "pearl", label: "Pearl Light" },
+    { value: "sage", label: "Sage Light" },
+    { value: "lilac", label: "Lilac Light" },
+    { value: "ivory", label: "Obsidian Dark" },
+    { value: "slate", label: "Nocturne Dark" },
+    { value: "forest", label: "Emerald Night Dark" },
+    { value: "midnight", label: "Midnight Indigo Dark" },
+    { value: "amoled", label: "AMOLED Darkest" },
+  ];
+
+  const TEXT_FONTS = [
+    { value: "serif", label: "Serif" },
+    { value: "sans", label: "Sans" },
+    { value: "system", label: "System UI" },
+    { value: "custom", label: "Custom" },
+    { value: "palatino", label: "Palatino" },
+    { value: "georgia", label: "Georgia" },
+    { value: "times", label: "Times" },
+    { value: "garamond", label: "Garamond" },
+    { value: "mono", label: "Mono" },
+  ];
+
+  const TEXT_SIZES = [
+    { value: "85", label: "85%" },
+    { value: "95", label: "95%" },
+    { value: "100", label: "100%" },
+    { value: "110", label: "110%" },
+    { value: "120", label: "120%" },
+    { value: "130", label: "130%" },
+  ];
+
+  const MATH_SIZES = [
+    { value: "80", label: "80%" },
+    { value: "90", label: "90%" },
+    { value: "100", label: "100%" },
+    { value: "110", label: "110%" },
+    { value: "120", label: "120%" },
+    { value: "135", label: "135%" },
+    { value: "150", label: "150%" },
+  ];
+
+  const THEME_STORAGE_KEY = "pandoc-book-theme";
+  const TEXT_FONT_STORAGE_KEY = "pandoc-book-text-font";
+  const MATH_FONT_STORAGE_KEY = "pandoc-book-math-font";
+  const TEXT_SIZE_STORAGE_KEY = "pandoc-book-text-size";
+  const MATH_SIZE_STORAGE_KEY = "pandoc-book-math-size";
+
+  const canPersistChoice = (() => {
+    try {
+      return window.location.protocol !== "file:" && typeof window.localStorage !== "undefined";
+    } catch (_error) {
+      return false;
+    }
+  })();
+
+  const validThemes = new Set(THEMES.map((theme) => theme.value));
+  const validTextFonts = new Set(TEXT_FONTS.map((font) => font.value));
+  const validTextSizes = new Set(TEXT_SIZES.map((size) => size.value));
+  const validMathSizes = new Set(MATH_SIZES.map((size) => size.value));
+
+  let activeMathFonts = [];
+  let activeMathFontValues = new Set();
+  const mathFontMap = new Map();
+
+  function escapeCssString(value) {
+    if (typeof value !== "string") {
+      return "";
+    }
+    return value.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+  }
+
+  function normalizeMathFontEntry(entry) {
+    if (!entry || typeof entry !== "object") {
+      return null;
+    }
+
+    const value = typeof entry.value === "string" ? entry.value.trim() : "";
+    const label = typeof entry.label === "string" ? entry.label.trim() : "";
+    const file = typeof entry.file === "string" ? entry.file.trim() : "";
+    const family = typeof entry.family === "string" ? entry.family.trim() : "";
+
+    if (!value || !label || !file || !family) {
+      return null;
+    }
+
+    return {
+      value,
+      label,
+      file,
+      family,
+    };
+  }
+
+  function resolveFontFormat(filePath) {
+    const file = filePath.toLowerCase();
+    if (file.endsWith(".woff2")) {
+      return "woff2";
+    }
+    if (file.endsWith(".woff")) {
+      return "woff";
+    }
+    if (file.endsWith(".ttf")) {
+      return "truetype";
+    }
+    return "opentype";
+  }
+
+  function applyMathFontFaceStyles() {
+    const styleId = "repo-math-font-faces";
+    let styleEl = document.getElementById(styleId);
+    if (!styleEl) {
+      styleEl = document.createElement("style");
+      styleEl.id = styleId;
+      document.head.appendChild(styleEl);
+    }
+
+    const css = activeMathFonts
+      .map((font) => {
+        const family = escapeCssString(font.family);
+        const filePath = encodeURI(font.file);
+        const format = resolveFontFormat(filePath);
+        return `@font-face{font-family:"${family}";src:url("fonts_folder/${filePath}") format("${format}");font-style:normal;font-weight:400;font-display:swap;}`;
+      })
+      .join("\n");
+
+    styleEl.textContent = css;
+  }
+
+  async function loadMathFontsFromManifest() {
+    const embedded = window.__PANDOC_MATH_FONTS_MANIFEST__;
+    if (embedded && Array.isArray(embedded.fonts)) {
+      const normalizedEmbedded = embedded.fonts
+        .map(normalizeMathFontEntry)
+        .filter(Boolean);
+
+      if (normalizedEmbedded.length > 0) {
+        const uniqueEmbedded = [];
+        const seenEmbedded = new Set();
+        normalizedEmbedded.forEach((font) => {
+          if (seenEmbedded.has(font.value)) {
+            return;
+          }
+          seenEmbedded.add(font.value);
+          uniqueEmbedded.push(font);
+        });
+        return uniqueEmbedded;
+      }
+    }
+
+    const isHttp = window.location.protocol === "http:" || window.location.protocol === "https:";
+    if (!isHttp) {
+      return [];
+    }
+
+    try {
+      const response = await fetch(MATH_FONT_MANIFEST_URL, { cache: "no-store" });
+      if (!response.ok) {
+        return [];
+      }
+
+      const payload = await response.json();
+      if (!payload || !Array.isArray(payload.fonts)) {
+        return [];
+      }
+
+      const normalized = payload.fonts
+        .map(normalizeMathFontEntry)
+        .filter(Boolean);
+
+      const unique = [];
+      const seenValues = new Set();
+      normalized.forEach((font) => {
+        if (seenValues.has(font.value)) {
+          return;
+        }
+        seenValues.add(font.value);
+        unique.push(font);
+      });
+
+      return unique;
+    } catch (_error) {
+      return [];
+    }
+  }
+
+  function normalizeChoice(value, validSet) {
+    if (!value) {
+      return null;
+    }
+    return validSet.has(value) ? value : null;
+  }
+
+  function getStoredChoice(storageKey, validSet) {
+    if (!canPersistChoice) {
+      return null;
+    }
+    try {
+      return normalizeChoice(window.localStorage.getItem(storageKey), validSet);
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function setStoredChoice(storageKey, value) {
+    if (!canPersistChoice) {
+      return;
+    }
+    try {
+      window.localStorage.setItem(storageKey, value);
+    } catch (_error) {
+      // Ignore storage errors in restricted environments
+    }
+  }
+
+  function getStoredTheme() {
+    return getStoredChoice(THEME_STORAGE_KEY, validThemes);
+  }
+
+  function getStoredTextFont() {
+    return getStoredChoice(TEXT_FONT_STORAGE_KEY, validTextFonts);
+  }
+
+  function getStoredMathFont() {
+    return getStoredChoice(MATH_FONT_STORAGE_KEY, activeMathFontValues);
+  }
+
+  function getStoredTextSize() {
+    return getStoredChoice(TEXT_SIZE_STORAGE_KEY, validTextSizes);
+  }
+
+  function getStoredMathSize() {
+    return getStoredChoice(MATH_SIZE_STORAGE_KEY, validMathSizes);
+  }
+
+  function setStoredTheme(theme) {
+    setStoredChoice(THEME_STORAGE_KEY, theme);
+  }
+
+  function setStoredTextFont(font) {
+    setStoredChoice(TEXT_FONT_STORAGE_KEY, font);
+  }
+
+  function setStoredMathFont(font) {
+    setStoredChoice(MATH_FONT_STORAGE_KEY, font);
+  }
+
+  function setStoredTextSize(size) {
+    setStoredChoice(TEXT_SIZE_STORAGE_KEY, size);
+  }
+
+  function setStoredMathSize(size) {
+    setStoredChoice(MATH_SIZE_STORAGE_KEY, size);
+  }
+
+  function getPreferredTheme() {
+    const fromStorage = getStoredTheme();
+    if (fromStorage) {
+      return fromStorage;
+    }
+    const darkQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+    if (darkQuery && darkQuery.matches) {
+      return "midnight";
+    }
+    return "dawn";
+  }
+
+  function getPreferredTextFont() {
+    return getStoredTextFont() || "serif";
+  }
+
+  function getPreferredMathFont() {
+    const fromStorage = getStoredMathFont();
+    if (fromStorage) {
+      return fromStorage;
+    }
+    return activeMathFonts[0]?.value || null;
+  }
+
+  async function refreshActiveMathFonts() {
+    activeMathFonts = await loadMathFontsFromManifest();
+    activeMathFontValues = new Set(activeMathFonts.map((font) => font.value));
+    mathFontMap.clear();
+    activeMathFonts.forEach((font) => {
+      mathFontMap.set(font.value, font);
+    });
+    applyMathFontFaceStyles();
+  }
+
+  function getPreferredTextSize() {
+    return getStoredTextSize() || "100";
+  }
+
+  function getPreferredMathSize() {
+    return getStoredMathSize() || "100";
+  }
+
+  function applyTheme(theme) {
+    const chosen = normalizeChoice(theme, validThemes) || "dawn";
+    document.documentElement.setAttribute("data-theme", chosen);
+    setStoredTheme(chosen);
+    return chosen;
+  }
+
+  function applyTextFont(font) {
+    const chosen = normalizeChoice(font, validTextFonts) || "serif";
+    document.documentElement.setAttribute("data-font", chosen);
+    setStoredTextFont(chosen);
+    return chosen;
+  }
+
+  function applyMathFont(font) {
+    const chosen = normalizeChoice(font, activeMathFontValues)
+      || normalizeChoice(getPreferredMathFont(), activeMathFontValues)
+      || activeMathFonts[0]?.value
+      || null;
+    if (!chosen) {
+      document.documentElement.removeAttribute("data-math-font");
+      document.documentElement.style.removeProperty("--font-math");
+      return null;
+    }
+    const selected = mathFontMap.get(chosen);
+    if (!selected) {
+      return null;
+    }
+
+    document.documentElement.setAttribute("data-math-font", chosen);
+    document.documentElement.style.setProperty("--font-math", `"${selected.family}", serif`);
+    setStoredMathFont(chosen);
+    return chosen;
+  }
+
+  function applyTextSize(size) {
+    const chosen = normalizeChoice(size, validTextSizes) || "100";
+    document.documentElement.setAttribute("data-font-size", chosen);
+    setStoredTextSize(chosen);
+    return chosen;
+  }
+
+  function applyMathSize(size) {
+    const chosen = normalizeChoice(size, validMathSizes) || "100";
+    document.documentElement.setAttribute("data-math-size", chosen);
+    setStoredMathSize(chosen);
+    return chosen;
+  }
+
+  function markTocLayout() {
+    if (document.getElementById("TOC")) {
+      document.body.classList.add("pandoc-has-toc");
+    }
+  }
+
+  function setupMobileTocDrawer() {
+    const toc = document.getElementById("TOC");
+    if (!toc || document.querySelector(".toc-mobile-toggle")) {
+      return;
+    }
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "toc-mobile-toggle";
+    toggle.setAttribute("aria-controls", "TOC");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "☰ Contents";
+
+    const navbar = document.createElement("nav");
+    navbar.className = "mobile-navbar";
+    navbar.setAttribute("aria-label", "Mobile navigation");
+
+    const navbarTitle = document.createElement("div");
+    navbarTitle.className = "mobile-navbar-title";
+    navbarTitle.textContent = "Notes";
+
+    const navbarActions = document.createElement("div");
+    navbarActions.className = "mobile-navbar-actions";
+    navbarActions.append(toggle);
+
+    navbar.append(navbarTitle, navbarActions);
+
+    const backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "toc-mobile-backdrop";
+    backdrop.setAttribute("aria-label", "Close contents panel");
+
+    function isOpen() {
+      return document.body.classList.contains("toc-mobile-open");
+    }
+
+    function setOpen(open) {
+      document.body.classList.toggle("toc-mobile-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+
+    toggle.addEventListener("click", () => {
+      setOpen(!isOpen());
+    });
+
+    backdrop.addEventListener("click", () => {
+      setOpen(false);
+    });
+
+    toc.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        setOpen(false);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
+
+    document.body.append(navbar, backdrop);
+  }
+
+  function resolveSwitcherHost() {
+    const toc = document.getElementById("TOC");
+    if (toc) {
+      return { node: toc, mode: "toc" };
+    }
+
+    const title = document.getElementById("title-block-header");
+    if (title) {
+      return { node: title, mode: "header" };
+    }
+
+    return { node: document.body, mode: "header" };
+  }
+
+  function createControl({ id, labelText, options, selectedValue, onChange }) {
+    const control = document.createElement("div");
+    control.className = "theme-switcher-control";
+
+    const label = document.createElement("label");
+    label.setAttribute("for", id);
+    label.textContent = labelText;
+
+    const select = document.createElement("select");
+    select.id = id;
+    select.name = id;
+
+    options.forEach((optionData) => {
+      const option = document.createElement("option");
+      option.value = optionData.value;
+      option.textContent = optionData.label;
+      select.appendChild(option);
+    });
+
+    select.value = selectedValue;
+
+    function applySelection() {
+      const value = select.value;
+      if (!value) {
+        return;
+      }
+      onChange(value);
+    }
+
+    select.addEventListener("input", applySelection);
+    select.addEventListener("change", applySelection);
+
+    control.append(label, select);
+    return control;
+  }
+
+  function createSwitcher(currentTheme, currentTextFont, currentMathFont, currentTextSize, currentMathSize) {
+    if (document.querySelector(".theme-switcher")) {
+      return;
+    }
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "theme-switcher";
+    wrapper.setAttribute("role", "group");
+    wrapper.setAttribute("aria-label", "Display controls");
+
+    const toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "theme-switcher-toggle";
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Display Controls ▾";
+
+    const panel = document.createElement("div");
+    panel.className = "theme-switcher-panel";
+    panel.id = "theme-switcher-panel";
+    toggle.setAttribute("aria-controls", panel.id);
+
+    const controls = document.createElement("div");
+    controls.className = "theme-switcher-controls";
+
+    const controlsToAppend = [
+      createControl({
+        id: "theme-switcher-select",
+        labelText: "Theme",
+        options: THEMES,
+        selectedValue: currentTheme,
+        onChange: (value) => applyTheme(value),
+      }),
+      createControl({
+        id: "text-font-switcher-select",
+        labelText: "Text Font",
+        options: TEXT_FONTS,
+        selectedValue: currentTextFont,
+        onChange: (value) => applyTextFont(value),
+      }),
+      createControl({
+        id: "text-size-switcher-select",
+        labelText: "Text Size",
+        options: TEXT_SIZES,
+        selectedValue: currentTextSize,
+        onChange: (value) => applyTextSize(value),
+      }),
+      createControl({
+        id: "math-size-switcher-select",
+        labelText: "Math Size",
+        options: MATH_SIZES,
+        selectedValue: currentMathSize,
+        onChange: (value) => applyMathSize(value),
+      })
+    ];
+
+    if (activeMathFonts.length > 0) {
+      controlsToAppend.splice(
+        2,
+        0,
+        createControl({
+          id: "math-font-switcher-select",
+          labelText: "Math Font",
+          options: activeMathFonts,
+          selectedValue: currentMathFont || activeMathFonts[0].value,
+          onChange: (value) => applyMathFont(value),
+        })
+      );
+    }
+
+    controls.append(...controlsToAppend);
+
+    panel.append(controls);
+    wrapper.append(toggle, panel);
+
+    function setOpen(open) {
+      wrapper.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.textContent = open ? "Display Controls ▴" : "Display Controls ▾";
+    }
+
+    toggle.addEventListener("click", () => {
+      const open = wrapper.classList.contains("is-open");
+      setOpen(!open);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!wrapper.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
+
+    const host = resolveSwitcherHost();
+    if (host.mode === "toc") {
+      wrapper.classList.add("theme-switcher--toc");
+      host.node.prepend(wrapper);
+      return;
+    }
+
+    wrapper.classList.add("theme-switcher--header");
+    if (host.node === document.body) {
+      host.node.prepend(wrapper);
+      return;
+    }
+    host.node.appendChild(wrapper);
+  }
+
+  async function init() {
+    if (!document.body) {
+      return;
+    }
+    markTocLayout();
+    setupMobileTocDrawer();
+    await refreshActiveMathFonts();
+    const currentTheme = applyTheme(getPreferredTheme());
+    const currentTextFont = applyTextFont(getPreferredTextFont());
+    const currentMathFont = applyMathFont(getPreferredMathFont());
+    const currentTextSize = applyTextSize(getPreferredTextSize());
+    const currentMathSize = applyMathSize(getPreferredMathSize());
+    createSwitcher(currentTheme, currentTextFont, currentMathFont, currentTextSize, currentMathSize);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+})();
+</script>
+  </div>
+</div>
+</body>
+</html>

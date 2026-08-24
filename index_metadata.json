@@ -1,0 +1,50 @@
+{
+  "files": {
+    "analysis_I_problem_set_1.html": {
+      "title": "Analysis 1 Problem Set 1",
+      "section": "assignments"
+    },
+    "analysis_white.html": {
+      "title": "Analysis 1 Course Notes",
+      "section": "course_notes"
+    },
+    "basic_algebra.html": {
+      "title": "Basic Algebra 1 Course Notes",
+      "section": "course_notes"
+    },
+    "cyclic_vectors.html": {
+      "title": "Cyclic Vectors",
+      "section": "personal_study"
+    },
+    "fibonacci.html": {
+      "title": "Fibonacci Numbers",
+      "section": "personal_study"
+    },
+    "lin_al.html": {
+      "title": "Linear Algebra 1 Course Notes",
+      "section": "course_notes"
+    },
+    "lin_al_problems.html": {
+      "title": "Linearl Algebra Problems",
+      "section": "assignments"
+    },
+    "prob_stats1.html": {
+      "title": "Probability 1 Course Notes",
+      "section": "course_notes"
+    },
+    "skolem.html": {
+      "title": "Skolem Positivity Problem",
+      "section": "personal_study"
+    },
+    "analysis2.html": {
+      "title": "Analysis 2 Course Notes",
+      "section": "course_notes"
+    },
+    "rings.html": {
+      "section": "course_notes"
+    },
+    "stochastics.html": {
+      "section": "course_notes"
+    }
+  }
+}

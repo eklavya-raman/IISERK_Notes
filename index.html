@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notes Index</title>
+  <style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f8fb;
+    --panel: #ffffff;
+    --text: #1d2638;
+    --muted: #63708a;
+    --link: #2e62c6;
+    --border: #d5dced;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+    --bg: #0f1420;
+    --panel: #161f2f;
+    --text: #deebff;
+    --muted: #9eb0d1;
+    --link: #8ab7ff;
+    --border: #2d3d59;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 72rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    gap: .9rem;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+  }
+  h1, h2 { margin: 0 0 .45rem; }
+  p { margin: .25rem 0 .75rem; color: var(--muted); }
+  ul { margin: 0; padding-left: 1.2rem; }
+  li + li { margin-top: .35rem; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .meta { margin-top: .9rem; font-size: .9rem; color: var(--muted); }
+  .section-links { display: flex; flex-wrap: wrap; gap: .75rem; margin: .45rem 0 0; }
+  </style>
+</head>
+<body>
+  <main>
+  <section class="panel">
+    <h1>Notes Index</h1>
+    <p>Open converted pages by section.</p>
+    <div class="section-links"><a href="#section-course_notes">Course Notes</a> <a href="#section-assignments">Assignments</a> <a href="#section-personal_study">Personal Study</a></div>
+    <div class="meta">Updated: 2026-08-24 21:14 UTC · Files: 12</div>
+  </section>
+
+    <section id="section-course_notes" class="panel">
+      <h2>Course Notes</h2>
+      <ul>
+        <li><a href="analysis_white.html">Analysis 1 Course Notes</a></li>
+        <li><a href="analysis2.html">Analysis 2 Course Notes</a></li>
+        <li><a href="basic_algebra.html">Basic Algebra 1 Course Notes</a></li>
+        <li><a href="lin_al.html">Linear Algebra 1 Course Notes</a></li>
+        <li><a href="prob_stats1.html">Probability 1 Course Notes</a></li>
+        <li><a href="rings.html">Rings and Modules Notes MA3110: Rings and Modules - Course taken by Prof. Swarnendu Datta</a></li>
+        <li><a href="stochastics.html">Stochastic Processes Notes MA3110: Stochastic Processes - Course taken by Prof. Biltu Dan</a></li>
+      </ul>
+    </section>
+
+    <section id="section-assignments" class="panel">
+      <h2>Assignments</h2>
+      <ul>
+        <li><a href="analysis_I_problem_set_1.html">Analysis 1 Problem Set 1</a></li>
+        <li><a href="lin_al_problems.html">Linearl Algebra Problems</a></li>
+      </ul>
+    </section>
+
+    <section id="section-personal_study" class="panel">
+      <h2>Personal Study</h2>
+      <ul>
+        <li><a href="cyclic_vectors.html">Cyclic Vectors</a></li>
+        <li><a href="fibonacci.html">Fibonacci Numbers</a></li>
+        <li><a href="skolem.html">Skolem Positivity Problem</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
